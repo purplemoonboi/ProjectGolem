@@ -24,7 +24,7 @@ public class AnimateBuildingSpawn : MonoBehaviour
 
     void Update()
     {
-        if(movePlane)
+        if(movePlane && !hasSpawnedBuilding)
         {
             MovePlane();
         }
@@ -53,6 +53,7 @@ public class AnimateBuildingSpawn : MonoBehaviour
     //This is called when the player enters the trigger.
     public void SetShouldMovePlane(bool value)
     {
+        Debug.Log("Has triggered building");
         movePlane = value;
     }
 
