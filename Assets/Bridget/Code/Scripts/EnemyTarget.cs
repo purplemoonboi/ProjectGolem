@@ -112,4 +112,10 @@ public class EnemyTarget : MonoBehaviour
     }
 
     public int GetPower() { return power; }
+
+    public float GetHealth()
+    {
+        return health;
+    }
+
 }

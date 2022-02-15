@@ -209,9 +209,10 @@ GameObject:
   - component: {fileID: 3297196390544713553}
   - component: {fileID: 3297196390544713558}
   - component: {fileID: 652808183568075468}
+  - component: {fileID: 3451465754540513860}
   m_Layer: 0
   m_Name: Tower
-  m_TagString: Untagged
+  m_TagString: DefenceTower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -312,6 +313,19 @@ MonoBehaviour:
   healthBar: {fileID: 3297196390811327295}
   maxWidth: 0
   power: 0
+--- !u!135 &3451465754540513860
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3297196390544713559}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3297196390811327295
 GameObject:
   m_ObjectHideFlags: 0
