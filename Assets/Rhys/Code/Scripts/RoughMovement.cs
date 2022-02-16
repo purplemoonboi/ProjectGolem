@@ -66,45 +66,47 @@ public class RoughMovement : MonoBehaviour
         {
             pressedA = false;
         }
+
+        Camera.main.transform.forward = transform.forward + transform.right;
     }
 
     private void FixedUpdate()
     {
         if (pressedW)
         {
-            rigidbody.AddForce(transform.forward * 125.0f, ForceMode.Force);
+            rigidbody.AddForce(transform.forward * 50.0f, ForceMode.Force);
         }
         else if (pressedS)
         {
-            rigidbody.AddForce(-transform.forward * 125.0f, ForceMode.Force);
+            rigidbody.AddForce(-transform.forward * 50.0f, ForceMode.Force);
         }
         else if (pressedD)
         {
-            rigidbody.AddForce(transform.right * 125.0f, ForceMode.Force);
+            rigidbody.AddForce(transform.right * 50.0f, ForceMode.Force);
         }
        else if (pressedA)
         {
-            rigidbody.AddForce(-transform.right * 125.0f, ForceMode.Force);
+            rigidbody.AddForce(-transform.right * 50.0f, ForceMode.Force);
         }
 
        // Normalise diagonal movement
        if (pressedW && pressedD)
        {
-           rigidbody.AddForce(Vector3.Normalize(transform.right + transform.forward) * 125.0f, ForceMode.Force);
+           rigidbody.AddForce(Vector3.Normalize(transform.right + transform.forward) * 50.0f, ForceMode.Force);
        }
        if (pressedW && pressedA)
        {
-           rigidbody.AddForce(Vector3.Normalize(-transform.right + transform.forward) * 125.0f, ForceMode.Force);
+           rigidbody.AddForce(Vector3.Normalize(-transform.right + transform.forward) * 50.0f, ForceMode.Force);
        }
        if (pressedS && pressedD)
        {
-           rigidbody.AddForce(Vector3.Normalize(transform.right + -transform.forward) * 125.0f, ForceMode.Force);
+           rigidbody.AddForce(Vector3.Normalize(transform.right + -transform.forward) * 50.0f, ForceMode.Force);
        }
        if (pressedS && pressedA)
        {
-           rigidbody.AddForce(Vector3.Normalize(-transform.right + -transform.forward) * 125.0f, ForceMode.Force);
+           rigidbody.AddForce(Vector3.Normalize(-transform.right + -transform.forward) * 50.0f, ForceMode.Force);
        }
-    }
 
+    }
   
 }

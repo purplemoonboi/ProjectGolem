@@ -1,13 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class SpawnBuilding : MonoBehaviour
 {
+    [SerializeField]
+    private PickupResources pickupResources;
+    [SerializeField]
+    private Canvas canvas;
+
+    private Text resourceText;
 
     private bool isInteracting;
-
+    private bool isInBuildingSpawn;
     private AnimateBuildingSpawn animateBuildingSpawn;
 
 
@@ -16,7 +23,8 @@ public class SpawnBuilding : MonoBehaviour
     {
         isInteracting = false;
         animateBuildingSpawn = null;
-
+        isInBuildingSpawn = false;
+        resourceText = canvas.GetComponentsInChildren<Text>()[1];
     }
 
     // Update is called once per frame
@@ -32,24 +40,42 @@ public class SpawnBuilding : MonoBehaviour
         }
 
 
-    }
-
-    public void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Building" && isInteracting)
+        if(isInBuildingSpawn && isInteracting && animateBuildingSpawn != null)
         {
-            //If null try get the component.
-            if(animateBuildingSpawn == null)
+            if(!animateBuildingSpawn.IsSpawning())
             {
-                animateBuildingSpawn = other.GetComponentInChildren<AnimateBuildingSpawn>();
-                if(animateBuildingSpawn.HasAlreadySpawnedBuilding() == false)
+                Debug.Log("Spawning building");
+                int currentAmount = pickupResources.GetResources();
+                if (currentAmount >= 50)
                 {
+                    pickupResources.UpdateResources(-50);
+                    currentAmount -= 50;
+                    resourceText.text = currentAmount.ToString();
                     animateBuildingSpawn.SetShouldMovePlane(true);
-                    Debug.Log("Instructed the building animation.");
+                    animateBuildingSpawn = null;
                 }
             }
         }
     }
 
-   
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Building" || other.tag == "DefenceTower")
+        {
+            Debug.Log("Is in Building Spawn");
+            isInBuildingSpawn = true;
+            animateBuildingSpawn = other.GetComponentInChildren<AnimateBuildingSpawn>();
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "Building" || other.tag == "DefenceTower")
+        {
+            Debug.Log("Has left Building Spawn");
+            isInBuildingSpawn = false;
+            animateBuildingSpawn = null;
+        }
+    }
+
 }
