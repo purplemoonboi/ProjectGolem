@@ -9,6 +9,7 @@ public class AnimateBuildingSpawn : MonoBehaviour
     private Transform endGoal;
     private bool movePlane;
     private bool hasSpawnedBuilding;
+    private bool spawning;
 
     void Start()
     {
@@ -26,6 +27,7 @@ public class AnimateBuildingSpawn : MonoBehaviour
     {
         if(movePlane && !hasSpawnedBuilding)
         {
+            spawning = true;
             MovePlane();
         }
     }
@@ -39,7 +41,7 @@ public class AnimateBuildingSpawn : MonoBehaviour
         Vector3 currentPosition = transform.position;
         Vector3 direction = Vector3.Normalize(endGoal.position - currentPosition);
 
-        currentPosition += direction * 2.0f * Time.deltaTime;
+        currentPosition += direction * 10.0f * Time.deltaTime;
 
         if(Vector3.Distance(currentPosition, endGoal.position) < 0.001f)
         {
@@ -64,4 +66,8 @@ public class AnimateBuildingSpawn : MonoBehaviour
         return hasSpawnedBuilding;
     }
 
+    public bool IsSpawning()
+    {
+        return spawning;
+    }
 }

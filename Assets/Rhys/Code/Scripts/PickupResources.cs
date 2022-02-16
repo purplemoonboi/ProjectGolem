@@ -19,7 +19,7 @@ public class PickupResources : MonoBehaviour
     [SerializeField]
     private int resourceAmount = 150;
     [SerializeField]
-    private Material resourceMaterial;
+    private GameObject currentResource;
 
     // Start is called before the first frame update
     void Start()
@@ -42,36 +42,30 @@ public class PickupResources : MonoBehaviour
             pressedMouseB0 = false;
         }
 
-        if(canPickupResource && pressedMouseB0)
+        if(canPickupResource && pressedMouseB0 && currentResource)
         {
             Debug.Log("Picked up resource");
             resourceWallet += resourceAmount;
-
-            if(resourceMaterial)
-            {
-                resourceMaterial.SetColor("_Color", Color.red);
-            }
-            
             resourceText.text = resourceWallet.ToString();
+            Destroy(currentResource);
+            currentResource = null;
         }
     }
 
-    public void OnTriggerEnter(Collider trigger)
+    public void OnTriggerEnter(Collider other)
     {
-        if (trigger.gameObject.tag == "Resource")
+        if (other.gameObject.tag == "Resource")
         {
-            List<Material> otherMaterials = new List<Material>();
-            trigger.GetComponentInChildren<Renderer>().GetMaterials(otherMaterials);
-            resourceMaterial = otherMaterials[0];
+            currentResource = other.gameObject;
             canPickupResource = true;
         }
     }
 
-    public void OnTriggerExit(Collider trigger)
+    public void OnTriggerExit(Collider other)
     {
-        if (trigger.gameObject.tag == "Resource")
+        if (other.gameObject.tag == "Resource")
         {
-            resourceMaterial = null;
+            currentResource = null;
             canPickupResource = false;
         }
     }

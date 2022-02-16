@@ -8,6 +8,8 @@ TagManager:
   - Environment
   - Hologram
   - Building
+  - Resource
+  - ResourceWallet
   layers:
   - Default
   - TransparentFX

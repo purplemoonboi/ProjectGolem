@@ -42,21 +42,25 @@ public class SpawnBuilding : MonoBehaviour
 
         if(isInBuildingSpawn && isInteracting && animateBuildingSpawn != null)
         {
-            Debug.Log("Spawning building");
-            int currentAmount = pickupResources.GetResources();
-            if (currentAmount >= 50)
+            if(!animateBuildingSpawn.IsSpawning())
             {
-                pickupResources.UpdateResources(-50);
-                currentAmount -= 50;
-                resourceText.text = currentAmount.ToString();
-                animateBuildingSpawn.SetShouldMovePlane(true);
+                Debug.Log("Spawning building");
+                int currentAmount = pickupResources.GetResources();
+                if (currentAmount >= 50)
+                {
+                    pickupResources.UpdateResources(-50);
+                    currentAmount -= 50;
+                    resourceText.text = currentAmount.ToString();
+                    animateBuildingSpawn.SetShouldMovePlane(true);
+                    animateBuildingSpawn = null;
+                }
             }
         }
     }
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Building")
+        if(other.tag == "Building" || other.tag == "DefenceTower")
         {
             Debug.Log("Is in Building Spawn");
             isInBuildingSpawn = true;
@@ -66,7 +70,7 @@ public class SpawnBuilding : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if(other.tag == "Building")
+        if(other.tag == "Building" || other.tag == "DefenceTower")
         {
             Debug.Log("Has left Building Spawn");
             isInBuildingSpawn = false;

@@ -93,16 +93,16 @@ public class EnemyMovement : MonoBehaviour
                 agent.destination = target.transform.position;
             }
         }
-        else
-        {
-            if(reflectDirection)
-            {
-                patrolDirection = Vector3.RotateTowards(patrolDirection, -patrolDirection, Mathf.Deg2Rad * 30.0f, 360.0f);
-                reflectDirection = false;
-            }
-
-            agent.destination = patrolDirection * 10.0f;
-        }
+       // else
+       // {
+       //     if(reflectDirection)
+       //     {
+       //         patrolDirection = Vector3.RotateTowards(patrolDirection, -patrolDirection, Mathf.Deg2Rad * 30.0f, 360.0f);
+       //         reflectDirection = false;
+       //     }
+       //
+       //     agent.destination = patrolDirection * 10.0f;
+       // }
 
         if (damageTaken > 0.0f)
         {
@@ -218,4 +218,14 @@ public class EnemyMovement : MonoBehaviour
     public int GetID() { return id; }
 
     public int GetPower() { return power; }
+
+    public void UpdateDamageTaken(float value)
+    {
+        damageTaken += value;
+    }
+
+    public float GetCurrentDamageTaken()
+    {
+        return damageTaken;
+    }
 }

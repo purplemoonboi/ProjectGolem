@@ -24,7 +24,7 @@ public class EnemySpawner : MonoBehaviour
         spawnTime = 3.0f;
         elapsedTime = 0.0f;
         spawnCount = 2;
-        enemyLimit = 10;
+        enemyLimit = 2;
         shouldSpawn = false;
     }
 
