@@ -9,6 +9,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
+//@author David Costa
+
 public class MenuManager : MonoBehaviour
 {
 
@@ -166,7 +168,6 @@ public class MenuManager : MonoBehaviour
         if (!focus)
         {
             SaveSoundSettings();
-            //VolumeApply();
         }
     }
 

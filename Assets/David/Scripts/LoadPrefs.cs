@@ -1,33 +1,54 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+//@author David Costa
+
 public class LoadPrefs : MonoBehaviour
 {
-    [Header("General Setting")]
-    [SerializeField] private bool canUse = false;
-    [SerializeField] private MenuManager menuManager;
+    //[Header("General Setting")]
+    //[SerializeField] private bool canUse = false;
+    //[SerializeField] private MenuManager menuManager;
 
     [Header("Volume Setting")]
-    [SerializeField] private TextMeshProUGUI volumeTextValue = null;
-    [SerializeField] private Slider volumeSlider = null;
+    //[SerializeField] private TextMeshProUGUI volumeTextValue = null;
+    //[SerializeField] private Slider volumeSlider = null;
+    private static readonly string masterPref = "MasterVolume";
+    private static readonly string backgroundPref = "BackgroundVolume";
+    private static readonly string sfxPref = "SfxVolume";
+    private float masterFloat;
+    private float backgroundFloat;
+    private float sfxFloat;
 
-    [Header("Quality Level Setting")]
-    [SerializeField] private TMP_Dropdown qualityDropdown;
+    public AudioSource backgroundAudio;
+    public AudioSource[] soundEffectsAudio;
 
-    [Header("Fullscreen Setting")]
-    [SerializeField] private Toggle fullScreenToggle;
+    //[Header("Quality Level Setting")]
+    //[SerializeField] private TMP_Dropdown qualityDropdown;
+
+    //[Header("Fullscreen Setting")]
+    //[SerializeField] private Toggle fullScreenToggle;
 
     private void Awake()
     {
-        if (canUse)
+        ContinueSettings();
+    }
+
+    private void ContinueSettings()
+    {
+        masterFloat = PlayerPrefs.GetFloat(masterPref);
+        backgroundFloat = PlayerPrefs.GetFloat(backgroundPref);
+        sfxFloat = PlayerPrefs.GetFloat(sfxPref);
+        
+        
+        backgroundAudio.volume = backgroundFloat;
+
+        for (int i = 0; i < soundEffectsAudio.Length; i++)
         {
-            if (PlayerPrefs.HasKey("MasterVolume"))
-            {
-                float localVolume = PlayerPrefs.GetFloat("MasterVolume");
-            }
+            soundEffectsAudio[i].volume = sfxFloat;
         }
+
+        //
+
     }
 }

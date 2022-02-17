@@ -1,7 +1,7 @@
 using UnityEngine;
 using Cinemachine;
 
-
+//@author David Costa
 public class CinemachineSwitcher : MonoBehaviour
 {
 
@@ -12,13 +12,6 @@ public class CinemachineSwitcher : MonoBehaviour
 
     private bool frontCam = true;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -27,7 +20,6 @@ public class CinemachineSwitcher : MonoBehaviour
             SwitchPriority();
         }
     }
-
 
     private void SwitchPriority()
     {
