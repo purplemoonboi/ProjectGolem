@@ -24,13 +24,13 @@ public class EnemySpawner : MonoBehaviour
         spawnTime = 3.0f;
         elapsedTime = 0.0f;
         spawnCount = 2;
-        enemyLimit = 2;
+        enemyLimit = 10;
         shouldSpawn = false;
     }
 
     void Update()
     {
-        if(Input.GetKey(KeyCode.E))
+        if(Input.GetKeyDown(KeyCode.E))
         {
             shouldSpawn = (shouldSpawn == false) ? true : false;
         }

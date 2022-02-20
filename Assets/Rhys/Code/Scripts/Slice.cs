@@ -32,7 +32,7 @@ public class Slice : MonoBehaviour
             {
                 foreach(Material material in materials)
                 {
-                    Debug.Log("Added material reference!");
+                    //Debug.Log("Added material reference!");
                     hologramMaterials.Add(material);
                 }
             }

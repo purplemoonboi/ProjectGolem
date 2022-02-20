@@ -9,15 +9,23 @@ public class FireProjectile : MonoBehaviour
     [SerializeField]
     private Transform[] barrelSpawns;
     [SerializeField]
-    private float fireForce = 100.0f;
+    private float fireForce = 1000.0f;
     [SerializeField]
-    private float fireRate = 4.0f;
+    private float fireRate = 1.0f;
     [SerializeField]
     private Transform target;
     [SerializeField]
     private bool shouldFire = false;
-
+    [SerializeField]
+    private bool alignAzimuth = true;
+    [SerializeField]
     private float fireTimer = 0.0f;
+
+    [SerializeField]
+    private Transform azimuthTransform;
+
+    [SerializeField]
+    private EnemyTarget enemyTarget;
 
     // Start is called before the first frame update
     void Start()
@@ -26,45 +34,80 @@ public class FireProjectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(target != null)
+        if(enemyTarget.IsActivated())
         {
-            fireTimer += 1.0f * Time.deltaTime;
-
-            if (fireTimer >= fireRate)
+            if (target != null)
             {
-                shouldFire = true;
-                fireTimer = 0.0f;
+                fireTimer += 1.0f * Time.deltaTime;
+
+
+                if (fireTimer >= fireRate)
+                {
+                    shouldFire = true;
+                    fireTimer = 0.0f;
+
+                    if (alignAzimuth)
+                    {
+                    }
+                }
+
+
+                //   if(Vector3.Angle(azimuthTransform.forward, Vector3.Normalize(target.position - azimuthTransform.position)) > 30.0f)
+                //   {
+                //       alignAzimuth = false;
+                //       float alpha = 8.0f * Time.deltaTime;
+                //       azimuthTransform.forward = Vector3.RotateTowards(azimuthTransform.forward, target.position, alpha, 0.0f);
+                //   }
+                //   else
+                //   {
+                //       alignAzimuth = true;
+                //   }
             }
         }
     }
 
     public void FixedUpdate()
     {
-        if(shouldFire)
+        if(enemyTarget.IsActivated())
         {
-            shouldFire = false;
-            GameObject[] proj = { Instantiate(prefab, barrelSpawns[0]), Instantiate(prefab, barrelSpawns[1]) };
-            Rigidbody[] rigidbody = { proj[0].GetComponent<Rigidbody>(), proj[1].GetComponent<Rigidbody>() };
-            Vector3 direction = Vector3.Normalize(target.position - transform.forward);
-            Vector3 force = fireForce * direction;
-            rigidbody[0].AddForce(force, ForceMode.Force);
-            rigidbody[1].AddForce(force, ForceMode.Force);
+            if (shouldFire)
+            {
+                Debug.Log("FIRED PROJECTILE!");
+                shouldFire = false;
+
+                GameObject[] proj = new GameObject[2];
+                proj[0] = Instantiate(prefab, barrelSpawns[0].position, Quaternion.identity);
+                proj[1] = Instantiate(prefab, barrelSpawns[1].position, Quaternion.identity);
+
+                Rigidbody[] rigidbody = { proj[0].GetComponent<Rigidbody>(), proj[1].GetComponent<Rigidbody>() };
+
+                Vector3 direction = Vector3.Normalize(target.position - transform.position);
+                Vector3 force = fireForce * direction;
+                rigidbody[0].AddForce(force, ForceMode.Force);
+                rigidbody[1].AddForce(force, ForceMode.Force);
+            }
         }
     }
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Enemy")
+        if(enemyTarget.IsActivated())
         {
-            target = other.transform;
+            if (other.tag == "Enemy" && target == null)
+            {
+                target = other.transform;
+            }
         }
     }
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Enemy")
+        if(enemyTarget.IsActivated())
         {
-            target = null;
+            if (other.tag == "Enemy")
+            {
+                target = null;
+            }
         }
     }
 
