@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//@author David Costa
+
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
 
-    private bool isPaused = false;
+    //private bool isPaused = false;
 
     void Update()
     {
@@ -37,7 +39,6 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
-        isPaused = false;
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
     }
