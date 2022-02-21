@@ -16,6 +16,8 @@ public class EnemySpawner : MonoBehaviour
     private GameObject enemyPrefab;
     [SerializeField]
     private List<GameObject> enemies;
+    [SerializeField]
+    private bool shouldSpawn;
 
     void Start()
     {
@@ -23,11 +25,20 @@ public class EnemySpawner : MonoBehaviour
         elapsedTime = 0.0f;
         spawnCount = 2;
         enemyLimit = 10;
+        shouldSpawn = false;
     }
 
     void Update()
     {
-        SpawnOnTimer();
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            shouldSpawn = (shouldSpawn == false) ? true : false;
+        }
+
+        if(shouldSpawn)
+        {
+            SpawnOnTimer();
+        }
     }
 
     private void SpawnOnTimer()

@@ -9,6 +9,10 @@ public class AnimateBuildingSpawn : MonoBehaviour
     private Transform endGoal;
     private bool movePlane;
     private bool hasSpawnedBuilding;
+    private bool spawning;
+
+    [SerializeField]
+    private EnemyTarget tower;
 
     void Start()
     {
@@ -24,11 +28,15 @@ public class AnimateBuildingSpawn : MonoBehaviour
 
     void Update()
     {
-        if(movePlane)
+        if(movePlane && !hasSpawnedBuilding)
         {
+            spawning = true;
             MovePlane();
         }
     }
+
+ 
+
 
     //Moves the plane towards the goal thus rendering the building as it
     //passes through the hologram.
@@ -39,12 +47,13 @@ public class AnimateBuildingSpawn : MonoBehaviour
         Vector3 currentPosition = transform.position;
         Vector3 direction = Vector3.Normalize(endGoal.position - currentPosition);
 
-        currentPosition += direction * 2.0f * Time.deltaTime;
+        currentPosition += direction * 10.0f * Time.deltaTime;
 
         if(Vector3.Distance(currentPosition, endGoal.position) < 0.001f)
         {
             movePlane = false;
             hasSpawnedBuilding = true;
+            tower.SetIsActivated(true);
         }
 
         transform.position = currentPosition;
@@ -53,6 +62,7 @@ public class AnimateBuildingSpawn : MonoBehaviour
     //This is called when the player enters the trigger.
     public void SetShouldMovePlane(bool value)
     {
+        Debug.Log("Has triggered building");
         movePlane = value;
     }
 
@@ -63,4 +73,8 @@ public class AnimateBuildingSpawn : MonoBehaviour
         return hasSpawnedBuilding;
     }
 
+    public bool IsSpawning()
+    {
+        return spawning;
+    }
 }

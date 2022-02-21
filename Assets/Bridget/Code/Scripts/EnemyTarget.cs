@@ -33,6 +33,8 @@ public class EnemyTarget : MonoBehaviour
     [SerializeField]
     private int power;  //How much damage the enemy can do in one hit
 
+    private bool isActivated = false;
+
     void Start()
     {
         health = MAX_HEALTH;
@@ -46,37 +48,46 @@ public class EnemyTarget : MonoBehaviour
 
     void Update()
     {
-        UpdateCanvasRotation();
-        UpdateUIComponents();
-
-        if (health <= 0.0f)
+        if(isActivated)
         {
-            Destroy(gameObject);
-        }
+            UpdateCanvasRotation();
+            UpdateUIComponents();
 
-        if (damageTaken > 0.0f)
-        {
-            ProcessDamage();
+            if (health <= 0.0f)
+            {
+                Destroy(gameObject);
+            }
+
+            if (damageTaken > 0.0f)
+            {
+                ProcessDamage();
+            }
         }
     }
 
     public void OnCollisionEnter(Collision collision)
     {
-        EnemyMovement enemy = collision.transform.gameObject.GetComponent<EnemyMovement>();
-
-        if (enemy)
+        if(isActivated)
         {
-            damageTaken += Mathf.Max(0, enemy.GetPower());
+            EnemyMovement enemy = collision.transform.gameObject.GetComponent<EnemyMovement>();
+
+            if (enemy)
+            {
+                damageTaken += Mathf.Max(0, enemy.GetPower());
+            }
         }
     }
 
     public void OnCollisionExit(Collision collision)
     {
-        EnemyMovement enemy = collision.transform.gameObject.GetComponent<EnemyMovement>();
-
-        if (enemy)
+        if(isActivated)
         {
-            damageTaken -= Mathf.Max(0, enemy.GetPower());  //Ensuring negative damage can't be done
+            EnemyMovement enemy = collision.transform.gameObject.GetComponent<EnemyMovement>();
+
+            if (enemy)
+            {
+                damageTaken -= Mathf.Max(0, enemy.GetPower());  //Ensuring negative damage can't be done
+            }
         }
     }
 
@@ -117,6 +128,20 @@ public class EnemyTarget : MonoBehaviour
 
     public int GetPower() { return power; }
 
+    public void SetIsActivated(bool value)
+    {
+        isActivated = value;
+    }
+
+    public bool IsActivated()
+    {
+        return isActivated;
+    }
+
     public void SetHealth(float h) { health = h; }
-    public float GetHealth() { return health; }
+
+    public float GetHealth()
+    {
+        return health;
+    }
 }

@@ -8,36 +8,48 @@ public class Slice : MonoBehaviour
     [SerializeField]
     private Transform meshCutterTransform;
     [SerializeField]
-    private bool flipTransformsUp;
+    private bool flipTransformsUp = true;
     [SerializeField]
-    private Material thisMaterial;
+    public List<Material> hologramMaterials;
 
     // @brief Flips the normal of the mesh cutter object.
-    private int transformFlipMultiplier;
+    private int transformFlipMultiplier = 1;
 
     void Start()
     {
-        //Get a reference to this objects material.
-        List<Material> materials = new List<Material>();
-        MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
-        meshRenderer.GetMaterials(materials);
-        thisMaterial = materials[0];
+        hologramMaterials = new List<Material>();
 
-        transformFlipMultiplier = 1;
-        if (flipTransformsUp)
+        //We need to grab childrens materials if they are tagged hologram.
+        Renderer[] renderersInChildren = GetComponentsInChildren<Renderer>();
+
+        //Get all the materials in the child game objects.
+        foreach(Renderer renderer in renderersInChildren)
         {
-            transformFlipMultiplier = -1;
-        }
+            List<Material> materials = new List<Material>();
+            renderer.GetMaterials(materials);
 
+            if(materials != null)
+            {
+                foreach(Material material in materials)
+                {
+                    //Debug.Log("Added material reference!");
+                    hologramMaterials.Add(material);
+                }
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Upload mesh cutter properties to the GPU.
         Vector3 planeNormal = transform.worldToLocalMatrix.MultiplyVector(transformFlipMultiplier * meshCutterTransform.up);
-        Vector3 planePosition = meshCutterTransform.position;
-        thisMaterial.SetVector("sliceNormal", planeNormal);
-        thisMaterial.SetVector("sliceCentre", planePosition);
+        Vector3 planePosition = meshCutterTransform.localPosition;
+
+        // Upload mesh cutter properties to the GPU.
+        foreach (Material material in hologramMaterials)
+        {
+            material.SetVector("sliceNormal", planeNormal);
+            material.SetVector("sliceCentre", planePosition);
+        }
     }
 }

@@ -35,7 +35,7 @@ public class EnemyMovement : MonoBehaviour
     private float damageTaken;
 
     [SerializeField]
-    private GameObject target;
+    private EnemyTarget target;
 
     private NavMeshAgent agent;
 
@@ -43,6 +43,16 @@ public class EnemyMovement : MonoBehaviour
     private int id;
     [SerializeField]
     private int power;  //How much damage the enemy can do in one hit
+
+    [SerializeField]
+    private List<EnemyTarget> targetsInProximity;
+    [SerializeField]
+    private bool shouldUpdateTarget;
+
+    private bool reflectDirection;
+
+    [SerializeField]
+    private Vector3 patrolDirection;
 
     void Start()
     {
@@ -55,6 +65,13 @@ public class EnemyMovement : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.destination = transform.forward;
         power = 10;
+
+        //Initialise list.
+        targetsInProximity = new List<EnemyTarget>();
+        shouldUpdateTarget = true;
+        reflectDirection   = false;
+        target             = null;
+        patrolDirection    = transform.forward;
     }
 
     void Update()
@@ -63,17 +80,30 @@ public class EnemyMovement : MonoBehaviour
 
         if (health <= 0.0f)
         {
-            agent.enabled = false;
-            transform.position.Set(-999.9f, -999.9f, -999.9f);  //Moving the object far away so OnCollisionExit will trigger
-
-            isDead = true;
+           // agent.enabled = false;
+           // transform.position.Set(-999.9f, -999.9f, -999.9f);  //Moving the object far away so OnCollisionExit will trigger
+           //
+           // isDead = true;
+            Destroy(gameObject);
         }
 
         if(target != null)
         {
             if(agent.enabled)
-            agent.destination = target.transform.position;
+            {
+                agent.destination = target.transform.position;
+            }
         }
+       else
+       {
+           if(reflectDirection)
+           {
+               patrolDirection = Vector3.RotateTowards(patrolDirection, -patrolDirection, Mathf.Deg2Rad * 30.0f, 360.0f);
+               reflectDirection = false;
+           }
+      
+           agent.destination = patrolDirection * 10.0f;
+       }
 
         if (damageTaken > 0.0f)
         {
@@ -92,42 +122,65 @@ public class EnemyMovement : MonoBehaviour
         direction = transform.forward;
         ray = new Ray(origin, direction);
 
-        if (Physics.Raycast(ray, out hit, maxDistance))
+        if (Physics.Raycast(ray, out hit, maxDistance, (1 << 6)))
         {
-            EnemyTarget tower = hit.collider.GetComponent<EnemyTarget>();
+            // EnemyTarget tower = hit.collider.GetComponent<EnemyTarget>();
 
-            if(tower)
+            // if(tower)
+            // {
+            //     target = tower.gameObject;
+            // }
+
+            if (Vector3.Distance(hit.transform.position, transform.position) < 2.0f)
             {
-                target = tower.gameObject;
+                reflectDirection = true;
             }
         }
     }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "DefenceTower")
+        {
+            EnemyTarget targetReference = other.gameObject.GetComponent<EnemyTarget>();
+            if(targetReference.IsActivated())
+            {
+                if (shouldUpdateTarget)
+                {
+                    target = other.GetComponent<EnemyTarget>();
+                    shouldUpdateTarget = false;
+                }
+            }
+        }
+    }
+
+
     public void OnCollisionEnter(Collision collision)
     {
-        EnemyTarget tower = collision.transform.gameObject.GetComponent<EnemyTarget>();
+       // EnemyTarget tower = collision.transform.gameObject.GetComponent<EnemyTarget>();
 
-        if (tower)
+        if (target == collision.gameObject)
         {
             Debug.Log(gameObject.name + " IS colliding with " + collision.gameObject.name);
 
-            damageTaken += Mathf.Max(0, tower.GetPower());
+            damageTaken += Mathf.Max(0, target.GetPower());
         }
     }
 
     public void OnCollisionExit(Collision collision)
     {
-        EnemyTarget tower = collision.transform.gameObject.GetComponent<EnemyTarget>();
+       // EnemyTarget tower = collision.transform.gameObject.GetComponent<EnemyTarget>();
 
-        if (tower)
+        if (target == collision.gameObject)
         {
             Debug.Log(gameObject.name + " IS NOT colliding with " + collision.gameObject.name);
 
-            damageTaken -= Mathf.Max(0, tower.GetPower());  //Ensuring negative damage can't be done
+            damageTaken -= Mathf.Max(0, target.GetPower());  //Ensuring negative damage can't be done
 
             if (isDead)
             {
                 target = null;
+                shouldUpdateTarget = true;
                 Destroy(gameObject);
             }
         }
@@ -170,4 +223,14 @@ public class EnemyMovement : MonoBehaviour
     public int GetID() { return id; }
 
     public int GetPower() { return power; }
+
+    public void UpdateDamageTaken(float value)
+    {
+        damageTaken += value;
+    }
+
+    public float GetCurrentDamageTaken()
+    {
+        return damageTaken;
+    }
 }
