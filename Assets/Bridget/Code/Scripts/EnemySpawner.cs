@@ -68,7 +68,7 @@ public class EnemySpawner : MonoBehaviour
 
         enemy.transform.Rotate(new Vector3(0.0f, 1.0f, 0.0f), Random.Range(0.0f, 359.9f));
         enemy.name = "Enemy " + (enemies.Count + 1);
-        enemy.GetComponent<EnemyMovement>().SetID(enemies.Count + 1);
+        //enemy.GetComponent<EnemyMovement>().SetID(enemies.Count + 1);
 
         enemies.Add(enemy);
     }
