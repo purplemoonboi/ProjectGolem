@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/David/Scenes/MainMenu.unity
     guid: 1f44f1b19dceefd439b899a563f732ed
   - enabled: 1
-    path: Assets/Build/Scenes/PreAlpha.unity
+    path: Assets/Build/Build160222/Scenes/PreAlpha.unity
     guid: 61db4560d6187d946a9c3958028f738c
   m_configObjects: {}
