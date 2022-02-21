@@ -100,6 +100,7 @@ namespace TheKiwiCoder
             // Toolbar assets menu
             toolbarMenu = root.Q<ToolbarMenu>();
             var behaviourTrees = LoadAssets<BehaviourTree>();
+
             behaviourTrees.ForEach(tree =>
             {
                 toolbarMenu.menu.AppendAction($"{tree.name}", (a) =>
@@ -107,6 +108,7 @@ namespace TheKiwiCoder
                     Selection.activeObject = tree;
                 });
             });
+
             toolbarMenu.menu.AppendSeparator();
             toolbarMenu.menu.AppendAction("New Tree...", (a) => CreateNewTree("NewBehaviourTree"));
 
@@ -180,7 +182,6 @@ namespace TheKiwiCoder
 
         void SelectTree(BehaviourTree newTree)
         {
-
             if (treeView == null)
             {
                 return;
