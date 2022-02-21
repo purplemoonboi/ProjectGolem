@@ -23,11 +23,6 @@ public class BasicMovement : MonoBehaviour
         controller = GetComponent<CharacterController>();
     }
 
-
-    void Start()
-    {
-    }
-
     void Update()
     {
         PlayerMovement();
