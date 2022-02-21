@@ -11,6 +11,9 @@ public class AnimateBuildingSpawn : MonoBehaviour
     private bool hasSpawnedBuilding;
     private bool spawning;
 
+    [SerializeField]
+    private EnemyTarget tower;
+
     void Start()
     {
         movePlane = false;
@@ -32,6 +35,9 @@ public class AnimateBuildingSpawn : MonoBehaviour
         }
     }
 
+ 
+
+
     //Moves the plane towards the goal thus rendering the building as it
     //passes through the hologram.
     private void MovePlane()
@@ -47,6 +53,7 @@ public class AnimateBuildingSpawn : MonoBehaviour
         {
             movePlane = false;
             hasSpawnedBuilding = true;
+            tower.SetIsActivated(true);
         }
 
         transform.position = currentPosition;

@@ -10,6 +10,7 @@ TagManager:
   - Building
   - Resource
   - ResourceWallet
+  - Enemy
   layers:
   - Default
   - TransparentFX

@@ -80,10 +80,11 @@ public class EnemyMovement : MonoBehaviour
 
         if (health <= 0.0f)
         {
-            agent.enabled = false;
-            transform.position.Set(-999.9f, -999.9f, -999.9f);  //Moving the object far away so OnCollisionExit will trigger
-
-            isDead = true;
+           // agent.enabled = false;
+           // transform.position.Set(-999.9f, -999.9f, -999.9f);  //Moving the object far away so OnCollisionExit will trigger
+           //
+           // isDead = true;
+            Destroy(gameObject);
         }
 
         if(target != null)
@@ -93,16 +94,16 @@ public class EnemyMovement : MonoBehaviour
                 agent.destination = target.transform.position;
             }
         }
-       // else
-       // {
-       //     if(reflectDirection)
-       //     {
-       //         patrolDirection = Vector3.RotateTowards(patrolDirection, -patrolDirection, Mathf.Deg2Rad * 30.0f, 360.0f);
-       //         reflectDirection = false;
-       //     }
-       //
-       //     agent.destination = patrolDirection * 10.0f;
-       // }
+       else
+       {
+           if(reflectDirection)
+           {
+               patrolDirection = Vector3.RotateTowards(patrolDirection, -patrolDirection, Mathf.Deg2Rad * 30.0f, 360.0f);
+               reflectDirection = false;
+           }
+      
+           agent.destination = patrolDirection * 10.0f;
+       }
 
         if (damageTaken > 0.0f)
         {
@@ -141,10 +142,14 @@ public class EnemyMovement : MonoBehaviour
     {
         if(other.tag == "DefenceTower")
         {
-            if(shouldUpdateTarget)
+            EnemyTarget targetReference = other.gameObject.GetComponent<EnemyTarget>();
+            if(targetReference.IsActivated())
             {
-                target = other.GetComponent<EnemyTarget>();
-                shouldUpdateTarget = false;
+                if (shouldUpdateTarget)
+                {
+                    target = other.GetComponent<EnemyTarget>();
+                    shouldUpdateTarget = false;
+                }
             }
         }
     }
@@ -154,7 +159,7 @@ public class EnemyMovement : MonoBehaviour
     {
        // EnemyTarget tower = collision.transform.gameObject.GetComponent<EnemyTarget>();
 
-        if (target)
+        if (target == collision.gameObject)
         {
             Debug.Log(gameObject.name + " IS colliding with " + collision.gameObject.name);
 
@@ -166,7 +171,7 @@ public class EnemyMovement : MonoBehaviour
     {
        // EnemyTarget tower = collision.transform.gameObject.GetComponent<EnemyTarget>();
 
-        if (target)
+        if (target == collision.gameObject)
         {
             Debug.Log(gameObject.name + " IS NOT colliding with " + collision.gameObject.name);
 
