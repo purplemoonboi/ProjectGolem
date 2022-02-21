@@ -63,7 +63,6 @@ namespace TheKiwiCoder
 
         public void CreateGUI()
         {
-
             settings = BehaviourTreeSettings.GetOrCreateSettings();
 
             // Each editor window contains a root VisualElement object
@@ -110,7 +109,7 @@ namespace TheKiwiCoder
             });
 
             toolbarMenu.menu.AppendSeparator();
-            toolbarMenu.menu.AppendAction("New Tree...", (a) => CreateNewTree("NewBehaviourTree"));
+            toolbarMenu.menu.AppendAction("Create New Tree...", (a) => CreateNewTree("NewBehaviourTree"));
 
             // New Tree Dialog
             treeNameField = root.Q<TextField>("TreeName");
