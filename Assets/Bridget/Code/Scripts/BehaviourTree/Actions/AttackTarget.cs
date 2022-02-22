@@ -25,17 +25,19 @@ public class AttackTarget : ActionNode
 
         //Debug.Log("Distance to Target: " + distanceToTarget);
 
-        if(distanceToTarget < 10.0f)
-        {
-            blackboard.target.SetHealth(blackboard.target.GetHealth() - 1.0f);
-        }
-        else
-        {
+        if (context.enemy.GetHealth() <= (context.enemy.GetMaxHealth() / 4.0f))
             return State.Failure;
-        }
 
         if (blackboard.target.GetHealth() <= 0.0f)
             return State.Success;
+
+        if (distanceToTarget < 10.0f)
+        {
+            blackboard.target.SetHealth(blackboard.target.GetHealth() - 1.0f);
+            context.enemy.SetHealth(context.enemy.GetHealth() - 1.0f);
+        }
+        else
+            return State.Failure;
 
         return State.Running;
     }
