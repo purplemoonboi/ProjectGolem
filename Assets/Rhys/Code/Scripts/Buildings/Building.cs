@@ -99,6 +99,8 @@ public abstract class Building : MonoBehaviour
 
     public void SetMaxHealth(int _health) => baseBuildingData.maximumHealth += _health;
 
+    public void SetBuildingType(BuildingType type) => baseBuildingData.buildingType = type;
+
     public void ResetParameters()
     {
         baseBuildingData.isActive = false;

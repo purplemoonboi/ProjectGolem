@@ -8,6 +8,7 @@ public class BuilderBuilding : Building
     // Start is called before the first frame update
     void Start()
     {
+        SetBuildingType(BuildingType.Builder);
         ResetParameters();
     }
 
