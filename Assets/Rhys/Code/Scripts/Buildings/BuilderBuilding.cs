@@ -9,7 +9,6 @@ public class BuilderBuilding : Building
     void Start()
     {
         ResetParameters();
-        SetCostToUpgrade(85);
     }
 
     // Update is called once per frame
@@ -31,6 +30,8 @@ public class BuilderBuilding : Building
          *      Upgrades go here.
          *
          */
+
+        SetCostToUpgrade(GetCostToUpgrade() + 50);
 
         Debug.Log("Upgraded builder building, level upgraded to " + GetLevel());
     }

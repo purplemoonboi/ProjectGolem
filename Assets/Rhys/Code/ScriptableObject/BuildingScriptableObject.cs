@@ -19,6 +19,7 @@ public class BuildingScriptableObject : ScriptableObject
     public float maximumHealth = 1000.0f;
     public int cost = 100;
     public int costToUpgrade = 150;
+    public int initCostToUpgrade = 150;
     public bool isActive = false;
     public bool isSpawning = false;
     public bool isMaxLevel = false;

@@ -266,6 +266,7 @@ GameObject:
   - component: {fileID: 8169957085309972333}
   - component: {fileID: 6307477003017469925}
   - component: {fileID: 4315626926797571106}
+  - component: {fileID: 3329500116556056410}
   m_Layer: 0
   m_Name: Tower
   m_TagString: DefenceTower
@@ -362,6 +363,23 @@ MonoBehaviour:
   fireTimer: 0
   azimuthTransform: {fileID: 105246944462201112}
   enemyTarget: {fileID: 8169957085309972333}
+--- !u!114 &3329500116556056410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6174232360243102454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 523e9bcabae345c49b58a8680c60143b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseBuildingData: {fileID: 11400000, guid: 1494fb3af9739e2498b18bfeeb427331, type: 2}
+  meshCutterTransform: {fileID: 4969306948234658871}
+  spawnerEndGoal: {fileID: 7668819563426576663}
+  cost: 25
+  costToUpgrade: 75
 --- !u!1 &6174232360491693814
 GameObject:
   m_ObjectHideFlags: 0
