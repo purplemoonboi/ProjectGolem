@@ -51,6 +51,7 @@ public class EnemyTarget : MonoBehaviour
         if(isActivated)
         {
             UpdateCanvasRotation();
+            UpdateUIComponents();
 
             if (health <= 0.0f)
             {
@@ -100,11 +101,6 @@ public class EnemyTarget : MonoBehaviour
 
             health -= damageTaken;
             Mathf.Clamp(health, 0, MAX_HEALTH);
-
-            healthText.GetComponent<Text>().text = "HEALTH: " + health;
-
-            float newWidth = Remap(health, 0.0f, MAX_HEALTH, 0.0f, maxWidth);
-            healthBarRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, newWidth);
         }
     }
 
@@ -115,6 +111,14 @@ public class EnemyTarget : MonoBehaviour
         Quaternion lookRotation = Quaternion.LookRotation(direction);
 
         canvas.transform.rotation = lookRotation;
+    }
+
+    public void UpdateUIComponents()
+    {
+        healthText.GetComponent<Text>().text = "HEALTH: " + health;
+
+        float newWidth = Remap(health, 0.0f, MAX_HEALTH, 0.0f, maxWidth);
+        healthBarRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, newWidth);
     }
 
     private float Remap(float oldValue, float oldMin, float oldMax, float newMin, float newMax)
@@ -134,9 +138,10 @@ public class EnemyTarget : MonoBehaviour
         return isActivated;
     }
 
+    public void SetHealth(float h) { health = h; }
+
     public float GetHealth()
     {
         return health;
     }
-
 }

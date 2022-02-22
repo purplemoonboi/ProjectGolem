@@ -23,16 +23,10 @@ public class BasicMovement : MonoBehaviour
         controller = GetComponent<CharacterController>();
     }
 
-
-    void Start()
-    {
-    }
-
     void Update()
     {
         PlayerMovement();
     }
-    
 
     private Vector3 StoInput()
     {
