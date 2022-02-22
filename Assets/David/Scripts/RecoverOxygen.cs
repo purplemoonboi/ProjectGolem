@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//@author David Costa
 public class RecoverOxygen : MonoBehaviour
 {
     public static RecoverOxygen instance;
@@ -30,7 +31,7 @@ public class RecoverOxygen : MonoBehaviour
 
         if(PlayerOxygen.instance.currentOxygen > 100)
         {
-            PlayerOxygen.instance.currentOxygen = 100;
+            PlayerOxygen.instance.currentOxygen = 100.0f;
         }
     }
 
