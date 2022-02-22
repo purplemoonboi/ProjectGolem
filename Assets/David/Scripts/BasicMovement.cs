@@ -27,7 +27,6 @@ public class BasicMovement : MonoBehaviour
     {
         PlayerMovement();
     }
-    
 
     private Vector3 StoInput()
     {
