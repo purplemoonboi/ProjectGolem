@@ -28,15 +28,12 @@ public class AnimateBuildingSpawn : MonoBehaviour
 
     void Update()
     {
-        if(movePlane && !hasSpawnedBuilding)
+        if (movePlane && !hasSpawnedBuilding)
         {
             spawning = true;
             MovePlane();
         }
     }
-
- 
-
 
     //Moves the plane towards the goal thus rendering the building as it
     //passes through the hologram.
