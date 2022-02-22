@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class SpawnBuilding : MonoBehaviour
 {
     [SerializeField]
-    private PickupResources pickupResources;
+    private Interact pickupResources;
     [SerializeField]
     private Canvas canvas;
 
