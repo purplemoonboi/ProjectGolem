@@ -37,7 +37,8 @@ public class CameraController : MonoBehaviour
             temp.x = target.position.y + 3.80f;
             transform.position = temp;
         }
-        transform.LookAt(target);
+
+        //transform.LookAt(target);
 
         //temp.x += offSet;
 
