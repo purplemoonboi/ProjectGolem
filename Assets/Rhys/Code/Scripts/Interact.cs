@@ -170,6 +170,22 @@ public class Interact : MonoBehaviour
         }
     }
 
+    private void RenderInfoPanel()
+    {
+        if(interactable.tag == resourceTag || interactable.tag == buildingTag)
+        {
+            Canvas infoPanel = CreateCanvas();
+        }
+    }
+
+    private Canvas CreateCanvas()
+    {
+        Canvas canvas = new Canvas();
+        
+
+        return canvas;
+    }
+
     public int GetResources()
     {
         return resourceWallet;

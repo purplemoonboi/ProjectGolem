@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Building : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public abstract class Building : MonoBehaviour
     private int cost;
     [SerializeField]
     private int costToUpgrade;
+
 
     //Moves the plane towards the goal thus rendering the building as it
     //passes through the hologram.
@@ -51,6 +53,44 @@ public abstract class Building : MonoBehaviour
         }
     }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            BuildingInfoPanel buildingInfo = GetComponentInChildren<BuildingInfoPanel>();
+            buildingInfo.EnableInfoPanel();
+
+            string[] infoArray =
+            {
+                 baseBuildingData.prefabName.ToString(),
+                 "Level " + GetLevel().ToString(),
+                 (!baseBuildingData.isActive) ? "Cost to build " + GetCost().ToString() : "Cost to upgrade " + GetCostToUpgrade().ToString(),
+                 baseBuildingData.buildingType.ToString()
+            };
+
+            Text infoText = GetComponentInChildren<Text>();
+            for(int i = 0; i < infoArray.Length; ++i)
+            {
+                infoText.text = infoText.text + "\n" + infoArray[i];
+            }
+
+            Debug.Log("Building Info" + infoText.text);
+
+            buildingInfo.SetText(infoText);
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            BuildingInfoPanel buildingInfo = GetComponentInChildren<BuildingInfoPanel>();
+            buildingInfo.DisableInfoPanel();
+            Text infoText = GetComponentInChildren<Text>();
+            infoText.text = " ";
+        }
+    }
+
     /*..Public Setters..*/
 
     public void SetCost(int _cost) => baseBuildingData.cost = _cost;
@@ -59,11 +99,15 @@ public abstract class Building : MonoBehaviour
 
     public void SetMaxHealth(int _health) => baseBuildingData.maximumHealth += _health;
 
+    public void SetBuildingType(BuildingType type) => baseBuildingData.buildingType = type;
+
     public void ResetParameters()
     {
         baseBuildingData.isActive = false;
         baseBuildingData.isSpawning = false;
         baseBuildingData.isMaxLevel = false;
+        baseBuildingData.level = 1;
+        baseBuildingData.costToUpgrade = baseBuildingData.initCostToUpgrade;
     }
 
     public void BuildingCosts(int _cost, int _costToUpgrade)
