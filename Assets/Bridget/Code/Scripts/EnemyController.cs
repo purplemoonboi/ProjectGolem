@@ -38,7 +38,7 @@ public class EnemyController : NpcController
             fireTimer = 0.0f;
         }
     }
-
+    
     public void SpawnProjectile(Vector3 targetPosition)
     {
         if (shouldFire)
