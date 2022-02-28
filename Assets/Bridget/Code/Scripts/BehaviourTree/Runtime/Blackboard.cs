@@ -11,6 +11,6 @@ namespace TheKiwiCoder
     public class Blackboard
     {
         public Vector3 moveToPosition;
-        public EnemyTarget target;
+        public GameObject targetObj;
     }
 }

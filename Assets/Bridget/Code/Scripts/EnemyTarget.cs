@@ -33,6 +33,7 @@ public class EnemyTarget : MonoBehaviour
     [SerializeField]
     private int power;  //How much damage the enemy can do in one hit
 
+    [SerializeField]
     private bool isActivated = false;
 
     void Start()
@@ -48,11 +49,11 @@ public class EnemyTarget : MonoBehaviour
 
     void Update()
     {
-        if(isActivated)
-        {
-            UpdateCanvasRotation();
-            UpdateUIComponents();
+        UpdateCanvasRotation();
+        UpdateUIComponents();
 
+        if (isActivated)
+        {
             if (health <= 0.0f)
             {
                 Destroy(gameObject);
@@ -70,6 +71,7 @@ public class EnemyTarget : MonoBehaviour
         if(isActivated)
         {
             EnemyMovement enemy = collision.transform.gameObject.GetComponent<EnemyMovement>();
+            //EnemyController enemy = collision.transform.gameObject.GetComponent<EnemyController>();
 
             if (enemy)
             {
@@ -83,6 +85,7 @@ public class EnemyTarget : MonoBehaviour
         if(isActivated)
         {
             EnemyMovement enemy = collision.transform.gameObject.GetComponent<EnemyMovement>();
+            //EnemyController enemy = collision.transform.gameObject.GetComponent<EnemyController>();
 
             if (enemy)
             {
@@ -144,4 +147,6 @@ public class EnemyTarget : MonoBehaviour
     {
         return health;
     }
+
+    public float GetMaxHealth() { return MAX_HEALTH; }
 }

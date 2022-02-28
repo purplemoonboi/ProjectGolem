@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 753107148837426514}
   - component: {fileID: 7746465212335160099}
   - component: {fileID: 9208530385481979170}
+  - component: {fileID: 781442620562881035}
   - component: {fileID: 308473513553818313}
   m_Layer: 0
   m_Name: Enemy
@@ -108,6 +109,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 3231954924579009652}
   - {fileID: 1558495156312220100}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -213,6 +215,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &781442620562881035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 753107148837426513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4db5581ed4319e4abf568b0ee8c5420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthText: {fileID: 8387344085959215505}
+  healthBar: {fileID: 60844445302531561}
+  enemyData: {fileID: 11400000, guid: e295ca5f2113982409ac4e6af9d6f043, type: 2}
+  projectilePrefab: {fileID: 2446377334547029724, guid: be21bad1b722df143b84b33b7b002d7d, type: 3}
+  projectileSpawnPoint: {fileID: 3231954924579009652}
+  fireForce: 1000
+  fireRate: 1
+  shouldFire: 0
 --- !u!114 &308473513553818313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,7 +281,7 @@ RectTransform:
   - {fileID: 8898039163243027468}
   - {fileID: 8488331375666854710}
   m_Father: {fileID: 753107148837426517}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -327,6 +349,36 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &6570414439109071007
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3231954924579009652}
+  m_Layer: 0
+  m_Name: ProjectileSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3231954924579009652
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6570414439109071007}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 753107148837426517}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8387344085959215505
 GameObject:
   m_ObjectHideFlags: 0
