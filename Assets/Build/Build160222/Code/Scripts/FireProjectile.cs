@@ -41,28 +41,27 @@ public class FireProjectile : MonoBehaviour
             {
                 fireTimer += 1.0f * Time.deltaTime;
 
-                if (!azimuthAligned)
-                {
-                    Transform turretTransform = azimuthTransform[0];
-                    Vector3 turretDirection = turretTransform.forward;
-                    Vector3 enemyDirection = Vector3.Normalize(enemyTarget.transform.position - turretTransform.position);
-                    Vector3 epos = enemyTarget.transform.position;
-                    if (Vector3.Angle(turretDirection, enemyDirection) > 20.0f)
-                    {
-                        Vector3 newForward = Vector3.RotateTowards(turretTransform.forward, epos - new Vector3(0.0f, epos.y - 5.0f, 0.0f), 2.0f * Time.deltaTime, 0.0f);
-                        turretTransform.forward = newForward;
-                        azimuthTransform[1].forward = newForward;
-
-                        if (fireTimer >= fireRate)
-                        {
-                            Debug.Log("fire");
-                            shouldFire = true;
-                            fireTimer = 0.0f;
-                        }
-                    }
-                }
+                StartCoroutine("RotateTurret");
             }
         }
+    }
+
+    private IEnumerator RotateTurret()
+    {
+        Transform turretTransform = azimuthTransform[0];
+        Vector3 turretDirection = turretTransform.forward;
+        Vector3 epos = enemyTarget.transform.position;
+
+        while (turretDirection != epos)
+        {
+            Vector3 newForward = Vector3.RotateTowards(turretTransform.forward, epos, 2.0f * Time.deltaTime, 0.0f);
+            turretTransform.forward = newForward;
+            azimuthTransform[1].forward = newForward;
+
+            yield return null;
+        }
+
+        shouldFire = true;
     }
 
     public void FixedUpdate()

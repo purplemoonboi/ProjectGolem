@@ -24,10 +24,8 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
-        spawnTime = 3.0f;
         elapsedTime = 0.0f;
-        spawnCount = 2;
-        enemyLimit = 10;
+     
     }
 
     void Update()
