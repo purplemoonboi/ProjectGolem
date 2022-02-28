@@ -67,45 +67,57 @@ public class RoughMovement : MonoBehaviour
             pressedA = false;
         }
 
-        Camera.main.transform.forward = transform.forward + transform.right;
+        Vector3 forward = new Vector3();
+
+        if (pressedW)
+        {
+            transform.position += transform.forward * 15.0f * Time.deltaTime;
+            forward = (transform.position + transform.forward);
+        }
+        else if (pressedS)
+        {
+            transform.position -= transform.forward * 15.0f * Time.deltaTime;
+            forward = (transform.position - transform.forward);
+        }
+        else if (pressedD)
+        {
+            transform.position += transform.right * 15.0f * Time.deltaTime;
+            forward = (transform.position + transform.right);
+        }
+        else if (pressedA)
+        {
+            transform.position -= transform.right * 15.0f * Time.deltaTime;
+            forward = (transform.position - transform.right); 
+        }
+
+     // // Normalise diagonal movement
+     // if (pressedW && pressedD)
+     // {
+     //     transform.position += Vector3.Normalize(transform.right + transform.forward) * 50.0f;
+     // }
+     // if (pressedW && pressedA)
+     // {
+     //     transform.position += Vector3.Normalize(-transform.right + transform.forward) * 50.0f;
+     //
+     // }
+     // if (pressedS && pressedD)
+     // {
+     //     transform.position += Vector3.Normalize(transform.right + (-transform.forward)) * 50.0f;
+     // }
+     // if (pressedS && pressedA)
+     // {
+     //     transform.position += Vector3.Normalize(-(transform.right + transform.forward)) * 50.0f;
+     // }
+
+        
+
+        Camera.main.transform.forward = (transform.position + forward);
+
     }
 
     private void FixedUpdate()
     {
-        if (pressedW)
-        {
-            rigidbody.AddForce(transform.forward * 50.0f, ForceMode.Force);
-        }
-        else if (pressedS)
-        {
-            rigidbody.AddForce(-transform.forward * 50.0f, ForceMode.Force);
-        }
-        else if (pressedD)
-        {
-            rigidbody.AddForce(transform.right * 50.0f, ForceMode.Force);
-        }
-       else if (pressedA)
-        {
-            rigidbody.AddForce(-transform.right * 50.0f, ForceMode.Force);
-        }
-
-       // Normalise diagonal movement
-       if (pressedW && pressedD)
-       {
-           rigidbody.AddForce(Vector3.Normalize(transform.right + transform.forward) * 50.0f, ForceMode.Force);
-       }
-       if (pressedW && pressedA)
-       {
-           rigidbody.AddForce(Vector3.Normalize(-transform.right + transform.forward) * 50.0f, ForceMode.Force);
-       }
-       if (pressedS && pressedD)
-       {
-           rigidbody.AddForce(Vector3.Normalize(transform.right + -transform.forward) * 50.0f, ForceMode.Force);
-       }
-       if (pressedS && pressedA)
-       {
-           rigidbody.AddForce(Vector3.Normalize(-transform.right + -transform.forward) * 50.0f, ForceMode.Force);
-       }
+        
 
     }
   

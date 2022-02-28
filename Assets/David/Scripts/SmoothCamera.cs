@@ -10,25 +10,14 @@ public class SmoothCamera : MonoBehaviour
     public float smoothSpeed = 0.125f;
     public Vector3 offset;
 
-    private void FixedUpdate()
+    private void Update()
     {
         Vector3 desiredPosition = target.position + offset;
-        Vector3 smoothPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+        Vector3 smoothPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
         transform.position = smoothPosition;
 
-        transform.LookAt(target);
-    }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
         
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //transform.LookAt(target);
     }
 }

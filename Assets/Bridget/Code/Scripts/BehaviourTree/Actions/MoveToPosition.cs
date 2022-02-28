@@ -36,6 +36,7 @@ public class MoveToPosition : ActionNode
         if (context.agent.remainingDistance < tolerance)
         {
             context.agent.isStopped = true;
+
             return State.Success;
         }
 

@@ -51,17 +51,6 @@ public class FireProjectile : MonoBehaviour
                     }
                 }
 
-
-                //   if(Vector3.Angle(azimuthTransform.forward, Vector3.Normalize(target.position - azimuthTransform.position)) > 30.0f)
-                //   {
-                //       alignAzimuth = false;
-                //       float alpha = 8.0f * Time.deltaTime;
-                //       azimuthTransform.forward = Vector3.RotateTowards(azimuthTransform.forward, target.position, alpha, 0.0f);
-                //   }
-                //   else
-                //   {
-                //       alignAzimuth = true;
-                //   }
             }
         }
     }

@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using Cinemachine;
+
+//@author David Costa
 
 public class BasicMovement : MonoBehaviour
 {
@@ -27,7 +28,6 @@ public class BasicMovement : MonoBehaviour
     {
         PlayerMovement();
     }
-    
 
     private Vector3 StoInput()
     {
