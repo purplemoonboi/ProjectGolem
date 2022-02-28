@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TheKiwiCoder;
 
-public class ScanForTargets : ActionNode
+public class ScanForEnemyTarget : ActionNode
 {
     protected override void OnStart()
     {
@@ -15,7 +15,10 @@ public class ScanForTargets : ActionNode
 
     protected override State OnUpdate()
     {
-        if(ScanTargets())
+        if (context.friendlyController.GetFriendlyType() != FriendlyController.FriendlyType.FIGHTER)
+            return State.Failure;
+
+        if (ScanTargets())
         {
             return State.Success;
         }
@@ -30,11 +33,11 @@ public class ScanForTargets : ActionNode
 
     public bool ScanTargets()
     {
-        var enemyTargets = FindObjectsOfType<EnemyTarget>();
+        var enemyTargets = FindObjectsOfType<EnemyController>();
 
         float distance = 0.0f;
 
-        foreach(var target in enemyTargets)
+        foreach (var target in enemyTargets)
         {
             Vector3 direction = target.transform.position - context.transform.position;
 
@@ -42,13 +45,9 @@ public class ScanForTargets : ActionNode
             {
                 distance = direction.magnitude;
                 blackboard.moveToPosition = target.transform.position;
-                blackboard.target = target;
+                blackboard.targetObj = target.gameObject;
             }
-
-            //Debug.Log("Target Pos: " + target.transform.position + "Distance:" + distance);
         }
-
-        //Debug.Log("Next Position: " + blackboard.moveToPosition);
 
         if (distance == 0.0f)
             return false;

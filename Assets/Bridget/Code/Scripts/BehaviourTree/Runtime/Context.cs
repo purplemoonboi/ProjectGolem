@@ -22,7 +22,8 @@ namespace TheKiwiCoder
         public CharacterController characterController;
         // Add other game specific systems here
 
-        public EnemyController enemy;
+        public EnemyController enemyController;
+        public FriendlyController friendlyController;
 
         public static Context CreateFromGameObject(GameObject gameObject)
         {
@@ -40,7 +41,8 @@ namespace TheKiwiCoder
 
             // Add whatever else you need here...
 
-            context.enemy = gameObject.GetComponent<EnemyController>();
+            context.enemyController = gameObject.GetComponent<EnemyController>();
+            context.friendlyController = gameObject.GetComponent<FriendlyController>();
 
             return context;
         }

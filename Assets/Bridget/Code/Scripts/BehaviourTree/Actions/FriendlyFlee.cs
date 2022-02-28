@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TheKiwiCoder;
 
-public class Flee : ActionNode
+public class FriendlyFlee : ActionNode
 {
     protected override void OnStart()
     {
@@ -15,10 +15,10 @@ public class Flee : ActionNode
 
     protected override State OnUpdate()
     {
-        if (context.enemy.GetHealth() > (context.enemy.GetMaxHealth() / 4.0f))
+        if (context.friendlyController.GetHealth() > (context.friendlyController.GetMaxHealth() / 4.0f))
             return State.Failure;
 
-        blackboard.moveToPosition = new Vector3(0.0f, 1.0f, 0.0f);
+        blackboard.moveToPosition = new Vector3(Random.Range(-5.0f, 5.0f), 1.0f, Random.Range(-5.0f, 5.0f));
 
         return State.Success;
     }

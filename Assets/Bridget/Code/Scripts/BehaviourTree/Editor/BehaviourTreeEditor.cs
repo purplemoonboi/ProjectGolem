@@ -32,7 +32,7 @@ namespace TheKiwiCoder
             BehaviourTreeEditor wnd = GetWindow<BehaviourTreeEditor>();
             wnd.titleContent = new GUIContent("Behaviour Tree Editor");
             //wnd.minSize = new Vector2(800, 600);
-            wnd.minSize = new Vector2(960, 540);
+            //wnd.minSize = new Vector2(240, 135);
         }
 
         [OnOpenAsset]

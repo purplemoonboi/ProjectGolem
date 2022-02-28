@@ -33,6 +33,7 @@ public class EnemyTarget : MonoBehaviour
     [SerializeField]
     private int power;  //How much damage the enemy can do in one hit
 
+    [SerializeField]
     private bool isActivated = false;
 
     void Start()
@@ -146,4 +147,6 @@ public class EnemyTarget : MonoBehaviour
     {
         return health;
     }
+
+    public float GetMaxHealth() { return MAX_HEALTH; }
 }
