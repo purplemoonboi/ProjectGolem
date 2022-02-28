@@ -294,8 +294,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6174232360243102450}
   - component: {fileID: 6174232360243102455}
-  - component: {fileID: 8169957085309972333}
   - component: {fileID: 6307477003017469925}
+  - component: {fileID: 8169957085309972333}
   - component: {fileID: 4315626926797571106}
   - component: {fileID: 3329500116556056410}
   m_Layer: 0
@@ -339,6 +339,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &6307477003017469925
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6174232360243102454}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8169957085309972333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,19 +371,6 @@ MonoBehaviour:
   healthBar: {fileID: 6174232361050275486}
   maxWidth: 0
   power: 0
---- !u!135 &6307477003017469925
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6174232360243102454}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 4
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4315626926797571106
 MonoBehaviour:
   m_ObjectHideFlags: 0
