@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5146054148254607607
 Transform:
@@ -76,11 +76,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6626129cbe640fd42af9bf8aeb77a9fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseBuildingData: {fileID: 11400000, guid: 1494fb3af9739e2498b18bfeeb427331, type: 2}
   meshCutterTransform: {fileID: 959856365664720951}
   spawnerEndGoal: {fileID: 1209367089514689517}
   cost: 25
   costToUpgrade: 50
+  health: 1000
+  isActive: 0
+  shouldSpawn: 0
+  buildingType: -1
+  weaponsScriptableObject: {fileID: 11400000, guid: 4b3b5281b449b0841bf7f97d113ea662, type: 2}
 --- !u!1 &4374197011006941824
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,7 +99,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1209367089514689517
 Transform:
@@ -127,7 +131,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5981093923443316503
 Transform:
@@ -208,7 +212,7 @@ GameObject:
   m_TagString: Hologram
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8334445420831611096
 Transform:
@@ -289,7 +293,7 @@ GameObject:
   m_TagString: Hologram
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4326249205216418967
 Transform:
@@ -368,7 +372,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2218706207703923410
 Transform:
@@ -402,7 +406,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &959856365664720951
 Transform:
@@ -447,7 +451,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2178811418660542995
 Transform:
@@ -497,7 +501,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3274746487638995969
 Transform:
@@ -576,7 +580,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5917256042011241384
 Transform:
@@ -609,7 +613,7 @@ GameObject:
   m_TagString: Hologram
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1002021061366771942
 Transform:
@@ -690,7 +694,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7872052160053733741
 Transform:
@@ -762,9 +766,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5917256042011241384}
     m_Modifications:
+    - target: {fileID: 4470696784041471903, guid: f946f64e299858142959ceec0778ad34, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 5144728188951556814, guid: f946f64e299858142959ceec0778ad34, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7061672361530855381, guid: f946f64e299858142959ceec0778ad34, type: 3}
       propertyPath: m_Name
       value: InfoPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7061672361530855381, guid: f946f64e299858142959ceec0778ad34, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 9154203789908010535, guid: f946f64e299858142959ceec0778ad34, type: 3}
       propertyPath: m_Pivot.x

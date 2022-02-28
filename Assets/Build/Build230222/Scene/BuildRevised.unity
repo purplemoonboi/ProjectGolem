@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 335cd3fc3a0db1345a696dd1299067d8, type: 2}
 --- !u!1001 &4635326
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1717,7 +1717,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8322673732341315328, guid: ba1110547f1ad2643a22580c88869375, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.5
+      value: 4.6
       objectReference: {fileID: 0}
     - target: {fileID: 8322673732341315328, guid: ba1110547f1ad2643a22580c88869375, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2952,7 +2952,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8322673732341315328, guid: ba1110547f1ad2643a22580c88869375, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.9
+      value: -2.3
       objectReference: {fileID: 0}
     - target: {fileID: 8322673732341315328, guid: ba1110547f1ad2643a22580c88869375, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3066,6 +3066,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 842521110}
     m_Modifications:
+    - target: {fileID: 1748556959801230998, guid: 1aa41fd6f2696194c9eaa733ef5721a7, type: 3}
+      propertyPath: weaponsScriptableObject
+      value: 
+      objectReference: {fileID: 11400000, guid: 4b3b5281b449b0841bf7f97d113ea662, type: 2}
     - target: {fileID: 2290480549741643075, guid: 1aa41fd6f2696194c9eaa733ef5721a7, type: 3}
       propertyPath: m_Name
       value: WeaponsBuilding
@@ -3370,6 +3374,18 @@ PrefabInstance:
       propertyPath: costToUpgrade
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 8401614376683227100, guid: 4a800f61e00435949813da12d0496abd, type: 3}
+      propertyPath: cost
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401614376683227100, guid: 4a800f61e00435949813da12d0496abd, type: 3}
+      propertyPath: costToUpgrade
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401614376683227100, guid: 4a800f61e00435949813da12d0496abd, type: 3}
+      propertyPath: builderScriptableObject
+      value: 
+      objectReference: {fileID: 11400000, guid: 5dfef2c79200d4f49b1e31c59c387758, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a800f61e00435949813da12d0496abd, type: 3}
 --- !u!1001 &840436540
@@ -4815,11 +4831,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5960401551199276135, guid: e82546a2efa8ce847a59e33445c2bf0c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.0000000042918673
+      value: 0.0000000042918673
       objectReference: {fileID: 0}
     - target: {fileID: 5960401551199276135, guid: e82546a2efa8ce847a59e33445c2bf0c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -2.891356e-10
+      value: 2.891356e-10
       objectReference: {fileID: 0}
     - target: {fileID: 5960401551199276135, guid: e82546a2efa8ce847a59e33445c2bf0c, type: 3}
       propertyPath: m_LocalRotation.y

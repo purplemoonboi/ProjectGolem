@@ -11,22 +11,28 @@ public class Interact : MonoBehaviour
     [SerializeField]
     private bool isInteractable;
     [SerializeField]
-    private Canvas canvas;
-
     private Text resourceText;
-
     [SerializeField]
     private int resourceWallet;
     [SerializeField]
-    private int resourceAmount = 150;
+    private int resourceAmount = 0;
+   
+
 
     [SerializeField]
     private GameObject interactable;
+    [SerializeField]
+    private GameObject resourcePickUpAmountObject;
+    [SerializeField]
+    RectTransform rectTransform;
+    [SerializeField]
+    private Text resourcePickUpText;
 
     private string otherTag = " ";
 
     private const string buildingTag = "Building";
     private const string resourceTag = "Resource";
+    private const string defenceTag = "DefenceTower";
 
     // Start is called before the first frame update
     void Start()
@@ -34,13 +40,20 @@ public class Interact : MonoBehaviour
         pressedMouseB0 = false;
         isInteractable = false;
         resourceWallet = 0;
-        resourceText = canvas.GetComponentsInChildren<Text>()[1];
+
+        //Fetch a reference to the text components on start().
+        resourceText = GameObject.FindGameObjectWithTag("ResourceWallet").GetComponent<Text>();
+        resourcePickUpAmountObject = GameObject.FindGameObjectWithTag("ResourcePickUpAmount");
+        rectTransform = resourcePickUpAmountObject.GetComponent<RectTransform>();
+        resourcePickUpText = resourcePickUpAmountObject.GetComponent<Text>();
+
+        resourcePickUpText.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
             pressedMouseB0 = true;
         }
@@ -60,7 +73,7 @@ public class Interact : MonoBehaviour
         //Handle resources
         if(interactable != null && pressedMouseB0)
         {
-            if (interactable.tag == buildingTag)
+            if (interactable.tag == buildingTag || interactable.tag == defenceTag)
             {
                 HandleBuilding();
             }
@@ -73,16 +86,17 @@ public class Interact : MonoBehaviour
             //Force object ref null and input false.
             interactable = null;
             isInteractable = false;
+            pressedMouseB0 = false;
         }
           
     }
 
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerStay(Collider other)
     {
         otherTag = other.gameObject.tag;
 
         //Is the object a resource or building.
-        if (otherTag == resourceTag || otherTag == buildingTag)
+        if (otherTag == resourceTag || otherTag == buildingTag || otherTag == defenceTag)
         {
             interactable = other.gameObject;
             isInteractable = true;
@@ -91,7 +105,8 @@ public class Interact : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == resourceTag || other.gameObject.tag == buildingTag)
+        otherTag = other.gameObject.tag;
+        if (otherTag == resourceTag || otherTag == buildingTag || otherTag == defenceTag)
         {
             //Void data.
             interactable = null;
@@ -103,14 +118,60 @@ public class Interact : MonoBehaviour
     private void HandleResourcePickUp()
     {
         Debug.Log("Picked up resource!");
-        resourceWallet += resourceAmount;
-        resourceText.text = resourceWallet.ToString();
+        StartCoroutine("AnimatePlayerUI");
         Destroy(interactable);
         interactable = null;
         pressedMouseB0 = false;
         isInteractable = false;
     }
 
+    private IEnumerator AnimatePlayerUI()
+    {
+
+        //Switch the resource amount pickup on.
+        
+        Color colour = resourcePickUpText.color;
+        Vector2 currentTextPosition = rectTransform.position;
+        Vector2 initialPosition = rectTransform.position;
+        resourcePickUpText.enabled = true;
+        string resourceAmountText = resourceAmount.ToString();
+
+        resourcePickUpText.text = resourceAmountText;
+
+
+        //Animate the text a little bit.
+        while (colour.a > 0)
+        {
+            colour.a -= 2 * Time.deltaTime;
+            Debug.Log("Alpha " + colour.a);
+            currentTextPosition.y += 25.0f * Time.deltaTime;
+            //Update references.
+            resourcePickUpText.color = colour;
+            rectTransform.position = currentTextPosition;
+            //Return from the function and continue main loop.
+            yield return null;
+        }
+
+
+        //Switch it off.
+        resourcePickUpText.enabled = false;
+        colour.a = 1.0f;
+        resourcePickUpText.color = colour;
+        rectTransform.position = initialPosition;
+
+        //Animate the text a little bit.
+        int currentWallet = resourceWallet;
+        float timer = resourceWallet;
+        while (resourceWallet != (currentWallet + resourceAmount))
+        {
+            timer += resourceAmount * Time.deltaTime;
+            resourceWallet = (int)timer;
+            resourceText.text = resourceWallet.ToString();
+            //Return from the function and continue main loop.
+            yield return null;
+        }
+
+    }
 
     private void HandleBuilding()
     {
@@ -131,59 +192,70 @@ public class Interact : MonoBehaviour
                     //Update UI.
                     resourceText.text = resourceWallet.ToString();
                     //Tell the building to begin spawn animation.
-                    building.SetShouldSpawn(true);
+                    building.Spawn();
                 }
             }
-            else if (building.IsActive() && !building.IsSpawning() && !building.IsMaxLevel())
+            else if (building.IsActive())
             {
                 //Upgrade building.
                 if (building.GetCostToUpgrade() <= resourceWallet)
                 {
-                    resourceWallet -= building.GetCost();
-                    //Update UI.
-                    resourceText.text = resourceWallet.ToString();
                     switch (building.GetBuildingType())
                     {
                         case BuildingType.Builder:
-                            BuilderBuilding builderBuilding     = (BuilderBuilding)building;
-                            builderBuilding.Upgrade();
+                            BuilderBuilding builderBuilding = (BuilderBuilding)building;
+                            if (!builderBuilding.IsMaxLevel())
+                            {
+                                resourceWallet -= builderBuilding.GetCostToUpgrade();
+                                //Update UI.
+                                resourceText.text = resourceWallet.ToString();
+                                builderBuilding.Upgrade();
+                            }
                             break;
                         case BuildingType.Weapons:
-                            WeaponsBuilding weaponsBuilding     = (WeaponsBuilding)building;
-                            weaponsBuilding.Upgrade();
+                            WeaponsBuilding weaponsBuilding = (WeaponsBuilding)building;
+                            if (!weaponsBuilding.IsMaxLevel())
+                            {
+                                resourceWallet -= weaponsBuilding.GetCostToUpgrade();
+                                //Update UI.
+                                resourceText.text = resourceWallet.ToString();
+                                weaponsBuilding.Upgrade();
+                            }
                             break;
                         case BuildingType.Barricade:
                             BarricadeBuilding barricadeBuilding = (BarricadeBuilding)building;
-                            barricadeBuilding.Upgrade();
+                            if (!barricadeBuilding.IsMaxLevel())
+                            {
+                                resourceWallet -= barricadeBuilding.GetCostToUpgrade();
+                                //Update UI.
+                                resourceText.text = resourceWallet.ToString();
+                                barricadeBuilding.Upgrade();
+                            }
                             break;
                         case BuildingType.Turret:
-                            TurretBuilding turretBuilding       = (TurretBuilding)building;
-                            turretBuilding.Upgrade();
+                            TurretBuilding turretBuilding = (TurretBuilding)building;
+                            if (!turretBuilding.IsMaxLevel())
+                            {
+                                resourceWallet -= turretBuilding.GetCostToUpgrade();
+                                //Update UI.
+                                resourceText.text = resourceWallet.ToString();
+                                turretBuilding.Upgrade();
+                            }
                             break;
                         case BuildingType.Camp:
-                            CampBuilding campBuilding           = (CampBuilding)building;
-                            campBuilding.Upgrade();
+                            CampBuilding campBuilding = (CampBuilding)building;
+                            if (!campBuilding.IsMaxLevel())
+                            {
+                                resourceWallet -= campBuilding.GetCostToUpgrade();
+                                //Update UI.
+                                resourceText.text = resourceWallet.ToString();
+                                campBuilding.Upgrade();
+                            }
                             break;
                     }
                 }
             }
         }
-    }
-
-    private void RenderInfoPanel()
-    {
-        if(interactable.tag == resourceTag || interactable.tag == buildingTag)
-        {
-            Canvas infoPanel = CreateCanvas();
-        }
-    }
-
-    private Canvas CreateCanvas()
-    {
-        Canvas canvas = new Canvas();
-        
-
-        return canvas;
     }
 
     public int GetResources()
