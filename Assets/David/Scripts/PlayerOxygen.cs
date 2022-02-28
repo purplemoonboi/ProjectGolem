@@ -9,10 +9,21 @@ public class PlayerOxygen : MonoBehaviour
 
     public Slider oxygenBar;
     public float oxygenAmount = 100.0f;
+
+    [SerializeField]
     public float currentOxygen;
+
+    [SerializeField]
+    private float maxDistance = 500.0f;
+
     public float reduceAmount = 5.0f;
 
-    private GameObject Player;
+    private GameObject player;
+
+    [SerializeField]
+    private Transform basePosition;
+    [SerializeField]
+    private bool lowOxygen;
 
     private void Awake()
     {
@@ -22,18 +33,22 @@ public class PlayerOxygen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Player = GameObject.FindWithTag("Player");
+        player = GameObject.FindWithTag("Player");
         currentOxygen = oxygenAmount;
+        basePosition = FindObjectOfType<CampBuilding>().GetComponent<Transform>();
+
+        lowOxygen = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Player == null)
-            return;
+        //  if (Player == null)
+        //     return;
 
-        LoseOxygen();
-        PlayerDeath();
+        ReduceOxygen();
+      //LoseOxygen();
+      //PlayerDeath();
     }
 
     public void LoseOxygen()
@@ -59,4 +74,21 @@ public class PlayerOxygen : MonoBehaviour
         LevelManager.instance.Respawn();
         currentOxygen = oxygenAmount;
     }
+
+    public void ReduceOxygen()
+    {
+        float playerDistance = Vector3.Distance(player.transform.position, basePosition.position);
+
+        //Remaps the player distance between the [min,max] distance to [0, oxygenAmount].
+        float newValue = MathsUtils.RemapRange(playerDistance, 0.0f, maxDistance, 0.0f, oxygenAmount);
+        newValue = Mathf.Clamp(newValue, 1.0f, oxygenAmount);
+        currentOxygen = (oxygenAmount - newValue);
+        oxygenBar.value = currentOxygen / oxygenAmount;
+        Debug.Log("O2 Value : " + oxygenBar.value);
+        //If current oxygen is below 5% flag this as low oxygen.
+        lowOxygen = (oxygenBar.value < 0.05f) ? true : false;
+    }
+
+    public bool LowOxygen() => lowOxygen;
+
 }

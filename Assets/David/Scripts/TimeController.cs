@@ -120,4 +120,6 @@ public class TimeController : MonoBehaviour
 
         return difference;
     }
+
+    public DateTime GetCurrentTime() => currentTime;
 }

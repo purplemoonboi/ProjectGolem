@@ -14,6 +14,10 @@ public class BasicMovement : MonoBehaviour
     public float speed = 6f;
     public float turnSmoothTime = 0.1f;
 
+    [Header("Player Oxygen")]
+    [SerializeField]
+    private PlayerOxygen playerOxygen;
+
     //private variables
     float smoothVelocity;
     private CharacterController controller;
@@ -26,6 +30,19 @@ public class BasicMovement : MonoBehaviour
 
     void Update()
     {
+        if(playerOxygen.LowOxygen())
+        {
+            speed  = 0f;
+            speedX = 0f;
+            speedY = 0f;
+        }
+        else
+        {
+            speed  = 100f;
+            speedX = 25f;
+            speedY = 25f;
+        }
+
         PlayerMovement();
     }
 
@@ -89,4 +106,5 @@ public class BasicMovement : MonoBehaviour
         }
         initialRot = !initialRot;
     }
+
 }
