@@ -17,7 +17,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private List<GameObject> enemies;
     [SerializeField]
-    private bool shouldSpawn;
+    private bool shouldSpawn = false;
 
     void Start()
     {
@@ -25,7 +25,6 @@ public class EnemySpawner : MonoBehaviour
         elapsedTime = 0.0f;
         spawnCount = 2;
         enemyLimit = 10;
-        shouldSpawn = false;
     }
 
     void Update()
