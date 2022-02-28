@@ -122,4 +122,8 @@ public class TimeController : MonoBehaviour
     }
 
     public DateTime GetCurrentTime() => currentTime;
+
+    public TimeSpan GetSunrise() => sunriseTime;
+
+    public TimeSpan GetSunset() => sunsetTime;
 }

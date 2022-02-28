@@ -8,6 +8,8 @@ public class TurretBuilding : Building
 
     [SerializeField]
     private TurretScriptableObject turretScriptableObject;
+    [SerializeField]
+    private EnemyTarget turretStats;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +30,7 @@ public class TurretBuilding : Building
         {
             Debug.Log("Now spawning building.");
             StartCoroutine("PlaySpawnAnimation");
+            turretStats.SetIsActivated(true);
         }
     }
 
