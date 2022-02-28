@@ -21,7 +21,7 @@ public class ScanForStructure : ActionNode
                 return State.Failure;
         }
 
-        else
+        else if (context.friendlyController)
         {
             if (context.friendlyController.GetFriendlyType() != FriendlyController.FriendlyType.BUILDER)
                 return State.Failure;

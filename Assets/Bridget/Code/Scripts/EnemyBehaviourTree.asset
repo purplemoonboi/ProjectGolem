@@ -23,7 +23,7 @@ MonoBehaviour:
   drawGizmos: 0
   children:
   - {fileID: 4025829690854300606}
-  - {fileID: -232397645846624337}
+  - {fileID: -6900949315938708463}
   - {fileID: -74956712445050539}
 --- !u!114 &-8318142348049392531
 MonoBehaviour:
@@ -74,6 +74,32 @@ MonoBehaviour:
   - {fileID: 6043437469106365183}
   - {fileID: -2554579088906297184}
   - {fileID: -3315152097889813584}
+--- !u!114 &-6900949315938708463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4489e3e257543504c8fc9f891246af6c, type: 3}
+  m_Name: MoveToPosition
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: f6f6a1584251adf48b89006f6f2dfb69
+  position: {x: -43, y: 810.99994}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    targetObj: {fileID: 0}
+  description: 
+  drawGizmos: 0
+  speed: 5
+  stoppingDistance: 0.1
+  updateRotation: 1
+  acceleration: 40
+  tolerance: 12
 --- !u!114 &-3605866124306521126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,32 +171,6 @@ MonoBehaviour:
   updateRotation: 1
   acceleration: 40
   tolerance: 1
---- !u!114 &-232397645846624337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4489e3e257543504c8fc9f891246af6c, type: 3}
-  m_Name: MoveToPosition
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 9e97c4ae376825347abc0312d9ae6375
-  position: {x: -42.72517, y: 809.24695}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    targetObj: {fileID: 0}
-  description: 
-  drawGizmos: 0
-  speed: 5
-  stoppingDistance: 0.1
-  updateRotation: 1
-  acceleration: 40
-  tolerance: 1
 --- !u!114 &-74956712445050539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,7 +192,6 @@ MonoBehaviour:
     targetObj: {fileID: 0}
   description: 
   drawGizmos: 0
-  distanceToTarget: 0
   structure: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -212,7 +211,6 @@ MonoBehaviour:
   - {fileID: -3605866124306521126}
   - {fileID: 4025829690854300606}
   - {fileID: -9002093337190303718}
-  - {fileID: -232397645846624337}
   - {fileID: -74956712445050539}
   - {fileID: 6459690161276355225}
   - {fileID: -8318142348049392531}
@@ -225,6 +223,7 @@ MonoBehaviour:
   - {fileID: -2554579088906297184}
   - {fileID: 7797945360235227483}
   - {fileID: 7157293464175908895}
+  - {fileID: -6900949315938708463}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     targetObj: {fileID: 0}

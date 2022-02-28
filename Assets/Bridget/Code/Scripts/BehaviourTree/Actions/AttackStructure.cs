@@ -5,7 +5,7 @@ using TheKiwiCoder;
 
 public class AttackStructure : ActionNode
 {
-    public float distanceToTarget;
+    //public float distanceToTarget;
 
     public EnemyTarget structure;
 
@@ -26,8 +26,8 @@ public class AttackStructure : ActionNode
         if (structure == null)
             return State.Failure;
      
-        Vector3 direction = blackboard.targetObj.transform.position - context.transform.position;
-        distanceToTarget = direction.magnitude;
+        //Vector3 direction = blackboard.targetObj.transform.position - context.transform.position;
+        //distanceToTarget = direction.magnitude;
 
         if (context.enemyController.GetHealth() <= (context.enemyController.GetMaxHealth() / 4.0f))
             return State.Failure;
@@ -37,16 +37,8 @@ public class AttackStructure : ActionNode
             blackboard.targetObj = null;
             return State.Success;
         }
-     
-        if (distanceToTarget < 10.0f)
-        {
-            structure.SetHealth(structure.GetHealth() - context.enemyController.GetPower());
-            
-            //Receive damage from the turret/structure - for testing only
-            context.enemyController.SetHealth(context.enemyController.GetHealth() - 1.0f);
-        }
-        else
-            return State.Failure;
+
+        context.enemyController.SpawnProjectile(blackboard.targetObj.transform.position);
 
         return State.Running;
     }
