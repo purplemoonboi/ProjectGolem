@@ -47,15 +47,17 @@ public class ScanForStructure : ActionNode
 
         foreach(var target in structures)
         {
-            Vector3 direction = target.transform.position - context.transform.position;
-
-            if (direction.magnitude < distance || distance == 0.0f)
+            if (target.IsActivated())
             {
-                distance = direction.magnitude;
-                blackboard.moveToPosition = target.transform.position;
-                blackboard.targetObj = target.gameObject;
-            }
+                Vector3 direction = target.transform.position - context.transform.position;
 
+                if ((direction.magnitude < distance || distance <= 0.0f))
+                {
+                    distance = direction.magnitude;
+                    blackboard.moveToPosition = target.transform.position;
+                    blackboard.targetObj = target.gameObject;
+                }
+            }
             //Debug.Log("Target Pos: " + target.transform.position + "Distance:" + distance);
         }
 

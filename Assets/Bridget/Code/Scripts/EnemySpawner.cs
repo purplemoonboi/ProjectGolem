@@ -11,6 +11,7 @@ public class EnemySpawner : MonoBehaviour
     private float elapsedTime;
     [SerializeField]
     private int spawnCount;     //The number of enemies to spawn in one go
+    [SerializeField]
     private int enemyLimit;     //The maximum number of enemies to have in the scene at once
     [SerializeField]
     private GameObject enemyPrefab;
@@ -18,14 +19,15 @@ public class EnemySpawner : MonoBehaviour
     private List<GameObject> enemies;
     [SerializeField]
     private bool shouldSpawn = false;
+    [SerializeField]
+    private TimeController dayNightCycle;
 
     void Start()
     {
-        spawnTime = 3.0f;
         elapsedTime = 0.0f;
-        spawnCount = 2;
-        enemyLimit = 10;
+     
     }
+    static float t = 0.0f;
 
     void Update()
     {
@@ -34,7 +36,28 @@ public class EnemySpawner : MonoBehaviour
             shouldSpawn = (shouldSpawn == false) ? true : false;
         }
 
+        if(!(dayNightCycle.GetCurrentTime().TimeOfDay > dayNightCycle.GetSunrise()
+            &&
+            dayNightCycle.GetCurrentTime().TimeOfDay < dayNightCycle.GetSunset()))
+        {
+            shouldSpawn = true;
+        }
+        else
+        {
+            shouldSpawn = false;
+        }
+
         if(shouldSpawn)
+        {
+            t += 1.0f * Time.deltaTime;
+        }
+
+        if(t >= 10.0f)
+        {
+            Destroy(gameObject);
+        }
+
+        if (shouldSpawn)
         {
             SpawnOnTimer();
         }
@@ -71,4 +94,6 @@ public class EnemySpawner : MonoBehaviour
 
         enemies.Add(enemy);
     }
+
+    public void Decriment(GameObject enemy) { enemies.Remove(enemy); }
 }

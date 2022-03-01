@@ -17,12 +17,12 @@ public class FireProjectile : MonoBehaviour
     [SerializeField]
     private bool shouldFire = false;
     [SerializeField]
-    private bool alignAzimuth = true;
+    private bool azimuthAligned = false;
     [SerializeField]
     private float fireTimer = 0.0f;
 
     [SerializeField]
-    private Transform azimuthTransform;
+    private Transform[] azimuthTransform;
 
     [SerializeField]
     private EnemyTarget enemyTarget;
@@ -36,23 +36,43 @@ public class FireProjectile : MonoBehaviour
     {
         if(enemyTarget.IsActivated())
         {
+            Debug.Log("Active!!!");
             if (target != null)
             {
                 fireTimer += 1.0f * Time.deltaTime;
 
-
-                if (fireTimer >= fireRate)
+                if(fireTimer >= fireRate)
                 {
-                    shouldFire = true;
-                    fireTimer = 0.0f;
-
-                    if (alignAzimuth)
-                    {
-                    }
+                    StartCoroutine("RotateTurret");
                 }
-
+                else
+                {
+                    shouldFire = false;
+                }
             }
         }
+    }
+
+    private IEnumerator RotateTurret()
+    {
+        Transform turretTransform = azimuthTransform[0];
+        Vector3 turretDirection = turretTransform.forward;
+        Vector3 epos = enemyTarget.transform.position;
+        Vector3 direction = new Vector3();
+        Quaternion rotationGoal = new Quaternion();
+
+        while (azimuthTransform[0].rotation != rotationGoal)
+        {
+            direction = (target.position - transform.position).normalized;
+            //Create a quaternion of the goal.
+            rotationGoal = Quaternion.LookRotation(direction);
+            //Update the camera rotation to follow point 't'.
+            azimuthTransform[0].rotation = Quaternion.Slerp(azimuthTransform[0].rotation, rotationGoal, 2.0f * Time.deltaTime);
+
+            yield return null;
+        }
+
+        shouldFire = true;
     }
 
     public void FixedUpdate()

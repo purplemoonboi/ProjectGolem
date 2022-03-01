@@ -39,7 +39,7 @@ public class Interact : MonoBehaviour
     {
         pressedMouseB0 = false;
         isInteractable = false;
-        resourceWallet = 0;
+        resourceWallet = 25;
 
         //Fetch a reference to the text components on start().
         resourceText = GameObject.FindGameObjectWithTag("ResourceWallet").GetComponent<Text>();

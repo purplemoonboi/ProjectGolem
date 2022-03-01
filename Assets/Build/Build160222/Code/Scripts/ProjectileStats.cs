@@ -15,19 +15,19 @@ public class ProjectileStats : MonoBehaviour
     public void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
+        damage = 240.0f;
     }
 
-    // Update is called once per frame
-    void Update()
+// Update is called once per frame
+void Update()
     {
-        if(this != null)
+    
+        timer += 1.0f * Time.deltaTime;
+        if(timer > 6.0f)
         {
-            timer += 1.0f * Time.deltaTime;
-            if(timer > 6.0f)
-            {
-                Destroy(gameObject);
-            }
+            Destroy(gameObject);
         }
+        
     }
 
     public void FixedUpdate()
@@ -44,11 +44,18 @@ public class ProjectileStats : MonoBehaviour
     {
         if(collision.transform.tag == "Enemy")
         {
-            EnemyMovement enemy = collision.transform.GetComponent<EnemyMovement>();
+            EnemyController enemy = collision.transform.GetComponent<EnemyController>();
 
             if(enemy != null)
             {
-                enemy.UpdateDamageTaken(damage);
+                enemy.SetHealth(enemy.GetHealth() - damage);
+
+
+
+                if(enemy.GetHealth() <= 0.0f)
+                {
+                    Destroy(enemy.gameObject);
+                }
 
                 Destroy(gameObject);
 

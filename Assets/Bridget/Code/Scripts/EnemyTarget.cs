@@ -49,11 +49,11 @@ public class EnemyTarget : MonoBehaviour
 
     void Update()
     {
-        UpdateCanvasRotation();
-        UpdateUIComponents();
-
         if (isActivated)
         {
+            UpdateCanvasRotation();
+            UpdateUIComponents();
+
             if (health <= 0.0f)
             {
                 Destroy(gameObject);
