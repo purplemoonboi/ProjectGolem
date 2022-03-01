@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e62620741aaba724bb31912edb48384e, type: 3}
   m_Name: FriendlyData
   m_EditorClassIdentifier: 
-  MAX_HEALTH: 1000
+  MAX_HEALTH: 100
   power: 20

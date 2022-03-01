@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyProjectileStats : MonoBehaviour
+public class FriendlyProjectileStats : MonoBehaviour
 {
     [SerializeField]
     private float damage = 100.0f;
@@ -41,9 +41,9 @@ public class EnemyProjectileStats : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.tag == "DefenceTower")
+        if (collision.transform.tag == "Enemy")
         {
-            EnemyTarget target = collision.transform.GetComponent<EnemyTarget>();
+            EnemyController target = collision.transform.GetComponent<EnemyController>();
 
             if (target != null)
             {
@@ -52,23 +52,11 @@ public class EnemyProjectileStats : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-
-        else if(collision.transform.tag == "Friendly")
-        {
-            FriendlyController friendly = collision.transform.GetComponent<FriendlyController>();
-
-            if(friendly != null)
-            {
-                friendly.SetHealth(friendly.GetHealth() - damage);
-
-                Destroy(gameObject);
-            }
-        }
     }
 
     public void OnCollisionExit(Collision collision)
     {
-        if (collision.transform.tag == "DefenceTower" || collision.transform.tag == "Friendly")
+        if (collision.transform.tag == "Enemy")
         {
             if (this != null)
             {
