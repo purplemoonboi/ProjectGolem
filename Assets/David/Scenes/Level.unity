@@ -412,6 +412,17 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &249313266 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1761388802054425348, guid: 730d522caa8e2af4a8f6f91163e3bb44, type: 3}
+  m_PrefabInstance: {fileID: 1761388802944441957}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fcf994621901ec4eb0aaa675aabae95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &328612429
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,7 +758,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d6a717d7cefd734ea5813b064237c6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  railMover: {fileID: 881157351}
   target: {fileID: 1618033703}
+  player: {fileID: 1153457047}
+  isOn: 0
 --- !u!135 &534247844
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -822,7 +836,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d6a717d7cefd734ea5813b064237c6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  railMover: {fileID: 881157351}
   target: {fileID: 529917963}
+  player: {fileID: 1153457047}
+  isOn: 0
 --- !u!135 &546621006
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1357,7 +1374,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d6a717d7cefd734ea5813b064237c6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  railMover: {fileID: 881157351}
   target: {fileID: 1570719506}
+  player: {fileID: 1153457047}
+  isOn: 0
 --- !u!135 &992526010
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3170,6 +3190,10 @@ PrefabInstance:
       propertyPath: cam2
       value: 
       objectReference: {fileID: 689834272}
+    - target: {fileID: 1761388802605382582, guid: 730d522caa8e2af4a8f6f91163e3bb44, type: 3}
+      propertyPath: playerOxygen
+      value: 
+      objectReference: {fileID: 249313266}
     - target: {fileID: 1761388802605382583, guid: 730d522caa8e2af4a8f6f91163e3bb44, type: 3}
       propertyPath: m_Name
       value: Player

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//@author David Costa
 public class RailMover : MonoBehaviour
 {
     public Rail rail;
@@ -32,5 +33,6 @@ public class RailMover : MonoBehaviour
             thisTransform.position = rail.ProjectPositionOnRail(lookAt.position);
 
         }
+        //thisTransform.LookAt(lookAt.position);
     }
 }

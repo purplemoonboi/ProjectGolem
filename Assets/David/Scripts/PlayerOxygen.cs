@@ -77,6 +77,9 @@ public class PlayerOxygen : MonoBehaviour
 
     public void ReduceOxygen()
     {
+        if (basePosition == null)
+            return;
+
         float playerDistance = Vector3.Distance(player.transform.position, basePosition.position);
 
         //Remaps the player distance between the [min,max] distance to [0, oxygenAmount].

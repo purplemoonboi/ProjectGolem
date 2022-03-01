@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //@author David Costa
-
 public class BasicMovement : MonoBehaviour
 {
 
