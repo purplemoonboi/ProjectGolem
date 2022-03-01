@@ -23,8 +23,8 @@ public class AttackEnemyTarget : ActionNode
         if (enemyTarget == null)
             return State.Failure;
 
-        Vector3 direction = enemyTarget.transform.position - context.transform.position;
-        distanceToTarget = direction.magnitude;
+        //Vector3 direction = enemyTarget.transform.position - context.transform.position;
+        //distanceToTarget = direction.magnitude;
 
         if (context.friendlyController.GetHealth() <= (context.friendlyController.GetMaxHealth() / 4.0f))
             return State.Failure;
@@ -35,12 +35,7 @@ public class AttackEnemyTarget : ActionNode
             return State.Success;
         }
 
-        if (distanceToTarget < 10.0f)
-        {
-            enemyTarget.SetHealth(enemyTarget.GetHealth() - context.friendlyController.GetPower());
-        }
-        else
-            return State.Failure;
+        context.friendlyController.SpawnProjectile(blackboard.targetObj.transform.position);
 
         return State.Running;
     }

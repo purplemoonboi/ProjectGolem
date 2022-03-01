@@ -12,6 +12,7 @@ TagManager:
   - ResourceWallet
   - Enemy
   - ResourcePickUpAmount
+  - Friendly
   layers:
   - Default
   - TransparentFX
