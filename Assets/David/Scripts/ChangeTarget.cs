@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ChangeTarget : MonoBehaviour
@@ -5,8 +7,6 @@ public class ChangeTarget : MonoBehaviour
     private Camera cam;
 
     public Transform target;
-
-
 
     private void Awake()
     {
@@ -17,8 +17,10 @@ public class ChangeTarget : MonoBehaviour
     {
         if (other.gameObject.tag == "MainCamera")
         {
-            cam.transform.LookAt(target.position);
-            Debug.Log(target.name);
+            
+            // cam.transform.LookAt(target.position);
+            // Debug.Log(target.name);
         }
     }
+
 }

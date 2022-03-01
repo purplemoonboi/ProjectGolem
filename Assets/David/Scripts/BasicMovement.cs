@@ -9,8 +9,8 @@ public class BasicMovement : MonoBehaviour
 
     //public variables
     [Header("Player Settings")]
-    public float speedX = 5f;
-    public float speedY = 5f;
+    public float speedX = 25f;
+    public float speedY = 25f;
     public float speed = 6f;
     public float turnSmoothTime = 0.1f;
 
@@ -39,8 +39,8 @@ public class BasicMovement : MonoBehaviour
         else
         {
             speed  = 100f;
-            speedX = 25f;
-            speedY = 25f;
+            speedX = 6f;
+            speedY = 6f;
         }
 
         PlayerMovement();
@@ -81,17 +81,17 @@ public class BasicMovement : MonoBehaviour
         }
         controller.Move(moveVector * Time.deltaTime);        
 
-        if (direction.magnitude >= .1f)
-        {
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref smoothVelocity, turnSmoothTime);
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
-            controller.Move(direction * Time.deltaTime);
-        }
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            RotatePlayer();
-        }
+     //   if (direction.magnitude >= .1f)
+     //   {
+     //       float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+     //       float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref smoothVelocity, turnSmoothTime);
+     //       transform.rotation = Quaternion.Euler(0f, angle, 0f);
+     //       controller.Move(direction * Time.deltaTime);
+     //   }
+     //   if (Input.GetKeyDown(KeyCode.Mouse1))
+     //   {
+     //       RotatePlayer();
+     //   }
     }
 
     void RotatePlayer()
