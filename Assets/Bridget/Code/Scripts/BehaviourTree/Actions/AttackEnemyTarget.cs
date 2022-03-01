@@ -11,7 +11,10 @@ public class AttackEnemyTarget : ActionNode
 
     protected override void OnStart()
     {
-        enemyTarget = blackboard.targetObj.GetComponent<EnemyController>();
+        if (blackboard.targetObj != null)
+        {
+            enemyTarget = blackboard.targetObj.GetComponent<EnemyController>();
+        }
     }
 
     protected override void OnStop()
