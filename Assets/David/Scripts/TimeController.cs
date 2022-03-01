@@ -120,4 +120,10 @@ public class TimeController : MonoBehaviour
 
         return difference;
     }
+
+    public DateTime GetCurrentTime() => currentTime;
+
+    public TimeSpan GetSunrise() => sunriseTime;
+
+    public TimeSpan GetSunset() => sunsetTime;
 }

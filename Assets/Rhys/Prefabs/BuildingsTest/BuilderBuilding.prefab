@@ -16,8 +16,8 @@ GameObject:
   m_Name: Support (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6258629497866558820
 Transform:
@@ -107,13 +107,13 @@ GameObject:
   - component: {fileID: 6167314620247158870}
   - component: {fileID: 3963294682808166841}
   - component: {fileID: 3153967892344526692}
-  - component: {fileID: 7460717112455488483}
+  - component: {fileID: 8401614376683227100}
   m_Layer: 0
   m_Name: BuilderBuilding
   m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6167314620247158870
 Transform:
@@ -160,7 +160,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6, y: 6, z: 6}
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &7460717112455488483
+--- !u!114 &8401614376683227100
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,11 +172,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5417b15aae83fc4db4f6fbba8fa0b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseBuildingData: {fileID: 11400000, guid: 1494fb3af9739e2498b18bfeeb427331, type: 2}
   meshCutterTransform: {fileID: 2283007545726746774}
   spawnerEndGoal: {fileID: 158839808701082444}
   cost: 0
   costToUpgrade: 0
+  health: 1000
+  isActive: 0
+  shouldSpawn: 0
+  buildingType: -1
+  builderScriptableObject: {fileID: 11400000, guid: 5dfef2c79200d4f49b1e31c59c387758, type: 2}
+  buildingInfo: {fileID: 0}
 --- !u!1 &1635011690571981391
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,8 +198,8 @@ GameObject:
   m_Name: Support (2)
   m_TagString: Hologram
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3471722655707066421
 Transform:
@@ -289,8 +294,8 @@ GameObject:
   m_Name: Support (1)
   m_TagString: Hologram
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2207206461403872452
 Transform:
@@ -385,8 +390,8 @@ GameObject:
   m_Name: Support
   m_TagString: Hologram
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4461800202616664939
 Transform:
@@ -479,7 +484,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &158839808701082444
 Transform:
@@ -509,7 +514,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4045592663380690494
 Transform:
@@ -542,8 +547,8 @@ GameObject:
   m_Name: Support
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &580701908115609161
 Transform:
@@ -636,7 +641,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &880078283984003699
 Transform:
@@ -674,8 +679,8 @@ GameObject:
   m_Name: MainBody
   m_TagString: Hologram
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7013550412859900025
 Transform:
@@ -755,8 +760,8 @@ GameObject:
   m_Name: Roof
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4755196719037517750
 Transform:
@@ -836,8 +841,8 @@ GameObject:
   m_Name: Roof
   m_TagString: Hologram
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3383658765235389494
 Transform:
@@ -918,8 +923,8 @@ GameObject:
   m_Name: Support (3)
   m_TagString: Hologram
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8626920690320171341
 Transform:
@@ -1013,8 +1018,8 @@ GameObject:
   m_Name: MainBody (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4579874500219088032
 Transform:
@@ -1095,8 +1100,8 @@ GameObject:
   m_Name: Support (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6877991794297662882
 Transform:
@@ -1190,8 +1195,8 @@ GameObject:
   m_Name: MainBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &9206451345141985740
 Transform:
@@ -1271,8 +1276,8 @@ GameObject:
   m_Name: MainBody (1)
   m_TagString: Hologram
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2241424665542813767
 Transform:
@@ -1352,7 +1357,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2283007545726746774
 Transform:
@@ -1398,8 +1403,8 @@ GameObject:
   m_Name: Support (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8286293334590358467
 Transform:
@@ -1493,7 +1498,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &918864556947669682
 Transform:
@@ -1538,9 +1543,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4045592663380690494}
     m_Modifications:
+    - target: {fileID: 4470696784041471903, guid: f946f64e299858142959ceec0778ad34, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 5144728188951556814, guid: f946f64e299858142959ceec0778ad34, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7061672361530855381, guid: f946f64e299858142959ceec0778ad34, type: 3}
       propertyPath: m_Name
       value: InfoPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7061672361530855381, guid: f946f64e299858142959ceec0778ad34, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 9154203789908010535, guid: f946f64e299858142959ceec0778ad34, type: 3}
       propertyPath: m_Pivot.x

@@ -36,4 +36,6 @@ public class BuildingInfoPanel : MonoBehaviour
     }
 
     public void SetText(Text text) => infoText.text = text.text;
+
+    public Text GetText() => infoText;
 }

@@ -42,7 +42,7 @@ public class ScanForTargets : ActionNode
             {
                 distance = direction.magnitude;
                 blackboard.moveToPosition = target.transform.position;
-                blackboard.target = target;
+                //blackboard.target = target;
             }
 
             //Debug.Log("Target Pos: " + target.transform.position + "Distance:" + distance);

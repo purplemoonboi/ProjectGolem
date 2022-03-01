@@ -17,12 +17,12 @@ public class FireProjectile : MonoBehaviour
     [SerializeField]
     private bool shouldFire = false;
     [SerializeField]
-    private bool alignAzimuth = true;
+    private bool azimuthAligned = false;
     [SerializeField]
     private float fireTimer = 0.0f;
 
     [SerializeField]
-    private Transform azimuthTransform;
+    private Transform[] azimuthTransform;
 
     [SerializeField]
     private EnemyTarget enemyTarget;
@@ -36,23 +36,32 @@ public class FireProjectile : MonoBehaviour
     {
         if(enemyTarget.IsActivated())
         {
+            Debug.Log("Active!!!");
             if (target != null)
             {
                 fireTimer += 1.0f * Time.deltaTime;
 
-
-                if (fireTimer >= fireRate)
-                {
-                    shouldFire = true;
-                    fireTimer = 0.0f;
-
-                    if (alignAzimuth)
-                    {
-                    }
-                }
-
+                StartCoroutine("RotateTurret");
             }
         }
+    }
+
+    private IEnumerator RotateTurret()
+    {
+        Transform turretTransform = azimuthTransform[0];
+        Vector3 turretDirection = turretTransform.forward;
+        Vector3 epos = enemyTarget.transform.position;
+
+        while (turretDirection != epos)
+        {
+            Vector3 newForward = Vector3.RotateTowards(turretTransform.forward, epos, 2.0f * Time.deltaTime, 0.0f);
+            turretTransform.forward = newForward;
+            azimuthTransform[1].forward = newForward;
+
+            yield return null;
+        }
+
+        shouldFire = true;
     }
 
     public void FixedUpdate()

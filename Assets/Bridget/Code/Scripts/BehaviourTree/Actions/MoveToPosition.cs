@@ -18,6 +18,8 @@ public class MoveToPosition : ActionNode
         context.agent.destination = blackboard.moveToPosition;
         context.agent.updateRotation = updateRotation;
         context.agent.acceleration = acceleration;
+
+        context.agent.isStopped = false;
     }
 
     protected override void OnStop()
@@ -33,6 +35,8 @@ public class MoveToPosition : ActionNode
 
         if (context.agent.remainingDistance < tolerance)
         {
+            context.agent.isStopped = true;
+
             return State.Success;
         }
 
