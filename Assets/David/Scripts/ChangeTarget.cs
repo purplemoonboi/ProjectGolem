@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 //@author David Costa
@@ -5,45 +7,27 @@ public class ChangeTarget : MonoBehaviour
 {
     public RailMover railMover;
 
-    private Camera cam;
-
     public Transform target;
 
     public Transform player;
 
-
-    public bool isOn = false;
-
-    private void Awake()
-    {
-        cam = Camera.main;
-    }
-
     private void Update()
     {
-        if (isOn)
-        {
-            cam.transform.LookAt(target.position);
-        }
-        else
-        {
-            cam.transform.LookAt(railMover.lookAt.position);
-        }
+        if (player == null)
+            return;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "MainCamera")
         {
-            isOn = true;
-            Debug.Log(target.name);
-            Debug.Log("Enter!");
+            railMover.p = target;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("Exit!");
-        isOn = false;
+        railMover.p = player;
     }
+    
 }

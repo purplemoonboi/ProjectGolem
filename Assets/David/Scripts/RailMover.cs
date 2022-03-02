@@ -11,13 +11,20 @@ public class RailMover : MonoBehaviour
     public bool smoothMove = true;
     public float moveSpeed = 5.0f;
 
+    public float speed = 1f;
+    Quaternion newRot;
+    Vector3 relPos;
+
     private Transform thisTransform;
     private Vector3 lastPosition;
+
+    public Transform p;
 
     void Start()
     {
         thisTransform = transform;
         lastPosition = thisTransform.position;
+        p = lookAt;
     }
 
 
@@ -33,6 +40,12 @@ public class RailMover : MonoBehaviour
             thisTransform.position = rail.ProjectPositionOnRail(lookAt.position);
 
         }
-        //thisTransform.LookAt(lookAt.position);
+
+        relPos = p.position - thisTransform.position;
+        newRot = Quaternion.LookRotation(relPos);
+        transform.rotation = Quaternion.RotateTowards(thisTransform.rotation, newRot, speed * Time.deltaTime);
+        
+        
+        //thisTransform.LookAt(p);
     }
 }
