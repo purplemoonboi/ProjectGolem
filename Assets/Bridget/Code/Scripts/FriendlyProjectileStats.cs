@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileStats : MonoBehaviour
+public class FriendlyProjectileStats : MonoBehaviour
 {
-
     [SerializeField]
     private float damage = 100.0f;
     [SerializeField]
@@ -15,24 +14,24 @@ public class ProjectileStats : MonoBehaviour
     public void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
-        damage = 240.0f;
     }
 
-// Update is called once per frame
-void Update()
+    // Update is called once per frame
+    void Update()
     {
-    
-        timer += 1.0f * Time.deltaTime;
-        if(timer > 6.0f)
+        if (this != null)
         {
-            Destroy(gameObject);
+            timer += 1.0f * Time.deltaTime;
+            if (timer > 3.0f)
+            {
+                Destroy(gameObject);
+            }
         }
-        
     }
 
     public void FixedUpdate()
     {
-        
+
     }
 
     public void ApplyForce(Vector3 force)
@@ -42,25 +41,16 @@ void Update()
 
     public void OnCollisionEnter(Collision collision)
     {
-        if(collision.transform.tag == "Enemy")
+        if (collision.transform.tag == "Enemy")
         {
-            EnemyController enemy = collision.transform.GetComponent<EnemyController>();
+            EnemyController target = collision.transform.GetComponent<EnemyController>();
 
-            if(enemy != null)
+            if (target != null)
             {
-                enemy.SetHealth(enemy.GetHealth() - damage);
-
-
-
-                if(enemy.GetHealth() <= 0.0f)
-                {
-                    Destroy(enemy.gameObject);
-                }
+                target.SetHealth(target.GetHealth() - damage);
 
                 Destroy(gameObject);
-
             }
-
         }
     }
 
@@ -68,13 +58,10 @@ void Update()
     {
         if (collision.transform.tag == "Enemy")
         {
-            if(this != null)
+            if (this != null)
             {
                 Destroy(gameObject);
-
             }
         }
     }
-
-
 }

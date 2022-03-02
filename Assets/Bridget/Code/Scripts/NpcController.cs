@@ -25,13 +25,14 @@ public class NpcController : MonoBehaviour
     void Update()
     {
         UpdateUIComponents();
+        CheckDeath();
     }
 
     public void UpdateUIComponents()
     {
         healthText.GetComponent<Text>().text = "HEALTH: " + health;
 
-        float newWidth = Remap(health, 0.0f, maxHealth, 0.0f, maxWidth);
+        float newWidth = MathsUtils.RemapRange(health, 0.0f, maxHealth, 0.0f, maxWidth);
         healthBarRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, newWidth);
     }
 
@@ -46,9 +47,12 @@ public class NpcController : MonoBehaviour
         maxWidth = healthBarRect.rect.width;
     }
 
-    private float Remap(float oldValue, float oldMin, float oldMax, float newMin, float newMax)
+    protected void CheckDeath()
     {
-        return ((oldValue - oldMin) * (newMax - newMin)) / (oldMax - oldMin) + newMin;
+        if (health <= 0.0f)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void SetHealth(float h) { health = h; }

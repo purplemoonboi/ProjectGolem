@@ -22,7 +22,7 @@ public class EnemyProjectileStats : MonoBehaviour
         if (this != null)
         {
             timer += 1.0f * Time.deltaTime;
-            if (timer > 6.0f)
+            if (timer > 3.0f)
             {
                 Destroy(gameObject);
             }
@@ -52,11 +52,23 @@ public class EnemyProjectileStats : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
+        else if(collision.transform.tag == "Friendly")
+        {
+            FriendlyController friendly = collision.transform.GetComponent<FriendlyController>();
+
+            if(friendly != null)
+            {
+                friendly.SetHealth(friendly.GetHealth() - damage);
+
+                Destroy(gameObject);
+            }
+        }
     }
 
     public void OnCollisionExit(Collision collision)
     {
-        if (collision.transform.tag == "DefenceTower")
+        if (collision.transform.tag == "DefenceTower" || collision.transform.tag == "Friendly")
         {
             if (this != null)
             {
