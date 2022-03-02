@@ -9,11 +9,8 @@ public class RepairStructure : ActionNode
 
     public EnemyTarget structure;
 
-    private float timer = 0.0f;
-
     protected override void OnStart()
     {
-        if(blackboard.targetObj != null)
         structure = blackboard.targetObj.GetComponent<EnemyTarget>();
     }
 
@@ -37,22 +34,11 @@ public class RepairStructure : ActionNode
 
         if (distanceToTarget < 10.0f)
         {
-            PerformRepair();
+            structure.SetHealth(structure.GetHealth() + context.friendlyController.GetPower());
         }
         else
             return State.Failure;
 
         return State.Running;
-    }
-
-    public void PerformRepair()
-    {
-        timer += 1.0f * Time.deltaTime;
-
-        if (timer > 0.8f)
-        {
-            structure.SetHealth(structure.GetHealth() + context.friendlyController.GetPower());
-            timer = 0.0f;
-        }
     }
 }

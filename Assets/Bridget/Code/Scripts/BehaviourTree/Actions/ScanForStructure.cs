@@ -19,9 +19,6 @@ public class ScanForStructure : ActionNode
         {
             if (context.enemyController.GetHealth() <= (context.enemyController.GetMaxHealth() / 4.0f))
                 return State.Failure;
-
-            if (ScanTargetsAsEnemy())
-                return State.Success;
         }
 
         else if (context.friendlyController)
@@ -31,15 +28,17 @@ public class ScanForStructure : ActionNode
 
             if (context.friendlyController.GetHealth() <= (context.friendlyController.GetMaxHealth() / 4.0f))
                 return State.Failure;
+        }
 
-            if (ScanTargetsAsFriendly())
-                return State.Success;
+        if (ScanTargets())
+        {
+            return State.Success;
         }
 
         return State.Running;
     }
 
-    public bool ScanTargetsAsEnemy()
+    public bool ScanTargets()
     {
         var structures = FindObjectsOfType<EnemyTarget>();
 
@@ -52,36 +51,6 @@ public class ScanForStructure : ActionNode
                 Vector3 direction = target.transform.position - context.transform.position;
 
                 if ((direction.magnitude < distance || distance <= 0.0f))
-                {
-                    distance = direction.magnitude;
-                    blackboard.moveToPosition = target.transform.position;
-                    blackboard.targetObj = target.gameObject;
-                }
-            }
-            //Debug.Log("Target Pos: " + target.transform.position + "Distance:" + distance);
-        }
-
-        //Debug.Log("Next Position: " + blackboard.moveToPosition);
-
-        if (distance == 0.0f)
-            return false;
-
-        return true;
-    }
-
-    public bool ScanTargetsAsFriendly()
-    {
-        var structures = FindObjectsOfType<EnemyTarget>();
-
-        float distance = 0.0f;
-
-        foreach (var target in structures)
-        {
-            if (target.GetHealth() < target.GetMaxHealth())
-            {
-                Vector3 direction = target.transform.position - context.transform.position;
-
-                if (direction.magnitude < distance || distance == 0.0f)
                 {
                     distance = direction.magnitude;
                     blackboard.moveToPosition = target.transform.position;

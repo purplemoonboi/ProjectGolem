@@ -388,8 +388,8 @@ MonoBehaviour:
   barrelSpawns:
   - {fileID: 2045040399275212034}
   - {fileID: 1541563075507543680}
-  fireForce: 3000
-  fireRate: 1.2
+  fireForce: 5000
+  fireRate: 0.3
   target: {fileID: 0}
   shouldFire: 0
   azimuthAligned: 0

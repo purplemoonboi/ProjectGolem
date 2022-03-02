@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 2253984322934201282}
   m_Layer: 0
   m_Name: Friendly
-  m_TagString: Friendly
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,7 +34,6 @@ Transform:
   m_LocalPosition: {x: 3.14, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8678734114357235152}
   - {fileID: 4587452553991093521}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -154,14 +153,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthText: {fileID: 6804043890948199748}
   healthBar: {fileID: 3085297178187462972}
-  projectilePrefab: {fileID: 194859336957599858, guid: 73f94c1be55d5d84bb22cc48400f7776, type: 3}
-  projectileSpawnPoint: {fileID: 8678734114357235152}
-  fireForce: 1000
-  fireRate: 1
-  shouldFire: 0
   friendlyData: {fileID: 11400000, guid: 92916acbebebc49458142e332dcd4507, type: 2}
   typeText: {fileID: 6799652051858560811}
-  friendlyType: 0
+  type: 0
 --- !u!114 &2253984322934201282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,36 +244,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &3513772970585159376
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8678734114357235152}
-  m_Layer: 0
-  m_Name: ProjectileSpawnPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8678734114357235152
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3513772970585159376}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2340348066541062528}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6799652051858560811
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,7 +468,7 @@ RectTransform:
   - {fileID: 5869645677590315225}
   - {fileID: 6901089908226271203}
   m_Father: {fileID: 2340348066541062528}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

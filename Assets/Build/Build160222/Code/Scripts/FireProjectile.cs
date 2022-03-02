@@ -41,14 +41,7 @@ public class FireProjectile : MonoBehaviour
             {
                 fireTimer += 1.0f * Time.deltaTime;
 
-                if(fireTimer >= fireRate)
-                {
-                    StartCoroutine("RotateTurret");
-                }
-                else
-                {
-                    shouldFire = false;
-                }
+                StartCoroutine("RotateTurret");
             }
         }
     }
@@ -58,16 +51,12 @@ public class FireProjectile : MonoBehaviour
         Transform turretTransform = azimuthTransform[0];
         Vector3 turretDirection = turretTransform.forward;
         Vector3 epos = enemyTarget.transform.position;
-        Vector3 direction = new Vector3();
-        Quaternion rotationGoal = new Quaternion();
 
-        while (azimuthTransform[0].rotation != rotationGoal)
+        while (turretDirection != epos)
         {
-            direction = (target.position - transform.position).normalized;
-            //Create a quaternion of the goal.
-            rotationGoal = Quaternion.LookRotation(direction);
-            //Update the camera rotation to follow point 't'.
-            azimuthTransform[0].rotation = Quaternion.Slerp(azimuthTransform[0].rotation, rotationGoal, 2.0f * Time.deltaTime);
+            Vector3 newForward = Vector3.RotateTowards(turretTransform.forward, epos, 2.0f * Time.deltaTime, 0.0f);
+            turretTransform.forward = newForward;
+            azimuthTransform[1].forward = newForward;
 
             yield return null;
         }
