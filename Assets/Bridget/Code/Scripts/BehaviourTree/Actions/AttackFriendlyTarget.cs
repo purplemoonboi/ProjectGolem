@@ -11,12 +11,7 @@ public class AttackFriendlyTarget : ActionNode
 
     protected override void OnStart()
     {
-        if (blackboard.targetObj != null)
-        {
-            friendlyTarget = blackboard.targetObj.GetComponent<FriendlyController>();
-
-
-        }
+        friendlyTarget = blackboard.targetObj.GetComponent<FriendlyController>();
     }
 
     protected override void OnStop()
@@ -28,8 +23,8 @@ public class AttackFriendlyTarget : ActionNode
         if (friendlyTarget == null)
             return State.Failure;
 
-        //Vector3 direction = friendlyTarget.transform.position - context.transform.position;
-        //distanceToTarget = direction.magnitude;
+        Vector3 direction = friendlyTarget.transform.position - context.transform.position;
+        distanceToTarget = direction.magnitude;
 
         if (context.enemyController.GetHealth() <= (context.enemyController.GetMaxHealth() / 4.0f))
             return State.Failure;
@@ -40,7 +35,12 @@ public class AttackFriendlyTarget : ActionNode
             return State.Success;
         }
 
-        context.enemyController.SpawnProjectile(friendlyTarget.transform.position);
+        if (distanceToTarget < 10.0f)
+        {
+            friendlyTarget.SetHealth(friendlyTarget.GetHealth() - context.enemyController.GetPower());
+        }
+        else
+            return State.Failure;
 
         return State.Running;
     }

@@ -5,10 +5,7 @@ using UnityEngine;
 //@author David Costa
 public class Rail : MonoBehaviour
 {
-    [SerializeField]
     private Vector3[] nodes;
-
-    //[SerializeField]
     private int nodeCount;
 
     private void Start()
@@ -56,7 +53,6 @@ public class Rail : MonoBehaviour
 
             Debug.DrawLine(position, leftSeg, Color.red);
             Debug.DrawLine(position, rightSeg, Color.blue);
-
             if ((position - leftSeg).sqrMagnitude <= (position - rightSeg).sqrMagnitude)
             {
                 return leftSeg;

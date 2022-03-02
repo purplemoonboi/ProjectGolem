@@ -27,7 +27,6 @@ public class EnemySpawner : MonoBehaviour
         elapsedTime = 0.0f;
      
     }
-    static float t = 0.0f;
 
     void Update()
     {
@@ -94,6 +93,4 @@ public class EnemySpawner : MonoBehaviour
 
         enemies.Add(enemy);
     }
-
-    public void Decriment(GameObject enemy) { enemies.Remove(enemy); }
 }
