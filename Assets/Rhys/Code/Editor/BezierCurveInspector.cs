@@ -6,9 +6,11 @@ using UnityEditor;
 [CustomEditor(typeof(BezierCurve))]
 public class BezierCurveInspector : Editor
 {
+
     private BezierCurve curve;
     private Transform handleTransform;
     private Quaternion handleRotation;
+
 
     private const int lineSteps = 10;
 

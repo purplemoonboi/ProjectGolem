@@ -23,14 +23,17 @@ public class ChangeTarget : MonoBehaviour
 
     private void Update()
     {
-        if (isOn)
-        {
-            cam.transform.LookAt(target.position);
-        }
-        else
-        {
-            cam.transform.LookAt(railMover.lookAt.position);
-        }
+      //  if (isOn)
+      //  {
+      //      cam.transform.LookAt(target.position);
+      //  }
+      //  else
+      //  {
+      //      cam.transform.LookAt(railMover.lookAt.position);
+      //  }
+
+
+
     }
 
     private void OnTriggerEnter(Collider other)

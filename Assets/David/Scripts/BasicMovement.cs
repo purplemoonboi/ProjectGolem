@@ -38,8 +38,8 @@ public class BasicMovement : MonoBehaviour
         else
         {
             speed  = 100f;
-            speedX = 6f;
-            speedY = 6f;
+            speedX = 10f;
+            speedY = 10f;
         }
 
         PlayerMovement();

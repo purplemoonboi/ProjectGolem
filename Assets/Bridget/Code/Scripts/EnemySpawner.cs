@@ -52,7 +52,7 @@ public class EnemySpawner : MonoBehaviour
             t += 1.0f * Time.deltaTime;
         }
 
-        if(t >= 10.0f)
+        if(t >= 15.0f)
         {
             Destroy(gameObject);
         }
