@@ -2250,7 +2250,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 230298497424455176, guid: 4b094fc48fdd5134b84a582d9fe2d11a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 230298497424455180, guid: 4b094fc48fdd5134b84a582d9fe2d11a, type: 3}
       propertyPath: m_RootOrder
@@ -3263,6 +3263,10 @@ PrefabInstance:
       propertyPath: shouldSpawn
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8360585117304954411, guid: c20482ec9d46dec43998259ef549b79d, type: 3}
+      propertyPath: dayNightCycle
+      value: 
+      objectReference: {fileID: 1805303487}
     - target: {fileID: 8360585117304954412, guid: c20482ec9d46dec43998259ef549b79d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3899,7 +3903,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 230298497424455176, guid: 4b094fc48fdd5134b84a582d9fe2d11a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 230298497424455180, guid: 4b094fc48fdd5134b84a582d9fe2d11a, type: 3}
       propertyPath: m_RootOrder
@@ -6093,16 +6097,16 @@ Transform:
   m_Children:
   - {fileID: 739249858}
   - {fileID: 1932646343}
-  - {fileID: 993072122}
   - {fileID: 38694746}
-  - {fileID: 185433255}
-  - {fileID: 1717586115}
   - {fileID: 698894533}
+  - {fileID: 1717586115}
+  - {fileID: 993072122}
   - {fileID: 1941904880}
+  - {fileID: 185433255}
   - {fileID: 1789746008}
   - {fileID: 1216918986}
-  - {fileID: 92658340}
   - {fileID: 1393356025}
+  - {fileID: 92658340}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6936,6 +6940,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 172d09bb52d5d62409c16798c6875b4b, type: 3}
+--- !u!114 &1805303487 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8977306999394082731, guid: 8ea0b9ff48b54f44abd24b468b6bea3c, type: 3}
+  m_PrefabInstance: {fileID: 1227233144}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad413eaec939d754c954114306ba18ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1816527555
 PrefabInstance:
   m_ObjectHideFlags: 0
