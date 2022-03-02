@@ -27,7 +27,6 @@ public class RailMover : MonoBehaviour
         p = lookAt;
     }
 
-
     void LateUpdate()
     {
         if (smoothMove)
