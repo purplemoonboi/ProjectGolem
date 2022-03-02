@@ -37,11 +37,8 @@ public class ChangeTarget : MonoBehaviour
     {
         if (other.gameObject.tag == "MainCamera")
         {
-            
             // cam.transform.LookAt(target.position);
             // Debug.Log(target.name);
-        }
-    }
 
             isOn = true;
             Debug.Log(target.name);
