@@ -18,9 +18,20 @@ public class BezierCurve : MonoBehaviour
 
     }
 
-    public Vector3 GetPoint(float t)
+    public Vector3 GetPoint(float interpolant)
     {
-        // return transform.TransformPoint(Bezier.GetPoint(points[0], points[1], points[2], t));
-        return new Vector3();
+        return transform.TransformPoint(Curve.GetPoint(points[0], points[1], points[2], interpolant));
     }
+
+    public Vector3 GetVelocity(float interpolant)
+    {
+        return transform.TransformPoint(Curve.GetFirstDerivative(points[0], points[1], points[2], interpolant)) - transform.position;
+    }
+
+    public Vector3 GetDirection(float interpolant)
+    {
+        return GetVelocity(interpolant).normalized;
+    }
+
+
 }

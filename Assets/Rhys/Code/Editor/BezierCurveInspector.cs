@@ -29,13 +29,19 @@ public class BezierCurveInspector : Editor
         Handles.DrawLine(p1, p2);
 
         Handles.color = Color.white;
-        Vector3 lineStart = curve.GetPoint(0);
-        for(int i = 1; i <= lineSteps; i++)
+         Vector3 lineStart = curve.GetPoint(0f);
+        Handles.color = Color.green;
+        Handles.DrawLine(lineStart, lineStart + curve.GetDirection(0f));
+        for (int i = 1; i <= lineSteps; i++)
         {
             Vector3 lineEnd = curve.GetPoint(i / (float)lineSteps);
+            Handles.color = Color.white;
             Handles.DrawLine(lineStart, lineEnd);
+            Handles.color = Color.green;
+            Handles.DrawLine(lineEnd, lineEnd + curve.GetDirection(i / (float)lineSteps));
             lineStart = lineEnd;
         }
+       
     }
 
     private Vector3 ShowPoint(int index)
