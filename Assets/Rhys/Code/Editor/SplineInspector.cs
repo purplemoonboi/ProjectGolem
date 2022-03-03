@@ -83,6 +83,16 @@ public class SplineInspector : Editor
             spline.AddCurve();
             EditorUtility.SetDirty(spline);
         }
+
+        GUILayout.Space(16f);
+
+        GUILayout.Label("Reset Curve");
+        if(GUILayout.Button("Reset"))
+        {
+            Undo.RecordObject(spline, "Reset");
+            spline.Reset();
+            EditorUtility.SetDirty(spline);
+        }
     }
 
     private void DrawSelectedPointInspector()

@@ -73,7 +73,7 @@ public class Spline : MonoBehaviour
         return points[index];
     }
 
-        public void SetControlPoint(int index, Vector3 value)
+    public void SetControlPoint(int index, Vector3 value)
     {
         if(index % 3 == 0)
         {
