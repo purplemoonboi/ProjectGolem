@@ -21,6 +21,7 @@ public class EnemySpawner : MonoBehaviour
     private bool shouldSpawn = false;
     [SerializeField]
     private TimeController dayNightCycle;
+    float t;
 
     void Start()
     {
