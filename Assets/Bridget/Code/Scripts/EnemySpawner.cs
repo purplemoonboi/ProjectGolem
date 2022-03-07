@@ -47,15 +47,15 @@ public class EnemySpawner : MonoBehaviour
             shouldSpawn = false;
         }
 
-        if(shouldSpawn)
-        {
-            t += 1.0f * Time.deltaTime;
-        }
+        //if(shouldSpawn)
+        //{
+        //    t += 1.0f * Time.deltaTime;
+        //}
 
-        if(t >= 15.0f)
-        {
-            Destroy(gameObject);
-        }
+        //if(t >= 15.0f)
+        //{
+        //    Destroy(gameObject);
+        //}
 
         if (shouldSpawn)
         {
