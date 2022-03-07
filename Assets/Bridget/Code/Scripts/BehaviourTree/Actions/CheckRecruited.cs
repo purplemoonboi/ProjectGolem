@@ -5,8 +5,6 @@ using TheKiwiCoder;
 
 public class CheckRecruited : ActionNode
 {
-    bool firstSetup = true; //Checking if this is the first run of the behaviour tree that the friendly character has been flagged as 'recruited'
-
     protected override void OnStart()
     {
     }
@@ -19,11 +17,7 @@ public class CheckRecruited : ActionNode
     {
         if (context.friendlyController.GetRecruited())
         {
-            if (!firstSetup)
-                return State.Failure;
-
             blackboard.moveToPosition = context.friendlyController.GetSpawnPoint();
-            firstSetup = false;
 
             return State.Success;
         }

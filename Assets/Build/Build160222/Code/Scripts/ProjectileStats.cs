@@ -40,36 +40,60 @@ public class ProjectileStats : MonoBehaviour
         rigidbody.AddForce(force, ForceMode.Force);
     }
 
-    public void OnCollisionEnter(Collision collision)
+  // public void OnCollisionEnter(Collision collision)
+  // {
+  //     if(collision.transform.tag == "Enemy")
+  //     {
+  //         //EnemyMovement enemy = collision.transform.GetComponent<EnemyMovement>();
+  //         EnemyController enemy = collision.transform.GetComponent<EnemyController>();
+  //
+  //         if (enemy != null)
+  //         {
+  //             //enemy.UpdateDamageTaken(damage);
+  //             enemy.SetHealth(enemy.GetHealth() - damage);
+  //
+  //             Destroy(gameObject);
+  //
+  //         }
+  //
+  //     }
+  // }
+  //
+  // public void OnCollisionExit(Collision collision)
+  // {
+  //     if (collision.transform.tag == "Enemy")
+  //     {
+  //         if(this != null)
+  //         {
+  //             Destroy(gameObject);
+  //
+  //         }
+  //     }
+  // }
+
+    public void OnTriggerEnter(Collider collider)
     {
-        if(collision.transform.tag == "Enemy")
+        if (collider.gameObject.transform.tag == "Enemy")
         {
-            //EnemyMovement enemy = collision.transform.GetComponent<EnemyMovement>();
-            EnemyController enemy = collision.transform.GetComponent<EnemyController>();
+            EnemyController enemy = collider.gameObject.transform.GetComponent<EnemyController>();
 
             if (enemy != null)
             {
-                //enemy.UpdateDamageTaken(damage);
                 enemy.SetHealth(enemy.GetHealth() - damage);
 
                 Destroy(gameObject);
-
             }
-
         }
     }
 
-    public void OnCollisionExit(Collision collision)
+    public void OnTriggerExit(Collider collider)
     {
-        if (collision.transform.tag == "Enemy")
+        if(collider.gameObject.transform.tag == "Enemy")
         {
             if(this != null)
             {
                 Destroy(gameObject);
-
-            }
+            }    
         }
     }
-
-
 }
