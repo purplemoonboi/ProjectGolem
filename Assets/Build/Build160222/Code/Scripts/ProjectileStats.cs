@@ -44,11 +44,13 @@ public class ProjectileStats : MonoBehaviour
     {
         if(collision.transform.tag == "Enemy")
         {
-            EnemyMovement enemy = collision.transform.GetComponent<EnemyMovement>();
+            //EnemyMovement enemy = collision.transform.GetComponent<EnemyMovement>();
+            EnemyController enemy = collision.transform.GetComponent<EnemyController>();
 
-            if(enemy != null)
+            if (enemy != null)
             {
-                enemy.UpdateDamageTaken(damage);
+                //enemy.UpdateDamageTaken(damage);
+                enemy.SetHealth(enemy.GetHealth() - damage);
 
                 Destroy(gameObject);
 

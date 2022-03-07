@@ -1418,6 +1418,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8360585117304954411, guid: c20482ec9d46dec43998259ef549b79d, type: 3}
+      propertyPath: shouldSpawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8360585117304954411, guid: c20482ec9d46dec43998259ef549b79d, type: 3}
       propertyPath: dayNightCycle
       value: 
       objectReference: {fileID: 554109823}
@@ -1480,7 +1484,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5804256943669175635, guid: e032bde15d59847429f1195ba6c3b3cf, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5804256943669175639, guid: e032bde15d59847429f1195ba6c3b3cf, type: 3}
       propertyPath: m_RootOrder

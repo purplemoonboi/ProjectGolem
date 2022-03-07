@@ -18,7 +18,7 @@ public class EnemyFlee : ActionNode
         if (context.enemyController.GetHealth() > (context.enemyController.GetMaxHealth() / 4.0f))
             return State.Failure;
 
-        blackboard.moveToPosition = new Vector3(0.0f, 1.0f, 0.0f);
+        blackboard.moveToPosition = context.enemyController.GetSpawnPoint();
 
         return State.Success;
     }
