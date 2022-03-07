@@ -21,7 +21,6 @@ public class EnemySpawner : MonoBehaviour
     private bool shouldSpawn = false;
     [SerializeField]
     private TimeController dayNightCycle;
-    float t;
 
     void Start()
     {
@@ -40,22 +39,12 @@ public class EnemySpawner : MonoBehaviour
             &&
             dayNightCycle.GetCurrentTime().TimeOfDay < dayNightCycle.GetSunset()))
         {
-            shouldSpawn = true;
+            //shouldSpawn = true;
         }
         else
         {
-            shouldSpawn = false;
+            //shouldSpawn = false;
         }
-
-        //if(shouldSpawn)
-        //{
-        //    t += 1.0f * Time.deltaTime;
-        //}
-
-        //if(t >= 15.0f)
-        //{
-        //    Destroy(gameObject);
-        //}
 
         if (shouldSpawn)
         {

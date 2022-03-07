@@ -29,6 +29,7 @@ public class EnemyController : NpcController
     void Update()
     {
         UpdateUIComponents();
+        CheckDeath();
 
         fireTimer += 1.0f * Time.deltaTime;
 
@@ -38,14 +39,12 @@ public class EnemyController : NpcController
             fireTimer = 0.0f;
         }
     }
-    
+
     public void SpawnProjectile(Vector3 targetPosition)
     {
         if (shouldFire)
         {
-            GameObject projectile = new GameObject();
-
-            projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
+            GameObject projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
 
             Rigidbody rigidbody = projectile.GetComponent<Rigidbody>();
 
