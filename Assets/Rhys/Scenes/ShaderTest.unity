@@ -345,6 +345,7 @@ GameObject:
   m_Component:
   - component: {fileID: 409190632}
   - component: {fileID: 409190631}
+  - component: {fileID: 409190633}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -384,6 +385,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &409190633
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409190630}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &475923964
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,13 +425,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 475923964}
-  m_LocalRotation: {x: -0, y: -0.21760139, z: -0, w: 0.97603774}
+  m_LocalRotation: {x: -0, y: -0.0068378584, z: -0, w: 0.99997663}
   m_LocalPosition: {x: -6.12, y: 0.84, z: -5.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: -25.136, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -0.784, z: 0}
 --- !u!114 &475923966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,14 +445,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points:
-  - {x: 4.3495893, y: 0, z: 0.48001695}
-  - {x: 13.199611, y: 0, z: 1.6906159}
-  - {x: 5.021509, y: 0, z: -11.926481}
-  - {x: 17.07421, y: 0, z: -11.916606}
-  - {x: 33.291065, y: 0, z: -12.398353}
-  - {x: 25.749296, y: 0, z: -24.917313}
-  - {x: 37.88695, y: 0, z: -26.954689}
-  modes: 000000000000000000000000
+  - {x: -7.649493, y: 0, z: 11.428592}
+  - {x: -22.213995, y: 0, z: 16.30429}
+  - {x: -28.536537, y: 0, z: 0.43014956}
+  - {x: 11.24893, y: 0, z: -10.621098}
+  - {x: 30.93129, y: 0, z: -16.481604}
+  - {x: 41.25254, y: 13.284576, z: -34.182777}
+  - {x: 9.383159, y: 13.284576, z: -44.75423}
+  - {x: -14.697266, y: 13.284576, z: -51.97335}
+  - {x: -18.743198, y: 15.685083, z: -38.97092}
+  - {x: -13.500734, y: 15.685083, z: -21.666962}
+  modes: 00000000000000000000000000000000
   loop: 0
 --- !u!1 &653426480
 GameObject:

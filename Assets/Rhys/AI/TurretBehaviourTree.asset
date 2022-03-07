@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-9002093337190303718
+--- !u!114 &-8877825319213670962
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,23 +9,64 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61431bba79d7d7843b82bf1de71703f5, type: 3}
-  m_Name: Sequencer
+  m_Script: {fileID: 11500000, guid: 2952fbac70cb8324bb150f1cb243566f, type: 3}
+  m_Name: TurretRotateToEnemy
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 48f76965aafd5cc41ad861b2462c1734
-  position: {x: 0, y: 267}
+  guid: 573d0c4f780f5bb469ec52cca28dea2b
+  position: {x: -14, y: 506}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
-    target: {fileID: 0}
+    targetObj: {fileID: 0}
+  description: 
+  drawGizmos: 0
+--- !u!114 &-6969757897874808256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b7dfdec421388046b615ee5facee60f, type: 3}
+  m_Name: TurretAttackEnemy
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 081541f1196e66e4699a2d8dba48e156
+  position: {x: 0, y: 0}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    targetObj: {fileID: 0}
+  description: 
+  drawGizmos: 0
+--- !u!114 &-6546114056795609207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 460be9e34c566ea45b9e282b1adcb028, type: 3}
+  m_Name: Selector
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: ff9f434028b0aa142a51c7fbe45ee60d
+  position: {x: 0, y: 296}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    targetObj: {fileID: 0}
   description: 
   drawGizmos: 0
   children:
-  - {fileID: 4025829690854300606}
-  - {fileID: -232397645846624337}
-  - {fileID: -74956712445050539}
---- !u!114 &-4086225338081384133
+  - {fileID: 6447062173614498654}
+  - {fileID: -8877825319213670962}
+--- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -34,22 +75,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afb5496e8cd973748a10b3e3ef436ebd, type: 3}
-  m_Name: Repeat
+  m_Script: {fileID: 11500000, guid: 2d285eb63c2cdd74180de7cfceaa96ad, type: 3}
+  m_Name: TurretBehaviourTree
   m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: b800d33293862e9468b48c1ddb82b9ed
-  position: {x: 0, y: 131}
+  rootNode: {fileID: 2603173968968982328}
+  treeState: 0
+  nodes:
+  - {fileID: 2603173968968982328}
+  - {fileID: 3400102403981694042}
+  - {fileID: -6546114056795609207}
+  - {fileID: 6447062173614498654}
+  - {fileID: -8877825319213670962}
+  - {fileID: -6969757897874808256}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
-    target: {fileID: 0}
-  description: 
-  drawGizmos: 0
-  child: {fileID: -9002093337190303718}
-  restartOnSuccess: 1
-  restartOnFailure: 0
---- !u!114 &-3605866124306521126
+    targetObj: {fileID: 0}
+--- !u!114 &2603173968968982328
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -63,15 +104,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 2ee1ce8bfdf26084997c79f8198b50ce
+  guid: 01023b1b877e8364cbcf0356d572e489
   position: {x: 0, y: 0}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
-    target: {fileID: 0}
+    targetObj: {fileID: 0}
   description: 
   drawGizmos: 0
-  child: {fileID: -4086225338081384133}
---- !u!114 &-232397645846624337
+  child: {fileID: 3400102403981694042}
+--- !u!114 &3400102403981694042
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -80,24 +121,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4489e3e257543504c8fc9f891246af6c, type: 3}
-  m_Name: MoveToPosition
+  m_Script: {fileID: 11500000, guid: afb5496e8cd973748a10b3e3ef436ebd, type: 3}
+  m_Name: Repeat
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 9e97c4ae376825347abc0312d9ae6375
-  position: {x: 0, y: 419}
+  guid: 16bde158ea22b7c478546f5d0e3877c3
+  position: {x: 0, y: 136}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
-    target: {fileID: 0}
+    targetObj: {fileID: 0}
   description: 
   drawGizmos: 0
-  speed: 5
-  stoppingDistance: 0.1
-  updateRotation: 1
-  acceleration: 40
-  tolerance: 1
---- !u!114 &-74956712445050539
+  child: {fileID: -6546114056795609207}
+  restartOnSuccess: 1
+  restartOnFailure: 0
+--- !u!114 &6447062173614498654
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,61 +145,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be8bdc4dc5521174ea7368d565fea722, type: 3}
-  m_Name: AttackTarget
+  m_Script: {fileID: 11500000, guid: f841d216bdd03ac4ba32aebdb446f236, type: 3}
+  m_Name: TurretSearchForEnemy
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 12e494bccb2db154d82fbbf671e8312b
-  position: {x: 201, y: 419}
+  guid: 89a1cc1bab9022442ba0bfd385b003d3
+  position: {x: -217, y: 506}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
-    target: {fileID: 0}
-  description: 
-  drawGizmos: 0
-  distanceToTarget: 0
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d285eb63c2cdd74180de7cfceaa96ad, type: 3}
-  m_Name: EnemyBehaviourTree
-  m_EditorClassIdentifier: 
-  rootNode: {fileID: -3605866124306521126}
-  treeState: 0
-  nodes:
-  - {fileID: -3605866124306521126}
-  - {fileID: 4025829690854300606}
-  - {fileID: -9002093337190303718}
-  - {fileID: -232397645846624337}
-  - {fileID: -74956712445050539}
-  - {fileID: -4086225338081384133}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    target: {fileID: 0}
---- !u!114 &4025829690854300606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb0c5ec769fb0e846ad2d0abb01dc2ed, type: 3}
-  m_Name: ScanForTargets
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 983b3050ba5695949839fd616760f3e3
-  position: {x: -187, y: 419}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    target: {fileID: 0}
+    targetObj: {fileID: 0}
   description: 
   drawGizmos: 0
