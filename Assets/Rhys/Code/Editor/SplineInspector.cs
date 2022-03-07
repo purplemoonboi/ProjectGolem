@@ -10,17 +10,11 @@ public class SplineInspector : Editor
     private Spline spline;
     private Transform handleTransform;
     private Quaternion handleRotation;
-
     private const int stepsPerCurve = 10;
-
-    [SerializeField]
     private float directionScale = 1.0f;
-
     private const float handleSize = 0.04f;
     private const float pickSize = 0.06f;
-
     private int selectedIndex = -1;
-
     private bool showDirections = true;
 
     // @brief Draw widgets to the scene view.

@@ -52,8 +52,9 @@ public class CharacterSplineController : MonoBehaviour
             distanceAlongSpline -= ((speed * 0.001f) * Time.deltaTime);
         }
 
-        position = spline.GetPointOnSpline(distanceAlongSpline) + splineOffset;
+        transform.LookAt(transform.position + spline.GetDirection(distanceAlongSpline));
 
+        position = spline.GetPointOnSpline(distanceAlongSpline) + splineOffset;
 
         transform.position = position;  
     }
