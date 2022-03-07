@@ -13,6 +13,7 @@ TagManager:
   - Enemy
   - ResourcePickUpAmount
   - Target
+  - Friendly
   layers:
   - Default
   - TransparentFX

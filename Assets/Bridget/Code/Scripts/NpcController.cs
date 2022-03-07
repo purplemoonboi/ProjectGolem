@@ -14,8 +14,11 @@ public class NpcController : MonoBehaviour
     private RectTransform healthBarRect;
 
     protected float maxWidth;
+    [SerializeField]
     protected float health;
+    [SerializeField]
     protected float maxHealth;
+    [SerializeField]
     protected float power;
 
     void Start()

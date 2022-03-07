@@ -310,7 +310,7 @@ GameObject:
   - component: {fileID: 8048363637783918357}
   m_Layer: 0
   m_Name: FriendlyFighter
-  m_TagString: Untagged
+  m_TagString: Friendly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -446,6 +446,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthText: {fileID: 3358166913651800467}
   healthBar: {fileID: 6496275015815517675}
+  health: 0
+  maxHealth: 0
+  power: 0
   projectilePrefab: {fileID: 3366570665516611566, guid: 347b233411cb5954f8a054abc331c782, type: 3}
   projectileSpawnPoint: {fileID: 8431136103994023517}
   fireForce: 1000

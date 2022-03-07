@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 3425326973532459665}
   m_Layer: 0
   m_Name: FriendlyBuilder
-  m_TagString: Untagged
+  m_TagString: Friendly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -154,6 +154,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthText: {fileID: 7971977900912008215}
   healthBar: {fileID: 1882464067895783535}
+  health: 0
+  maxHealth: 0
+  power: 0
   projectilePrefab: {fileID: 3366570665516611566, guid: 347b233411cb5954f8a054abc331c782, type: 3}
   projectileSpawnPoint: {fileID: 3835330960056417241}
   fireForce: 1000
