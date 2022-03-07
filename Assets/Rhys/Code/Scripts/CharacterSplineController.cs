@@ -36,11 +36,11 @@ public class CharacterSplineController : MonoBehaviour
         //Move whole curve left and right.
         if (Input.GetKey(KeyCode.D))
         {
-            splineOffset -= new Vector3(0f, 0f, (speed * 0.01f)) * Time.deltaTime;
+            splineOffset += transform.right * speed * 0.01f * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            splineOffset += new Vector3(0f, 0f, (speed * 0.01f)) * Time.deltaTime;
+            splineOffset += transform.right * -speed * 0.01f * Time.deltaTime;
         }
 
         if (Input.GetKey(KeyCode.W))
