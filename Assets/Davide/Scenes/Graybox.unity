@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: dad0aa0ecfaf5df42b62184d4ded14d9, type: 2}
 --- !u!1 &1377010
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,8 +139,8 @@ GameObject:
   m_Name: GrayboxCube (164)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1377011
 Transform:
@@ -154,7 +154,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 72.182014, z: 225.37328}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 125
+  m_RootOrder: 124
   m_LocalEulerAnglesHint: {x: 0.424, y: -171.081, z: 88.667}
 --- !u!65 &1377012
 BoxCollider:
@@ -234,8 +234,8 @@ GameObject:
   m_Name: GrayboxCube (126)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8425828
 Transform:
@@ -249,7 +249,7 @@ Transform:
   m_LocalScale: {x: 66.079185, y: 120.368385, z: 28.182987}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 89
+  m_RootOrder: 88
   m_LocalEulerAnglesHint: {x: 0, y: 65.059, z: 75.748}
 --- !u!65 &8425829
 BoxCollider:
@@ -329,8 +329,8 @@ GameObject:
   m_Name: GrayboxCube (43)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &10826643
 Transform:
@@ -424,8 +424,8 @@ GameObject:
   m_Name: GrayboxCube (70)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &14741850
 Transform:
@@ -519,8 +519,8 @@ GameObject:
   m_Name: GrayboxCube (111)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &30106757
 Transform:
@@ -534,7 +534,7 @@ Transform:
   m_LocalScale: {x: 180.0986, y: 95.8308, z: 106.60854}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 76
+  m_RootOrder: 75
   m_LocalEulerAnglesHint: {x: 0, y: 33.982, z: 90}
 --- !u!65 &30106758
 BoxCollider:
@@ -614,8 +614,8 @@ GameObject:
   m_Name: GrayboxCube (174)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &40726749
 Transform:
@@ -629,7 +629,7 @@ Transform:
   m_LocalScale: {x: 1828.9259, y: 669.7776, z: 976.4473}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 134
+  m_RootOrder: 133
   m_LocalEulerAnglesHint: {x: 86.114, y: -174.692, z: -1.267}
 --- !u!65 &40726750
 BoxCollider:
@@ -709,8 +709,8 @@ GameObject:
   m_Name: GrayboxCube (117)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &55171927
 Transform:
@@ -724,7 +724,7 @@ Transform:
   m_LocalScale: {x: 180.0986, y: 95.8308, z: 106.60854}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 82
+  m_RootOrder: 81
   m_LocalEulerAnglesHint: {x: 0, y: -182.837, z: 90.001}
 --- !u!65 &55171928
 BoxCollider:
@@ -804,7 +804,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &90349299
 Transform:
@@ -880,8 +880,8 @@ GameObject:
   m_Name: GrayboxCube (205)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &98803641
 Transform:
@@ -895,7 +895,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 79.57775, z: 127.64916}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 167
+  m_RootOrder: 166
   m_LocalEulerAnglesHint: {x: 0.961, y: -412.096, z: 91.017}
 --- !u!65 &98803642
 BoxCollider:
@@ -975,8 +975,8 @@ GameObject:
   m_Name: GrayboxCube (178)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &105112796
 Transform:
@@ -990,7 +990,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 72.182014, z: 127.64916}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 138
+  m_RootOrder: 137
   m_LocalEulerAnglesHint: {x: 0.67, y: -37.323, z: 91.228}
 --- !u!65 &105112797
 BoxCollider:
@@ -1070,8 +1070,8 @@ GameObject:
   m_Name: GrayboxCube (128)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &110949347
 Transform:
@@ -1085,7 +1085,7 @@ Transform:
   m_LocalScale: {x: 18.20019, y: 35.79154, z: 28.182987}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 91
+  m_RootOrder: 90
   m_LocalEulerAnglesHint: {x: 0, y: 65.059, z: 90}
 --- !u!65 &110949348
 BoxCollider:
@@ -1165,8 +1165,8 @@ GameObject:
   m_Name: GrayboxCube (104)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &112346414
 Transform:
@@ -1180,7 +1180,7 @@ Transform:
   m_LocalScale: {x: 180.0986, y: 55.463036, z: 58.934277}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 69
+  m_RootOrder: 68
   m_LocalEulerAnglesHint: {x: 0, y: -105.826, z: 90}
 --- !u!65 &112346415
 BoxCollider:
@@ -1261,7 +1261,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &118978898
 Transform:
@@ -1434,8 +1434,8 @@ GameObject:
   m_Name: GrayboxCube (145)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &127704248
 Transform:
@@ -1449,7 +1449,7 @@ Transform:
   m_LocalScale: {x: 143.4872, y: 48.49964, z: 151.43001}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 111
+  m_RootOrder: 110
   m_LocalEulerAnglesHint: {x: 0.78, y: -272.358, z: 88.838}
 --- !u!65 &127704249
 BoxCollider:
@@ -1529,8 +1529,8 @@ GameObject:
   m_Name: GrayboxCube (40)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &138251321
 Transform:
@@ -1624,8 +1624,8 @@ GameObject:
   m_Name: GrayboxCube (152)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &147663656
 Transform:
@@ -1639,7 +1639,7 @@ Transform:
   m_LocalScale: {x: 79.56938, y: 48.49964, z: 124.13538}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 118
+  m_RootOrder: 117
   m_LocalEulerAnglesHint: {x: -3.749, y: -225.482, z: 94.88}
 --- !u!65 &147663657
 BoxCollider:
@@ -1720,7 +1720,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &151558672
 Transform:
@@ -1814,8 +1814,8 @@ GameObject:
   m_Name: GrayboxCube (69)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &157416370
 Transform:
@@ -1909,8 +1909,8 @@ GameObject:
   m_Name: GrayboxCube (52)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &179069367
 Transform:
@@ -2004,8 +2004,8 @@ GameObject:
   m_Name: GrayboxCube (58)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &181247451
 Transform:
@@ -2099,8 +2099,8 @@ GameObject:
   m_Name: GrayboxCube (189)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &191315920
 Transform:
@@ -2114,7 +2114,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 72.182014, z: 127.64916}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 151
+  m_RootOrder: 150
   m_LocalEulerAnglesHint: {x: 0.865, y: -46.872, z: 91.1}
 --- !u!65 &191315921
 BoxCollider:
@@ -2194,8 +2194,8 @@ GameObject:
   m_Name: GrayboxCube (133)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &201776178
 Transform:
@@ -2209,7 +2209,7 @@ Transform:
   m_LocalScale: {x: 1828.9259, y: 424.39334, z: 5201.7866}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 103
+  m_RootOrder: 102
   m_LocalEulerAnglesHint: {x: -1.694, y: -118.617, z: -14.461}
 --- !u!65 &201776179
 BoxCollider:
@@ -2290,8 +2290,8 @@ GameObject:
   m_Name: GrayboxCamp (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &208577997
 Transform:
@@ -2305,7 +2305,7 @@ Transform:
   m_LocalScale: {x: 371.82263, y: 128.12578, z: 338.90723}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 171
+  m_RootOrder: 170
   m_LocalEulerAnglesHint: {x: -2.903, y: -120.488, z: -4.884}
 --- !u!135 &208577998
 SphereCollider:
@@ -2430,8 +2430,8 @@ GameObject:
   m_Name: GrayboxCube (94)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &225202086
 Transform:
@@ -2445,7 +2445,7 @@ Transform:
   m_LocalScale: {x: 107.32581, y: 50.89994, z: 42.382214}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 58
+  m_RootOrder: 57
   m_LocalEulerAnglesHint: {x: 0, y: -13.732, z: 90}
 --- !u!65 &225202087
 BoxCollider:
@@ -2525,8 +2525,8 @@ GameObject:
   m_Name: GrayboxCube (169)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &226462072
 Transform:
@@ -2540,7 +2540,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 42.420948, z: 127.64916}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 129
+  m_RootOrder: 128
   m_LocalEulerAnglesHint: {x: -1.33, y: -296.826, z: 90.435}
 --- !u!65 &226462073
 BoxCollider:
@@ -2620,8 +2620,8 @@ GameObject:
   m_Name: GrayboxCube (129)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &227659022
 Transform:
@@ -2635,7 +2635,7 @@ Transform:
   m_LocalScale: {x: 18.20019, y: 70.34087, z: 28.182987}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 92
+  m_RootOrder: 91
   m_LocalEulerAnglesHint: {x: 0, y: 65.059, z: 102.274}
 --- !u!65 &227659023
 BoxCollider:
@@ -2715,8 +2715,8 @@ GameObject:
   m_Name: GrayboxCube (75)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &259654472
 Transform:
@@ -2810,8 +2810,8 @@ GameObject:
   m_Name: GrayboxCube (107)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &288270967
 Transform:
@@ -2825,7 +2825,7 @@ Transform:
   m_LocalScale: {x: 296.41116, y: 50.89994, z: 269.33948}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 72
+  m_RootOrder: 71
   m_LocalEulerAnglesHint: {x: 0, y: 126.892, z: 90}
 --- !u!65 &288270968
 BoxCollider:
@@ -2905,8 +2905,8 @@ GameObject:
   m_Name: GrayboxCube (86)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &293161064
 Transform:
@@ -3079,8 +3079,8 @@ GameObject:
   m_Name: GrayboxCube (150)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &357806493
 Transform:
@@ -3094,7 +3094,7 @@ Transform:
   m_LocalScale: {x: 143.45872, y: 48.49964, z: 106.37136}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 116
+  m_RootOrder: 115
   m_LocalEulerAnglesHint: {x: -3.749, y: -225.482, z: 100.659}
 --- !u!65 &357806494
 BoxCollider:
@@ -3174,8 +3174,8 @@ GameObject:
   m_Name: GrayboxCube (92)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &392665710
 Transform:
@@ -3269,8 +3269,8 @@ GameObject:
   m_Name: GrayboxCube (56)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &395129917
 Transform:
@@ -3364,8 +3364,8 @@ GameObject:
   m_Name: GrayboxCube (78)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &402677153
 Transform:
@@ -3459,8 +3459,8 @@ GameObject:
   m_Name: GrayboxCube (181)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &407692522
 Transform:
@@ -3474,7 +3474,7 @@ Transform:
   m_LocalScale: {x: 37.083775, y: 40.05569, z: 41.013824}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 143
+  m_RootOrder: 142
   m_LocalEulerAnglesHint: {x: 2.938, y: -146.617, z: 89.522}
 --- !u!65 &407692523
 BoxCollider:
@@ -3654,8 +3654,8 @@ GameObject:
   m_Name: GrayboxCube (61)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &444642499
 Transform:
@@ -3749,8 +3749,8 @@ GameObject:
   m_Name: GrayboxCube (153)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &453254811
 Transform:
@@ -3764,7 +3764,7 @@ Transform:
   m_LocalScale: {x: 101.22448, y: 48.49964, z: 93.039955}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 140
+  m_RootOrder: 139
   m_LocalEulerAnglesHint: {x: -0.986, y: -265.44598, z: 84.735}
 --- !u!65 &453254812
 BoxCollider:
@@ -3844,8 +3844,8 @@ GameObject:
   m_Name: GrayboxCube (180)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &466876927
 Transform:
@@ -3859,7 +3859,7 @@ Transform:
   m_LocalScale: {x: 170.32266, y: 65.10673, z: 148.99655}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 142
+  m_RootOrder: 141
   m_LocalEulerAnglesHint: {x: 2.938, y: -146.617, z: 89.522}
 --- !u!65 &466876928
 BoxCollider:
@@ -4016,8 +4016,8 @@ GameObject:
   m_Name: GrayboxCube (200)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &470889858
 Transform:
@@ -4031,7 +4031,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 42.420948, z: 127.64916}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 162
+  m_RootOrder: 161
   m_LocalEulerAnglesHint: {x: 1.116, y: -421.592, z: 90.844}
 --- !u!65 &470889859
 BoxCollider:
@@ -4111,8 +4111,8 @@ GameObject:
   m_Name: GrayboxCube (131)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &488457648
 Transform:
@@ -4126,7 +4126,7 @@ Transform:
   m_LocalScale: {x: 141.80592, y: 47.97577, z: 63.39314}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 101
+  m_RootOrder: 100
   m_LocalEulerAnglesHint: {x: -0.869, y: -206.977, z: 91.097}
 --- !u!65 &488457649
 BoxCollider:
@@ -4206,8 +4206,8 @@ GameObject:
   m_Name: GrayboxCube (102)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &494079103
 Transform:
@@ -4221,7 +4221,7 @@ Transform:
   m_LocalScale: {x: 239.22498, y: 50.89994, z: 200.71503}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 67
+  m_RootOrder: 66
   m_LocalEulerAnglesHint: {x: 0, y: -61, z: 90}
 --- !u!65 &494079104
 BoxCollider:
@@ -4300,8 +4300,8 @@ GameObject:
   m_Name: GrayboxCamp (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &501664724
 Transform:
@@ -4315,7 +4315,7 @@ Transform:
   m_LocalScale: {x: 905.531, y: 39.605103, z: 926.1803}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 185
+  m_RootOrder: 184
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &501664725
 MeshRenderer:
@@ -4383,7 +4383,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &516153947
 Transform:
@@ -4477,8 +4477,8 @@ GameObject:
   m_Name: GrayboxCube (73)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &521450765
 Transform:
@@ -4572,8 +4572,8 @@ GameObject:
   m_Name: GrayboxCube (90)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &528588600
 Transform:
@@ -4667,8 +4667,8 @@ GameObject:
   m_Name: GrayboxCube (80)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &570474655
 Transform:
@@ -4762,8 +4762,8 @@ GameObject:
   m_Name: GrayboxCube (106)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &575421486
 Transform:
@@ -4777,7 +4777,7 @@ Transform:
   m_LocalScale: {x: 231.46272, y: 50.89994, z: 200.71503}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 71
+  m_RootOrder: 70
   m_LocalEulerAnglesHint: {x: 0, y: -39.498, z: 90}
 --- !u!65 &575421487
 BoxCollider:
@@ -4857,8 +4857,8 @@ GameObject:
   m_Name: GrayboxCube (185)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &584726111
 Transform:
@@ -4872,7 +4872,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 72.182014, z: 127.64916}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 147
+  m_RootOrder: 146
   m_LocalEulerAnglesHint: {x: 1.079, y: -59.141, z: 90.891}
 --- !u!65 &584726112
 BoxCollider:
@@ -5052,8 +5052,8 @@ GameObject:
   m_Name: GrayboxCube (204)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &591969072
 Transform:
@@ -5067,7 +5067,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 72.182014, z: 121.09888}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 166
+  m_RootOrder: 165
   m_LocalEulerAnglesHint: {x: -1.385, y: 89.424, z: 89.802}
 --- !u!65 &591969073
 BoxCollider:
@@ -5147,8 +5147,8 @@ GameObject:
   m_Name: GrayboxCube (179)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &602572583
 Transform:
@@ -5162,7 +5162,7 @@ Transform:
   m_LocalScale: {x: 170.32266, y: 66.25513, z: 94.71797}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 141
+  m_RootOrder: 140
   m_LocalEulerAnglesHint: {x: 2.841, y: -154.742, z: 89.112}
 --- !u!65 &602572584
 BoxCollider:
@@ -5242,8 +5242,8 @@ GameObject:
   m_Name: GrayboxCube (130)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &605817242
 Transform:
@@ -5257,7 +5257,7 @@ Transform:
   m_LocalScale: {x: 66.079185, y: 47.97577, z: 63.39314}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 100
+  m_RootOrder: 99
   m_LocalEulerAnglesHint: {x: 0.032, y: -246.65799, z: 91.399}
 --- !u!65 &605817243
 BoxCollider:
@@ -5321,6 +5321,68 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 605817241}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &610371257
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1159592152}
+    m_Modifications:
+    - target: {fileID: 945312397205979369, guid: d5219ad14651753478ef4b0d76fd0325, type: 3}
+      propertyPath: m_Name
+      value: CampBuilding
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178221303935446365, guid: d5219ad14651753478ef4b0d76fd0325, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178221303935446365, guid: d5219ad14651753478ef4b0d76fd0325, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 56.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178221303935446365, guid: d5219ad14651753478ef4b0d76fd0325, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.419998
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178221303935446365, guid: d5219ad14651753478ef4b0d76fd0325, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 18.100006
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178221303935446365, guid: d5219ad14651753478ef4b0d76fd0325, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178221303935446365, guid: d5219ad14651753478ef4b0d76fd0325, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178221303935446365, guid: d5219ad14651753478ef4b0d76fd0325, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178221303935446365, guid: d5219ad14651753478ef4b0d76fd0325, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178221303935446365, guid: d5219ad14651753478ef4b0d76fd0325, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178221303935446365, guid: d5219ad14651753478ef4b0d76fd0325, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178221303935446365, guid: d5219ad14651753478ef4b0d76fd0325, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d5219ad14651753478ef4b0d76fd0325, type: 3}
+--- !u!4 &610371258 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6178221303935446365, guid: d5219ad14651753478ef4b0d76fd0325, type: 3}
+  m_PrefabInstance: {fileID: 610371257}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &623419679
 GameObject:
   m_ObjectHideFlags: 0
@@ -5337,8 +5399,8 @@ GameObject:
   m_Name: GrayboxCube (197)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &623419680
 Transform:
@@ -5352,7 +5414,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 42.420948, z: 127.64916}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 159
+  m_RootOrder: 158
   m_LocalEulerAnglesHint: {x: 0.89, y: -408.184, z: 91.08}
 --- !u!65 &623419681
 BoxCollider:
@@ -5431,8 +5493,8 @@ GameObject:
   m_Name: GrayboxCamp (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &627854753
 Transform:
@@ -5446,7 +5508,7 @@ Transform:
   m_LocalScale: {x: 141.93498, y: 6.2077937, z: 145.1716}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 186
+  m_RootOrder: 185
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &627854754
 MeshRenderer:
@@ -5513,8 +5575,8 @@ GameObject:
   m_Name: GrayboxCube (39)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &633687454
 Transform:
@@ -5709,7 +5771,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &643512629
 Transform:
@@ -5803,8 +5865,8 @@ GameObject:
   m_Name: GrayboxCube (210)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &644478648
 Transform:
@@ -5818,7 +5880,7 @@ Transform:
   m_LocalScale: {x: 80.94416, y: 59.780758, z: 111.671234}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 179
+  m_RootOrder: 178
   m_LocalEulerAnglesHint: {x: 1.986, y: -443.174, z: 99.187}
 --- !u!65 &644478649
 BoxCollider:
@@ -5898,8 +5960,8 @@ GameObject:
   m_Name: GrayboxCube (66)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &647587027
 Transform:
@@ -5991,7 +6053,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &656212305
 Transform:
@@ -6060,7 +6122,6 @@ Transform:
   - {fileID: 528588600}
   - {fileID: 1096007436}
   - {fileID: 392665710}
-  - {fileID: 805547695}
   - {fileID: 1731100648}
   - {fileID: 225202086}
   - {fileID: 1950839515}
@@ -6211,8 +6272,8 @@ GameObject:
   m_Name: GrayboxCube (124)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &660372286
 Transform:
@@ -6226,7 +6287,7 @@ Transform:
   m_LocalScale: {x: 66.079185, y: 120.368385, z: 28.182987}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 87
+  m_RootOrder: 86
   m_LocalEulerAnglesHint: {x: 0, y: 65.059, z: 98.29}
 --- !u!65 &660372287
 BoxCollider:
@@ -6306,8 +6367,8 @@ GameObject:
   m_Name: GrayboxCube (68)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &663216390
 Transform:
@@ -6401,8 +6462,8 @@ GameObject:
   m_Name: GrayboxCube (198)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &669527646
 Transform:
@@ -6416,7 +6477,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 42.420948, z: 127.64916}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 160
+  m_RootOrder: 159
   m_LocalEulerAnglesHint: {x: 1.399, y: -457.347, z: 90.033}
 --- !u!65 &669527647
 BoxCollider:
@@ -6496,8 +6557,8 @@ GameObject:
   m_Name: GrayboxCube (74)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &677329275
 Transform:
@@ -6591,8 +6652,8 @@ GameObject:
   m_Name: GrayboxCube (54)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &691739151
 Transform:
@@ -6686,8 +6747,8 @@ GameObject:
   m_Name: GrayboxCube (34)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &694049921
 Transform:
@@ -6701,7 +6762,7 @@ Transform:
   m_LocalScale: {x: 48.16974, y: 59.124554, z: 21.787355}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 174
+  m_RootOrder: 173
   m_LocalEulerAnglesHint: {x: -79.265, y: 275.702, z: -62.824}
 --- !u!65 &694049922
 BoxCollider:
@@ -6781,8 +6842,8 @@ GameObject:
   m_Name: GrayboxCube (149)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &697700521
 Transform:
@@ -6796,7 +6857,7 @@ Transform:
   m_LocalScale: {x: 114.33021, y: 34.937202, z: 74.70043}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 115
+  m_RootOrder: 114
   m_LocalEulerAnglesHint: {x: -0.433, y: -250.343, z: 91.331}
 --- !u!65 &697700522
 BoxCollider:
@@ -6876,8 +6937,8 @@ GameObject:
   m_Name: GrayboxCube (103)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &698849623
 Transform:
@@ -6891,7 +6952,7 @@ Transform:
   m_LocalScale: {x: 296.41116, y: 44.676365, z: 228.67532}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 68
+  m_RootOrder: 67
   m_LocalEulerAnglesHint: {x: 0, y: 16.259, z: 90}
 --- !u!65 &698849624
 BoxCollider:
@@ -6970,8 +7031,8 @@ GameObject:
   m_Name: GrayboxCamp (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &702560190
 Transform:
@@ -6985,7 +7046,7 @@ Transform:
   m_LocalScale: {x: 2120.4124, y: 55.198265, z: 1440.179}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 187
+  m_RootOrder: 186
   m_LocalEulerAnglesHint: {x: 0, y: 88.415, z: 0}
 --- !u!23 &702560191
 MeshRenderer:
@@ -7053,8 +7114,8 @@ GameObject:
   m_Name: GrayboxCamp (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &713597891
 Transform:
@@ -7068,7 +7129,7 @@ Transform:
   m_LocalScale: {x: 519.4069, y: 178.98161, z: 473.42667}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 170
+  m_RootOrder: 169
   m_LocalEulerAnglesHint: {x: 12.548, y: -25.981, z: -6.225}
 --- !u!135 &713597892
 SphereCollider:
@@ -7162,7 +7223,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &716391005
 Transform:
@@ -7256,8 +7317,8 @@ GameObject:
   m_Name: GrayboxCube (85)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &722323011
 Transform:
@@ -7351,8 +7412,8 @@ GameObject:
   m_Name: GrayboxCube (193)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &724809046
 Transform:
@@ -7366,7 +7427,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 72.182014, z: 121.09888}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 155
+  m_RootOrder: 154
   m_LocalEulerAnglesHint: {x: -1.254, y: 54.98, z: 90.62}
 --- !u!65 &724809047
 BoxCollider:
@@ -7446,8 +7507,8 @@ GameObject:
   m_Name: GrayboxCube (63)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &726368319
 Transform:
@@ -7541,8 +7602,8 @@ GameObject:
   m_Name: GrayboxCube (156)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &726752708
 Transform:
@@ -7556,7 +7617,7 @@ Transform:
   m_LocalScale: {x: 3209.6802, y: 379.38028, z: 6943.0186}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 121
+  m_RootOrder: 120
   m_LocalEulerAnglesHint: {x: -0.826, y: -127.503, z: -4.447}
 --- !u!65 &726752709
 BoxCollider:
@@ -7636,8 +7697,8 @@ GameObject:
   m_Name: GrayboxCube (171)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &736619133
 Transform:
@@ -7651,7 +7712,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 42.420948, z: 127.64916}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 131
+  m_RootOrder: 130
   m_LocalEulerAnglesHint: {x: -1.095, y: -317.181, z: 90.871}
 --- !u!65 &736619134
 BoxCollider:
@@ -7731,8 +7792,8 @@ GameObject:
   m_Name: GrayboxCube (162)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &737288250
 Transform:
@@ -7746,7 +7807,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 72.182014, z: 225.37328}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 123
+  m_RootOrder: 122
   m_LocalEulerAnglesHint: {x: -0.927, y: -230.197, z: 88.952}
 --- !u!65 &737288251
 BoxCollider:
@@ -7825,8 +7886,8 @@ GameObject:
   m_Name: GrayboxCamp (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &751771937
 Transform:
@@ -7840,7 +7901,7 @@ Transform:
   m_LocalScale: {x: 141.93498, y: 6.2077937, z: 145.1716}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 65
+  m_RootOrder: 64
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &751771938
 MeshRenderer:
@@ -7907,8 +7968,8 @@ GameObject:
   m_Name: GrayboxCube (121)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &758670475
 Transform:
@@ -7922,7 +7983,7 @@ Transform:
   m_LocalScale: {x: 66.079185, y: 96.73487, z: 28.182987}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 86
+  m_RootOrder: 85
   m_LocalEulerAnglesHint: {x: 0, y: 89.849, z: 90}
 --- !u!65 &758670476
 BoxCollider:
@@ -8002,8 +8063,8 @@ GameObject:
   m_Name: GrayboxCube (81)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &765183384
 Transform:
@@ -8097,8 +8158,8 @@ GameObject:
   m_Name: GrayboxCube (79)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &776880302
 Transform:
@@ -8192,8 +8253,8 @@ GameObject:
   m_Name: GrayboxCube (155)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &779292331
 Transform:
@@ -8207,7 +8268,7 @@ Transform:
   m_LocalScale: {x: 8896.516, y: 221.30331, z: 6223.335}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 120
+  m_RootOrder: 119
   m_LocalEulerAnglesHint: {x: -1.027, y: -86.07, z: -1.539}
 --- !u!65 &779292332
 BoxCollider:
@@ -8350,115 +8411,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 797982237}
   m_CullTransparentMesh: 1
---- !u!1 &805547694
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 805547695}
-  - component: {fileID: 805547699}
-  - component: {fileID: 805547698}
-  - component: {fileID: 805547697}
-  - component: {fileID: 805547696}
-  m_Layer: 0
-  m_Name: GrayboxCamp
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &805547695
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 805547694}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 298, y: 85.7, z: 258}
-  m_LocalScale: {x: 141.93498, y: 155.47081, z: 145.1716}
-  m_Children: []
-  m_Father: {fileID: 656212305}
-  m_RootOrder: 56
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &805547696
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 805547694}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &805547697
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 805547694}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &805547698
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 805547694}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 6b0bf84ed28fd2947824b2c86b02e6e3, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &805547699
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 805547694}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &809772197
 GameObject:
   m_ObjectHideFlags: 0
@@ -8475,8 +8427,8 @@ GameObject:
   m_Name: GrayboxCube (176)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &809772198
 Transform:
@@ -8490,7 +8442,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 72.182014, z: 127.64916}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 136
+  m_RootOrder: 135
   m_LocalEulerAnglesHint: {x: 1.396, y: -95.042, z: 90.089}
 --- !u!65 &809772199
 BoxCollider:
@@ -8570,8 +8522,8 @@ GameObject:
   m_Name: GrayboxCube (206)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &813003090
 Transform:
@@ -8585,7 +8537,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 72.182014, z: 227.82332}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 168
+  m_RootOrder: 167
   m_LocalEulerAnglesHint: {x: -1.12, y: 118.111, z: 89.162}
 --- !u!65 &813003091
 BoxCollider:
@@ -8664,8 +8616,8 @@ GameObject:
   m_Name: GrayboxCloud (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &844458437
 Transform:
@@ -8679,7 +8631,7 @@ Transform:
   m_LocalScale: {x: 666.8608, y: 233.2062, z: 1106.4569}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 94
+  m_RootOrder: 93
   m_LocalEulerAnglesHint: {x: -5.385, y: -22.868, z: 3.527}
 --- !u!23 &844458438
 MeshRenderer:
@@ -8745,8 +8697,8 @@ GameObject:
   m_Name: GrayboxCloud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &884390774
 Transform:
@@ -8760,7 +8712,7 @@ Transform:
   m_LocalScale: {x: 369.2861, y: 233.2062, z: 543.33966}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 93
+  m_RootOrder: 92
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &884390775
 MeshRenderer:
@@ -8827,8 +8779,8 @@ GameObject:
   m_Name: GrayboxCube (135)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &888439205
 Transform:
@@ -8842,7 +8794,7 @@ Transform:
   m_LocalScale: {x: 15680.5205, y: 423.2, z: 7284.062}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 105
+  m_RootOrder: 104
   m_LocalEulerAnglesHint: {x: 0, y: -118.617, z: 0.428}
 --- !u!65 &888439206
 BoxCollider:
@@ -8922,8 +8874,8 @@ GameObject:
   m_Name: GrayboxCube (165)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &898723502
 Transform:
@@ -8937,7 +8889,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 72.182014, z: 118.758194}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 126
+  m_RootOrder: 125
   m_LocalEulerAnglesHint: {x: -2.999, y: -206.11, z: 82.944}
 --- !u!65 &898723503
 BoxCollider:
@@ -9017,8 +8969,8 @@ GameObject:
   m_Name: GrayboxCube (38)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &909895291
 Transform:
@@ -9096,6 +9048,68 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 909895290}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &910996501
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1159592152}
+    m_Modifications:
+    - target: {fileID: 951857041239530978, guid: 4a800f61e00435949813da12d0496abd, type: 3}
+      propertyPath: m_Name
+      value: BuilderBuilding
+      objectReference: {fileID: 0}
+    - target: {fileID: 6167314620247158870, guid: 4a800f61e00435949813da12d0496abd, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6167314620247158870, guid: 4a800f61e00435949813da12d0496abd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.629974
+      objectReference: {fileID: 0}
+    - target: {fileID: 6167314620247158870, guid: 4a800f61e00435949813da12d0496abd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.8199997
+      objectReference: {fileID: 0}
+    - target: {fileID: 6167314620247158870, guid: 4a800f61e00435949813da12d0496abd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -17.369995
+      objectReference: {fileID: 0}
+    - target: {fileID: 6167314620247158870, guid: 4a800f61e00435949813da12d0496abd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7976377
+      objectReference: {fileID: 0}
+    - target: {fileID: 6167314620247158870, guid: 4a800f61e00435949813da12d0496abd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6167314620247158870, guid: 4a800f61e00435949813da12d0496abd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6031369
+      objectReference: {fileID: 0}
+    - target: {fileID: 6167314620247158870, guid: 4a800f61e00435949813da12d0496abd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6167314620247158870, guid: 4a800f61e00435949813da12d0496abd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6167314620247158870, guid: 4a800f61e00435949813da12d0496abd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 74.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 6167314620247158870, guid: 4a800f61e00435949813da12d0496abd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4a800f61e00435949813da12d0496abd, type: 3}
+--- !u!4 &910996502 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6167314620247158870, guid: 4a800f61e00435949813da12d0496abd, type: 3}
+  m_PrefabInstance: {fileID: 910996501}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &912219906
 GameObject:
   m_ObjectHideFlags: 0
@@ -9112,8 +9126,8 @@ GameObject:
   m_Name: GrayboxCube (42)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &912219907
 Transform:
@@ -9207,8 +9221,8 @@ GameObject:
   m_Name: GrayboxCube (182)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &918604847
 Transform:
@@ -9222,7 +9236,7 @@ Transform:
   m_LocalScale: {x: 170.32266, y: 65.10673, z: 111.07097}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 144
+  m_RootOrder: 143
   m_LocalEulerAnglesHint: {x: 2.938, y: -146.617, z: 89.522}
 --- !u!65 &918604848
 BoxCollider:
@@ -9302,8 +9316,8 @@ GameObject:
   m_Name: GrayboxCube (116)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &923191807
 Transform:
@@ -9317,7 +9331,7 @@ Transform:
   m_LocalScale: {x: 180.0986, y: 55.463036, z: 58.934277}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 81
+  m_RootOrder: 80
   m_LocalEulerAnglesHint: {x: 0.673, y: -204.638, z: 87.738}
 --- !u!65 &923191808
 BoxCollider:
@@ -9396,8 +9410,8 @@ GameObject:
   m_Name: GrayboxCloud (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &930012405
 Transform:
@@ -9411,7 +9425,7 @@ Transform:
   m_LocalScale: {x: 257.8101, y: 968.6221, z: 490.0387}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 97
+  m_RootOrder: 96
   m_LocalEulerAnglesHint: {x: -31.168, y: -26.883, z: 15.962}
 --- !u!23 &930012406
 MeshRenderer:
@@ -9557,8 +9571,8 @@ GameObject:
   m_Name: GrayboxCube (214)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &981851446
 Transform:
@@ -9572,7 +9586,7 @@ Transform:
   m_LocalScale: {x: 80.94416, y: 59.780758, z: 111.671234}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 183
+  m_RootOrder: 182
   m_LocalEulerAnglesHint: {x: -6.393, y: -638.82, z: 110.547}
 --- !u!65 &981851447
 BoxCollider:
@@ -9652,8 +9666,8 @@ GameObject:
   m_Name: GrayboxCube (120)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &996933351
 Transform:
@@ -9667,7 +9681,7 @@ Transform:
   m_LocalScale: {x: 119.20856, y: 48.49964, z: 151.43001}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 85
+  m_RootOrder: 84
   m_LocalEulerAnglesHint: {x: 0.032, y: -127.531, z: 91.399}
 --- !u!65 &996933352
 BoxCollider:
@@ -9747,8 +9761,8 @@ GameObject:
   m_Name: GrayboxCube (112)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1004463516
 Transform:
@@ -9762,7 +9776,7 @@ Transform:
   m_LocalScale: {x: 231.46272, y: 50.89994, z: 200.71503}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 77
+  m_RootOrder: 76
   m_LocalEulerAnglesHint: {x: 0, y: -36.486, z: 90}
 --- !u!65 &1004463517
 BoxCollider:
@@ -9842,8 +9856,8 @@ GameObject:
   m_Name: GrayboxCube (187)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1005792693
 Transform:
@@ -9857,7 +9871,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 72.182014, z: 127.64916}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 149
+  m_RootOrder: 148
   m_LocalEulerAnglesHint: {x: 1.341, y: -82.162, z: 90.398}
 --- !u!65 &1005792694
 BoxCollider:
@@ -9937,8 +9951,8 @@ GameObject:
   m_Name: GrayboxCube (151)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1013344615
 Transform:
@@ -9952,7 +9966,7 @@ Transform:
   m_LocalScale: {x: 101.22448, y: 48.49964, z: 93.039955}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 117
+  m_RootOrder: 116
   m_LocalEulerAnglesHint: {x: 2.803, y: -244.34, z: 84.948}
 --- !u!65 &1013344616
 BoxCollider:
@@ -10032,8 +10046,8 @@ GameObject:
   m_Name: GrayboxCube (41)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1032226913
 Transform:
@@ -10127,8 +10141,8 @@ GameObject:
   m_Name: GrayboxCube (44)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1032357030
 Transform:
@@ -10142,7 +10156,7 @@ Transform:
   m_LocalScale: {x: 130.30222, y: 59.124554, z: 18.59824}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 176
+  m_RootOrder: 175
   m_LocalEulerAnglesHint: {x: -29.592, y: 662.416, z: -451.738}
 --- !u!65 &1032357031
 BoxCollider:
@@ -10222,8 +10236,8 @@ GameObject:
   m_Name: GrayboxCube (84)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1037895803
 Transform:
@@ -10396,8 +10410,8 @@ GameObject:
   m_Name: GrayboxCube (215)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1045602186
 Transform:
@@ -10411,7 +10425,7 @@ Transform:
   m_LocalScale: {x: 80.94416, y: 59.780758, z: 111.671234}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 184
+  m_RootOrder: 183
   m_LocalEulerAnglesHint: {x: -6.393, y: -638.82, z: 110.547}
 --- !u!65 &1045602187
 BoxCollider:
@@ -10491,8 +10505,8 @@ GameObject:
   m_Name: GrayboxCube (183)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1047523879
 Transform:
@@ -10506,7 +10520,7 @@ Transform:
   m_LocalScale: {x: 170.32266, y: 65.10673, z: 111.07097}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 145
+  m_RootOrder: 144
   m_LocalEulerAnglesHint: {x: 2.729, y: -160.911, z: 88.812}
 --- !u!65 &1047523880
 BoxCollider:
@@ -10587,7 +10601,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1053516830
 Transform:
@@ -10682,7 +10696,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1054087689
 Transform:
@@ -10776,8 +10790,8 @@ GameObject:
   m_Name: GrayboxCube (82)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1058304439
 Transform:
@@ -10870,8 +10884,8 @@ GameObject:
   m_Name: GrayboxCloud (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1078127603
 Transform:
@@ -10885,7 +10899,7 @@ Transform:
   m_LocalScale: {x: 369.2861, y: 233.2062, z: 543.33966}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 95
+  m_RootOrder: 94
   m_LocalEulerAnglesHint: {x: 3.203, y: 11.938, z: -2.342}
 --- !u!23 &1078127604
 MeshRenderer:
@@ -10953,7 +10967,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1081667061
 Transform:
@@ -11047,8 +11061,8 @@ GameObject:
   m_Name: GrayboxCube (201)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1084803033
 Transform:
@@ -11062,7 +11076,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 59.003296, z: 127.64916}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 163
+  m_RootOrder: 162
   m_LocalEulerAnglesHint: {x: 1.116, y: -421.592, z: 90.844}
 --- !u!65 &1084803034
 BoxCollider:
@@ -11126,6 +11140,68 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1084803032}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1087220705
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1159592152}
+    m_Modifications:
+    - target: {fileID: 2290480549741643075, guid: 1aa41fd6f2696194c9eaa733ef5721a7, type: 3}
+      propertyPath: m_Name
+      value: WeaponsBuilding
+      objectReference: {fileID: 0}
+    - target: {fileID: 5146054148254607607, guid: 1aa41fd6f2696194c9eaa733ef5721a7, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5146054148254607607, guid: 1aa41fd6f2696194c9eaa733ef5721a7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 37.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 5146054148254607607, guid: 1aa41fd6f2696194c9eaa733ef5721a7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5146054148254607607, guid: 1aa41fd6f2696194c9eaa733ef5721a7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 40.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 5146054148254607607, guid: 1aa41fd6f2696194c9eaa733ef5721a7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.37125516
+      objectReference: {fileID: 0}
+    - target: {fileID: 5146054148254607607, guid: 1aa41fd6f2696194c9eaa733ef5721a7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5146054148254607607, guid: 1aa41fd6f2696194c9eaa733ef5721a7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.92853093
+      objectReference: {fileID: 0}
+    - target: {fileID: 5146054148254607607, guid: 1aa41fd6f2696194c9eaa733ef5721a7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5146054148254607607, guid: 1aa41fd6f2696194c9eaa733ef5721a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5146054148254607607, guid: 1aa41fd6f2696194c9eaa733ef5721a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -223.586
+      objectReference: {fileID: 0}
+    - target: {fileID: 5146054148254607607, guid: 1aa41fd6f2696194c9eaa733ef5721a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1aa41fd6f2696194c9eaa733ef5721a7, type: 3}
+--- !u!4 &1087220706 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5146054148254607607, guid: 1aa41fd6f2696194c9eaa733ef5721a7, type: 3}
+  m_PrefabInstance: {fileID: 1087220705}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1096007435
 GameObject:
   m_ObjectHideFlags: 0
@@ -11142,8 +11218,8 @@ GameObject:
   m_Name: GrayboxCube (91)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1096007436
 Transform:
@@ -11237,8 +11313,8 @@ GameObject:
   m_Name: GrayboxCube (190)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1096436917
 Transform:
@@ -11252,7 +11328,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 72.182014, z: 127.64916}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 152
+  m_RootOrder: 151
   m_LocalEulerAnglesHint: {x: -0.969, y: 35.099, z: 91.01}
 --- !u!65 &1096436918
 BoxCollider:
@@ -11409,8 +11485,8 @@ GameObject:
   m_Name: GrayboxCube (173)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1114320665
 Transform:
@@ -11424,7 +11500,7 @@ Transform:
   m_LocalScale: {x: 1828.9259, y: 669.7776, z: 976.4473}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 133
+  m_RootOrder: 132
   m_LocalEulerAnglesHint: {x: 22.811, y: -132.376, z: -20.221}
 --- !u!65 &1114320666
 BoxCollider:
@@ -11505,7 +11581,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1115840665
 Transform:
@@ -11599,8 +11675,8 @@ GameObject:
   m_Name: GrayboxCube (143)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1118790942
 Transform:
@@ -11614,7 +11690,7 @@ Transform:
   m_LocalScale: {x: 143.45872, y: 48.49964, z: 79.62341}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 139
+  m_RootOrder: 138
   m_LocalEulerAnglesHint: {x: 5.976, y: -275.809, z: 82.624}
 --- !u!65 &1118790943
 BoxCollider:
@@ -11794,8 +11870,8 @@ GameObject:
   m_Name: GrayboxCube (114)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1136599302
 Transform:
@@ -11809,7 +11885,7 @@ Transform:
   m_LocalScale: {x: 180.0986, y: 50.89994, z: 200.71503}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 79
+  m_RootOrder: 78
   m_LocalEulerAnglesHint: {x: 2.072, y: -159.819, z: 88.87}
 --- !u!65 &1136599303
 BoxCollider:
@@ -11889,8 +11965,8 @@ GameObject:
   m_Name: GrayboxCube (188)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1138371112
 Transform:
@@ -11904,7 +11980,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 72.182014, z: 127.64916}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 150
+  m_RootOrder: 149
   m_LocalEulerAnglesHint: {x: -0.162, y: -2.046, z: 91.39}
 --- !u!65 &1138371113
 BoxCollider:
@@ -11985,7 +12061,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1141034885
 Transform:
@@ -12063,6 +12139,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1141034884}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1159592151
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1159592152}
+  m_Layer: 0
+  m_Name: Buildings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1159592152
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159592151}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 303.2, y: 92.65, z: 269.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 610371258}
+  - {fileID: 910996502}
+  - {fileID: 1087220706}
+  - {fileID: 2055242174}
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1167082825
 GameObject:
   m_ObjectHideFlags: 0
@@ -12079,8 +12189,8 @@ GameObject:
   m_Name: GrayboxCube (101)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1167082826
 Transform:
@@ -12094,7 +12204,7 @@ Transform:
   m_LocalScale: {x: 119.20856, y: 48.49964, z: 151.43001}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 66
+  m_RootOrder: 65
   m_LocalEulerAnglesHint: {x: 0.032, y: -103.466, z: 91.399}
 --- !u!65 &1167082827
 BoxCollider:
@@ -12174,8 +12284,8 @@ GameObject:
   m_Name: GrayboxCube (134)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1168644960
 Transform:
@@ -12189,7 +12299,7 @@ Transform:
   m_LocalScale: {x: 1828.9259, y: 424.39334, z: 5201.7866}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 104
+  m_RootOrder: 103
   m_LocalEulerAnglesHint: {x: -3.941, y: -142.044, z: -6.205}
 --- !u!65 &1168644961
 BoxCollider:
@@ -12270,7 +12380,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1178109911
 Transform:
@@ -12364,8 +12474,8 @@ GameObject:
   m_Name: GrayboxCube (47)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1180875122
 Transform:
@@ -12459,8 +12569,8 @@ GameObject:
   m_Name: GrayboxCube (115)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1194596617
 Transform:
@@ -12474,7 +12584,7 @@ Transform:
   m_LocalScale: {x: 296.41116, y: 44.676365, z: 228.67532}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 80
+  m_RootOrder: 79
   m_LocalEulerAnglesHint: {x: 0.547, y: -175.009, z: 90.023}
 --- !u!65 &1194596618
 BoxCollider:
@@ -12554,8 +12664,8 @@ GameObject:
   m_Name: GrayboxCube (144)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1195600107
 Transform:
@@ -12569,7 +12679,7 @@ Transform:
   m_LocalScale: {x: 91.79068, y: 48.49964, z: 151.43001}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 110
+  m_RootOrder: 109
   m_LocalEulerAnglesHint: {x: 1.39, y: -270.539, z: 88.972}
 --- !u!65 &1195600108
 BoxCollider:
@@ -12650,7 +12760,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1196188058
 Transform:
@@ -12744,8 +12854,8 @@ GameObject:
   m_Name: GrayboxCube (132)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1207068587
 Transform:
@@ -12759,7 +12869,7 @@ Transform:
   m_LocalScale: {x: 1527.1506, y: 221.30331, z: 1440.7954}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 102
+  m_RootOrder: 101
   m_LocalEulerAnglesHint: {x: -1.027, y: -86.07, z: -1.539}
 --- !u!65 &1207068588
 BoxCollider:
@@ -12840,7 +12950,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1208543249
 Transform:
@@ -12986,8 +13096,8 @@ GameObject:
   m_Name: GrayboxCube (194)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1215724129
 Transform:
@@ -13001,7 +13111,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 72.182014, z: 121.09888}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 156
+  m_RootOrder: 155
   m_LocalEulerAnglesHint: {x: -0.707, y: 21.652, z: 91.207}
 --- !u!65 &1215724130
 BoxCollider:
@@ -13148,7 +13258,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1241544497
 Transform:
@@ -13242,8 +13352,8 @@ GameObject:
   m_Name: GrayboxCube (51)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1247636969
 Transform:
@@ -13337,8 +13447,8 @@ GameObject:
   m_Name: GrayboxCube (207)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1261022730
 Transform:
@@ -13352,7 +13462,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 72.182014, z: 227.82332}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 169
+  m_RootOrder: 168
   m_LocalEulerAnglesHint: {x: -0.673, y: 142.572, z: 88.773}
 --- !u!65 &1261022731
 BoxCollider:
@@ -13432,8 +13542,8 @@ GameObject:
   m_Name: GrayboxCube (208)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1264398438
 Transform:
@@ -13447,7 +13557,7 @@ Transform:
   m_LocalScale: {x: 227.83113, y: 75.16353, z: 136.18443}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 177
+  m_RootOrder: 176
   m_LocalEulerAnglesHint: {x: 1.116, y: -421.592, z: 90.844}
 --- !u!65 &1264398439
 BoxCollider:
@@ -13527,8 +13637,8 @@ GameObject:
   m_Name: GrayboxCube (67)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1268941606
 Transform:
@@ -13622,8 +13732,8 @@ GameObject:
   m_Name: GrayboxCube (146)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1277373432
 Transform:
@@ -13637,7 +13747,7 @@ Transform:
   m_LocalScale: {x: 111.726685, y: 81.16262, z: 54.714684}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 112
+  m_RootOrder: 111
   m_LocalEulerAnglesHint: {x: -1.075, y: -218.173, z: 90.896}
 --- !u!65 &1277373433
 BoxCollider:
@@ -13794,8 +13904,8 @@ GameObject:
   m_Name: GrayboxCube (191)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1283402866
 Transform:
@@ -13809,7 +13919,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 72.182014, z: 127.64916}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 153
+  m_RootOrder: 152
   m_LocalEulerAnglesHint: {x: 0.025, y: -9.728, z: 91.399}
 --- !u!65 &1283402867
 BoxCollider:
@@ -13889,8 +13999,8 @@ GameObject:
   m_Name: GrayboxCube (195)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1291351614
 Transform:
@@ -13904,7 +14014,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 42.420948, z: 127.64916}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 157
+  m_RootOrder: 156
   m_LocalEulerAnglesHint: {x: -0.753, y: -336.138, z: 91.179}
 --- !u!65 &1291351615
 BoxCollider:
@@ -14084,8 +14194,8 @@ GameObject:
   m_Name: GrayboxCube (77)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1302039508
 Transform:
@@ -14179,8 +14289,8 @@ GameObject:
   m_Name: GrayboxCube (186)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1314930411
 Transform:
@@ -14194,7 +14304,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 72.182014, z: 172.9008}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 148
+  m_RootOrder: 147
   m_LocalEulerAnglesHint: {x: 1.309, y: -119.343, z: 89.507}
 --- !u!65 &1314930412
 BoxCollider:
@@ -14304,8 +14414,8 @@ GameObject:
   m_Name: GrayboxCube (213)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1336452517
 Transform:
@@ -14319,7 +14429,7 @@ Transform:
   m_LocalScale: {x: 98.712395, y: 75.16353, z: 136.18443}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 182
+  m_RootOrder: 181
   m_LocalEulerAnglesHint: {x: -6.393, y: -638.82, z: 110.547}
 --- !u!65 &1336452518
 BoxCollider:
@@ -14429,8 +14539,8 @@ GameObject:
   m_Name: GrayboxCube (172)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1358364943
 Transform:
@@ -14444,7 +14554,7 @@ Transform:
   m_LocalScale: {x: 1828.9259, y: 669.7776, z: 976.4473}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 132
+  m_RootOrder: 131
   m_LocalEulerAnglesHint: {x: -10.9, y: -163.818, z: 8.173}
 --- !u!65 &1358364944
 BoxCollider:
@@ -14524,8 +14634,8 @@ GameObject:
   m_Name: GrayboxCube (97)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1360807049
 Transform:
@@ -14539,7 +14649,7 @@ Transform:
   m_LocalScale: {x: 107.32581, y: 25.856894, z: 58.934277}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 61
+  m_RootOrder: 60
   m_LocalEulerAnglesHint: {x: 0, y: -27.237, z: 90}
 --- !u!65 &1360807050
 BoxCollider:
@@ -14662,8 +14772,8 @@ GameObject:
   m_Name: GrayboxCube (166)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1367740786
 Transform:
@@ -14677,7 +14787,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 55.64367, z: 118.758194}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 127
+  m_RootOrder: 126
   m_LocalEulerAnglesHint: {x: 2.471, y: -171.29, z: 82.437}
 --- !u!65 &1367740787
 BoxCollider:
@@ -14757,8 +14867,8 @@ GameObject:
   m_Name: GrayboxCube (125)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1370092252
 Transform:
@@ -14772,7 +14882,7 @@ Transform:
   m_LocalScale: {x: 66.079185, y: 51.487576, z: 28.182987}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 88
+  m_RootOrder: 87
   m_LocalEulerAnglesHint: {x: 0, y: 65.059, z: 90.31}
 --- !u!65 &1370092253
 BoxCollider:
@@ -14852,8 +14962,8 @@ GameObject:
   m_Name: GrayboxCube (170)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1375532468
 Transform:
@@ -14867,7 +14977,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 42.420948, z: 127.64916}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 130
+  m_RootOrder: 129
   m_LocalEulerAnglesHint: {x: -1.138, y: -314.287, z: 90.814}
 --- !u!65 &1375532469
 BoxCollider:
@@ -14947,8 +15057,8 @@ GameObject:
   m_Name: GrayboxCube (177)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1377975859
 Transform:
@@ -14962,7 +15072,7 @@ Transform:
   m_LocalScale: {x: 158.39578, y: 31.464468, z: 82.50394}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 137
+  m_RootOrder: 136
   m_LocalEulerAnglesHint: {x: -1.222, y: -307.866, z: 90.682}
 --- !u!65 &1377975860
 BoxCollider:
@@ -15042,8 +15152,8 @@ GameObject:
   m_Name: GrayboxCube (99)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1391785980
 Transform:
@@ -15057,7 +15167,7 @@ Transform:
   m_LocalScale: {x: 137.93513, y: 87.50209, z: 93.57344}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 63
+  m_RootOrder: 62
   m_LocalEulerAnglesHint: {x: 0, y: 39.091, z: 90}
 --- !u!65 &1391785981
 BoxCollider:
@@ -15137,8 +15247,8 @@ GameObject:
   m_Name: GrayboxCube (29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1414650078
 Transform:
@@ -15232,8 +15342,8 @@ GameObject:
   m_Name: GrayboxCube (64)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1417481556
 Transform:
@@ -15327,8 +15437,8 @@ GameObject:
   m_Name: GrayboxCube (62)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1418096150
 Transform:
@@ -15422,8 +15532,8 @@ GameObject:
   m_Name: GrayboxCube (209)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1424846823
 Transform:
@@ -15437,7 +15547,7 @@ Transform:
   m_LocalScale: {x: 98.712395, y: 75.16353, z: 136.18443}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 178
+  m_RootOrder: 177
   m_LocalEulerAnglesHint: {x: 1.986, y: -443.174, z: 99.187}
 --- !u!65 &1424846824
 BoxCollider:
@@ -15517,8 +15627,8 @@ GameObject:
   m_Name: GrayboxCube (49)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1428551264
 Transform:
@@ -15613,7 +15723,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1434177037
 Transform:
@@ -15707,8 +15817,8 @@ GameObject:
   m_Name: GrayboxCube (138)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1442853486
 Transform:
@@ -15722,7 +15832,7 @@ Transform:
   m_LocalScale: {x: 1828.9259, y: 669.7776, z: 976.4473}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 108
+  m_RootOrder: 107
   m_LocalEulerAnglesHint: {x: 7.65, y: -93.293, z: -3.29}
 --- !u!65 &1442853487
 BoxCollider:
@@ -15865,13 +15975,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1445715225}
-  m_LocalRotation: {x: -0, y: 0.31577927, z: -0, w: 0.94883275}
-  m_LocalPosition: {x: 310.57788, y: 45.4, z: 27.754198}
+  m_LocalRotation: {x: -0, y: 0.09765061, z: -0, w: 0.99522084}
+  m_LocalPosition: {x: 315.6, y: 45.4, z: 32.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 36.816, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 11.208, z: 0}
 --- !u!114 &1445715229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15952,8 +16062,8 @@ GameObject:
   m_Name: GrayboxCube (110)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1449133407
 Transform:
@@ -15967,7 +16077,7 @@ Transform:
   m_LocalScale: {x: 180.0986, y: 55.463036, z: 58.934277}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 75
+  m_RootOrder: 74
   m_LocalEulerAnglesHint: {x: 0, y: -102.815, z: 90}
 --- !u!65 &1449133408
 BoxCollider:
@@ -16046,8 +16156,8 @@ GameObject:
   m_Name: GrayboxCloud (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1462545891
 Transform:
@@ -16061,7 +16171,7 @@ Transform:
   m_LocalScale: {x: 257.8101, y: 968.6221, z: 490.0387}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 96
+  m_RootOrder: 95
   m_LocalEulerAnglesHint: {x: 18.379, y: -24.06, z: -6.753}
 --- !u!23 &1462545892
 MeshRenderer:
@@ -16128,8 +16238,8 @@ GameObject:
   m_Name: GrayboxCube (87)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1477314855
 Transform:
@@ -16223,8 +16333,8 @@ GameObject:
   m_Name: GrayboxCube (203)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1485896596
 Transform:
@@ -16238,7 +16348,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 72.182014, z: 121.09888}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 165
+  m_RootOrder: 164
   m_LocalEulerAnglesHint: {x: -1.399, y: 80.613, z: 90.017}
 --- !u!65 &1485896597
 BoxCollider:
@@ -16318,8 +16428,8 @@ GameObject:
   m_Name: GrayboxCube (32)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1487717340
 Transform:
@@ -16413,8 +16523,8 @@ GameObject:
   m_Name: GrayboxCube (167)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1500922210
 Transform:
@@ -16428,7 +16538,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 72.182014, z: 127.64916}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 128
+  m_RootOrder: 127
   m_LocalEulerAnglesHint: {x: -1.273, y: -254.195, z: 89.42}
 --- !u!65 &1500922211
 BoxCollider:
@@ -16508,8 +16618,8 @@ GameObject:
   m_Name: GrayboxCube (57)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1506803337
 Transform:
@@ -16603,8 +16713,8 @@ GameObject:
   m_Name: GrayboxCube (142)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1512177849
 Transform:
@@ -16618,7 +16728,7 @@ Transform:
   m_LocalScale: {x: 143.45872, y: 48.49964, z: 79.62341}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 109
+  m_RootOrder: 108
   m_LocalEulerAnglesHint: {x: -0.325, y: -240.59601, z: 89.891}
 --- !u!65 &1512177850
 BoxCollider:
@@ -16698,8 +16808,8 @@ GameObject:
   m_Name: GrayboxCube (199)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1512360455
 Transform:
@@ -16713,7 +16823,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 72.182014, z: 121.09888}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 161
+  m_RootOrder: 160
   m_LocalEulerAnglesHint: {x: -1.339, y: 64.399, z: 90.407}
 --- !u!65 &1512360456
 BoxCollider:
@@ -16793,8 +16903,8 @@ GameObject:
   m_Name: GrayboxCube (100)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1536210985
 Transform:
@@ -16808,7 +16918,7 @@ Transform:
   m_LocalScale: {x: 176.63974, y: 50.89994, z: 125.56619}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 64
+  m_RootOrder: 63
   m_LocalEulerAnglesHint: {x: 0, y: 205.481, z: 90}
 --- !u!65 &1536210986
 BoxCollider:
@@ -16888,8 +16998,8 @@ GameObject:
   m_Name: GrayboxCube (109)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1549266541
 Transform:
@@ -16903,7 +17013,7 @@ Transform:
   m_LocalScale: {x: 296.41116, y: 44.676365, z: 228.67532}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 74
+  m_RootOrder: 73
   m_LocalEulerAnglesHint: {x: 0, y: 19.271, z: 90}
 --- !u!65 &1549266542
 BoxCollider:
@@ -16983,8 +17093,8 @@ GameObject:
   m_Name: GrayboxCube (98)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1560839089
 Transform:
@@ -16998,7 +17108,7 @@ Transform:
   m_LocalScale: {x: 107.32581, y: 44.676365, z: 106.60854}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 62
+  m_RootOrder: 61
   m_LocalEulerAnglesHint: {x: 0, y: 109.56, z: 90}
 --- !u!65 &1560839090
 BoxCollider:
@@ -17126,8 +17236,8 @@ GameObject:
   m_Name: GrayboxCube (37)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1566565644
 Transform:
@@ -17222,7 +17332,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1577412081
 Transform:
@@ -17316,8 +17426,8 @@ GameObject:
   m_Name: GrayboxCube (118)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1583937629
 Transform:
@@ -17331,7 +17441,7 @@ Transform:
   m_LocalScale: {x: 231.46272, y: 50.89994, z: 200.71503}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 83
+  m_RootOrder: 82
   m_LocalEulerAnglesHint: {x: 0.327, y: -230.768, z: 89.561}
 --- !u!65 &1583937630
 BoxCollider:
@@ -17412,7 +17522,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1586867703
 Transform:
@@ -17506,8 +17616,8 @@ GameObject:
   m_Name: GrayboxCube (72)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1606184543
 Transform:
@@ -17601,8 +17711,8 @@ GameObject:
   m_Name: GrayboxCube (53)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1661467392
 Transform:
@@ -17696,8 +17806,8 @@ GameObject:
   m_Name: GrayboxCube (202)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1665331428
 Transform:
@@ -17711,7 +17821,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 79.57775, z: 127.64916}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 164
+  m_RootOrder: 163
   m_LocalEulerAnglesHint: {x: 1.116, y: -421.592, z: 90.844}
 --- !u!65 &1665331429
 BoxCollider:
@@ -17791,8 +17901,8 @@ GameObject:
   m_Name: GrayboxCube (59)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1680415681
 Transform:
@@ -17886,8 +17996,8 @@ GameObject:
   m_Name: GrayboxCube (55)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1681280092
 Transform:
@@ -17981,8 +18091,8 @@ GameObject:
   m_Name: GrayboxCube (148)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1684253110
 Transform:
@@ -17996,7 +18106,7 @@ Transform:
   m_LocalScale: {x: 114.33021, y: 34.937202, z: 117.323654}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 114
+  m_RootOrder: 113
   m_LocalEulerAnglesHint: {x: 0.566, y: -292.22, z: 91.28}
 --- !u!65 &1684253111
 BoxCollider:
@@ -18076,8 +18186,8 @@ GameObject:
   m_Name: GrayboxCube (127)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1684917022
 Transform:
@@ -18091,7 +18201,7 @@ Transform:
   m_LocalScale: {x: 18.20019, y: 43.56854, z: 28.182987}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 90
+  m_RootOrder: 89
   m_LocalEulerAnglesHint: {x: 0, y: 65.059, z: 67.483}
 --- !u!65 &1684917023
 BoxCollider:
@@ -18171,8 +18281,8 @@ GameObject:
   m_Name: GrayboxCube (154)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1700543910
 Transform:
@@ -18186,7 +18296,7 @@ Transform:
   m_LocalScale: {x: 8082.5977, y: 221.30331, z: 3569.859}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 119
+  m_RootOrder: 118
   m_LocalEulerAnglesHint: {x: -1.027, y: -86.07, z: -1.539}
 --- !u!65 &1700543911
 BoxCollider:
@@ -18266,8 +18376,8 @@ GameObject:
   m_Name: GrayboxCube (108)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1723108907
 Transform:
@@ -18281,7 +18391,7 @@ Transform:
   m_LocalScale: {x: 180.0986, y: 50.89994, z: 200.71503}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 73
+  m_RootOrder: 72
   m_LocalEulerAnglesHint: {x: 0, y: -57.989, z: 90}
 --- !u!65 &1723108908
 BoxCollider:
@@ -18361,8 +18471,8 @@ GameObject:
   m_Name: GrayboxCube (93)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1731100648
 Transform:
@@ -18376,7 +18486,7 @@ Transform:
   m_LocalScale: {x: 107.32581, y: 44.676365, z: 61.101368}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 57
+  m_RootOrder: 56
   m_LocalEulerAnglesHint: {x: 0, y: 76.18, z: 90}
 --- !u!65 &1731100649
 BoxCollider:
@@ -18457,7 +18567,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1745311480
 Transform:
@@ -18551,8 +18661,8 @@ GameObject:
   m_Name: GrayboxCube (163)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1755921352
 Transform:
@@ -18566,7 +18676,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 72.182014, z: 225.37328}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 124
+  m_RootOrder: 123
   m_LocalEulerAnglesHint: {x: 0.728, y: -157.358, z: 88.805}
 --- !u!65 &1755921353
 BoxCollider:
@@ -18692,7 +18802,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1799778873
 Transform:
@@ -18786,8 +18896,8 @@ GameObject:
   m_Name: GrayboxCube (30)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1823230866
 Transform:
@@ -18881,8 +18991,8 @@ GameObject:
   m_Name: GrayboxCube (33)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1838106258
 Transform:
@@ -18896,7 +19006,7 @@ Transform:
   m_LocalScale: {x: 74.66556, y: 59.124554, z: 21.787355}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 173
+  m_RootOrder: 172
   m_LocalEulerAnglesHint: {x: -79.817, y: 86.317, z: 132.437}
 --- !u!65 &1838106259
 BoxCollider:
@@ -19076,8 +19186,8 @@ GameObject:
   m_Name: GrayboxCube (83)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1855123626
 Transform:
@@ -19171,8 +19281,8 @@ GameObject:
   m_Name: GrayboxCube (50)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1863450725
 Transform:
@@ -19311,8 +19421,8 @@ GameObject:
   m_Name: GrayboxCube (89)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1871004646
 Transform:
@@ -19406,8 +19516,8 @@ GameObject:
   m_Name: GrayboxCube (211)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1927286879
 Transform:
@@ -19421,7 +19531,7 @@ Transform:
   m_LocalScale: {x: 80.94416, y: 59.780758, z: 111.671234}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 180
+  m_RootOrder: 179
   m_LocalEulerAnglesHint: {x: 1.986, y: -443.174, z: 99.187}
 --- !u!65 &1927286880
 BoxCollider:
@@ -19501,8 +19611,8 @@ GameObject:
   m_Name: GrayboxCube (96)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1929226445
 Transform:
@@ -19516,7 +19626,7 @@ Transform:
   m_LocalScale: {x: 176.63974, y: 44.676365, z: 106.60854}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 60
+  m_RootOrder: 59
   m_LocalEulerAnglesHint: {x: 0, y: 94.848, z: 90}
 --- !u!65 &1929226446
 BoxCollider:
@@ -19597,7 +19707,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1934588369
 Transform:
@@ -19690,8 +19800,8 @@ GameObject:
   m_Name: GrayboxCloud (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1940534230
 Transform:
@@ -19705,7 +19815,7 @@ Transform:
   m_LocalScale: {x: 2313.713, y: 461.0386, z: 3436.6516}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 99
+  m_RootOrder: 98
   m_LocalEulerAnglesHint: {x: -5.385, y: -22.868, z: 3.527}
 --- !u!23 &1940534231
 MeshRenderer:
@@ -19772,8 +19882,8 @@ GameObject:
   m_Name: GrayboxCube (95)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1950839515
 Transform:
@@ -19787,7 +19897,7 @@ Transform:
   m_LocalScale: {x: 107.32581, y: 50.89994, z: 93.57344}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 59
+  m_RootOrder: 58
   m_LocalEulerAnglesHint: {x: 0, y: 17.589, z: 90}
 --- !u!65 &1950839516
 BoxCollider:
@@ -19867,8 +19977,8 @@ GameObject:
   m_Name: GrayboxCube (196)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1952882364
 Transform:
@@ -19882,7 +19992,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 42.420948, z: 127.64916}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 158
+  m_RootOrder: 157
   m_LocalEulerAnglesHint: {x: -0.435, y: -350.611, z: 91.33}
 --- !u!65 &1952882365
 BoxCollider:
@@ -19962,8 +20072,8 @@ GameObject:
   m_Name: GrayboxCube (192)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1964628367
 Transform:
@@ -19977,7 +20087,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 72.182014, z: 111.83471}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 154
+  m_RootOrder: 153
   m_LocalEulerAnglesHint: {x: -0.611, y: 17.194, z: 91.259}
 --- !u!65 &1964628368
 BoxCollider:
@@ -20057,8 +20167,8 @@ GameObject:
   m_Name: GrayboxCube (137)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1965805468
 Transform:
@@ -20072,7 +20182,7 @@ Transform:
   m_LocalScale: {x: 1828.9259, y: 446.51837, z: 976.4473}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 107
+  m_RootOrder: 106
   m_LocalEulerAnglesHint: {x: -7.649, y: -197.629, z: -0.657}
 --- !u!65 &1965805469
 BoxCollider:
@@ -20252,8 +20362,8 @@ GameObject:
   m_Name: GrayboxCube (65)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1983951515
 Transform:
@@ -20348,7 +20458,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1986200601
 Transform:
@@ -20562,8 +20672,8 @@ GameObject:
   m_Name: GrayboxCube (136)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1996662456
 Transform:
@@ -20577,7 +20687,7 @@ Transform:
   m_LocalScale: {x: 1828.9259, y: 669.7776, z: 976.4473}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 106
+  m_RootOrder: 105
   m_LocalEulerAnglesHint: {x: -6.325, y: -122.401, z: -0.824}
 --- !u!65 &1996662457
 BoxCollider:
@@ -20657,8 +20767,8 @@ GameObject:
   m_Name: GrayboxCube (157)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2018669175
 Transform:
@@ -20672,7 +20782,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 72.182014, z: 146.9231}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 122
+  m_RootOrder: 121
   m_LocalEulerAnglesHint: {x: -0.163, y: -195.402, z: 88.61}
 --- !u!65 &2018669176
 BoxCollider:
@@ -20751,8 +20861,8 @@ GameObject:
   m_Name: GrayboxCloud (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2022574897
 Transform:
@@ -20766,7 +20876,7 @@ Transform:
   m_LocalScale: {x: 1170.3407, y: 233.2062, z: 1738.3545}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 98
+  m_RootOrder: 97
   m_LocalEulerAnglesHint: {x: -5.385, y: -22.868, z: 3.527}
 --- !u!23 &2022574898
 MeshRenderer:
@@ -20833,8 +20943,8 @@ GameObject:
   m_Name: GrayboxCube (35)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2026749521
 Transform:
@@ -20848,7 +20958,7 @@ Transform:
   m_LocalScale: {x: 111.22929, y: 59.124554, z: 21.787355}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 175
+  m_RootOrder: 174
   m_LocalEulerAnglesHint: {x: -62.801, y: 664.624, z: -448.56}
 --- !u!65 &2026749522
 BoxCollider:
@@ -20928,8 +21038,8 @@ GameObject:
   m_Name: GrayboxCube (147)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2027562179
 Transform:
@@ -20943,7 +21053,7 @@ Transform:
   m_LocalScale: {x: 180.2195, y: 48.49964, z: 151.43001}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 113
+  m_RootOrder: 112
   m_LocalEulerAnglesHint: {x: 0.245, y: -136.296, z: 91.378}
 --- !u!65 &2027562180
 BoxCollider:
@@ -21023,8 +21133,8 @@ GameObject:
   m_Name: GrayboxCube (175)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2039229203
 Transform:
@@ -21038,7 +21148,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 72.182014, z: 205.59174}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 135
+  m_RootOrder: 134
   m_LocalEulerAnglesHint: {x: 0.864, y: -150.562, z: 88.9}
 --- !u!65 &2039229204
 BoxCollider:
@@ -21118,8 +21228,8 @@ GameObject:
   m_Name: GrayboxCube (113)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2039498427
 Transform:
@@ -21133,7 +21243,7 @@ Transform:
   m_LocalScale: {x: 296.41116, y: 50.89994, z: 269.33948}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 78
+  m_RootOrder: 77
   m_LocalEulerAnglesHint: {x: 0, y: 129.904, z: 90}
 --- !u!65 &2039498428
 BoxCollider:
@@ -21213,8 +21323,8 @@ GameObject:
   m_Name: GrayboxCube (36)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2039627553
 Transform:
@@ -21292,6 +21402,68 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2039627552}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &2055242173
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1159592152}
+    m_Modifications:
+    - target: {fileID: 3822144494207350921, guid: 23a4fc96eff5a044f8266f52be956e77, type: 3}
+      propertyPath: m_Name
+      value: BarricadeBuilding
+      objectReference: {fileID: 0}
+    - target: {fileID: 7902096874622899517, guid: 23a4fc96eff5a044f8266f52be956e77, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7902096874622899517, guid: 23a4fc96eff5a044f8266f52be956e77, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -16.88443
+      objectReference: {fileID: 0}
+    - target: {fileID: 7902096874622899517, guid: 23a4fc96eff5a044f8266f52be956e77, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.499779
+      objectReference: {fileID: 0}
+    - target: {fileID: 7902096874622899517, guid: 23a4fc96eff5a044f8266f52be956e77, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 31.10971
+      objectReference: {fileID: 0}
+    - target: {fileID: 7902096874622899517, guid: 23a4fc96eff5a044f8266f52be956e77, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7902096874622899517, guid: 23a4fc96eff5a044f8266f52be956e77, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7902096874622899517, guid: 23a4fc96eff5a044f8266f52be956e77, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7902096874622899517, guid: 23a4fc96eff5a044f8266f52be956e77, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7902096874622899517, guid: 23a4fc96eff5a044f8266f52be956e77, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7902096874622899517, guid: 23a4fc96eff5a044f8266f52be956e77, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7902096874622899517, guid: 23a4fc96eff5a044f8266f52be956e77, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 23a4fc96eff5a044f8266f52be956e77, type: 3}
+--- !u!4 &2055242174 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7902096874622899517, guid: 23a4fc96eff5a044f8266f52be956e77, type: 3}
+  m_PrefabInstance: {fileID: 2055242173}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2058745458
 GameObject:
   m_ObjectHideFlags: 0
@@ -21308,8 +21480,8 @@ GameObject:
   m_Name: GrayboxCube (60)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2058745459
 Transform:
@@ -21403,8 +21575,8 @@ GameObject:
   m_Name: GrayboxCube (71)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2059227741
 Transform:
@@ -21498,8 +21670,8 @@ GameObject:
   m_Name: GrayboxCube (31)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2074902211
 Transform:
@@ -21593,8 +21765,8 @@ GameObject:
   m_Name: GrayboxCube (119)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2075986003
 Transform:
@@ -21608,7 +21780,7 @@ Transform:
   m_LocalScale: {x: 296.41116, y: 50.89994, z: 269.33948}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 84
+  m_RootOrder: 83
   m_LocalEulerAnglesHint: {x: 0, y: -86.915, z: 90}
 --- !u!65 &2075986004
 BoxCollider:
@@ -21688,8 +21860,8 @@ GameObject:
   m_Name: GrayboxCube (212)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2076350078
 Transform:
@@ -21703,7 +21875,7 @@ Transform:
   m_LocalScale: {x: 227.83113, y: 75.16353, z: 136.18443}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 181
+  m_RootOrder: 180
   m_LocalEulerAnglesHint: {x: -10.833, y: -617.441, z: 98.372}
 --- !u!65 &2076350079
 BoxCollider:
@@ -21783,8 +21955,8 @@ GameObject:
   m_Name: GrayboxCube (184)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2080959128
 Transform:
@@ -21798,7 +21970,7 @@ Transform:
   m_LocalScale: {x: 213.55199, y: 72.182014, z: 127.64916}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 146
+  m_RootOrder: 145
   m_LocalEulerAnglesHint: {x: 1.329, y: -116.867, z: 89.564}
 --- !u!65 &2080959129
 BoxCollider:
@@ -21879,7 +22051,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &2084720703
 Transform:
@@ -21973,8 +22145,8 @@ GameObject:
   m_Name: GrayboxCube (105)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2087749019
 Transform:
@@ -21988,7 +22160,7 @@ Transform:
   m_LocalScale: {x: 180.0986, y: 95.8308, z: 106.60854}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 70
+  m_RootOrder: 69
   m_LocalEulerAnglesHint: {x: 0, y: 30.971, z: 90}
 --- !u!65 &2087749020
 BoxCollider:
@@ -22264,8 +22436,8 @@ GameObject:
   m_Name: GrayboxCamp (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2121722161
 Transform:
@@ -22279,7 +22451,7 @@ Transform:
   m_LocalScale: {x: 371.82263, y: 128.12578, z: 338.90723}
   m_Children: []
   m_Father: {fileID: 656212305}
-  m_RootOrder: 172
+  m_RootOrder: 171
   m_LocalEulerAnglesHint: {x: -2.903, y: -120.488, z: -4.884}
 --- !u!135 &2121722162
 SphereCollider:
@@ -22372,8 +22544,8 @@ GameObject:
   m_Name: GrayboxCube (48)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2135044419
 Transform:
