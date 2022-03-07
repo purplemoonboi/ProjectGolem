@@ -226,7 +226,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void UpdateDamageTaken(float value)
     {
-        damageTaken += value;
+        health -= value;
     }
 
     public float GetCurrentDamageTaken()

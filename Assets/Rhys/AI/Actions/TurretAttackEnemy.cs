@@ -5,8 +5,24 @@ using TheKiwiCoder;
 
 public class TurretAttackEnemy : ActionNode
 {
+
+    private GameObject enemy;
+    private TurretProjectileSpawner projectileManager;
+
     protected override void OnStart() 
     {
+        enemy = blackboard.targetObj;
+
+        TurretProjectileSpawner fireProjectile = context.gameObject.GetComponentInChildren<TurretProjectileSpawner>();
+        if (fireProjectile != null)
+        {
+            projectileManager = fireProjectile;
+        }
+        else
+        {
+            Debug.LogError("Turret AI : Could not find 'FireProjectile' script in context children.");
+        }
+
     }
 
     protected override void OnStop()
@@ -15,6 +31,19 @@ public class TurretAttackEnemy : ActionNode
 
     protected override State OnUpdate() 
     {
-        return State.Success;
+        State nodeState = State.Running;
+
+        if(enemy == null)
+        {
+            nodeState = State.Success;
+            projectileManager.SetTarget(null);
+        }
+        else
+        {
+            Debug.Log("Firing projectile.");
+            projectileManager.SetTarget(enemy.transform);
+        }
+
+        return nodeState;
     }
 }

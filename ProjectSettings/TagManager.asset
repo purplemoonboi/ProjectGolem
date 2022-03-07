@@ -13,6 +13,8 @@ TagManager:
   - Enemy
   - ResourcePickUpAmount
   - Target
+  - TurretAzimuth
+  - ActivatedTurretTransform
   layers:
   - Default
   - TransparentFX

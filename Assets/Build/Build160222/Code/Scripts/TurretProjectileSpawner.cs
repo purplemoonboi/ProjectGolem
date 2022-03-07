@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireProjectile : MonoBehaviour
+public class TurretProjectileSpawner : MonoBehaviour
 {
     [SerializeField]
     private GameObject prefab;
@@ -20,12 +20,10 @@ public class FireProjectile : MonoBehaviour
     private bool azimuthAligned = false;
     [SerializeField]
     private float fireTimer = 0.0f;
-
     [SerializeField]
     private Transform[] azimuthTransform;
-
     [SerializeField]
-    private EnemyTarget enemyTarget;
+    private EnemyTarget turretStatistics;
 
     // Start is called before the first frame update
     void Start()
@@ -34,14 +32,18 @@ public class FireProjectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(enemyTarget.IsActivated())
+        if(turretStatistics.IsActivated())
         {
-            Debug.Log("Active!!!");
             if (target != null)
             {
+                Debug.Log("Active!!!");
                 fireTimer += 1.0f * Time.deltaTime;
 
-                StartCoroutine("RotateTurret");
+                if (fireTimer > fireRate)
+                {
+                    fireTimer = 0.0f;
+                    shouldFire = true;
+                }
             }
         }
     }
@@ -50,7 +52,7 @@ public class FireProjectile : MonoBehaviour
     {
         Transform turretTransform = azimuthTransform[0];
         Vector3 turretDirection = turretTransform.forward;
-        Vector3 epos = enemyTarget.transform.position;
+        Vector3 epos = turretStatistics.transform.position;
 
         while (turretDirection != epos)
         {
@@ -66,7 +68,7 @@ public class FireProjectile : MonoBehaviour
 
     public void FixedUpdate()
     {
-        if(enemyTarget.IsActivated())
+        if (turretStatistics.IsActivated())
         {
             if (shouldFire)
             {
@@ -89,7 +91,7 @@ public class FireProjectile : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if(enemyTarget.IsActivated())
+        if (turretStatistics.IsActivated())
         {
             if (other.tag == "Enemy" && target == null)
             {
@@ -100,7 +102,7 @@ public class FireProjectile : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if(enemyTarget.IsActivated())
+        if (turretStatistics.IsActivated())
         {
             if (other.tag == "Enemy")
             {
@@ -109,4 +111,6 @@ public class FireProjectile : MonoBehaviour
         }
     }
 
+
+    public void SetTarget(Transform newTarget) => target = newTarget;
 }
