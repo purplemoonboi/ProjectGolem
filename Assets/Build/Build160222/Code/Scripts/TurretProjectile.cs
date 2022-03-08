@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileStats : MonoBehaviour
+public class TurretProjectile : MonoBehaviour
 {
 
     [SerializeField]
@@ -40,15 +40,16 @@ public class ProjectileStats : MonoBehaviour
         rigidbody.AddForce(force, ForceMode.Force);
     }
 
-    public void OnCollisionEnter(Collision collision)
+    public void OnTriggerEnter(Collider other)
     {
-        if(collision.transform.tag == "Enemy")
+        if(other.gameObject.transform.tag == "Enemy")
         {
-            EnemyMovement enemy = collision.transform.GetComponent<EnemyMovement>();
+            EnemyController enemy = other.gameObject.transform.GetComponent<EnemyController>();
 
             if(enemy != null)
             {
-                enemy.UpdateDamageTaken(damage);
+                float da = enemy.GetHealth() - damage;
+                enemy.SetHealth(da);
 
                 Destroy(gameObject);
 
@@ -57,9 +58,9 @@ public class ProjectileStats : MonoBehaviour
         }
     }
 
-    public void OnCollisionExit(Collision collision)
+    public void OnTriggerExit(Collider other)
     {
-        if (collision.transform.tag == "Enemy")
+        if (other.transform.tag == "Enemy")
         {
             if(this != null)
             {

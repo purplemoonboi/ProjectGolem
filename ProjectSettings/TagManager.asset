@@ -14,6 +14,8 @@ TagManager:
   - ResourcePickUpAmount
   - Target
   - Friendly
+  - TurretAzimuth
+  - ActivatedTurretTransform
   layers:
   - Default
   - TransparentFX

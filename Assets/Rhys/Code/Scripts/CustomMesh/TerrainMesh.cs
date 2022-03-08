@@ -23,6 +23,8 @@ public class TerrainMesh : MonoBehaviour
     [SerializeField]
     private Vector2[] uvs;
 
+    private int size = 1;
+    private int resolution = 256;
 
     // Start is called before the first frame update
     void Start()
@@ -45,16 +47,22 @@ public class TerrainMesh : MonoBehaviour
 
         Mesh mesh = new Mesh();
 
-        Vector3[] vertices = new Vector3[4]
+        int terrainDimension = size * size;
+
+        //Calculate positions.
+        Vector3[] vertices = new Vector3[terrainDimension];
+
+        for (int x = 0; x < size; ++x)
         {
-            new Vector3(0f, 0f, 0f),
-            new Vector3(width, 0f, 0f),
-            new Vector3(0f, 0f, breadth),
-            new Vector3(width, 0f, breadth)
-        };
+            for(int z = 0; z < size; ++z)
+            {
+                vertices[(size * z) + x] = new Vector3(x, 0f, z);
+            }
+        }
 
         mesh.vertices = vertices;
 
+        //Calculate indices for each polygon.
         int[] tris = new int[6]
         {
             //Lower left tri
@@ -63,25 +71,23 @@ public class TerrainMesh : MonoBehaviour
             2, 3, 1
         };
 
+        for(int x = 0; x < size; ++x)
+        {
+            for(int z = 0; z < size; ++z)
+            {
+                
+            }
+        }
+
         mesh.triangles = tris;
 
-        Vector3[] normals = new Vector3[4]
-        {
-            -Vector3.forward,
-            -Vector3.forward,
-            -Vector3.forward,
-            -Vector3.forward
-        };
+        //Calculate normals.
+        Vector3[] normals = new Vector3[terrainDimension];
 
         mesh.normals = normals;
 
-        Vector2[] uv = new Vector2[4]
-        {
-            new Vector2(0, 0),
-            new Vector2(1, 0),
-            new Vector2(0, 1),
-            new Vector2(1, 1)
-        };
+        //Calculate texture coordinates.
+        Vector2[] uv = new Vector2[terrainDimension];
 
         mesh.uv = uv;
 
@@ -91,9 +97,9 @@ public class TerrainMesh : MonoBehaviour
 
 
     public void Reset()
-    {
-
+    { 
     }
 
+    public void SetTerrainSize(int terrrainDimension) => size = terrrainDimension;
 
 }
