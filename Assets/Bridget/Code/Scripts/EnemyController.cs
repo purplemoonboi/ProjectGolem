@@ -24,6 +24,8 @@ public class EnemyController : NpcController
     void Start()
     {
         SetupCharacter(enemyData.MAX_HEALTH, enemyData.power);
+
+        spawnPoint = transform.position;
     }
 
     void Update()
