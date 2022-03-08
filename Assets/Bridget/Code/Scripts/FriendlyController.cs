@@ -42,6 +42,8 @@ public class FriendlyController : NpcController
         recruited = false;
         SetupCharacter(friendlyData.MAX_HEALTH, friendlyData.power);
         typeText.GetComponent<Text>().text = friendlyType.ToString();
+
+        spawnPoint = transform.position;
     }
 
     void Update()
