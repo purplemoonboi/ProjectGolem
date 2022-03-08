@@ -29,11 +29,16 @@ public class ScanForStructure : ActionNode
             if (context.friendlyController.GetFriendlyType() != FriendlyController.FriendlyType.BUILDER)
                 return State.Failure;
 
+            if (context.friendlyController.GetInCombat())   //If a builder is being attacked, flee
+                return State.Failure;
+
             if (context.friendlyController.GetHealth() <= (context.friendlyController.GetMaxHealth() / 4.0f))
                 return State.Failure;
 
             if (ScanTargetsAsFriendly())
                 return State.Success;
+            else
+                return State.Failure;
         }
 
         return State.Running;

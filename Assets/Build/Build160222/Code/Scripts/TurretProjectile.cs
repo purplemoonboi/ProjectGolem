@@ -40,35 +40,60 @@ public class TurretProjectile : MonoBehaviour
         rigidbody.AddForce(force, ForceMode.Force);
     }
 
-    public void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.transform.tag == "Enemy")
-        {
-            EnemyController enemy = other.gameObject.transform.GetComponent<EnemyController>();
+  // public void OnCollisionEnter(Collision collision)
+  // {
+  //     if(collision.transform.tag == "Enemy")
+  //     {
+  //         //EnemyMovement enemy = collision.transform.GetComponent<EnemyMovement>();
+  //         EnemyController enemy = collision.transform.GetComponent<EnemyController>();
+  //
+  //         if (enemy != null)
+  //         {
+  //             //enemy.UpdateDamageTaken(damage);
+  //             enemy.SetHealth(enemy.GetHealth() - damage);
+  //
+  //             Destroy(gameObject);
+  //
+  //         }
+  //
+  //     }
+  // }
+  //
+  // public void OnCollisionExit(Collision collision)
+  // {
+  //     if (collision.transform.tag == "Enemy")
+  //     {
+  //         if(this != null)
+  //         {
+  //             Destroy(gameObject);
+  //
+  //         }
+  //     }
+  // }
 
-            if(enemy != null)
+    public void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.transform.tag == "Enemy")
+        {
+            EnemyController enemy = collider.gameObject.transform.GetComponent<EnemyController>();
+
+            if (enemy != null)
             {
-                float da = enemy.GetHealth() - damage;
-                enemy.SetHealth(da);
+                enemy.SetHealth(enemy.GetHealth() - damage);
 
                 Destroy(gameObject);
-
             }
-
         }
     }
 
-    public void OnTriggerExit(Collider other)
+    public void OnTriggerExit(Collider collider)
     {
-        if (other.transform.tag == "Enemy")
+        if(collider.gameObject.transform.tag == "Enemy")
         {
             if(this != null)
             {
                 Destroy(gameObject);
-
-            }
+            }    
         }
     }
-
-
 }

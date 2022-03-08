@@ -26,6 +26,9 @@ public class RepairStructure : ActionNode
         if (structure == null)
             return State.Failure;
 
+        if (context.friendlyController.GetInCombat())
+            return State.Failure;
+
         Vector3 direction = blackboard.targetObj.transform.position - context.transform.position;
         distanceToTarget = direction.magnitude;
 

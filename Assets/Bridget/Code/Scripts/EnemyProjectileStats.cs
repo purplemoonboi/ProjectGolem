@@ -39,23 +39,49 @@ public class EnemyProjectileStats : MonoBehaviour
         rigidbody.AddForce(force, ForceMode.Force);
     }
 
-    public void OnCollisionEnter(Collision collision)
+  // public void OnCollisionEnter(Collision collision)
+  // {
+  //     if (collision.transform.tag == "DefenceTower")
+  //     {
+  //         EnemyTarget target = collision.transform.GetComponent<EnemyTarget>();
+  //
+  //         if (target != null)
+  //         {
+  //             target.SetHealth(target.GetHealth() - damage);
+  //
+  //             Destroy(gameObject);
+  //         }
+  //     }
+  //
+  //     else if (collision.transform.tag == "Friendly")
+  //     {
+  //         FriendlyController friendly = collision.transform.GetComponent<FriendlyController>();
+  //
+  //         if (friendly != null)
+  //         {
+  //             friendly.SetHealth(friendly.GetHealth() - damage);
+  //
+  //             Destroy(gameObject);
+  //         }
+  //     }
+  // }
+  //
+  // public void OnCollisionExit(Collision collision)
+  // {
+  //     if (collision.transform.tag == "DefenceTower" || collision.transform.tag == "Friendly")
+  //     {
+  //         if (this != null)
+  //         {
+  //             Destroy(gameObject);
+  //         }
+  //     }
+  // }
+
+    public void OnTriggerEnter(Collider collider)
     {
-        if (collision.transform.tag == "DefenceTower")
+        if (collider.gameObject.transform.tag == "DefenceTower" || collider.gameObject.transform.tag == "Friendly")
         {
-            EnemyTarget target = collision.transform.GetComponent<EnemyTarget>();
-
-            if (target != null)
-            {
-                target.SetHealth(target.GetHealth() - damage);
-
-                Destroy(gameObject);
-            }
-        }
-
-        else if (collision.transform.tag == "Friendly")
-        {
-            FriendlyController friendly = collision.transform.GetComponent<FriendlyController>();
+            FriendlyController friendly = collider.gameObject.transform.GetComponent<FriendlyController>();
 
             if (friendly != null)
             {
@@ -66,9 +92,9 @@ public class EnemyProjectileStats : MonoBehaviour
         }
     }
 
-    public void OnCollisionExit(Collision collision)
+    public void OnTriggerExit(Collider collider)
     {
-        if (collision.transform.tag == "DefenceTower" || collision.transform.tag == "Friendly")
+        if (collider.gameObject.transform.tag == "DefenceTower" || collider.gameObject.transform.tag == "Friendly")
         {
             if (this != null)
             {

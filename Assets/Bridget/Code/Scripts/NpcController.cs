@@ -20,6 +20,12 @@ public class NpcController : MonoBehaviour
     protected float maxHealth;
     [SerializeField]
     protected float power;
+    [SerializeField]
+    protected Vector3 spawnPoint = new Vector3(0.0f, 1.0f, 0.0f);
+    [SerializeField]
+    protected bool inCombat = false;
+    [SerializeField]
+    protected float turnSpeed = 15.0f;
 
     void Start()
     {
@@ -67,4 +73,16 @@ public class NpcController : MonoBehaviour
     public void SetPower(float p) { power = p; }
 
     public float GetPower() { return power; }
+
+    public void SetSpawnPoint(Vector3 spawn) { spawnPoint = spawn; }
+
+    public Vector3 GetSpawnPoint() { return spawnPoint; }
+
+    public void SetInCombat(bool combat) { inCombat = combat; }
+
+    public bool GetInCombat() { return inCombat; }
+
+    public void SetTurnSpeed(float speed) { turnSpeed = speed; }
+
+    public float GetTurnSpeed() { return turnSpeed; }
 }

@@ -18,6 +18,9 @@ public class FriendlyController : NpcController
 
     private float fireTimer = 0.0f;
 
+    [SerializeField]
+    private bool recruited = false;
+
     public enum FriendlyType
     {
         CIVILIAN = 0,
@@ -36,6 +39,7 @@ public class FriendlyController : NpcController
 
     void Start()
     {
+        recruited = false;
         SetupCharacter(friendlyData.MAX_HEALTH, friendlyData.power);
         typeText.GetComponent<Text>().text = friendlyType.ToString();
     }
@@ -78,4 +82,8 @@ public class FriendlyController : NpcController
     }
 
     public FriendlyType GetFriendlyType() { return friendlyType; }
+
+    public void SetRecruited(bool r) { recruited = r; }
+
+    public bool GetRecruited() { return recruited; }
 }
