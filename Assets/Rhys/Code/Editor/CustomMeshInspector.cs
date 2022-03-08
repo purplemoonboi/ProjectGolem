@@ -8,7 +8,9 @@ public class CustomMeshInspector : Editor
 {
 
     private TerrainMesh terrainMesh;
+    private int size = 1;
 
+    static int maxSize = 1000;
     // @brief Draw widgets to the scene view.
     private void OnSceneGUI()
     {
@@ -26,5 +28,8 @@ public class CustomMeshInspector : Editor
             terrainMesh.GenerateMesh();
             EditorUtility.SetDirty(terrainMesh);
         }
+
+        EditorGUILayout.IntSlider("Terrain Size", size, 1, maxSize);
+        terrainMesh.SetTerrainSize(size);
     }
 }
