@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterSplineController : MonoBehaviour
 {
-
+    
     [SerializeField]
     private Spline spline;
     [SerializeField]
@@ -14,6 +14,14 @@ public class CharacterSplineController : MonoBehaviour
     private float distanceAlongSpline;
     [SerializeField]
     private Vector3 splineOffset;
+    [Header("Movement Tools")]
+    [Tooltip("Scales the speed of movement along the spline.")]
+    [SerializeField]
+    private float reductionPercentage;
+    [Tooltip("Like the other 'reduction' variable, scales the speed of strafing.")]
+    [SerializeField]
+    private float strafeReductionPercentage;
+
 
     // Start is called before the first frame update
     void Start()
@@ -36,11 +44,11 @@ public class CharacterSplineController : MonoBehaviour
         //Move whole curve left and right.
         if (Input.GetKey(KeyCode.D))
         {
-            splineOffset += transform.right * speed * 0.01f * Time.deltaTime;
+            splineOffset += transform.right * speed * strafeReductionPercentage * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            splineOffset += transform.right * -speed * 0.01f * Time.deltaTime;
+            splineOffset += transform.right * -speed * strafeReductionPercentage * Time.deltaTime;
         }
 
         if (Input.GetKey(KeyCode.W))
