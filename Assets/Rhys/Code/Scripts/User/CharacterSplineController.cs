@@ -49,11 +49,11 @@ public class CharacterSplineController : MonoBehaviour
         //Move whole curve left and right.
         if (Input.GetKey(KeyCode.D))
         {
-            splineOffset += transform.right * speed * strafeReductionPercentage * Time.deltaTime;
+            splineOffset += (transform.right + new Vector3(1,0,0)) * speed * strafeReductionPercentage * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            splineOffset += transform.right * -speed * strafeReductionPercentage * Time.deltaTime;
+            splineOffset += (transform.right + new Vector3(1, 0, 0)) * -speed * strafeReductionPercentage * Time.deltaTime;
         }
 
         if (Input.GetKey(KeyCode.W))
