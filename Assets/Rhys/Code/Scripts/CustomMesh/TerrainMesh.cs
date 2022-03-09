@@ -6,22 +6,11 @@ public class TerrainMesh : MonoBehaviour
 {
 
     [SerializeField]
-    private int width;
-    [SerializeField]
-    private int breadth;
-
-    [SerializeField]
     private MeshRenderer meshRenderer = null;
     [SerializeField]
     private MeshFilter meshFilter = null;
 
     //Mesh Data
-    [SerializeField]
-    private Vector3[] vertices;
-    [SerializeField]
-    private Vector3[] normal;
-    [SerializeField]
-    private Vector2[] uvs;
     [SerializeField]
     private List<float> heightMap;
 
@@ -33,8 +22,7 @@ public class TerrainMesh : MonoBehaviour
     private float offsetU = 0f;
     private float offsetV = 0f;
 
-    private int size = 2;
-    private int resolution = 256;
+    private int size = 64;
 
     // Start is called before the first frame update
     void Start()
@@ -48,28 +36,26 @@ public class TerrainMesh : MonoBehaviour
         
     }
 
-    public Vector3 PerlinNoise(float x, float z)
+    public float PerlinNoise(float x, float z)
     {
-        Vector3 position = new Vector3(x, 0f, z);
-     
-        for(int o = 0; o < 8; ++o)
+        float a = amplitude;
+        float f = frequency;
+        float h = 0f;
+
+        for (int o = 0; o < 8; ++o)
         {
-            height += Mathf.PerlinNoise((x + offsetU) * frequency, (z + offsetV) * frequency) * amplitude;
-            amplitude *= loss;
-            frequency *= lacunarity;
+            h += Mathf.PerlinNoise((x + offsetU) * f, (z + offsetV) * f) * a;
+            a *= 0.5f;
+            f *= 2f;
         }
 
-        height *= -1; 
+        h = 1f - h; 
 
-        position = new Vector3(x, height, z);
-
-        return position;
+        return h;
     }
 
     public void GenerateMesh()
     {
-
-   
         DestroyImmediate(meshRenderer);
         DestroyImmediate(meshFilter);
         meshRenderer = gameObject.AddComponent<MeshRenderer>();
@@ -77,16 +63,13 @@ public class TerrainMesh : MonoBehaviour
         meshFilter = gameObject.AddComponent<MeshFilter>();
        
         Mesh mesh = new Mesh();
-
-
         //Calculate positions.
         List<Vector3> vertices = new List<Vector3>();
-
         for (int x = 0; x < size; ++x)
         {
             for(int z = 0; z < size; ++z)
-            {
-                vertices.Add(PerlinNoise(x,z));
+            { 
+                vertices.Add(new Vector3(x, 0f + PerlinNoise(x, z), z));
             }
         }
 
@@ -157,4 +140,10 @@ public class TerrainMesh : MonoBehaviour
     public void SetLoss(float los) => loss = los;
 
     public int GetTerrainSize() => size;
+    public float GetAmplitude() => amplitude;
+    public float GetFrequency() => frequency;
+    public float GetLacunarity() => lacunarity;
+    public float GetLoss() => loss;
+    public float GetOffsetU() => offsetU;
+    public float GetOffsetV() => offsetV;
 }

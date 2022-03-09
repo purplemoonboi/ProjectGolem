@@ -11,8 +11,7 @@ public class CustomMeshInspector : Editor
 
     static int maxSize = 256;
 
-    private static int size = 2;
-
+    private int size = 2;
     private float amplitude = 50.0f;
     private float frequency = 0.01f;
     private float offsetU = 0f;
@@ -32,21 +31,8 @@ public class CustomMeshInspector : Editor
     {
         terrainMesh = target as TerrainMesh;
 
-        if (GUILayout.Button("Generate Terrain"))
-        {
-            Undo.RecordObject(terrainMesh, "Generate Terrain");
-            terrainMesh.GenerateMesh();
-            EditorUtility.SetDirty(terrainMesh);
-        }
-
-        if (GUILayout.Button("Noise"))
-        {
-            Undo.RecordObject(terrainMesh, "Noise");
-            terrainMesh.GenerateMesh();
-            EditorUtility.SetDirty(terrainMesh);
-        }
-
         EditorGUI.BeginChangeCheck();
+        size = terrainMesh.GetTerrainSize();
         size = EditorGUILayout.IntSlider("Terrain Size", size, 2, maxSize);
         if(EditorGUI.EndChangeCheck())
         {
@@ -54,59 +40,75 @@ public class CustomMeshInspector : Editor
             terrainMesh.SetTerrainSize(size);
             EditorUtility.SetDirty(terrainMesh);
         }
-
+       
         EditorGUI.BeginChangeCheck();
-        amplitude = EditorGUILayout.Slider("Amplitude", amplitude, 1, 10000.0f);
+        amplitude = terrainMesh.GetAmplitude();
+        amplitude = EditorGUILayout.Slider("Amplitude", amplitude, 1, 100.0f);
         if (EditorGUI.EndChangeCheck())
         {
             Undo.RecordObject(terrainMesh, "Amplitude");
             terrainMesh.SetAmplitude(amplitude);
             EditorUtility.SetDirty(terrainMesh);
         }
-
+       
         EditorGUI.BeginChangeCheck();
-        frequency = EditorGUILayout.Slider("Frequency", frequency, 0.0001f, 0.99f);
+        frequency = terrainMesh.GetFrequency();
+        frequency = EditorGUILayout.Slider("Frequency", frequency, 0.001f, 0.99f);
         if (EditorGUI.EndChangeCheck())
         {
             Undo.RecordObject(terrainMesh, "Frequency");
             terrainMesh.SetFrequency(frequency);
             EditorUtility.SetDirty(terrainMesh);
         }
-
+       
         EditorGUI.BeginChangeCheck();
+        loss = terrainMesh.GetLoss();
         loss = EditorGUILayout.Slider("Loss", loss, 0.001f, 0.99f);
         if (EditorGUI.EndChangeCheck())
         {
             Undo.RecordObject(terrainMesh, "Loss");
-            terrainMesh.SetLoss(loss)
+            terrainMesh.SetLoss(loss);
             EditorUtility.SetDirty(terrainMesh);
         }
-
+       
         EditorGUI.BeginChangeCheck();
+        lacunarity = terrainMesh.GetLacunarity();
         lacunarity = EditorGUILayout.Slider("Lacunarity", lacunarity, 1.0f, 10.0f);
         if (EditorGUI.EndChangeCheck())
         {
             Undo.RecordObject(terrainMesh, "Lacunarity");
+            terrainMesh.SetLacunarity(lacunarity);
             EditorUtility.SetDirty(terrainMesh);
-            terrainMesh.SetFrequency(lacunarity);
         }
-
+       
         EditorGUI.BeginChangeCheck();
-        offsetU = EditorGUILayout.Slider("Offset X", offsetU, 1.0f, 10000f);
+        offsetU = terrainMesh.GetOffsetU();
+        offsetU = EditorGUILayout.Slider("Offset X", offsetU, 1.0f, 100f);
         if (EditorGUI.EndChangeCheck())
         {
             Undo.RecordObject(terrainMesh, "Offset X");
-            EditorUtility.SetDirty(terrainMesh);
             terrainMesh.SetOffsetU(offsetU);
+            EditorUtility.SetDirty(terrainMesh);
         }
-
+       
         EditorGUI.BeginChangeCheck();
-        offsetV = EditorGUILayout.Slider("Offset Z", offsetV, 1.0f, 10000f);
+        offsetV = terrainMesh.GetOffsetV();
+        offsetV = EditorGUILayout.Slider("Offset Z", offsetV, 1.0f, 100f);
         if (EditorGUI.EndChangeCheck())
         {
             Undo.RecordObject(terrainMesh, "Offset Z");
-            EditorUtility.SetDirty(terrainMesh);
             terrainMesh.SetOffsetV(offsetV);
+            EditorUtility.SetDirty(terrainMesh);
         }
+
+        GUILayout.Space(4f);
+
+        if (GUILayout.Button("Generate Terrain"))
+        {
+            Undo.RecordObject(terrainMesh, "Generate Terrain");
+            terrainMesh.GenerateMesh();
+            EditorUtility.SetDirty(terrainMesh);
+        }
+
     }
 }
