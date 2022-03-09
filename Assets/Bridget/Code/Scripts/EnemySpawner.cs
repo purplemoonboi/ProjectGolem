@@ -39,11 +39,11 @@ public class EnemySpawner : MonoBehaviour
             &&
             dayNightCycle.GetCurrentTime().TimeOfDay < dayNightCycle.GetSunset()))
         {
-            //shouldSpawn = true;
+            shouldSpawn = true;
         }
         else
         {
-            //shouldSpawn = false;
+            shouldSpawn = false;
         }
 
         if (shouldSpawn)
@@ -73,7 +73,7 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnEnemy()
     {
         //Sets enemies to spawn on top of the ground and a random distance from the spawner within a range of 5 units
-        Vector3 spawnPoint = new Vector3(transform.position.x + Random.Range(-5.0f, 5.0f), enemyPrefab.transform.localScale.y, transform.position.z + Random.Range(-5.0f, 5.0f));
+        Vector3 spawnPoint = new Vector3(transform.position.x + Random.Range(-5.0f, 5.0f), transform.position.y, transform.position.z + Random.Range(-5.0f, 5.0f));
 
         GameObject enemy = Instantiate(enemyPrefab, spawnPoint, Quaternion.identity);
 
