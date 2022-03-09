@@ -17,9 +17,11 @@ public class CharacterSplineController : MonoBehaviour
     [Header("Movement Tools")]
     [Tooltip("Scales the speed of movement along the spline.")]
     [SerializeField]
+    [Range(0.001f, 1f)]
     private float reductionPercentage;
     [Tooltip("Like the other 'reduction' variable, scales the speed of strafing.")]
     [SerializeField]
+    [Range(0.001f, 1f)]
     private float strafeReductionPercentage;
 
 
@@ -32,6 +34,9 @@ public class CharacterSplineController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (spline == null)
+            return;
+
         HandleInput();
 
         distanceAlongSpline = Mathf.Clamp01(distanceAlongSpline);
@@ -53,11 +58,11 @@ public class CharacterSplineController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W))
         {
-            distanceAlongSpline += ((speed * 0.001f) * Time.deltaTime);
+            distanceAlongSpline += ((speed * reductionPercentage) * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.S))
         {
-            distanceAlongSpline -= ((speed * 0.001f) * Time.deltaTime);
+            distanceAlongSpline -= ((speed * reductionPercentage) * Time.deltaTime);
         }
 
         transform.LookAt(transform.position + spline.GetDirection(distanceAlongSpline));

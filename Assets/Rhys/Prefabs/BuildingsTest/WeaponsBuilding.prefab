@@ -78,7 +78,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshCutterTransform: {fileID: 959856365664720951}
   spawnerEndGoal: {fileID: 1209367089514689517}
-  cost: 25
+  cost: 35
   costToUpgrade: 50
   health: 1000
   isActive: 0
