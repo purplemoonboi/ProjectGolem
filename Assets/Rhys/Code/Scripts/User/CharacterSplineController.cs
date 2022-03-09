@@ -14,6 +14,19 @@ public class CharacterSplineController : MonoBehaviour
     private float distanceAlongSpline;
     [SerializeField]
     private Vector3 splineOffset;
+<<<<<<< Updated upstream
+=======
+    [Header("Movement Tools")]
+    [Tooltip("Scales the speed of movement along the spline.")]
+    [SerializeField]
+    [Range(0.001f, 1f)]
+    private float reductionPercentage;
+    [Tooltip("Like the other 'reduction' variable, scales the speed of strafing.")]
+    [SerializeField]
+    [Range(0.001f, 1f)]
+    private float strafeReductionPercentage = 0.01f;
+
+>>>>>>> Stashed changes
 
     // Start is called before the first frame update
     void Start()
@@ -45,11 +58,11 @@ public class CharacterSplineController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W))
         {
-            distanceAlongSpline += ((speed * 0.001f) * Time.deltaTime);
+            distanceAlongSpline += ((speed * reductionPercentage) * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.S))
         {
-            distanceAlongSpline -= ((speed * 0.001f) * Time.deltaTime);
+            distanceAlongSpline -= ((speed * reductionPercentage) * Time.deltaTime);
         }
 
         transform.LookAt(transform.position + spline.GetDirection(distanceAlongSpline));

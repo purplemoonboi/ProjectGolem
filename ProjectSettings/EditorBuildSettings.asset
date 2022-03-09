@@ -9,6 +9,17 @@ EditorBuildSettings:
     path: Assets/David/Scenes/MainMenu.unity
     guid: 1f44f1b19dceefd439b899a563f732ed
   - enabled: 1
+<<<<<<< Updated upstream
     path: Assets/Build/Build230222/Scene/BuildRevised.unity
     guid: cfafdd88581e7824ba75aa9be87fdcc7
+=======
+    path: Assets/Bridget/Scenes/LevelSelectMenu.unity
+    guid: 75d3be09e31648c44802b3947d4c84cc
+  - enabled: 1
+    path: Assets/Rhys/Scenes/WinScene.unity
+    guid: d8ff87854965cad41b8eb2810c4db359
+  - enabled: 1
+    path: Assets/Davide/Scenes/Graybox.unity
+    guid: 0e86b3b01f1d2934bb48f0722a2968dd
+>>>>>>> Stashed changes
   m_configObjects: {}
