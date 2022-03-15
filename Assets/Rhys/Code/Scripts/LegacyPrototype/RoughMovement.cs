@@ -111,7 +111,7 @@ public class RoughMovement : MonoBehaviour
 
         
 
-        Camera.main.transform.forward = (transform.position + forward);
+        //Camera.main.transform.forward = (transform.position + forward);
 
     }
 

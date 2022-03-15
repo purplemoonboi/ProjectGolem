@@ -6,25 +6,23 @@ public class TerrainMesh : MonoBehaviour
 {
 
     [SerializeField]
-    private int width;
+    private MeshRenderer meshRenderer = null;
     [SerializeField]
-    private int breadth;
-
-    [SerializeField]
-    private MeshRenderer meshRenderer;
-    [SerializeField]
-    private MeshFilter meshFilter;
+    private MeshFilter meshFilter = null;
 
     //Mesh Data
     [SerializeField]
-    private Vector3[] vertices;
-    [SerializeField]
-    private Vector3[] normal;
-    [SerializeField]
-    private Vector2[] uvs;
+    private List<float> heightMap;
 
-    private int size = 1;
-    private int resolution = 256;
+    private float height = 0f;
+    private float loss = 0.5f;
+    private float lacunarity = 2f;
+    private float amplitude = 50.0f;
+    private float frequency = 0.01f;
+    private float offsetU = 0f;
+    private float offsetV = 0f;
+
+    private int size = 64;
 
     // Start is called before the first frame update
     void Start()
@@ -38,58 +36,91 @@ public class TerrainMesh : MonoBehaviour
         
     }
 
+    public float PerlinNoise(float x, float z)
+    {
+        float a = amplitude;
+        float f = frequency;
+        float h = 0f;
+
+        for (int o = 0; o < 8; ++o)
+        {
+            h += Mathf.PerlinNoise((x + offsetU) * f, (z + offsetV) * f) * a;
+            a *= 0.5f;
+            f *= 2f;
+        }
+
+        h = 1f - h; 
+
+        return h;
+    }
+
     public void GenerateMesh()
     {
+        DestroyImmediate(meshRenderer);
+        DestroyImmediate(meshFilter);
         meshRenderer = gameObject.AddComponent<MeshRenderer>();
         meshRenderer.sharedMaterial = new Material(Shader.Find("Universal Render Pipeline/Lit"));
-
         meshFilter = gameObject.AddComponent<MeshFilter>();
-
+       
         Mesh mesh = new Mesh();
-
-        int terrainDimension = size * size;
-
         //Calculate positions.
-        Vector3[] vertices = new Vector3[terrainDimension];
-
+        List<Vector3> vertices = new List<Vector3>();
         for (int x = 0; x < size; ++x)
         {
             for(int z = 0; z < size; ++z)
-            {
-                vertices[(size * z) + x] = new Vector3(x, 0f, z);
+            { 
+                vertices.Add(new Vector3(x, 0f + PerlinNoise(x, z), z));
             }
         }
 
-        mesh.vertices = vertices;
+        mesh.vertices = vertices.ToArray();
 
+        List<int> indices = new List<int>();
         //Calculate indices for each polygon.
-        int[] tris = new int[6]
-        {
-            //Lower left tri
-            0, 2, 1,
-            //Upper right tri
-            2, 3, 1
-        };
 
-        for(int x = 0; x < size; ++x)
+        for(int x = 0; x < size - 1; ++x)
         {
-            for(int z = 0; z < size; ++z)
+            for(int z = 0; z < size - 1; ++z)
             {
-                
+                indices.Add((x * size) + z);
+                indices.Add((x * size) + z + size);
+                indices.Add((x * size) + z + 1);
+
+                indices.Add((x * size) + z + size);
+                indices.Add((x * size) + z + size + 1);
+                indices.Add((x * size) + z + 1);
             }
         }
 
-        mesh.triangles = tris;
+        mesh.triangles = indices.ToArray();
 
         //Calculate normals.
-        Vector3[] normals = new Vector3[terrainDimension];
+        List<Vector3> normals = new List<Vector3>();
 
-        mesh.normals = normals;
+        for (int x = 0; x < size; ++x)
+        {
+            for (int z = 0; z < size; ++z)
+            {
+                normals.Add(new Vector3(0, 1, 0));
+            }
+        }
+
+        mesh.normals = normals.ToArray();
+        mesh.RecalculateNormals();
+
 
         //Calculate texture coordinates.
-        Vector2[] uv = new Vector2[terrainDimension];
+        List<Vector2> uv = new List<Vector2>();
 
-        mesh.uv = uv;
+        for (int x = 0; x < size; ++x)
+        {
+            for (int z = 0; z < size; ++z)
+            {
+                uv.Add(new Vector2((float)x / (float)size, (float)z / (float)size));
+            }
+        }
+
+        mesh.uv = uv.ToArray();
 
         //Apply the geometric data.
         meshFilter.mesh = mesh;
@@ -101,5 +132,18 @@ public class TerrainMesh : MonoBehaviour
     }
 
     public void SetTerrainSize(int terrrainDimension) => size = terrrainDimension;
+    public void SetAmplitude(float amp) => amplitude = amp;
+    public void SetFrequency(float freq) => frequency = freq;
+    public void SetOffsetU(float oU) => offsetU = oU;
+    public void SetOffsetV(float oV) => offsetV = oV;
+    public void SetLacunarity(float lac) => lacunarity = lac;
+    public void SetLoss(float los) => loss = los;
 
+    public int GetTerrainSize() => size;
+    public float GetAmplitude() => amplitude;
+    public float GetFrequency() => frequency;
+    public float GetLacunarity() => lacunarity;
+    public float GetLoss() => loss;
+    public float GetOffsetU() => offsetU;
+    public float GetOffsetV() => offsetV;
 }

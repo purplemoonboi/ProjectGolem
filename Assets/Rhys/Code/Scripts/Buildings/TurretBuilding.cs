@@ -38,6 +38,8 @@ public class TurretBuilding : Building
     {
         IncrimentBuildingLevel();
         SetCostToUpgrade(turretScriptableObject.costToUpgrade);
+        SetMaxHealth((int)GetHealth() + 100);
+
     }
 
     /*..Trigger callback methods..*/

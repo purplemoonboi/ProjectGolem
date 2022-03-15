@@ -143,7 +143,6 @@ MonoBehaviour:
     targetObj: {fileID: 0}
   description: 
   drawGizmos: 0
-  distanceToTarget: 0
   friendlyTarget: {fileID: 0}
 --- !u!114 &-2554579088906297184
 MonoBehaviour:

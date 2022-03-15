@@ -33,6 +33,8 @@ public class Interact : MonoBehaviour
     private const string buildingTag = "Building";
     private const string resourceTag = "Resource";
     private const string defenceTag = "DefenceTower";
+    private const string friendlyTag = "Friendly";
+    private const string endLevelTag = "EndLevel";
 
     // Start is called before the first frame update
     void Start()
@@ -101,6 +103,17 @@ public class Interact : MonoBehaviour
             interactable = other.gameObject;
             isInteractable = true;
         }
+
+        if(otherTag == friendlyTag)
+        {
+            other.gameObject.GetComponent<FriendlyController>().SetRecruited(true);
+        }
+
+        if(otherTag == endLevelTag)
+        {
+            other.gameObject.GetComponent<EndLevelScript>().ChangeLevel();
+        }
+
     }
 
     public void OnTriggerExit(Collider other)

@@ -32,6 +32,8 @@ public class CampBuilding : Building
     {
        IncrimentBuildingLevel();
        SetCostToUpgrade(GetCostToUpgrade());
+       SetMaxHealth((int)GetHealth() + 100);
+
     }
 
     /*..Trigger callback methods..*/

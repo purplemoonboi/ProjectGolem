@@ -30,7 +30,9 @@ public class BarricadeBuilding : Building
     public override void Upgrade()
     {
         IncrimentBuildingLevel();
-        SetCostToUpgrade(GetCostToUpgrade());   
+        SetCostToUpgrade(GetCostToUpgrade());
+        SetMaxHealth((int)GetHealth() + 100);
+
     }
 
     /*..Trigger callback methods..*/
