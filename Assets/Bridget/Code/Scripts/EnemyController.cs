@@ -42,15 +42,6 @@ public class EnemyController : NpcController
         }
     }
 
-    protected override void CheckDeath()
-    {
-        if(health < 0.0f)
-        {
-            alive = false;
-            gameObject.SetActive(false);
-        }
-    }
-
     public void SpawnProjectile(Vector3 targetPosition)
     {
         if (shouldFire)
@@ -68,6 +59,4 @@ public class EnemyController : NpcController
             shouldFire = false;
         }
     }
-
-    public bool GetAlive() { return alive; }
 }

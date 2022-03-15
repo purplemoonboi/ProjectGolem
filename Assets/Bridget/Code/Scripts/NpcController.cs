@@ -58,7 +58,7 @@ public class NpcController : MonoBehaviour
         maxWidth = healthBarRect.rect.width;
     }
 
-    protected virtual void CheckDeath()
+    protected void CheckDeath()
     {
         if (health < 0.0f)
         {
@@ -87,4 +87,6 @@ public class NpcController : MonoBehaviour
     public void SetTurnSpeed(float speed) { turnSpeed = speed; }
 
     public float GetTurnSpeed() { return turnSpeed; }
+
+    public bool GetAlive() { return alive; }
 }

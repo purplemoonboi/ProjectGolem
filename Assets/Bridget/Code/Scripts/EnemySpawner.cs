@@ -10,21 +10,12 @@ public class EnemySpawner : MonoBehaviour
     private float elapsedDespawnTime;   //Elapsed time since last check was performed if enemies should despawn
 
     private EnemySpawnerManager spawnManager;
+    private GameObject enemyPrefab;
 
     [SerializeField]
-    private float spawnTime;    //Time in seconds between enemy spawns
-    [SerializeField]
-    private int spawnCount;     //The number of enemies to spawn in one go
-    [SerializeField]
-    private int enemyLimit;     //The maximum number of enemies for the spawner to create per wave
-    [SerializeField]
-    private GameObject enemyPrefab;
-    [SerializeField]
-    private List<GameObject> enemies;
+    private int spawnedEnemies = 0;
     [SerializeField]
     private bool shouldSpawn = false;
-    [SerializeField]
-    bool finishedWave = false;  //A flag to check if this spawner has finished the current wave and should progress
     [SerializeField]
     private TimeController dayNightCycle;
 
@@ -61,7 +52,7 @@ public class EnemySpawner : MonoBehaviour
                 SpawnOnTimer();
             }
 
-            CheckActiveWave();
+            //CheckActiveWave();
         }
     }
 
@@ -69,52 +60,17 @@ public class EnemySpawner : MonoBehaviour
     {
         elapsedSpawnTime += Time.deltaTime;
 
-        if(elapsedSpawnTime > spawnTime)
+        if(elapsedSpawnTime > spawnManager.GetSpawnTime())
         {
             elapsedSpawnTime = 0.0f;
 
-            for (int i = 0; i < spawnCount; i++)
+            for (int i = 0; i < spawnManager.GetSpawnCount(); i++)
             {
-                if (enemies.Count >= enemyLimit)
+                if (spawnedEnemies >= spawnManager.GetEnemyLimit())
                     break;
 
                 SpawnEnemy();
-            }
-        }
-    }
-
-    //@brief
-    //Regularly checks the currently active enemy wave (by default, every 3 seconds) for living enemies.
-    //If none are still alive, then progress to the next wave.
-    private void CheckActiveWave()
-    {
-        if (enemies.Count > 0)
-        {
-            elapsedDespawnTime += Time.deltaTime;
-
-            if (elapsedDespawnTime > 3.0f)
-            {
-                Debug.Log("Checking active wave for " + gameObject.name + "...");
-                elapsedDespawnTime = 0.0f;
-
-                int activeEnemies = 0;
-
-                foreach (GameObject enemy in enemies)
-                {
-                    if (enemy.GetComponent<EnemyController>().GetAlive())
-                        activeEnemies++;
-                }
-
-                if (activeEnemies == 0)
-                {
-                    foreach (GameObject enemy in enemies)
-                    {
-                        Destroy(enemy);
-                    }
-
-                    enemies.Clear();
-                    finishedWave = true;
-                }
+                spawnedEnemies += spawnManager.GetSpawnCount();
             }
         }
     }
@@ -129,12 +85,9 @@ public class EnemySpawner : MonoBehaviour
         GameObject enemy = Instantiate(enemyPrefab, spawnPoint, Quaternion.identity);
 
         enemy.transform.Rotate(new Vector3(0.0f, 1.0f, 0.0f), Random.Range(0.0f, 359.9f));
-        enemy.name = "Enemy " + (enemies.Count + 1);
 
-        enemies.Add(enemy);
+        spawnManager.AddSpawnedEnemy(enemy);
     }
 
-    public void SetFinishedWave(bool wave) { finishedWave = wave; }
-
-    public bool GetFinishedWave() { return finishedWave; }
+    public void SetEnemyPrefab(GameObject enemy) { enemyPrefab = enemy; }
 }

@@ -10,16 +10,22 @@ public class EnemySpawnerManager : MonoBehaviour
     [SerializeField]
     private EnemySpawnerScriptableObject spawnerSO;
     [SerializeField]
+    private GameObject enemyPrefab;
+    [SerializeField]
     private List<EnemySpawner> spawners;
+    [SerializeField]
+    private List<GameObject> enemies;
 
     void Start()
     {
         SetupSpawners();
+        
         spawnerSO.wavesCompleted = 0;
     }
 
     void Update()
     {
+        if(enemies.Count > 0)
         CheckSpawners();
     }
 
@@ -29,6 +35,7 @@ public class EnemySpawnerManager : MonoBehaviour
 
         foreach (var child in children)
         {
+            child.SetEnemyPrefab(enemyPrefab);
             spawners.Add(child);
         }
     }
@@ -42,25 +49,39 @@ public class EnemySpawnerManager : MonoBehaviour
             Debug.Log("Checking enemy spawners...");
             elapsedWaveTime = 0.0f;
 
-            int activeSpawners = 0;
-
-            foreach(EnemySpawner spawner in spawners)
+            if(spawnerSO.wavesCompleted < spawnerSO.maxWaves)
             {
-                if (!spawner.GetFinishedWave())
-                    activeSpawners++;
-            }
+                int enemiesRemaining = 0;
 
-            if(activeSpawners == 0 && spawnerSO.wavesCompleted < spawnerSO.maxWaves)
-            {
-                spawnerSO.wavesCompleted++;
+                foreach(GameObject enemy in enemies)
+                {
+                    if(enemy != null)
+                    enemiesRemaining++;
+                }
 
-                foreach (EnemySpawner spawner in spawners)
-                    spawner.SetFinishedWave(false);
+                Debug.Log("Enemies Remaining: " + enemiesRemaining);
+
+                if (enemiesRemaining == 0)
+                {
+                    enemies.Clear();
+                    spawnerSO.wavesCompleted++;
+                }
             }
         }
+    }
+
+    public void AddSpawnedEnemy(GameObject enemy)
+    {
+        enemies.Add(enemy);
     }
 
     public int GetWavesCompleted() { return spawnerSO.wavesCompleted; }
 
     public int GetMaxWaves() { return spawnerSO.maxWaves; }
+
+    public float GetSpawnTime() { return spawnerSO.spawnTime; }
+
+    public int GetSpawnCount() { return spawnerSO.spawnCount; }
+
+    public int GetEnemyLimit() { return spawnerSO.enemyLimit; }
 }

@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxWaves: 3
   wavesCompleted: 0
+  spawnTime: 1
+  spawnCount: 1
+  enemyLimit: 2
