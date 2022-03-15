@@ -9,7 +9,6 @@ public class TurretRotateToEnemy : ActionNode
     private Transform enemyTransform;
 
     private Transform turretAzimuth = null;
-    private Transform turretAzimuthHolo = null;
 
     protected override void OnStart()
     {

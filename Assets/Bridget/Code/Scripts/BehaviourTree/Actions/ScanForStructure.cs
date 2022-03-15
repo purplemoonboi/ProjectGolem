@@ -46,7 +46,7 @@ public class ScanForStructure : ActionNode
 
     public bool ScanTargetsAsEnemy()
     {
-        var structures = FindObjectsOfType<EnemyTarget>();
+        var structures = FindObjectsOfType<TurretStats>();
 
         float distance = 0.0f;
 
@@ -76,7 +76,7 @@ public class ScanForStructure : ActionNode
 
     public bool ScanTargetsAsFriendly()
     {
-        var structures = FindObjectsOfType<EnemyTarget>();
+        var structures = FindObjectsOfType<TurretStats>();
 
         float distance = 0.0f;
 

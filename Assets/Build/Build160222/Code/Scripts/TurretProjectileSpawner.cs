@@ -23,7 +23,7 @@ public class TurretProjectileSpawner : MonoBehaviour
     [SerializeField]
     private Transform[] azimuthTransform;
     [SerializeField]
-    private EnemyTarget turretStatistics;
+    private TurretStats turretStatistics;
 
     // Start is called before the first frame update
     void Start()

@@ -7,14 +7,14 @@ public class RepairStructure : ActionNode
 {
     public float distanceToTarget;
 
-    public EnemyTarget structure;
+    public TurretStats structure;
 
     private float timer = 0.0f;
 
     protected override void OnStart()
     {
         if (blackboard.targetObj != null)
-            structure = blackboard.targetObj.GetComponent<EnemyTarget>();
+            structure = blackboard.targetObj.GetComponent<TurretStats>();
     }
 
     protected override void OnStop()

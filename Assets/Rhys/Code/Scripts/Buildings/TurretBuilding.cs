@@ -9,7 +9,7 @@ public class TurretBuilding : Building
     [SerializeField]
     private TurretScriptableObject turretScriptableObject;
     [SerializeField]
-    private EnemyTarget turretStats;
+    private TurretStats turretStats;
 
     // Start is called before the first frame update
     void Start()

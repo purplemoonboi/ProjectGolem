@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class EnemyTarget : MonoBehaviour
+public class TurretStats : MonoBehaviour
 {
     private float elapsedTime;
     private float attackTime;
