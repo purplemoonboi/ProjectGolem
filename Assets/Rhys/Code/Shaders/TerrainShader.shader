@@ -4,7 +4,7 @@ Shader "Unlit/TerrainShader"
     {
         _MainTex ("Texture", 2D) = "white" {}
         _Tess("Tessellation", Range(1, 32)) = 20
-        _MaxTessDistance("MaxTessDistance", Range(1, 32)) = 20.0
+        _MaxTessDistance("MaxTessDistance", Range(1, 1000)) = 100
         _MinTessDistance ("MinTessDistance", Float) = 5.0
     }
     SubShader
@@ -115,7 +115,7 @@ Shader "Unlit/TerrainShader"
                 tf.edge[0] = (edge1 + edge2) * 0.5f;
                 tf.edge[1] = (edge2 + edge0) * 0.5f;
                 tf.edge[2] = (edge0 + edge1) * 0.5f;
-                tf.inside = (edge0 + edge1 + edge2) * 0.3333333f;
+                tf.inside = (edge0 + edge1 + edge2) / 3;
                 return tf;
             }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class TerrainMesh : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class TerrainMesh : MonoBehaviour
     private MeshRenderer meshRenderer = null;
     [SerializeField]
     private MeshFilter meshFilter = null;
+
+    [SerializeField]
+    private Texture2D heightMapTexture;
 
     //Mesh Data
     [SerializeField]
@@ -22,7 +26,9 @@ public class TerrainMesh : MonoBehaviour
     private float offsetU = 0f;
     private float offsetV = 0f;
 
-    private int size = 64;
+    private int resolution = 64;
+    private int sizeX = 1000;
+    private int sizeZ = 1000;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +40,33 @@ public class TerrainMesh : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void BakeHeightMap()
+    {
+        heightMapTexture = new Texture2D(512, 512, TextureFormat.RGB24, true);
+        for(int x = 0; x < 512; ++x)
+        {
+            for(int y = 0; y < 512; ++y)
+            {
+                Color value = new Color(0, 0, 0, 0);
+                float noise = PerlinNoise(x, y);
+                Debug.Log("Noise " + noise);
+                value.r = noise; 
+                value.b = noise;
+                value.g = noise;
+                heightMapTexture.SetPixel(x, y, value);
+            }
+        }
+
+        byte[] bytes = heightMapTexture.EncodeToPNG();
+
+        var dirPath = Application.dataPath + "/../HeightMaps/";
+        if(!Directory.Exists(dirPath))
+        {
+            Directory.CreateDirectory(dirPath);
+        }
+        File.WriteAllBytes(dirPath + "HeightMap" + ".png", bytes);
     }
 
     public float PerlinNoise(float x, float z)
@@ -59,17 +92,17 @@ public class TerrainMesh : MonoBehaviour
         DestroyImmediate(meshRenderer);
         DestroyImmediate(meshFilter);
         meshRenderer = gameObject.AddComponent<MeshRenderer>();
-        meshRenderer.sharedMaterial = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+        meshRenderer.sharedMaterial = new Material(Shader.Find("Unlit/TerrainShader"));
         meshFilter = gameObject.AddComponent<MeshFilter>();
        
         Mesh mesh = new Mesh();
         //Calculate positions.
         List<Vector3> vertices = new List<Vector3>();
-        for (int x = 0; x < size; ++x)
+        for (int x = 0; x < resolution; ++x)
         {
-            for(int z = 0; z < size; ++z)
+            for(int z = 0; z < resolution; ++z)
             { 
-                vertices.Add(new Vector3(x, 0f + PerlinNoise(x, z), z));
+                vertices.Add(new Vector3(x * ((float)sizeX / (float)resolution), 0f + PerlinNoise(x, z), z * ((float)sizeZ / (float)resolution)));
             }
         }
 
@@ -78,17 +111,17 @@ public class TerrainMesh : MonoBehaviour
         List<int> indices = new List<int>();
         //Calculate indices for each polygon.
 
-        for(int x = 0; x < size - 1; ++x)
+        for(int x = 0; x < resolution - 1; ++x)
         {
-            for(int z = 0; z < size - 1; ++z)
+            for(int z = 0; z < resolution - 1; ++z)
             {
-                indices.Add((x * size) + z);
-                indices.Add((x * size) + z + size);
-                indices.Add((x * size) + z + 1);
+                indices.Add((x * resolution) + z);
+                indices.Add((x * resolution) + z + resolution);
+                indices.Add((x * resolution) + z + 1);
 
-                indices.Add((x * size) + z + size);
-                indices.Add((x * size) + z + size + 1);
-                indices.Add((x * size) + z + 1);
+                indices.Add((x * resolution) + z + resolution);
+                indices.Add((x * resolution) + z + resolution + 1);
+                indices.Add((x * resolution) + z + 1);
             }
         }
 
@@ -97,9 +130,9 @@ public class TerrainMesh : MonoBehaviour
         //Calculate normals.
         List<Vector3> normals = new List<Vector3>();
 
-        for (int x = 0; x < size; ++x)
+        for (int x = 0; x < resolution; ++x)
         {
-            for (int z = 0; z < size; ++z)
+            for (int z = 0; z < resolution; ++z)
             {
                 normals.Add(new Vector3(0, 1, 0));
             }
@@ -112,11 +145,11 @@ public class TerrainMesh : MonoBehaviour
         //Calculate texture coordinates.
         List<Vector2> uv = new List<Vector2>();
 
-        for (int x = 0; x < size; ++x)
+        for (int x = 0; x < resolution; ++x)
         {
-            for (int z = 0; z < size; ++z)
+            for (int z = 0; z < resolution; ++z)
             {
-                uv.Add(new Vector2((float)x / (float)size, (float)z / (float)size));
+                uv.Add(new Vector2((float)x / (float)resolution, (float)z / (float)resolution));
             }
         }
 
@@ -131,7 +164,7 @@ public class TerrainMesh : MonoBehaviour
     { 
     }
 
-    public void SetTerrainSize(int terrrainDimension) => size = terrrainDimension;
+    public void SetResolution(int terrrainDimension) => resolution = terrrainDimension;
     public void SetAmplitude(float amp) => amplitude = amp;
     public void SetFrequency(float freq) => frequency = freq;
     public void SetOffsetU(float oU) => offsetU = oU;
@@ -139,7 +172,7 @@ public class TerrainMesh : MonoBehaviour
     public void SetLacunarity(float lac) => lacunarity = lac;
     public void SetLoss(float los) => loss = los;
 
-    public int GetTerrainSize() => size;
+    public int GetResolution() => resolution;
     public float GetAmplitude() => amplitude;
     public float GetFrequency() => frequency;
     public float GetLacunarity() => lacunarity;
