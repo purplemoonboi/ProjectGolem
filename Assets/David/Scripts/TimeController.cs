@@ -55,6 +55,7 @@ public class TimeController : MonoBehaviour
 
         sunriseTime = TimeSpan.FromHours(sunriseHour);
         sunsetTime = TimeSpan.FromHours(sunsetHour);
+
     }
 
     // Update is called once per frame
@@ -63,6 +64,7 @@ public class TimeController : MonoBehaviour
         UpdateTimeOfDay();
         RotateSun();
         UpdateLightSettings();
+        
     }
 
     private void UpdateTimeOfDay()

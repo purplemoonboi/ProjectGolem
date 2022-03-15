@@ -35,6 +35,10 @@ public class PlayerOxygen : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         currentOxygen = oxygenAmount;
+
+        if (basePosition == null)
+            return;
+
         basePosition = FindObjectOfType<CampBuilding>().GetComponent<Transform>();
 
         lowOxygen = false;

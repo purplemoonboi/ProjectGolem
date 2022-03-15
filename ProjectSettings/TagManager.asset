@@ -16,6 +16,7 @@ TagManager:
   - Friendly
   - TurretAzimuth
   - ActivatedTurretTransform
+  - Missing Parts
   layers:
   - Default
   - TransparentFX
