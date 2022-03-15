@@ -30,7 +30,7 @@ public class ScanForTargets : ActionNode
 
     public bool ScanTargets()
     {
-        var enemyTargets = FindObjectsOfType<EnemyTarget>();
+        var enemyTargets = FindObjectsOfType<TurretStats>();
 
         float distance = 0.0f;
 

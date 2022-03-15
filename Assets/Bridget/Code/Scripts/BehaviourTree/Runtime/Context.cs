@@ -20,7 +20,7 @@ namespace TheKiwiCoder
         public BoxCollider boxCollider;
         public CapsuleCollider capsuleCollider;
         public CharacterController characterController;
-        public EnemyTarget turretGameObject;
+        public TurretStats turretGameObject;
         // Add other game specific systems here
 
         public EnemyController enemyController;
@@ -44,7 +44,7 @@ namespace TheKiwiCoder
 
             context.enemyController = gameObject.GetComponent<EnemyController>();
             context.friendlyController = gameObject.GetComponent<FriendlyController>();
-            context.turretGameObject = gameObject.GetComponent<EnemyTarget>();
+            context.turretGameObject = gameObject.GetComponent<TurretStats>();
 
             return context;
         }

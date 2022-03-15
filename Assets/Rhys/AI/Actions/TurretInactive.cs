@@ -6,7 +6,7 @@ using TheKiwiCoder;
 public class TurretInactive : ActionNode
 {
 
-    private EnemyTarget turretStatistics;
+    private TurretStats turretStatistics;
     private Quaternion rotationGoal;
     private Transform activatedTransform;
     private Transform turretAzimuth = null;
@@ -14,7 +14,7 @@ public class TurretInactive : ActionNode
 
     protected override void OnStart() 
     {
-        turretStatistics = context.gameObject.GetComponent<EnemyTarget>();
+        turretStatistics = context.gameObject.GetComponent<TurretStats>();
 
         GameObject thisTurret = context.gameObject;
 
