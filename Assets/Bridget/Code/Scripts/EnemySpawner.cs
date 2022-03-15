@@ -6,13 +6,17 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    private float elapsedSpawnTime; //Elapsed time since last enemy was spawned
+    private float elapsedDespawnTime;   //Elapsed time since last check was performed if enemies should despawn
+
+    private EnemySpawnerManager spawnManager;
+
     [SerializeField]
     private float spawnTime;    //Time in seconds between enemy spawns
-    private float elapsedTime;
     [SerializeField]
     private int spawnCount;     //The number of enemies to spawn in one go
     [SerializeField]
-    private int enemyLimit;     //The maximum number of enemies to have in the scene at once
+    private int enemyLimit;     //The maximum number of enemies for the spawner to create per wave
     [SerializeField]
     private GameObject enemyPrefab;
     [SerializeField]
@@ -20,12 +24,16 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private bool shouldSpawn = false;
     [SerializeField]
+    bool finishedWave = false;  //A flag to check if this spawner has finished the current wave and should progress
+    [SerializeField]
     private TimeController dayNightCycle;
 
     void Start()
     {
-        elapsedTime = 0.0f;
-     
+        elapsedSpawnTime = 0.0f;
+        elapsedDespawnTime = 0.0f;
+
+        spawnManager = FindObjectOfType<EnemySpawnerManager>();
     }
 
     void Update()
@@ -46,19 +54,24 @@ public class EnemySpawner : MonoBehaviour
             shouldSpawn = false;
         }
 
-        if (shouldSpawn)
+        if (spawnManager.GetWavesCompleted() < spawnManager.GetMaxWaves())
         {
-            SpawnOnTimer();
+            if (shouldSpawn)
+            {
+                SpawnOnTimer();
+            }
+
+            CheckActiveWave();
         }
     }
 
     private void SpawnOnTimer()
     {
-        elapsedTime += Time.deltaTime;
+        elapsedSpawnTime += Time.deltaTime;
 
-        if(elapsedTime > spawnTime)
+        if(elapsedSpawnTime > spawnTime)
         {
-            elapsedTime = 0.0f;
+            elapsedSpawnTime = 0.0f;
 
             for (int i = 0; i < spawnCount; i++)
             {
@@ -70,6 +83,44 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    //@brief
+    //Regularly checks the currently active enemy wave (by default, every 3 seconds) for living enemies.
+    //If none are still alive, then progress to the next wave.
+    private void CheckActiveWave()
+    {
+        if (enemies.Count > 0)
+        {
+            elapsedDespawnTime += Time.deltaTime;
+
+            if (elapsedDespawnTime > 3.0f)
+            {
+                Debug.Log("Checking active wave for " + gameObject.name + "...");
+                elapsedDespawnTime = 0.0f;
+
+                int activeEnemies = 0;
+
+                foreach (GameObject enemy in enemies)
+                {
+                    if (enemy.GetComponent<EnemyController>().GetAlive())
+                        activeEnemies++;
+                }
+
+                if (activeEnemies == 0)
+                {
+                    foreach (GameObject enemy in enemies)
+                    {
+                        Destroy(enemy);
+                    }
+
+                    enemies.Clear();
+                    finishedWave = true;
+                }
+            }
+        }
+    }
+
+    //@brief
+    //Spawns a single instance of an enemy at the spawner's world position.
     private void SpawnEnemy()
     {
         //Sets enemies to spawn on top of the ground and a random distance from the spawner within a range of 5 units
@@ -79,8 +130,11 @@ public class EnemySpawner : MonoBehaviour
 
         enemy.transform.Rotate(new Vector3(0.0f, 1.0f, 0.0f), Random.Range(0.0f, 359.9f));
         enemy.name = "Enemy " + (enemies.Count + 1);
-        //enemy.GetComponent<EnemyMovement>().SetID(enemies.Count + 1);
 
         enemies.Add(enemy);
     }
+
+    public void SetFinishedWave(bool wave) { finishedWave = wave; }
+
+    public bool GetFinishedWave() { return finishedWave; }
 }

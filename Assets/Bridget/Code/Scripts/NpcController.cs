@@ -19,6 +19,8 @@ public class NpcController : MonoBehaviour
     [SerializeField]
     protected float maxHealth;
     [SerializeField]
+    protected bool alive = true;
+    [SerializeField]
     protected float power;
     [SerializeField]
     protected Vector3 spawnPoint = new Vector3(0.0f, 1.0f, 0.0f);
@@ -56,9 +58,9 @@ public class NpcController : MonoBehaviour
         maxWidth = healthBarRect.rect.width;
     }
 
-    protected void CheckDeath()
+    protected virtual void CheckDeath()
     {
-        if (health <= 0.0f)
+        if (health < 0.0f)
         {
             Destroy(gameObject);
         }
