@@ -10,7 +10,6 @@ public class TerrainMesh : MonoBehaviour
     private MeshRenderer meshRenderer = null;
     [SerializeField]
     private MeshFilter meshFilter = null;
-
     [SerializeField]
     private Texture2D heightMapTexture;
 
@@ -27,20 +26,8 @@ public class TerrainMesh : MonoBehaviour
     private float offsetV = 0f;
 
     private int resolution = 64;
-    private int sizeX = 1000;
-    private int sizeZ = 1000;
+    private int size = 1000;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void BakeHeightMap()
     {
@@ -50,7 +37,7 @@ public class TerrainMesh : MonoBehaviour
             for(int y = 0; y < 512; ++y)
             {
                 Color value = new Color(0, 0, 0, 0);
-                float noise = PerlinNoise(x, y);
+                float noise = RidgedPerlin(x, y);
                 Debug.Log("Noise " + noise);
                 value.r = noise; 
                 value.b = noise;
@@ -69,7 +56,24 @@ public class TerrainMesh : MonoBehaviour
         File.WriteAllBytes(dirPath + "HeightMap" + ".png", bytes);
     }
 
-    public float PerlinNoise(float x, float z)
+    public float RidgedPerlin(float x, float z)
+    {
+        float a = amplitude;
+        float f = frequency;
+        float h = 0f;
+        for (int o = 0; o < 8; ++o)
+        {
+            h += Mathf.PerlinNoise((x + offsetU) * f, (z + offsetV) * f);
+            h = 1f - h;
+            h *= a;
+            a *= loss;
+            f *= lacunarity;
+        }
+        
+        return h;
+    }
+
+    public float RidgedPerlin01(float x, float z)
     {
         float a = amplitude;
         float f = frequency;
@@ -82,7 +86,8 @@ public class TerrainMesh : MonoBehaviour
             f *= 2f;
         }
 
-        h = 1f - h; 
+        h = amplitude - h;
+        h *= a;
 
         return h;
     }
@@ -94,15 +99,15 @@ public class TerrainMesh : MonoBehaviour
         meshRenderer = gameObject.AddComponent<MeshRenderer>();
         meshRenderer.sharedMaterial = new Material(Shader.Find("Unlit/TerrainShader"));
         meshFilter = gameObject.AddComponent<MeshFilter>();
-       
+
         Mesh mesh = new Mesh();
         //Calculate positions.
         List<Vector3> vertices = new List<Vector3>();
         for (int x = 0; x < resolution; ++x)
         {
-            for(int z = 0; z < resolution; ++z)
-            { 
-                vertices.Add(new Vector3(x * ((float)sizeX / (float)resolution), 0f + PerlinNoise(x, z), z * ((float)sizeZ / (float)resolution)));
+            for (int z = 0; z < resolution; ++z)
+            {
+                vertices.Add(new Vector3(x * ((float)size / (float)resolution), 0f + RidgedPerlin(x, z), z * ((float)size / (float)resolution)));
             }
         }
 
@@ -111,9 +116,9 @@ public class TerrainMesh : MonoBehaviour
         List<int> indices = new List<int>();
         //Calculate indices for each polygon.
 
-        for(int x = 0; x < resolution - 1; ++x)
+        for (int x = 0; x < resolution - 1; ++x)
         {
-            for(int z = 0; z < resolution - 1; ++z)
+            for (int z = 0; z < resolution - 1; ++z)
             {
                 indices.Add((x * resolution) + z);
                 indices.Add((x * resolution) + z + resolution);
@@ -159,11 +164,13 @@ public class TerrainMesh : MonoBehaviour
         meshFilter.mesh = mesh;
     }
 
+   
+    /*..Getters and Setters..*/
 
-    public void Reset()
-    { 
-    }
+    public List<float> GetHeightMap() => heightMap;
+    public void UpdateHeightMap(List<float> values) => heightMap = values;
 
+    public void SetTerrainDimensions(int value) => size = value;
     public void SetResolution(int terrrainDimension) => resolution = terrrainDimension;
     public void SetAmplitude(float amp) => amplitude = amp;
     public void SetFrequency(float freq) => frequency = freq;
@@ -172,6 +179,7 @@ public class TerrainMesh : MonoBehaviour
     public void SetLacunarity(float lac) => lacunarity = lac;
     public void SetLoss(float los) => loss = los;
 
+    public int GetSize() => size;
     public int GetResolution() => resolution;
     public float GetAmplitude() => amplitude;
     public float GetFrequency() => frequency;
@@ -179,4 +187,5 @@ public class TerrainMesh : MonoBehaviour
     public float GetLoss() => loss;
     public float GetOffsetU() => offsetU;
     public float GetOffsetV() => offsetV;
+
 }

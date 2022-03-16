@@ -69,13 +69,11 @@ Shader "Unlit/TerrainShader"
 
             ControlPoint TessellationVertexProgram(Attributes vertex)
             {
-                ControlPoint cp; 
-
+                ControlPoint cp;
                 cp.position = vertex.position;
-                cp.normal = vertex.normal;
-                cp.uv     = vertex.uv;
-                cp.colour = vertex.colour;
-
+                cp.normal   = vertex.normal;
+                cp.uv       = vertex.uv;
+                cp.colour   = vertex.colour;
                 return cp;
             }
 
@@ -84,7 +82,7 @@ Shader "Unlit/TerrainShader"
             [UNITY_domain("tri")]
             [UNITY_outputcontrolpoints(3)]
             [UNITY_outputtopology("triangle_cw")]
-            [UNITY_partitioning("pow2")]
+            [UNITY_partitioning("fractional_odd")]
             [UNITY_patchconstantfunc("patchConstantFunction")]
             ControlPoint hull(InputPatch<ControlPoint, 3> patch, uint id : SV_OutputControlPointID)
             {

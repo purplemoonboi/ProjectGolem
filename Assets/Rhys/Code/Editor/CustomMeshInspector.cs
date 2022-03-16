@@ -9,6 +9,7 @@ public class CustomMeshInspector : Editor
 
     private TerrainMesh terrainMesh;
 
+
     static int maxSize = 256;
 
     private int resolution = 2;
@@ -18,7 +19,8 @@ public class CustomMeshInspector : Editor
     private float offsetV = 0f;
     private float lacunarity = 2f;
     private float loss = 0.5f;
-    private int octaves = 8;
+
+    private const int octaves = 8;
 
     // @brief Draw widgets to the scene view.
     private void OnSceneGUI()
@@ -117,5 +119,6 @@ public class CustomMeshInspector : Editor
             terrainMesh.BakeHeightMap();
         }
 
+   
     }
 }

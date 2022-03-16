@@ -162,7 +162,7 @@ Material:
     - _Glossiness: 1
     - _GlossyReflections: 0
     - _HeightTransition: 0
-    - _MaxTessDistance: 32
+    - _MaxTessDistance: 350
     - _Metallic: 1
     - _Metallic0: 0
     - _Metallic1: 0
@@ -183,7 +183,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
-    - _Tess: 32
+    - _Tess: 10.03
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
