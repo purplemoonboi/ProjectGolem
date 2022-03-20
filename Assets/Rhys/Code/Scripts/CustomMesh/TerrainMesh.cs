@@ -12,7 +12,8 @@ public class TerrainMesh : MonoBehaviour
     private MeshFilter meshFilter = null;
     [SerializeField]
     private Texture2D heightMapTexture;
-
+    [SerializeField]
+    private List<Vector3> vertices;
     //Mesh Data
     [SerializeField]
     private List<float> heightMap;
@@ -26,7 +27,8 @@ public class TerrainMesh : MonoBehaviour
     private float offsetV = 0f;
 
     private int resolution = 64;
-    private int size = 1;
+    private int size = 128;
+    private int scale = 100;
 
 
     //////////////////////////////////////////////////////
@@ -105,17 +107,19 @@ public class TerrainMesh : MonoBehaviour
             return;
         }
 
-        //Debug.Log("Reloading...");
+        Debug.Log("Reloading...");
 
         Mesh mesh = new Mesh();
         //Calculate positions.
-        List<Vector3> vertices = new List<Vector3>();
+        vertices = new List<Vector3>();
         float[] heightMapArray = heightMap.ToArray();
         for (int x = 0; x < resolution; ++x)
         {
             for (int z = 0; z < resolution; ++z)
             {
-                vertices.Add(new Vector3(x * ((float)size / (float)resolution), 0f + heightMap[(x * resolution) + z], z * ((float)size / (float)resolution)));
+                float nx = scale * ((float)x / (float)resolution);
+                float nz = scale * ((float)z / (float)resolution);
+                vertices.Add(new Vector3(nx, 0f + heightMap[(x * resolution) + z], nz));
             }
         }
 
@@ -259,7 +263,6 @@ public class TerrainMesh : MonoBehaviour
         meshRenderer = gameObject.AddComponent<MeshRenderer>();
         meshRenderer.sharedMaterial = new Material(Shader.Find("Universal Render Pipeline/Lit"));
         meshFilter = gameObject.AddComponent<MeshFilter>();
-
         heightMap.Clear();
 
         //Debug.Log("Resolution " + resolution);
@@ -273,8 +276,10 @@ public class TerrainMesh : MonoBehaviour
             for (int z = 0; z < resolution; ++z)
             {
                 float height = RidgedPerlin(x, z);
-          
-                vertices.Add(new Vector3(x * ((float)size / (float)resolution), 0f + height, z * ((float)size / (float)resolution)));
+                float nx = scale * ((float)x / (float)resolution);
+                float nz = scale * ((float)z / (float)resolution);
+                //Debug.Log("X " + nx + " Z " + nz);
+                vertices.Add(new Vector3(nx, 0f + height, nz));
                 heightMap.Add(height);
             }
         }
@@ -338,8 +343,12 @@ public class TerrainMesh : MonoBehaviour
     public List<float> GetHeightMap() => heightMap;
     public void UpdateHeightMap(List<float> values) => heightMap = values;
 
+    public void SetVertices(List<Vector3> values) => vertices = values;
+    public List<Vector3> GetVertices() => vertices;
+
     public void SetTerrainDimensions(int value) => size = value;
     public void SetResolution(int terrrainDimension) => resolution = terrrainDimension;
+    public void SetScale(int value) => scale = value;
     public void SetAmplitude(float amp) => amplitude = amp;
     public void SetFrequency(float freq) => frequency = freq;
     public void SetOffsetU(float oU) => offsetU = oU;
@@ -349,6 +358,7 @@ public class TerrainMesh : MonoBehaviour
 
     public int GetTerrainDimensions() => size;
     public int GetResolution() => resolution;
+    public int GetScale() => scale;
     public float GetAmplitude() => amplitude;
     public float GetFrequency() => frequency;
     public float GetLacunarity() => lacunarity;
@@ -382,7 +392,7 @@ public class TerrainMesh : MonoBehaviour
     [SerializeField]
     private int gravity;
     [SerializeField]
-    private int particleLifetime = 20;
+    private int particleLifetime = 90;
     [SerializeField]
     private const int waterVolume = 1;
     [SerializeField]
@@ -404,18 +414,18 @@ public class TerrainMesh : MonoBehaviour
     public void Initialise(int mapSize, bool reset)
     {
         if (reset || (randomNumGenerator == null))
-        { }
+        {
             randomNumGenerator = new System.Random(seed);
             currentSeed = seed;
-        
+        }
 
         //If the user has made a change to any of the attributes, re-bake weightings on erosion brush.
         if (neighbourErosionIndices == null || currentErosionRadius != erosionRadius || currentMapSize != mapSize)
-        { }
+        {
             InitialiseBrushIndices(mapSize, erosionRadius);
             currentErosionRadius = erosionRadius;
             currentMapSize = mapSize;
-        
+        }
     }
 
     public void Erode(float[] map, int mapSize, int numIterations = 1, bool resetSeed = false)
@@ -483,7 +493,7 @@ public class TerrainMesh : MonoBehaviour
                     // If moving uphill (deltaHeight > 0) try fill up to the current height, otherwise deposit a fraction of the excess sediment
                     float amountToDeposit = (deltaHeight > 0) ? Mathf.Min(deltaHeight, sediment) : (sediment - sedimentCapacity) * depositionFactor;
                     sediment -= amountToDeposit;
-                   // Debug.Log("Depositing..." + amountToDeposit);
+                    Debug.Log("Depositing..." + amountToDeposit);
 
                     // Add the sediment to the four nodes of the current cell using bilinear interpolation
                     // Deposition is not distributed over a radius (like erosion) so that it can fill small pits
@@ -512,6 +522,7 @@ public class TerrainMesh : MonoBehaviour
                         //Debug.Log("Eroding : " + deltaSediment);
 
                         map[nodeIndex] -= deltaSediment;
+                        Debug.Log("Eroded amount " + deltaSediment);
                         sediment += deltaSediment;
                     }
                 }

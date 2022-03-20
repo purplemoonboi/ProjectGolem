@@ -59,7 +59,17 @@ public class CustomMeshInspector : Editor
             terrainMesh.SetResolution(resolution);
             EditorUtility.SetDirty(terrainMesh);
         }
-       
+
+        EditorGUI.BeginChangeCheck();
+        int scale = terrainMesh.GetScale();
+        scale = EditorGUILayout.IntSlider("Terrain Scale", scale, 1, 1000);
+        if (EditorGUI.EndChangeCheck())
+        {
+            Undo.RecordObject(terrainMesh, "Terrain Scale");
+            terrainMesh.SetScale(scale);
+            EditorUtility.SetDirty(terrainMesh);
+        }
+
         EditorGUI.BeginChangeCheck();
         amplitude = terrainMesh.GetAmplitude();
         amplitude = EditorGUILayout.Slider("Amplitude", amplitude, 1.0f, 1000.0f);
@@ -159,7 +169,7 @@ public class CustomMeshInspector : Editor
       
         EditorGUI.BeginChangeCheck();
         erosionRadius = terrainMesh.GetErosionRadius();
-        erosionRadius = EditorGUILayout.IntSlider("Erosion Radius", erosionRadius, 1, resolution - 1);
+        erosionRadius = EditorGUILayout.IntSlider("Erosion Radius", erosionRadius, 1, 32);
         if (EditorGUI.EndChangeCheck())
         {
             Undo.RecordObject(terrainMesh, "Erosion Radius");
@@ -179,7 +189,7 @@ public class CustomMeshInspector : Editor
       
         EditorGUI.BeginChangeCheck();
         sedimentCapacityFactor = terrainMesh.GetSedimentCapacityFactor();
-        sedimentCapacityFactor = EditorGUILayout.Slider("Sediment Capacity Factor", sedimentCapacityFactor, 1, 10);
+        sedimentCapacityFactor = EditorGUILayout.Slider("Sediment Capacity Factor", sedimentCapacityFactor, 1, 32);
         if (EditorGUI.EndChangeCheck())
         {
             Undo.RecordObject(terrainMesh, "Sediment Capacity Factor");
@@ -199,7 +209,7 @@ public class CustomMeshInspector : Editor
       
         EditorGUI.BeginChangeCheck();
         erosionFactor = terrainMesh.GetErosionFactor();
-        erosionFactor = EditorGUILayout.Slider("Erosion Factor", erosionFactor, 0.01f, 0.9f);
+        erosionFactor = EditorGUILayout.Slider("Erosion Factor", erosionFactor, 0.01f, 10f);
         if (EditorGUI.EndChangeCheck())
         {
             Undo.RecordObject(terrainMesh, "Erosion Factor");
@@ -209,7 +219,7 @@ public class CustomMeshInspector : Editor
       
         EditorGUI.BeginChangeCheck();
         depositionFactor = terrainMesh.GetDepositionFactor();
-        depositionFactor = EditorGUILayout.Slider("Deposition Factor", depositionFactor, 0.01f, 0.9f);
+        depositionFactor = EditorGUILayout.Slider("Deposition Factor", depositionFactor, 0.01f, 1f);
         if (EditorGUI.EndChangeCheck())
         {
             Undo.RecordObject(terrainMesh, "Deposition Factor");
@@ -239,11 +249,11 @@ public class CustomMeshInspector : Editor
       
         EditorGUI.BeginChangeCheck();
         particleLifetime = terrainMesh.GetParicleLifetime();
-        particleLifetime = EditorGUILayout.IntSlider("Particle Lifetime", particleLifetime, 2, 10);
+        particleLifetime = EditorGUILayout.IntSlider("Particle Lifetime", particleLifetime, 2, 100);
         if (EditorGUI.EndChangeCheck())
         {
             Undo.RecordObject(terrainMesh, "Particle Lifetime");
-            terrainMesh.SetGravity(particleLifetime);
+            terrainMesh.SetParicleLifetime(particleLifetime);
             EditorUtility.SetDirty(terrainMesh);
         }
 
