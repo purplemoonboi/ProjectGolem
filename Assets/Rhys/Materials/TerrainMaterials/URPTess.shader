@@ -6,11 +6,13 @@ Shader "Custom/URPTessellation"
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
+        _MinTessDistance ("Min Tessellation Distance", Range(2, 1000)) = 5.0
+        _MaxTessDistance("Max Tessellation Distance", Range(2, 1000)) = 5.0
     }
     SubShader
     {
-        Tags { "RenderType" = "Opaque" "RenderPipeline" = "UniversalRenderPipeline" }
-        LOD 200
+        Tags { "RenderPipeline" = "UniversalRenderPipeline" }
+        LOD 300
 
         pass
         {
@@ -29,9 +31,9 @@ Shader "Custom/URPTessellation"
             #pragma hull hull
             #pragma domain domain
             
-            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
-            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
-            #pragma multi_compile _ _SHADOWS_SOFT
+            //#pragma multi_compile _ _MAIN_LIGHT_SHADOWS
+            //#pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
+            //#pragma multi_compile _ _SHADOWS_SOFT
 
 
              struct ControlPoint
@@ -86,11 +88,11 @@ Shader "Custom/URPTessellation"
 
             /*..Hull shader stage..*/
 
-            [UNITY_domain("tri")]
-            [UNITY_outputcontrolpoints(3)]
-            [UNITY_outputtopology("triangle_cw")]
-            [UNITY_partitioning("pow2")]
-            [UNITY_patchconstantfunc("patchConstantFunction")]
+            [domain("tri")]
+            [outputcontrolpoints(3)]
+            [outputtopology("triangle_cw")]
+            [partitioning("pow2")]
+            [patchconstantfunc("patchConstantFunction")]
             ControlPoint hull(InputPatch<ControlPoint, 3> patch, uint id : SV_OutputControlPointID)
             {
                 return patch[id];
@@ -127,15 +129,14 @@ Shader "Custom/URPTessellation"
             Varyings vert(Attributes input)
             {
                 Varyings output;
-                VertexPositionsInputs posIn = GetVertexPositionInputs(input.position.xyz);
-                output.position = posIn.positionsWS;
+                output.position = TransformObjectToHClip(input.position.xyz);
                 output.normal = input.normal;
                 output.uv = input.uv;
                 output.colour = input.colour;
                 return output;
             }
 
-            [UNITY_domain("tri")]
+            [domain("tri")]
             Varyings domain(TessellationFactors factors, OutputPatch<ControlPoint, 3> patch, float3 barycentricCoordinates : SV_DomainLocation)
             {
                 Attributes v;
@@ -170,7 +171,7 @@ Shader "Custom/URPTessellation"
 
              half4 frag(Varyings IN) : SV_Target
              {
-                 return IN.colour;
+                 return half4(1,1,1,1);
              }
 
             ENDHLSL
