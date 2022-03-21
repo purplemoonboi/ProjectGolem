@@ -226,6 +226,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1426611872}
     m_Modifications:
+    - target: {fileID: 1066987728554693977, guid: e032bde15d59847429f1195ba6c3b3cf, type: 3}
+      propertyPath: recruited
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5804256943669175635, guid: e032bde15d59847429f1195ba6c3b3cf, type: 3}
       propertyPath: m_Name
       value: FriendlyFighter (1)
@@ -414,6 +418,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5689751681592766685, guid: 0adc5e56a03355c4495a6feca6d1ecbc, type: 3}
+      propertyPath: recruited
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0adc5e56a03355c4495a6feca6d1ecbc, type: 3}
 --- !u!4 &431568815 stripped
@@ -428,6 +436,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1426611872}
     m_Modifications:
+    - target: {fileID: 1066987728554693977, guid: e032bde15d59847429f1195ba6c3b3cf, type: 3}
+      propertyPath: recruited
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5804256943669175635, guid: e032bde15d59847429f1195ba6c3b3cf, type: 3}
       propertyPath: m_Name
       value: FriendlyFighter (2)
@@ -681,6 +693,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Friendly
       objectReference: {fileID: 0}
+    - target: {fileID: 9095293728527563150, guid: 4e3b23c5621e4a846b8e191997baa893, type: 3}
+      propertyPath: recruited
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e3b23c5621e4a846b8e191997baa893, type: 3}
 --- !u!4 &994138695 stripped
@@ -754,6 +770,9 @@ MonoBehaviour:
   spawnerSO: {fileID: 11400000, guid: 04451c25338ddc942bf811d95e8ecc96, type: 2}
   enemyPrefab: {fileID: 753107148837426513, guid: 43a5f07154c5abf4db58ab5f58d39f6c, type: 3}
   spawners: []
+  enemies: []
+  spawnCountPerWave: 000000000000000000000000
+  enemyLimitsPerWave: 000000000000000000000000
 --- !u!4 &1119397217
 Transform:
   m_ObjectHideFlags: 0
@@ -1068,6 +1087,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Friendly (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9095293728527563150, guid: 4e3b23c5621e4a846b8e191997baa893, type: 3}
+      propertyPath: recruited
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e3b23c5621e4a846b8e191997baa893, type: 3}
 --- !u!4 &1265810779 stripped
@@ -1129,6 +1152,10 @@ PrefabInstance:
     - target: {fileID: 2340348066541062532, guid: 4e3b23c5621e4a846b8e191997baa893, type: 3}
       propertyPath: m_Name
       value: Friendly (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095293728527563150, guid: 4e3b23c5621e4a846b8e191997baa893, type: 3}
+      propertyPath: recruited
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e3b23c5621e4a846b8e191997baa893, type: 3}
@@ -1234,6 +1261,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Friendly (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 9095293728527563150, guid: 4e3b23c5621e4a846b8e191997baa893, type: 3}
+      propertyPath: recruited
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e3b23c5621e4a846b8e191997baa893, type: 3}
 --- !u!4 &1709452902 stripped
@@ -1298,6 +1329,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1203692957221142743, guid: 0adc5e56a03355c4495a6feca6d1ecbc, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5689751681592766685, guid: 0adc5e56a03355c4495a6feca6d1ecbc, type: 3}
+      propertyPath: recruited
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1366,6 +1401,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5689751681592766685, guid: 0adc5e56a03355c4495a6feca6d1ecbc, type: 3}
+      propertyPath: recruited
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0adc5e56a03355c4495a6feca6d1ecbc, type: 3}
 --- !u!4 &1910711227 stripped
@@ -1380,6 +1419,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1426611872}
     m_Modifications:
+    - target: {fileID: 1066987728554693977, guid: e032bde15d59847429f1195ba6c3b3cf, type: 3}
+      propertyPath: recruited
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5804256943669175635, guid: e032bde15d59847429f1195ba6c3b3cf, type: 3}
       propertyPath: m_Name
       value: FriendlyFighter (3)
@@ -1979,6 +2022,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5689751681592766685, guid: 0adc5e56a03355c4495a6feca6d1ecbc, type: 3}
+      propertyPath: recruited
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0adc5e56a03355c4495a6feca6d1ecbc, type: 3}
 --- !u!4 &299063229425810026 stripped
@@ -2149,6 +2196,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1426611872}
     m_Modifications:
+    - target: {fileID: 1066987728554693977, guid: e032bde15d59847429f1195ba6c3b3cf, type: 3}
+      propertyPath: recruited
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5804256943669175635, guid: e032bde15d59847429f1195ba6c3b3cf, type: 3}
       propertyPath: m_Name
       value: FriendlyFighter

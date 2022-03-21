@@ -5,7 +5,7 @@ using TheKiwiCoder;
 
 public class AttackFriendlyTarget : ActionNode
 {
-    public FriendlyController friendlyTarget;
+    public FriendlyController friendlyTarget = null;
 
     protected override void OnStart()
     {

@@ -7,22 +7,17 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     private float elapsedSpawnTime; //Elapsed time since last enemy was spawned
-    private float elapsedDespawnTime;   //Elapsed time since last check was performed if enemies should despawn
 
     private EnemySpawnerManager spawnManager;
     private GameObject enemyPrefab;
 
-    [SerializeField]
-    private int spawnedEnemies = 0;
-    [SerializeField]
-    private bool shouldSpawn = false;
-    [SerializeField]
-    private TimeController dayNightCycle;
+    [SerializeField] private int spawnedEnemies = 0;
+    [SerializeField] private bool shouldSpawn = false;
+    [SerializeField] private TimeController dayNightCycle;
 
     void Start()
     {
         elapsedSpawnTime = 0.0f;
-        elapsedDespawnTime = 0.0f;
 
         spawnManager = FindObjectOfType<EnemySpawnerManager>();
     }
@@ -51,8 +46,6 @@ public class EnemySpawner : MonoBehaviour
             {
                 SpawnOnTimer();
             }
-
-            //CheckActiveWave();
         }
     }
 
@@ -70,7 +63,7 @@ public class EnemySpawner : MonoBehaviour
                     break;
 
                 SpawnEnemy();
-                spawnedEnemies += spawnManager.GetSpawnCount();
+                spawnedEnemies++;
             }
         }
     }
@@ -90,4 +83,6 @@ public class EnemySpawner : MonoBehaviour
     }
 
     public void SetEnemyPrefab(GameObject enemy) { enemyPrefab = enemy; }
+
+    public void SetSpawnedEnemies(int enemies) { spawnedEnemies = enemies; }
 }

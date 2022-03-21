@@ -39,7 +39,6 @@ public class FriendlyController : NpcController
 
     void Start()
     {
-        recruited = false;
         SetupCharacter(friendlyData.MAX_HEALTH, friendlyData.power);
         typeText.GetComponent<Text>().text = friendlyType.ToString();
 
