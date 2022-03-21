@@ -5,7 +5,7 @@ using TheKiwiCoder;
 
 public class AttackEnemyTarget : ActionNode
 {
-    public EnemyController enemyTarget;
+    public EnemyController enemyTarget = null;
 
     protected override void OnStart()
     {

@@ -40,11 +40,14 @@ public class EnemySpawner : MonoBehaviour
             shouldSpawn = false;
         }
 
-        if (spawnManager.GetWavesCompleted() < spawnManager.GetMaxWaves())
+        if (spawnManager.GetNightsCompleted() < spawnManager.GetMaxNights())
         {
-            if (shouldSpawn)
+            if (spawnManager.GetWavesCompleted() < spawnManager.GetMaxWaves())
             {
-                SpawnOnTimer();
+                if (shouldSpawn)
+                {
+                    SpawnOnTimer();
+                }
             }
         }
     }
