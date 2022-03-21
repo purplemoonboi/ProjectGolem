@@ -50,10 +50,13 @@ public class CharacterSplineController : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             splineOffset += (transform.right + new Vector3(1,0,0)) * speed * strafeReductionPercentage * Time.deltaTime;
+            transform.eulerAngles += new Vector3(0f, 5f * Time.deltaTime, 0f);
+
         }
         if (Input.GetKey(KeyCode.A))
         {
             splineOffset += (transform.right + new Vector3(1, 0, 0)) * -speed * strafeReductionPercentage * Time.deltaTime;
+            transform.eulerAngles -= new Vector3(0f, 5f * Time.deltaTime, 0f);
         }
 
         if (Input.GetKey(KeyCode.W))
