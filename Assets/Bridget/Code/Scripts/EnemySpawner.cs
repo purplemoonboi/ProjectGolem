@@ -6,26 +6,20 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField]
-    private float spawnTime;    //Time in seconds between enemy spawns
-    private float elapsedTime;
-    [SerializeField]
-    private int spawnCount;     //The number of enemies to spawn in one go
-    [SerializeField]
-    private int enemyLimit;     //The maximum number of enemies to have in the scene at once
-    [SerializeField]
+    private float elapsedSpawnTime; //Elapsed time since last enemy was spawned
+
+    private EnemySpawnerManager spawnManager;
     private GameObject enemyPrefab;
-    [SerializeField]
-    private List<GameObject> enemies;
-    [SerializeField]
-    private bool shouldSpawn = false;
-    [SerializeField]
-    private TimeController dayNightCycle;
+
+    [SerializeField] private int spawnedEnemies = 0;
+    [SerializeField] private bool shouldSpawn = false;
+    [SerializeField] private TimeController dayNightCycle;
 
     void Start()
     {
-        elapsedTime = 0.0f;
-     
+        elapsedSpawnTime = 0.0f;
+
+        spawnManager = FindObjectOfType<EnemySpawnerManager>();
     }
 
     void Update()
@@ -46,30 +40,39 @@ public class EnemySpawner : MonoBehaviour
             shouldSpawn = false;
         }
 
-        if (shouldSpawn)
+        if (spawnManager.GetNightsCompleted() < spawnManager.GetMaxNights())
         {
-            SpawnOnTimer();
+            if (spawnManager.GetWavesCompleted() < spawnManager.GetMaxWaves())
+            {
+                if (shouldSpawn)
+                {
+                    SpawnOnTimer();
+                }
+            }
         }
     }
 
     private void SpawnOnTimer()
     {
-        elapsedTime += Time.deltaTime;
+        elapsedSpawnTime += Time.deltaTime;
 
-        if(elapsedTime > spawnTime)
+        if(elapsedSpawnTime > spawnManager.GetSpawnTime())
         {
-            elapsedTime = 0.0f;
+            elapsedSpawnTime = 0.0f;
 
-            for (int i = 0; i < spawnCount; i++)
+            for (int i = 0; i < spawnManager.GetSpawnCount(); i++)
             {
-                if (enemies.Count >= enemyLimit)
+                if (spawnedEnemies >= spawnManager.GetEnemyLimit())
                     break;
 
                 SpawnEnemy();
+                spawnedEnemies++;
             }
         }
     }
 
+    //@brief
+    //Spawns a single instance of an enemy at the spawner's world position.
     private void SpawnEnemy()
     {
         //Sets enemies to spawn on top of the ground and a random distance from the spawner within a range of 5 units
@@ -78,9 +81,11 @@ public class EnemySpawner : MonoBehaviour
         GameObject enemy = Instantiate(enemyPrefab, spawnPoint, Quaternion.identity);
 
         enemy.transform.Rotate(new Vector3(0.0f, 1.0f, 0.0f), Random.Range(0.0f, 359.9f));
-        enemy.name = "Enemy " + (enemies.Count + 1);
-        //enemy.GetComponent<EnemyMovement>().SetID(enemies.Count + 1);
 
-        enemies.Add(enemy);
+        spawnManager.AddSpawnedEnemy(enemy);
     }
+
+    public void SetEnemyPrefab(GameObject enemy) { enemyPrefab = enemy; }
+
+    public void SetSpawnedEnemies(int enemies) { spawnedEnemies = enemies; }
 }
