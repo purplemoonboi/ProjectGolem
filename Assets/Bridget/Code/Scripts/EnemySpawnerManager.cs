@@ -9,6 +9,8 @@ public class EnemySpawnerManager : MonoBehaviour
     private float elapsedWaveTime;  //Elapsed time since last check if the next wave should begin
     private float elapsedClockTime;  //Elapsed time since we last checked if it's day or night
 
+    [SerializeField] private AudioSource exploreMusic;
+    [SerializeField] private AudioSource combatMusic;
     [SerializeField] private bool isNighttime = false;   //To check if the game is currently in day or night mode
     [SerializeField] private TimeController dayNightCycle;
     [SerializeField] private EnemySpawnerScriptableObject spawnerSO;
@@ -21,7 +23,7 @@ public class EnemySpawnerManager : MonoBehaviour
 
     void Start()
     {
-        SetupTimescales();
+        //SetupTimescales();
         SetupSpawners();
         SetupEnemyCounts();
 
@@ -32,9 +34,30 @@ public class EnemySpawnerManager : MonoBehaviour
     void Update()
     {
         CheckTime();
+        CheckLevelMusic();
 
         if(enemies.Count > 0)
         CheckSpawners();
+    }
+
+    private void CheckLevelMusic()
+    {
+        if (isNighttime)
+        {
+            if (exploreMusic.isPlaying)
+                exploreMusic.Stop();
+
+            if (!combatMusic.isPlaying)
+                combatMusic.Play();
+        }
+        else
+        {
+            if (combatMusic.isPlaying)
+                combatMusic.Stop();
+
+            if (!exploreMusic.isPlaying)
+                exploreMusic.Play();
+        }
     }
 
     private void SetupSpawners()
@@ -66,7 +89,8 @@ public class EnemySpawnerManager : MonoBehaviour
     private void SetupTimescales()
     {
         TimeSpan startTime = dayNightCycle.GetCurrentTime().TimeOfDay; //The time at launch
-    
+        Debug.Log("(START) Sunset: " + dayNightCycle.GetSunset().ToString() + " Sunrise: " + dayNightCycle.GetSunrise().ToString() + " Current Time" + startTime.ToString());
+
         if (!(startTime > dayNightCycle.GetSunrise() && startTime < dayNightCycle.GetSunset()))
             isNighttime = true;
         else
