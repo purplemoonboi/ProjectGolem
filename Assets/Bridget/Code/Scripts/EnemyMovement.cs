@@ -35,7 +35,7 @@ public class EnemyMovement : MonoBehaviour
     private float damageTaken;
 
     [SerializeField]
-    private EnemyTarget target;
+    private TurretStats target;
 
     private NavMeshAgent agent;
 
@@ -45,7 +45,7 @@ public class EnemyMovement : MonoBehaviour
     private int power;  //How much damage the enemy can do in one hit
 
     [SerializeField]
-    private List<EnemyTarget> targetsInProximity;
+    private List<TurretStats> targetsInProximity;
     [SerializeField]
     private bool shouldUpdateTarget;
 
@@ -67,7 +67,7 @@ public class EnemyMovement : MonoBehaviour
         power = 10;
 
         //Initialise list.
-        targetsInProximity = new List<EnemyTarget>();
+        targetsInProximity = new List<TurretStats>();
         shouldUpdateTarget = true;
         reflectDirection   = false;
         target             = null;
@@ -142,12 +142,12 @@ public class EnemyMovement : MonoBehaviour
     {
         if(other.tag == "DefenceTower")
         {
-            EnemyTarget targetReference = other.gameObject.GetComponent<EnemyTarget>();
+            TurretStats targetReference = other.gameObject.GetComponent<TurretStats>();
             if(targetReference.IsActivated())
             {
                 if (shouldUpdateTarget)
                 {
-                    target = other.GetComponent<EnemyTarget>();
+                    target = other.GetComponent<TurretStats>();
                     shouldUpdateTarget = false;
                 }
             }

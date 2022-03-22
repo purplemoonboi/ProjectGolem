@@ -12,7 +12,7 @@ public class AnimateBuildingSpawn : MonoBehaviour
     private bool spawning;
 
     [SerializeField]
-    private EnemyTarget tower;
+    private TurretStats tower;
 
     void Start()
     {

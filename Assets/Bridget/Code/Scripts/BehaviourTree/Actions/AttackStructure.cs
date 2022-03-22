@@ -7,13 +7,13 @@ public class AttackStructure : ActionNode
 {
     //public float distanceToTarget;
 
-    public EnemyTarget structure;
+    public TurretStats structure;
 
     protected override void OnStart()
     {
         if(blackboard.targetObj != null)
         {
-            structure = blackboard.targetObj.GetComponent<EnemyTarget>();
+            structure = blackboard.targetObj.GetComponent<TurretStats>();
         }
     }
 
