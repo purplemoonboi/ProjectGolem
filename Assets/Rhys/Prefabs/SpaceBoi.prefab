@@ -441,8 +441,8 @@ MonoBehaviour:
   speed: 240
   distanceAlongSpline: 0
   splineOffset: {x: 0.1, y: 0, z: 0}
-  reductionPercentage: 0
-  strafeReductionPercentage: 0
+  reductionPercentage: 0.001
+  strafeReductionPercentage: 0.001
 --- !u!1 &7034672831708881529
 GameObject:
   m_ObjectHideFlags: 0

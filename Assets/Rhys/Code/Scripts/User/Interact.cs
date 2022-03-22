@@ -83,6 +83,10 @@ public class Interact : MonoBehaviour
             {
                 HandleResourcePickUp();
             }
+            else if (otherTag == friendlyTag)
+            {
+                interactable.gameObject.GetComponent<FriendlyController>().SetRecruited(true);
+            }
 
             //At this point we have successfully spawned a building.
             //Force object ref null and input false.
@@ -102,11 +106,6 @@ public class Interact : MonoBehaviour
         {
             interactable = other.gameObject;
             isInteractable = true;
-        }
-
-        if(otherTag == friendlyTag)
-        {
-            other.gameObject.GetComponent<FriendlyController>().SetRecruited(true);
         }
 
         if(otherTag == endLevelTag)
