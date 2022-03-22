@@ -17,6 +17,7 @@ TagManager:
   - TurretAzimuth
   - ActivatedTurretTransform
   - EndLevel
+  - PlayerWalkable
   layers:
   - Default
   - TransparentFX
