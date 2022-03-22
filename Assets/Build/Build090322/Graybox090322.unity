@@ -2544,6 +2544,67 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 138251320}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &144083332
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 694024494}
+    m_Modifications:
+    - target: {fileID: 3770663317554667776, guid: 35c171bf095a582438b1f1511fdd4162, type: 3}
+      propertyPath: dayNightCycle
+      value: 
+      objectReference: {fileID: 367653594}
+    - target: {fileID: 3770663317554667777, guid: 35c171bf095a582438b1f1511fdd4162, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3770663317554667777, guid: 35c171bf095a582438b1f1511fdd4162, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3770663317554667777, guid: 35c171bf095a582438b1f1511fdd4162, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3770663317554667777, guid: 35c171bf095a582438b1f1511fdd4162, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3770663317554667777, guid: 35c171bf095a582438b1f1511fdd4162, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3770663317554667777, guid: 35c171bf095a582438b1f1511fdd4162, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3770663317554667777, guid: 35c171bf095a582438b1f1511fdd4162, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3770663317554667777, guid: 35c171bf095a582438b1f1511fdd4162, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3770663317554667777, guid: 35c171bf095a582438b1f1511fdd4162, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3770663317554667777, guid: 35c171bf095a582438b1f1511fdd4162, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3770663317554667777, guid: 35c171bf095a582438b1f1511fdd4162, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3770663317554667839, guid: 35c171bf095a582438b1f1511fdd4162, type: 3}
+      propertyPath: m_Name
+      value: EnemySpawnerManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 35c171bf095a582438b1f1511fdd4162, type: 3}
 --- !u!1 &147663655
 GameObject:
   m_ObjectHideFlags: 0
@@ -9455,6 +9516,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 602572582}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &603822963 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2982250247250637450, guid: fbbdb6776ab8b14469d495121eee9c8c, type: 3}
+  m_PrefabInstance: {fileID: 1603374270}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &605817241
 GameObject:
   m_ObjectHideFlags: 0
@@ -10983,6 +11049,8 @@ MonoBehaviour:
   splineOffset: {x: 0, y: 0, z: 0}
   reductionPercentage: 0
   strafeReductionPercentage: 0
+  lookAt: {x: 0, y: 0, z: 0}
+  previousLook: {x: 0, y: 0, z: 0}
 --- !u!4 &678321425
 Transform:
   m_ObjectHideFlags: 0
@@ -11122,6 +11190,7 @@ Transform:
   m_Children:
   - {fileID: 2133220613}
   - {fileID: 367653593}
+  - {fileID: 821046311}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13711,6 +13780,16 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 815391885}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &821046311 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3770663317554667777, guid: 35c171bf095a582438b1f1511fdd4162, type: 3}
+  m_PrefabInstance: {fileID: 144083332}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &822412164 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9203979307843856395, guid: fbbdb6776ab8b14469d495121eee9c8c, type: 3}
+  m_PrefabInstance: {fileID: 1603374270}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &824058222
 GameObject:
   m_ObjectHideFlags: 0
@@ -26585,12 +26664,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 165237578}
     - target: {fileID: 7940222754384790441, guid: fbbdb6776ab8b14469d495121eee9c8c, type: 3}
+      propertyPath: rearLook
+      value: 
+      objectReference: {fileID: 603822963}
+    - target: {fileID: 7940222754384790441, guid: fbbdb6776ab8b14469d495121eee9c8c, type: 3}
+      propertyPath: forwardLook
+      value: 
+      objectReference: {fileID: 822412164}
+    - target: {fileID: 7940222754384790441, guid: fbbdb6776ab8b14469d495121eee9c8c, type: 3}
       propertyPath: reductionPercentage
       value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: 7940222754384790441, guid: fbbdb6776ab8b14469d495121eee9c8c, type: 3}
       propertyPath: strafeReductionPercentage
-      value: 0.001
+      value: 0.05
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbbdb6776ab8b14469d495121eee9c8c, type: 3}

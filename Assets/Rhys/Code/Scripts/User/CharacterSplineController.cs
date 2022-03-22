@@ -24,11 +24,20 @@ public class CharacterSplineController : MonoBehaviour
     [Range(0.001f, 1f)]
     private float strafeReductionPercentage;
 
+    [SerializeField]
+    private Vector3 lookAt;
+    [SerializeField]
+    private Vector3 previousLook;
+    [SerializeField]
+    private Transform lookAtInteractable;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         distanceAlongSpline = 0.0f;
+        previousLook = transform.position + transform.forward;
+        lookAt = (spline.GetDirection(0f)).normalized;
     }
 
     // Update is called once per frame
@@ -72,16 +81,17 @@ public class CharacterSplineController : MonoBehaviour
         // position = spline.GetPointOnSpline(distanceAlongSpline) + splineOffset;
         //
         // transform.position = position;  
+        lookAt = previousLook;
 
-
-        Vector3 lookAt = transform.forward;
         if (Input.GetKey(KeyCode.W))
         {
             distanceAlongSpline += speed * reductionPercentage * Time.deltaTime;
+            lookAt = (spline.GetDirection(distanceAlongSpline)).normalized;
         }
         if (Input.GetKey(KeyCode.S))
         {
             distanceAlongSpline -= speed * reductionPercentage * Time.deltaTime;
+            lookAt = (spline.GetDirection(distanceAlongSpline)).normalized;
         }
 
         Vector3 splinePosition = spline.GetPointOnSpline(distanceAlongSpline);
@@ -89,16 +99,19 @@ public class CharacterSplineController : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             splineOffset += transform.right * -speed * strafeReductionPercentage * Time.deltaTime;
+            lookAt = (-transform.right).normalized;
         }
         if (Input.GetKey(KeyCode.D))
         {
             splineOffset += transform.right * speed * strafeReductionPercentage * Time.deltaTime;
+            lookAt = (transform.right).normalized;
         }
 
-        Vector3 lookAtDirection = (splineOffset - splinePosition).normalized;
-        lookAt = spline.GetDirection(distanceAlongSpline) + lookAtDirection;
-        transform.LookAt(lookAt);
+        Quaternion rotGoal = Quaternion.LookRotation(lookAt);
+        Camera.main.transform.rotation = Quaternion.Slerp(Camera.main.transform.rotation, rotGoal, 0.5f * Time.deltaTime);
+
         transform.position = splinePosition + splineOffset;
+        previousLook = lookAt;
     }
 
 }
