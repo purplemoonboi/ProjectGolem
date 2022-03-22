@@ -24,7 +24,11 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E))
+
+        if (spawnManager == null)
+            return;
+
+        if (Input.GetKeyDown(KeyCode.E))
         {
             shouldSpawn = (shouldSpawn == false) ? true : false;
         }
