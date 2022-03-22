@@ -44,35 +44,61 @@ public class CharacterSplineController : MonoBehaviour
 
     private void HandleInput()
     {
-        Vector3 position = transform.position;
+        //Fallback code.
+        // Vector3 position = transform.position;
+        //
+        // //Move whole curve left and right.
+        // if (Input.GetKey(KeyCode.D))
+        // {
+        //     splineOffset += (transform.right + new Vector3(1,0,0)) * speed * strafeReductionPercentage * Time.deltaTime;
+        //
+        // }
+        // if (Input.GetKey(KeyCode.A))
+        // {
+        //     splineOffset += (transform.right + new Vector3(1, 0, 0)) * -speed * strafeReductionPercentage * Time.deltaTime;
+        // }
+        //
+        // if (Input.GetKey(KeyCode.W))
+        // {
+        //     distanceAlongSpline += ((speed * reductionPercentage) * Time.deltaTime);
+        // }
+        // if (Input.GetKey(KeyCode.S))
+        // {
+        //     distanceAlongSpline -= ((speed * reductionPercentage) * Time.deltaTime);
+        // }
+        //
+        // transform.LookAt(transform.position + spline.GetDirection(distanceAlongSpline));
+        //
+        // position = spline.GetPointOnSpline(distanceAlongSpline) + splineOffset;
+        //
+        // transform.position = position;  
 
-        //Move whole curve left and right.
-        if (Input.GetKey(KeyCode.D))
-        {
-            splineOffset += (transform.right + new Vector3(1,0,0)) * speed * strafeReductionPercentage * Time.deltaTime;
-            transform.eulerAngles += new Vector3(0f, 5f * Time.deltaTime, 0f);
 
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            splineOffset += (transform.right + new Vector3(1, 0, 0)) * -speed * strafeReductionPercentage * Time.deltaTime;
-            transform.eulerAngles -= new Vector3(0f, 5f * Time.deltaTime, 0f);
-        }
-
+        Vector3 lookAt = transform.forward;
         if (Input.GetKey(KeyCode.W))
         {
-            distanceAlongSpline += ((speed * reductionPercentage) * Time.deltaTime);
+            distanceAlongSpline += speed * reductionPercentage * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.S))
         {
-            distanceAlongSpline -= ((speed * reductionPercentage) * Time.deltaTime);
+            distanceAlongSpline -= speed * reductionPercentage * Time.deltaTime;
         }
 
-        transform.LookAt(transform.position + spline.GetDirection(distanceAlongSpline));
+        Vector3 splinePosition = spline.GetPointOnSpline(distanceAlongSpline);
 
-        position = spline.GetPointOnSpline(distanceAlongSpline) + splineOffset;
+        if (Input.GetKey(KeyCode.A))
+        {
+            splineOffset += transform.right * -speed * strafeReductionPercentage * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            splineOffset += transform.right * speed * strafeReductionPercentage * Time.deltaTime;
+        }
 
-        transform.position = position;  
+        Vector3 lookAtDirection = (splineOffset - splinePosition).normalized;
+        lookAt = spline.GetDirection(distanceAlongSpline) + lookAtDirection;
+        transform.LookAt(lookAt);
+        transform.position = splinePosition + splineOffset;
     }
 
 }
