@@ -400,7 +400,7 @@ GameObject:
   - component: {fileID: 6162227151265975890}
   - component: {fileID: 7940222754384790441}
   m_Layer: 0
-  m_Name: Character
+  m_Name: SpaceBoi
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
