@@ -18,7 +18,7 @@ public class CustomMeshInspector : Editor
     private float offsetU = 0f;
     private float offsetV = 0f;
     private float lacunarity = 2f;
-    private float loss = 0.5f;
+    private float persistence = 0.5f;
 
     private const int octaves = 8;
 
@@ -91,12 +91,12 @@ public class CustomMeshInspector : Editor
         }
        
         EditorGUI.BeginChangeCheck();
-        loss = terrainMesh.GetLoss();
-        loss = EditorGUILayout.Slider("Loss", loss, 0.001f, 0.99f);
+        persistence = terrainMesh.GetPersistence();
+        persistence = EditorGUILayout.Slider("Persistence", persistence, 0.001f, 0.99f);
         if (EditorGUI.EndChangeCheck())
         {
-            Undo.RecordObject(terrainMesh, "Loss");
-            terrainMesh.SetLoss(loss);
+            Undo.RecordObject(terrainMesh, "Persistence");
+            terrainMesh.SetPersistence(persistence);
             EditorUtility.SetDirty(terrainMesh);
         }
        
@@ -148,6 +148,14 @@ public class CustomMeshInspector : Editor
             terrainMesh.ReloadMesh();
             EditorUtility.SetDirty(terrainMesh);
         }
+
+        if (GUILayout.Button("Invert"))
+        {
+            Undo.RecordObject(terrainMesh, "Invert");
+            terrainMesh.Invert();
+            EditorUtility.SetDirty(terrainMesh);
+        }
+
 
         GUILayout.Space(4f);
 

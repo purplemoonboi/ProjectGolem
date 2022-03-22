@@ -35,8 +35,6 @@ public class TerrainMesh : MonoBehaviour
     //BASE TERRAIN CODE
     //////////////////////////////////////////////////////
 
-
-
     public void BakeHeightMap()
     {
         heightMapTexture = new Texture2D(512, 512, TextureFormat.RGB24, true);
@@ -78,6 +76,9 @@ public class TerrainMesh : MonoBehaviour
             f *= lacunarity;
         }
 
+        //h = Mathf.Abs(h);
+        //h *= 1;
+
         return h;
     }
 
@@ -95,7 +96,6 @@ public class TerrainMesh : MonoBehaviour
             f *= lacunarity;
         }
 
-
         return h;
     }
 
@@ -112,7 +112,6 @@ public class TerrainMesh : MonoBehaviour
         Mesh mesh = new Mesh();
         //Calculate positions.
         vertices = new List<Vector3>();
-        float[] heightMapArray = heightMap.ToArray();
         for (int x = 0; x < resolution; ++x)
         {
             for (int z = 0; z < resolution; ++z)
@@ -157,11 +156,8 @@ public class TerrainMesh : MonoBehaviour
 
         mesh.normals = normals.ToArray();
         mesh.RecalculateNormals();
-
-
         //Calculate texture coordinates.
         List<Vector2> uv = new List<Vector2>();
-
         for (int x = 0; x < resolution; ++x)
         {
             for (int z = 0; z < resolution; ++z)
@@ -169,9 +165,7 @@ public class TerrainMesh : MonoBehaviour
                 uv.Add(new Vector2((float)x / (float)resolution, (float)z / (float)resolution));
             }
         }
-
         mesh.uv = uv.ToArray();
-
         //Apply the geometric data.
         meshFilter.mesh = mesh;
     }
@@ -337,6 +331,18 @@ public class TerrainMesh : MonoBehaviour
         meshFilter.mesh = mesh;
     }
 
+    public void Invert()
+    {
+        for(int x = 0; x < resolution; ++x)
+        {
+            for(int z = 0; z < resolution; ++z)
+            {
+                heightMap[(x * resolution) + z] *= -1f;
+            }
+        }
+
+        ReloadMesh();
+    }
    
     /*..Getters and Setters..*/
 
@@ -354,7 +360,7 @@ public class TerrainMesh : MonoBehaviour
     public void SetOffsetU(float oU) => offsetU = oU;
     public void SetOffsetV(float oV) => offsetV = oV;
     public void SetLacunarity(float lac) => lacunarity = lac;
-    public void SetLoss(float los) => loss = los;
+    public void SetPersistence(float los) => loss = los;
 
     public int GetTerrainDimensions() => size;
     public int GetResolution() => resolution;
@@ -362,7 +368,7 @@ public class TerrainMesh : MonoBehaviour
     public float GetAmplitude() => amplitude;
     public float GetFrequency() => frequency;
     public float GetLacunarity() => lacunarity;
-    public float GetLoss() => loss;
+    public float GetPersistence() => loss;
     public float GetOffsetU() => offsetU;
     public float GetOffsetV() => offsetV;
 
@@ -458,10 +464,10 @@ public class TerrainMesh : MonoBehaviour
 
                 // Calculate particle's height and direction of flow with bilinear interpolation of surrounding heights
                 HeightAndGradient heightAndGradient = CalculateHeightAndGradient(map, mapSize, posX, posY);
-
                 // Update the particle's direction and position (move position 1 unit regardless of speed)
                 dirX = (dirX * particleIntertia - heightAndGradient.gradientX * (1 - particleIntertia));
                 dirY = (dirY * particleIntertia - heightAndGradient.gradientZ * (1 - particleIntertia));
+
                 // Normalize direction
                 float len = Mathf.Sqrt(dirX * dirX + dirY * dirY);
                 if (len != 0)
@@ -469,6 +475,7 @@ public class TerrainMesh : MonoBehaviour
                     dirX /= len;
                     dirY /= len;
                 }
+
                 posX += dirX;
                 posY += dirY;
 
@@ -478,14 +485,11 @@ public class TerrainMesh : MonoBehaviour
                     //Debug.Log("Out of bounds.");
                     break;
                 }
-
                 // Find the particle's new height and calculate the deltaHeight
                 float newHeight = CalculateHeightAndGradient(map, mapSize, posX, posY).height;
                 float deltaHeight = newHeight - heightAndGradient.height;
-
                 // Calculate the particle's sediment capacity (higher when moving fast down a slope and contains lots of water)
                 float sedimentCapacity = Mathf.Max(-deltaHeight * speed * water * sedimentCapacityFactor, minimumSlope);
-
                 // If carrying more sediment than capacity, or if flowing uphill:
                 if (sediment > sedimentCapacity || deltaHeight > 0)
                 {
@@ -493,7 +497,6 @@ public class TerrainMesh : MonoBehaviour
                     // If moving uphill (deltaHeight > 0) try fill up to the current height, otherwise deposit a fraction of the excess sediment
                     float amountToDeposit = (deltaHeight > 0) ? Mathf.Min(deltaHeight, sediment) : (sediment - sedimentCapacity) * depositionFactor;
                     sediment -= amountToDeposit;
-                    Debug.Log("Depositing..." + amountToDeposit);
 
                     // Add the sediment to the four nodes of the current cell using bilinear interpolation
                     // Deposition is not distributed over a radius (like erosion) so that it can fill small pits
@@ -505,11 +508,9 @@ public class TerrainMesh : MonoBehaviour
                 }
                 else
                 {
-
                     // Erode a fraction of the particle's current carry capacity.
                     // Clamp the erosion to the change in height so that it doesn't dig a hole in the terrain behind the particle
                     float amountToErode = Mathf.Min((sedimentCapacity - sediment) * erosionFactor, -deltaHeight);
-
                     // Use erosion brush to erode from all nodes inside the particle's erosion radius
                     for (int brushPointIndex = 0; brushPointIndex < neighbourErosionIndices[dropletIndex].Length; brushPointIndex++)
                     {
@@ -520,9 +521,7 @@ public class TerrainMesh : MonoBehaviour
                         //Debug.Log("Map value : " + map[nodeIndex]);
                         //Debug.Log("Weighted amount : " + weighedErodeAmount);
                         //Debug.Log("Eroding : " + deltaSediment);
-
                         map[nodeIndex] -= deltaSediment;
-                        Debug.Log("Eroded amount " + deltaSediment);
                         sediment += deltaSediment;
                     }
                 }
@@ -533,16 +532,11 @@ public class TerrainMesh : MonoBehaviour
             }
         }
 
-        //Debug.Log("Height map size " + heightMap.Count);
         heightMap.Clear();
         for (int i = 0; i < map.Length; ++i)
         {
-           //Debug.Log("Map " + map[i]);
             heightMap.Add(map[i]);
-          //Debug.Log("Height Map " + map[i]);
-
         }
-        //Debug.Log("Height map size " + heightMap.Count);
 
     }
 
