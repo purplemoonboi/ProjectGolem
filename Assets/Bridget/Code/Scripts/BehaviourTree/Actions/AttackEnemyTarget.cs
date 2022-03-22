@@ -27,7 +27,7 @@ public class AttackEnemyTarget : ActionNode
 
     protected override State OnUpdate()
     {
-        if (enemyTarget == null)
+        if (blackboard.targetObj == null || enemyTarget == null)
             return State.Failure;
 
         if (context.friendlyController.GetHealth() <= (context.friendlyController.GetMaxHealth() / 4.0f))
