@@ -17,6 +17,7 @@ TagManager:
   - TurretAzimuth
   - ActivatedTurretTransform
   - EndLevel
+  - InfoPanel
   layers:
   - Default
   - TransparentFX

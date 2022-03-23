@@ -29,7 +29,15 @@ public class Interact : MonoBehaviour
     private Text resourcePickUpText;
 
     [SerializeField]
+    private Image promptImage;
+    [SerializeField]
+    private Text promptText;
+    [SerializeField]
     private CharacterSplineController characterRef;
+
+    private Vector3 oldPos;
+
+    private Transform target;
 
     private string otherTag = " ";
 
@@ -51,8 +59,10 @@ public class Interact : MonoBehaviour
         resourcePickUpAmountObject = GameObject.FindGameObjectWithTag("ResourcePickUpAmount");
         rectTransform = resourcePickUpAmountObject.GetComponent<RectTransform>();
         resourcePickUpText = resourcePickUpAmountObject.GetComponent<Text>();
-
         resourcePickUpText.enabled = false;
+        promptImage.enabled = false;
+        promptText.enabled = false;
+        target = null;
     }
 
     // Update is called once per frame
@@ -71,6 +81,13 @@ public class Interact : MonoBehaviour
         {
             ProcessInteractions();
         }
+
+        if(!characterRef.InputEnabled())
+        {
+            //StartCoroutine("RepositionCharacter", oldPos);
+
+        }
+
     }
 
     private void ProcessInteractions()
@@ -85,10 +102,6 @@ public class Interact : MonoBehaviour
             else if (interactable.tag == resourceTag)
             {
                 HandleResourcePickUp();
-            }
-            else if (otherTag == friendlyTag)
-            {
-                interactable.gameObject.GetComponent<FriendlyController>().SetRecruited(true);
             }
 
             //At this point we have successfully spawned a building.
@@ -105,21 +118,28 @@ public class Interact : MonoBehaviour
         if(collision.gameObject.tag == "Environment")
         {
             Debug.Log("Collision!");
-            Vector3 direction = (collision.transform.position - transform.position).normalized;
+            Vector3 direction = (collision.transform.position - characterRef.GetSpline().GetPointOnSpline(characterRef.DistanceAlongSpline()) + characterRef.SplineOffset()).normalized;
             characterRef.ToggleInput(false);
-            // transform.position = characterRef.GetSpline().GetPointOnSpline(characterRef.DistanceAlongSpline()) + characterRef.SplineOffset() - direction;
-            StartCoroutine("RepositionCharacter", direction);
+            oldPos = characterRef.GetSpline().GetPointOnSpline(characterRef.DistanceAlongSpline()) + characterRef.SplineOffset() - direction;
+            transform.position = oldPos;
+
+            Vector3 newSplineOffset = new Vector3();
+            Vector2 splinePos = new Vector2(characterRef.GetSpline().GetPointOnSpline(characterRef.DistanceAlongSpline()).x,
+                characterRef.GetSpline().GetPointOnSpline(characterRef.DistanceAlongSpline()).z);
+            Vector2 sign = (splinePos - new Vector2(transform.position.x, transform.position.z)).normalized;
+            newSplineOffset = characterRef.SplineOffset() + new Vector3(sign.x, 0f, sign.y);
+            characterRef.UpdateOffset(newSplineOffset);
         }
     }
 
-    private IEnumerator RepositionCharacter(Vector3 direction)
+    private IEnumerator RepositionCharacter(Vector3 oldPos)
     {
         // Debug.Log("Reposition Character!");
-        Vector3 position = characterRef.GetSpline().GetPointOnSpline(characterRef.DistanceAlongSpline()) + characterRef.SplineOffset() - direction;
-        while (Vector3.Distance(transform.position, position) > 0.5f)
+        //Vector3 position = characterRef.GetSpline().GetPointOnSpline(characterRef.DistanceAlongSpline()) + characterRef.SplineOffset() - direction;
+        while (Vector3.Distance(transform.position, oldPos) > 0.5f)
         {
-            transform.position = Vector3.Lerp(characterRef.GetSpline().GetPointOnSpline(characterRef.DistanceAlongSpline()) + characterRef.SplineOffset(), position, Time.deltaTime);
-          //  Debug.Log("Distance to completion " + Vector3.Distance(transform.position, repositionDirection));
+            transform.position = Vector3.Lerp(characterRef.GetSpline().GetPointOnSpline(characterRef.DistanceAlongSpline()) + characterRef.SplineOffset(), oldPos, 10f * Time.deltaTime);
+            Debug.Log("Distance to completion " + Vector3.Distance(transform.position, oldPos));
             yield return null;
         }
 
@@ -133,7 +153,7 @@ public class Interact : MonoBehaviour
         {
             Debug.Log("End collision!");
 
-            //characterRef.ToggleInput(true);
+           // characterRef.ToggleInput(true);
         }
     }
 
@@ -142,15 +162,40 @@ public class Interact : MonoBehaviour
         otherTag = other.gameObject.tag;
 
         //Is the object a resource or building.
-        if (otherTag == resourceTag || otherTag == buildingTag || otherTag == defenceTag)
+        if (otherTag == resourceTag || otherTag == buildingTag || otherTag == defenceTag || otherTag == friendlyTag)
         {
+            if(target == null && (otherTag != resourceTag))
+            {
+                for (int i = 0; i < other.transform.childCount; ++i)
+                {
+                    if (other.transform.GetChild(i).tag == "InfoPanel")
+                    {
+                        Debug.Log("Target confirmed");
+                        target = other.transform.GetChild(i).transform;
+                    }
+                }
+            }
+            else
+            {
+                target = null;
+            }
             interactable = other.gameObject;
             isInteractable = true;
+            promptImage.enabled = true;
+            promptText.enabled = true;
         }
 
-        if(otherTag == endLevelTag)
+        if (otherTag == endLevelTag)
         {
             other.gameObject.GetComponent<EndLevelScript>().ChangeLevel();
+        }
+
+        if (otherTag == friendlyTag)
+        {
+            interactable = other.gameObject;
+            interactable.GetComponent<FriendlyController>().SetRecruited(true);
+            promptImage.enabled = false;
+            promptText.enabled = false;
         }
 
     }
@@ -163,6 +208,9 @@ public class Interact : MonoBehaviour
             //Void data.
             interactable = null;
             isInteractable = false;
+            promptImage.enabled = false;
+            promptText.enabled = false;
+            target = null;
         }
     }
 
@@ -175,6 +223,8 @@ public class Interact : MonoBehaviour
         interactable = null;
         pressedMouseB0 = false;
         isInteractable = false;
+        promptImage.enabled = false;
+        promptText.enabled = false;
     }
 
     private IEnumerator AnimatePlayerUI()
@@ -319,4 +369,12 @@ public class Interact : MonoBehaviour
     {
         resourceWallet += value;
     }
+
+    public bool IsInteracting()
+    {
+        return interactable;
+    }
+
+    public Transform GetTarget() => target;
+    
 }

@@ -35,7 +35,10 @@ public class CharacterSplineController : MonoBehaviour
     [SerializeField]
     private Vector3 repositionDirection;
     private Vector3 oldPosition;
-
+    [SerializeField]
+    private Camera camera;
+    [SerializeField]
+    private Interact InteractRef;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +46,7 @@ public class CharacterSplineController : MonoBehaviour
         distanceAlongSpline = 0.0f;
         previousLook = transform.position + transform.forward;
         lookAt = (spline.GetDirection(0f)).normalized;
+        InteractRef = GetComponent<Interact>();
     }
 
 
@@ -53,7 +57,7 @@ public class CharacterSplineController : MonoBehaviour
         if (spline == null)
             return;
 
-        Debug.Log("Input " + enableInput);
+       // Debug.Log("Input " + enableInput);
 
 
         if (enableInput)
@@ -63,7 +67,7 @@ public class CharacterSplineController : MonoBehaviour
         else
         {
             timer += Time.deltaTime;
-            if(timer > 0.5f)
+            if(timer > 0.1f)
             {
                 timer = 0f;
                 enableInput = true;
@@ -105,12 +109,36 @@ public class CharacterSplineController : MonoBehaviour
             lookAt = (transform.right).normalized;
         }
 
-       // Quaternion rotGoal = Quaternion.LookRotation(lookAt);
-       // Camera.main.transform.rotation = Quaternion.Slerp(Camera.main.transform.rotation, rotGoal, 0.5f * Time.deltaTime);
+        // Quaternion rotGoal = Quaternion.LookRotation(lookAt);
 
         transform.position = splinePosition + splineOffset;
+        transform.LookAt(transform.position + (spline.GetDirection(distanceAlongSpline)));
+
+      // if(InteractRef.GetTarget() != null)
+      // {
+      //     Debug.Log("Looking");
+      //     camera.transform.LookAt(InteractRef.GetTarget().position - (InteractRef.GetTarget().forward * 4f));
+      // }
+      // else
+      // {
+      //     Vector3 playerPos = (transform.position + new Vector3(-1f, 3f, 0f)) + (transform.forward * 4f);
+      //     Vector3 splineDirection = camera.transform.position + (spline.GetDirection(distanceAlongSpline));
+      //     camera.transform.LookAt(Vector3.Lerp(playerPos, splineDirection, 0.5f));
+      //     camera.transform.position = (transform.position + new Vector3(-1f, 3f, 0f)) - (transform.forward * 7f);
+      //     previousLook = lookAt;
+      // }
+
+        Vector3 playerPos = (transform.position + new Vector3(-1f, 3f, 0f)) + (transform.forward * 4f);
+        Vector3 splineDirection = camera.transform.position + (spline.GetDirection(distanceAlongSpline));
+        camera.transform.LookAt(Vector3.Lerp(playerPos, splineDirection, 0.5f));
+        camera.transform.position = (transform.position + new Vector3(-1f, 3f, 0f)) - (transform.forward * 7f);
         previousLook = lookAt;
+
     }
+
+
+
+    public void UpdateOffset(Vector3 off) => splineOffset = off;
     public float DistanceAlongSpline() => distanceAlongSpline;
     public Vector3 SplineOffset() => splineOffset;
     public bool InputEnabled() => enableInput;

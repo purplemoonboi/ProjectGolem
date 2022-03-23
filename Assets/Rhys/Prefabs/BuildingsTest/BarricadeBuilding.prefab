@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7746965316264789}
   m_Layer: 0
   m_Name: InfoPanelLocation
-  m_TagString: Untagged
+  m_TagString: InfoPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -76,7 +76,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 3, z: 3}
+  m_Size: {x: 10, y: 3, z: 3}
   m_Center: {x: 0, y: -1, z: -1.26}
 --- !u!114 &6422916512802916657
 MonoBehaviour:

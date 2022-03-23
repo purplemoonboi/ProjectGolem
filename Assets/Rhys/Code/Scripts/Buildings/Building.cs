@@ -38,21 +38,22 @@ public abstract class Building : MonoBehaviour
     //passes through the hologram.
     protected virtual IEnumerator PlaySpawnAnimation()
     {
-        //Debug.Log("Animating buildings.");
-
-        while (Vector3.Distance(meshCutterTransform.position, spawnerEndGoal.position) > 0.001f)
-        {
-            meshCutterTransform.position = Vector3.Lerp(meshCutterTransform.position, spawnerEndGoal.position, 1.0f * Time.deltaTime);
-
-            //Returns from this function to the main engine loop.
-            //Will re-visit this function until the condition has
-            //been met.
-            yield return null;
-        }
+       // //Debug.Log("Animating buildings.");
+       //
+       // while (Vector3.Distance(meshCutterTransform.position, spawnerEndGoal.position) > 0.001f)
+       // {
+       //     meshCutterTransform.position = Vector3.Lerp(meshCutterTransform.position, spawnerEndGoal.position, 1.0f * Time.deltaTime);
+       //
+       //     //Returns from this function to the main engine loop.
+       //     //Will re-visit this function until the condition has
+       //     //been met.
+       //     yield return null;
+       // }
 
         //The building has now spawned.
         shouldSpawn = false;
         isActive = true;
+        yield return null;
     }
 
     /*..Abstract methods..*/

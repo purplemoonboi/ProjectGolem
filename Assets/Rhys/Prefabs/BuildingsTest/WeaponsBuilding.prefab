@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 5917256042011241384}
   m_Layer: 0
   m_Name: InfoPanelLocation
-  m_TagString: Untagged
+  m_TagString: InfoPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
