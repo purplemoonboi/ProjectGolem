@@ -30,7 +30,12 @@ public class CharacterSplineController : MonoBehaviour
     private Vector3 previousLook;
     [SerializeField]
     private Transform lookAtInteractable;
-    
+    [SerializeField]
+    private bool enableInput = true;
+    [SerializeField]
+    private Vector3 repositionDirection;
+    private Vector3 oldPosition;
+
 
     // Start is called before the first frame update
     void Start()
@@ -40,47 +45,40 @@ public class CharacterSplineController : MonoBehaviour
         lookAt = (spline.GetDirection(0f)).normalized;
     }
 
+
+    private float timer = 0f;
     // Update is called once per frame
     void Update()
     {
         if (spline == null)
             return;
 
-        HandleInput();
+        Debug.Log("Input " + enableInput);
+
+
+        if (enableInput)
+        {
+            HandleInput();
+        }
+        else
+        {
+            timer += Time.deltaTime;
+            if(timer > 0.5f)
+            {
+                timer = 0f;
+                enableInput = true;
+            }
+        }
+
+       // Debug.Log("Player position " + transform.position);
+       // Debug.Log("Collider position " + collision.position);
 
         distanceAlongSpline = Mathf.Clamp01(distanceAlongSpline);
     }
 
+
     private void HandleInput()
     {
-        //Fallback code.
-        // Vector3 position = transform.position;
-        //
-        // //Move whole curve left and right.
-        // if (Input.GetKey(KeyCode.D))
-        // {
-        //     splineOffset += (transform.right + new Vector3(1,0,0)) * speed * strafeReductionPercentage * Time.deltaTime;
-        //
-        // }
-        // if (Input.GetKey(KeyCode.A))
-        // {
-        //     splineOffset += (transform.right + new Vector3(1, 0, 0)) * -speed * strafeReductionPercentage * Time.deltaTime;
-        // }
-        //
-        // if (Input.GetKey(KeyCode.W))
-        // {
-        //     distanceAlongSpline += ((speed * reductionPercentage) * Time.deltaTime);
-        // }
-        // if (Input.GetKey(KeyCode.S))
-        // {
-        //     distanceAlongSpline -= ((speed * reductionPercentage) * Time.deltaTime);
-        // }
-        //
-        // transform.LookAt(transform.position + spline.GetDirection(distanceAlongSpline));
-        //
-        // position = spline.GetPointOnSpline(distanceAlongSpline) + splineOffset;
-        //
-        // transform.position = position;  
         lookAt = previousLook;
 
         if (Input.GetKey(KeyCode.W))
@@ -107,11 +105,15 @@ public class CharacterSplineController : MonoBehaviour
             lookAt = (transform.right).normalized;
         }
 
-        Quaternion rotGoal = Quaternion.LookRotation(lookAt);
-        Camera.main.transform.rotation = Quaternion.Slerp(Camera.main.transform.rotation, rotGoal, 0.5f * Time.deltaTime);
+       // Quaternion rotGoal = Quaternion.LookRotation(lookAt);
+       // Camera.main.transform.rotation = Quaternion.Slerp(Camera.main.transform.rotation, rotGoal, 0.5f * Time.deltaTime);
 
         transform.position = splinePosition + splineOffset;
         previousLook = lookAt;
     }
-
+    public float DistanceAlongSpline() => distanceAlongSpline;
+    public Vector3 SplineOffset() => splineOffset;
+    public bool InputEnabled() => enableInput;
+    public void ToggleInput(bool value) => enableInput = value;
+    public Spline GetSpline() => spline; 
 }

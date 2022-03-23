@@ -29,16 +29,16 @@ public abstract class Building : MonoBehaviour
     [SerializeField]
     protected bool isActive = false;
     [SerializeField]
-    protected bool shouldSpawn = false;
+    protected bool shouldSpawn = true;
     [SerializeField]
     protected BuildingType buildingType = BuildingType.None;
 
 
     //Moves the plane towards the goal thus rendering the building as it
     //passes through the hologram.
-    protected IEnumerator PlaySpawnAnimation()
+    protected virtual IEnumerator PlaySpawnAnimation()
     {
-        Debug.Log("Animating buildings.");
+        //Debug.Log("Animating buildings.");
 
         while (Vector3.Distance(meshCutterTransform.position, spawnerEndGoal.position) > 0.001f)
         {

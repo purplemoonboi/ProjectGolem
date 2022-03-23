@@ -28,6 +28,9 @@ public class Interact : MonoBehaviour
     [SerializeField]
     private Text resourcePickUpText;
 
+    [SerializeField]
+    private CharacterSplineController characterRef;
+
     private string otherTag = " ";
 
     private const string buildingTag = "Building";
@@ -95,6 +98,43 @@ public class Interact : MonoBehaviour
             pressedMouseB0 = false;
         }
           
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Environment")
+        {
+            Debug.Log("Collision!");
+            Vector3 direction = (collision.transform.position - transform.position).normalized;
+            characterRef.ToggleInput(false);
+            // transform.position = characterRef.GetSpline().GetPointOnSpline(characterRef.DistanceAlongSpline()) + characterRef.SplineOffset() - direction;
+            StartCoroutine("RepositionCharacter", direction);
+        }
+    }
+
+    private IEnumerator RepositionCharacter(Vector3 direction)
+    {
+        // Debug.Log("Reposition Character!");
+        Vector3 position = characterRef.GetSpline().GetPointOnSpline(characterRef.DistanceAlongSpline()) + characterRef.SplineOffset() - direction;
+        while (Vector3.Distance(transform.position, position) > 0.5f)
+        {
+            transform.position = Vector3.Lerp(characterRef.GetSpline().GetPointOnSpline(characterRef.DistanceAlongSpline()) + characterRef.SplineOffset(), position, Time.deltaTime);
+          //  Debug.Log("Distance to completion " + Vector3.Distance(transform.position, repositionDirection));
+            yield return null;
+        }
+
+        characterRef.ToggleInput(true);
+    }
+
+
+    public void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Environment")
+        {
+            Debug.Log("End collision!");
+
+            //characterRef.ToggleInput(true);
+        }
     }
 
     public void OnTriggerStay(Collider other)
