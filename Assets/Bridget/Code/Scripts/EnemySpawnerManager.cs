@@ -106,7 +106,7 @@ public class EnemySpawnerManager : MonoBehaviour
             elapsedClockTime = 0.0f;
 
             TimeSpan currentTime = dayNightCycle.GetCurrentTime().TimeOfDay;
-            Debug.Log("Sunset: " + dayNightCycle.GetSunset().ToString() + " Sunrise: " + dayNightCycle.GetSunrise().ToString() + " Current Time" + currentTime.ToString());
+            //Debug.Log("Sunset: " + dayNightCycle.GetSunset().ToString() + " Sunrise: " + dayNightCycle.GetSunrise().ToString() + " Current Time" + currentTime.ToString());
 
             if (!isNighttime)    //If it's daytime
             {

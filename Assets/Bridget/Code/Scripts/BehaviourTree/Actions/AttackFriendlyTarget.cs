@@ -27,7 +27,7 @@ public class AttackFriendlyTarget : ActionNode
 
     protected override State OnUpdate()
     {
-        if (friendlyTarget == null)
+        if (blackboard.targetObj == null || friendlyTarget == null)
             return State.Failure;
 
         if (Vector3.Distance(context.transform.position, blackboard.targetObj.transform.position) > 12.0f)
