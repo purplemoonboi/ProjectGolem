@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5784fd31b9729a34697de41411a4fe38
+guid: 5bc4bc5ea7af0ab44aad4e8ce5fd6809
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -26,13 +26,13 @@ TextureImporter:
   vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
-  cubemapConvolution: 1
-  seamlessCubemap: 1
+  cubemapConvolution: 0
+  seamlessCubemap: 0
   textureFormat: 1
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 2
+    filterMode: 1
     aniso: 2
     mipBias: 0
     wrapU: 0
@@ -53,7 +53,7 @@ TextureImporter:
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
   textureType: 0
-  textureShape: 2
+  textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
   flipbookColumns: 1
@@ -65,7 +65,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -77,7 +77,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
