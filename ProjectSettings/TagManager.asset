@@ -18,6 +18,7 @@ TagManager:
   - ActivatedTurretTransform
   - EndLevel
   - PlayerWalkable
+  - InfoPanel
   layers:
   - Default
   - TransparentFX

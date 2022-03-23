@@ -7,7 +7,7 @@ public class TurretProjectileSpawner : MonoBehaviour
     [SerializeField]
     private GameObject prefab;
     [SerializeField]
-    private Transform[] barrelSpawns;
+    private Transform barrelSpawns;
     [SerializeField]
     private float fireForce = 1000.0f;
     [SerializeField]
@@ -21,9 +21,9 @@ public class TurretProjectileSpawner : MonoBehaviour
     [SerializeField]
     private float fireTimer = 0.0f;
     [SerializeField]
-    private Transform[] azimuthTransform;
+    private Transform azimuthTransform;
     [SerializeField]
-    private EnemyTarget turretStatistics;
+    private TurretStats turretStatistics;
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +50,7 @@ public class TurretProjectileSpawner : MonoBehaviour
 
     private IEnumerator RotateTurret()
     {
-        Transform turretTransform = azimuthTransform[0];
+        Transform turretTransform = azimuthTransform;
         Vector3 turretDirection = turretTransform.forward;
         Vector3 epos = turretStatistics.transform.position;
 
@@ -58,7 +58,6 @@ public class TurretProjectileSpawner : MonoBehaviour
         {
             Vector3 newForward = Vector3.RotateTowards(turretTransform.forward, epos, 2.0f * Time.deltaTime, 0.0f);
             turretTransform.forward = newForward;
-            azimuthTransform[1].forward = newForward;
 
             yield return null;
         }
@@ -75,16 +74,14 @@ public class TurretProjectileSpawner : MonoBehaviour
                 Debug.Log("FIRED PROJECTILE!");
                 shouldFire = false;
 
-                GameObject[] proj = new GameObject[2];
-                proj[0] = Instantiate(prefab, barrelSpawns[0].position, Quaternion.identity);
-                proj[1] = Instantiate(prefab, barrelSpawns[1].position, Quaternion.identity);
+                GameObject proj = new GameObject();
+                proj = Instantiate(prefab, barrelSpawns.position, Quaternion.identity);
 
-                Rigidbody[] rigidbody = { proj[0].GetComponent<Rigidbody>(), proj[1].GetComponent<Rigidbody>() };
+                Rigidbody rigidbody = proj.GetComponent<Rigidbody>();
 
                 Vector3 direction = Vector3.Normalize(target.position - transform.position);
                 Vector3 force = fireForce * direction;
-                rigidbody[0].AddForce(force, ForceMode.Force);
-                rigidbody[1].AddForce(force, ForceMode.Force);
+                rigidbody.AddForce(force, ForceMode.Force);
             }
         }
     }

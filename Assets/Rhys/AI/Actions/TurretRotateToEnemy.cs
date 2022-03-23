@@ -9,7 +9,6 @@ public class TurretRotateToEnemy : ActionNode
     private Transform enemyTransform;
 
     private Transform turretAzimuth = null;
-    private Transform turretAzimuthHolo = null;
 
     protected override void OnStart()
     {
@@ -27,10 +26,7 @@ public class TurretRotateToEnemy : ActionNode
                 {
                     turretAzimuth = transform;
                 }
-                else if (turretAzimuthHolo == null)
-                {
-                    turretAzimuthHolo = transform;
-                }
+               
             }
         }
     }
@@ -42,7 +38,7 @@ public class TurretRotateToEnemy : ActionNode
     protected override State OnUpdate() 
     {
 
-        if (turretAzimuth == null || turretAzimuthHolo == null)
+        if (turretAzimuth == null)
         {
             Debug.LogError("Turret's azimuth transform is null.");
             return State.Failure;
@@ -61,7 +57,6 @@ public class TurretRotateToEnemy : ActionNode
                 Vector3 lookDirection = (enemyTransform.transform.position - turretAzimuth.position).normalized;
                 Quaternion rotationGoal = Quaternion.LookRotation(lookDirection);
                 turretAzimuth.rotation = Quaternion.Slerp(turretAzimuth.rotation, rotationGoal, 2.0f * Time.deltaTime);
-                turretAzimuthHolo = turretAzimuth;
 
                 if (turretAzimuth.rotation != rotationGoal)
                 {

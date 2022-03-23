@@ -87,7 +87,7 @@ public class PlayerOxygen : MonoBehaviour
         newValue = Mathf.Clamp(newValue, 1.0f, oxygenAmount);
         currentOxygen = (oxygenAmount - newValue);
         oxygenBar.value = currentOxygen / oxygenAmount;
-        Debug.Log("O2 Value : " + oxygenBar.value);
+        //Debug.Log("O2 Value : " + oxygenBar.value);
         //If current oxygen is below 5% flag this as low oxygen.
         lowOxygen = (oxygenBar.value < 0.05f) ? true : false;
     }

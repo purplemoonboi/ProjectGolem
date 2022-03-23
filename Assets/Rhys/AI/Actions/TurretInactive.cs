@@ -6,7 +6,7 @@ using TheKiwiCoder;
 public class TurretInactive : ActionNode
 {
 
-    private EnemyTarget turretStatistics;
+    private TurretStats turretStatistics;
     private Quaternion rotationGoal;
     private Transform activatedTransform;
     private Transform turretAzimuth = null;
@@ -14,7 +14,7 @@ public class TurretInactive : ActionNode
 
     protected override void OnStart() 
     {
-        turretStatistics = context.gameObject.GetComponent<EnemyTarget>();
+        turretStatistics = context.gameObject.GetComponent<TurretStats>();
 
         GameObject thisTurret = context.gameObject;
 
@@ -56,7 +56,6 @@ public class TurretInactive : ActionNode
 
     protected override State OnUpdate()
     {
-        Debug.Log("Turret Inactive.");
         if(turretStatistics.IsActivated())
         {
             if(ActivateTurretAnimation())
@@ -72,9 +71,7 @@ public class TurretInactive : ActionNode
 
     private bool ActivateTurretAnimation()
     {
-        Debug.Log("Turret Animating.");
         turretAzimuth.rotation = Quaternion.Slerp(turretAzimuth.rotation, rotationGoal, 2.0f * Time.deltaTime);
-        turretAzimuthHolo.rotation = turretAzimuth.rotation;
         return (turretAzimuth.rotation == rotationGoal) ? true : false;
     }
 

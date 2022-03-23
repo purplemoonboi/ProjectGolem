@@ -8,6 +8,17 @@ public class BarricadeBuilding : Building
     [SerializeField]
     private BarricadeScriptableObject barricadeScriptableObject;
 
+    [SerializeField]
+    private Transform shieldTransform;
+    [SerializeField]
+    private Vector3 initialScale;
+
+    private void Awake()
+    {
+        initialScale = shieldTransform.localScale;
+        shieldTransform.localScale = new Vector3(0f, 0f, 0f);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,11 +31,29 @@ public class BarricadeBuilding : Building
     // Update is called once per frame
     void Update()
     {
-        if (ShouldSpawn())
+         if (ShouldSpawn())
+         {
+             Debug.Log("Now spawning building.");
+             StartCoroutine("PlaySpawnAnimation");
+         }
+
+    }
+
+    protected override IEnumerator PlaySpawnAnimation() 
+    {
+        Debug.Log("Animating buildings.");
+        Debug.Log("Scale " + transform.localScale.x);
+
+        while (shieldTransform.localScale.x < initialScale.x)
         {
-            Debug.Log("Now spawning building.");
-            StartCoroutine("PlaySpawnAnimation");
+            shieldTransform.localScale += new Vector3(0.8f, 0.8f, 0.8f) * Time.deltaTime;
+            
+            yield return null;
         }
+
+        //The building has now spawned.
+        shouldSpawn = false;
+        isActive = true;
     }
 
     public override void Upgrade()
