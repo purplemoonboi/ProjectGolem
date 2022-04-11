@@ -6,19 +6,14 @@ using System.IO;
 public class TerrainMesh : MonoBehaviour
 {
     //Base Terrain Attributes
-    [SerializeField]
     private MeshRenderer meshRenderer = null;
-    [SerializeField]
     private MeshFilter meshFilter = null;
-    [SerializeField]
     private Texture2D heightMapTexture;
-    [SerializeField]
     private List<Vector3> vertices;
     //Mesh Data
-    [SerializeField]
     private List<float> heightMap;
 
-    private float height = 0f;
+    //Perlin noise attributes
     private float loss = 0.5f;
     private float lacunarity = 2f;
     private float amplitude = 50.0f;
@@ -26,6 +21,7 @@ public class TerrainMesh : MonoBehaviour
     private float offsetU = 0f;
     private float offsetV = 0f;
 
+    //Level of detail
     private int resolution = 64;
     private int size = 128;
     private int scale = 100;
@@ -37,18 +33,20 @@ public class TerrainMesh : MonoBehaviour
 
     public void BakeHeightMap()
     {
-        heightMapTexture = new Texture2D(512, 512, TextureFormat.RGB24, true);
-        for(int x = 0; x < 512; ++x)
+        heightMapTexture = new Texture2D(resolution, resolution, TextureFormat.RGB24, true);
+        float[] hm = heightMap.ToArray();
+        Color texture = new Color();
+        for(int x = 0; x < resolution; ++x)
         {
-            for(int y = 0; y < 512; ++y)
+            for(int y = 0; y < resolution; ++y)
             {
-                Color value = new Color(0, 0, 0, 0);
-                float noise = RidgedPerlin(x, y);
-                Debug.Log("Noise " + noise);
-                value.r = noise; 
-                value.b = noise;
-                value.g = noise;
-                heightMapTexture.SetPixel(x, y, value);
+                //One array access per iteration.
+                float height = hm[(x * resolution) + y];
+                texture.r = height;
+                texture.g = height;
+                texture.b = height;
+                texture.a = 1f;
+                heightMapTexture.SetPixel(x, y, texture);
             }
         }
 
@@ -75,10 +73,6 @@ public class TerrainMesh : MonoBehaviour
             a *= loss;
             f *= lacunarity;
         }
-
-        //h = Mathf.Abs(h);
-        //h *= 1;
-
         return h;
     }
 
@@ -107,9 +101,9 @@ public class TerrainMesh : MonoBehaviour
             return;
         }
 
-        Debug.Log("Reloading...");
-
         Mesh mesh = new Mesh();
+        mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
+
         //Calculate positions.
         vertices = new List<Vector3>();
         for (int x = 0; x < resolution; ++x)
@@ -250,19 +244,18 @@ public class TerrainMesh : MonoBehaviour
         }
     }
 
+
     public void GenerateMesh()
     {
         DestroyImmediate(meshRenderer);
         DestroyImmediate(meshFilter);
         meshRenderer = gameObject.AddComponent<MeshRenderer>();
-        meshRenderer.sharedMaterial = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+        meshRenderer.sharedMaterial = new Material(Shader.Find("Custom/CustomLit"));
         meshFilter = gameObject.AddComponent<MeshFilter>();
         heightMap.Clear();
 
-        //Debug.Log("Resolution " + resolution);
-        //Debug.Log("Size " + size);
-
         Mesh mesh = new Mesh();
+        mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
         //Calculate positions.
         List<Vector3> vertices = new List<Vector3>();
         for (int x = 0; x < resolution; ++x)
@@ -379,29 +372,17 @@ public class TerrainMesh : MonoBehaviour
     //////////////////////////////////////////////////////
 
     // Hydraulic Erosion Attributes
-    [SerializeField]
     private int seed = 2;
-    [SerializeField]
     private int erosionRadius = 4;
-    [SerializeField]
     private float particleIntertia = 0.05f;
-    [SerializeField]
     private float sedimentCapacityFactor = 4;
-    [SerializeField]
     private float minimumSlope = 0.01f;
-    [SerializeField]
     private float erosionFactor = 0.3f;
-    [SerializeField]
     private float depositionFactor = 0.3f;
-    [SerializeField]
     private float evaporationSpeed = 0.01f;
-    [SerializeField]
     private int gravity;
-    [SerializeField]
     private int particleLifetime = 90;
-    [SerializeField]
     private const int waterVolume = 1;
-    [SerializeField]
     private float initialVelocity = 1;
 
     //Holds the indices of the neighbouring vertices for every vertex on the heightmap.
