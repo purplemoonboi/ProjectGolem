@@ -19,6 +19,8 @@ public class NpcController : MonoBehaviour
     [SerializeField]
     protected float maxHealth;
     [SerializeField]
+    protected bool alive = true;
+    [SerializeField]
     protected float power;
     [SerializeField]
     protected Vector3 spawnPoint = new Vector3(0.0f, 1.0f, 0.0f);
@@ -58,7 +60,7 @@ public class NpcController : MonoBehaviour
 
     protected void CheckDeath()
     {
-        if (health <= 0.0f)
+        if (health < 0.0f)
         {
             Destroy(gameObject);
         }
@@ -85,4 +87,6 @@ public class NpcController : MonoBehaviour
     public void SetTurnSpeed(float speed) { turnSpeed = speed; }
 
     public float GetTurnSpeed() { return turnSpeed; }
+
+    public bool GetAlive() { return alive; }
 }

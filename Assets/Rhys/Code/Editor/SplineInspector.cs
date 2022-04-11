@@ -16,6 +16,7 @@ public class SplineInspector : Editor
     private const float pickSize = 0.06f;
     private int selectedIndex = -1;
     private bool showDirections = true;
+    private bool realTimeEditing = false;
 
     // @brief Draw widgets to the scene view.
     private void OnSceneGUI()
@@ -59,10 +60,17 @@ public class SplineInspector : Editor
         }
 
         EditorGUI.BeginChangeCheck();
+        bool realTime = EditorGUILayout.Toggle("Real Time Editing", realTimeEditing);
+        if (EditorGUI.EndChangeCheck())
+        {
+            realTimeEditing = realTime;
+        }
+
+        EditorGUI.BeginChangeCheck();
         bool loop = EditorGUILayout.Toggle("Loop", spline.Loop);
         if(EditorGUI.EndChangeCheck())
         {
-            Undo.RecordObject(spline, "Toggle Loop");
+            Undo.RecordObject(spline, "Loop");
             EditorUtility.SetDirty(spline);
             spline.Loop = loop;
         }
@@ -75,6 +83,16 @@ public class SplineInspector : Editor
         {
             Undo.RecordObject(spline, "Add Curve");
             spline.AddCurve();
+            EditorUtility.SetDirty(spline);
+        }
+
+        EditorGUI.BeginChangeCheck();
+        float offsetFromFloor = spline.Offset();
+        offsetFromFloor = EditorGUILayout.Slider("Offset", offsetFromFloor, 0.1f, 1000f);
+        if (EditorGUI.EndChangeCheck())
+        {
+            Undo.RecordObject(spline, "Offset");
+            spline.SetOffset(offsetFromFloor);
             EditorUtility.SetDirty(spline);
         }
 

@@ -28,6 +28,17 @@ public class Interact : MonoBehaviour
     [SerializeField]
     private Text resourcePickUpText;
 
+    [SerializeField]
+    private Image promptImage;
+    [SerializeField]
+    private Text promptText;
+    [SerializeField]
+    private CharacterSplineController characterRef;
+
+    private Vector3 oldPos;
+
+    private Transform target;
+
     private string otherTag = " ";
 
     private const string buildingTag = "Building";
@@ -48,8 +59,10 @@ public class Interact : MonoBehaviour
         resourcePickUpAmountObject = GameObject.FindGameObjectWithTag("ResourcePickUpAmount");
         rectTransform = resourcePickUpAmountObject.GetComponent<RectTransform>();
         resourcePickUpText = resourcePickUpAmountObject.GetComponent<Text>();
-
         resourcePickUpText.enabled = false;
+        promptImage.enabled = false;
+        promptText.enabled = false;
+        target = null;
     }
 
     // Update is called once per frame
@@ -68,6 +81,13 @@ public class Interact : MonoBehaviour
         {
             ProcessInteractions();
         }
+
+        if(!characterRef.InputEnabled())
+        {
+            //StartCoroutine("RepositionCharacter", oldPos);
+
+        }
+
     }
 
     private void ProcessInteractions()
@@ -93,25 +113,89 @@ public class Interact : MonoBehaviour
           
     }
 
+    public void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Environment")
+        {
+            Debug.Log("Collision!");
+            Vector3 direction = (collision.transform.position - characterRef.GetSpline().GetPointOnSpline(characterRef.DistanceAlongSpline()) + characterRef.SplineOffset()).normalized;
+            characterRef.ToggleInput(false);
+            oldPos = characterRef.GetSpline().GetPointOnSpline(characterRef.DistanceAlongSpline()) + characterRef.SplineOffset() - direction;
+            transform.position = oldPos;
+
+            Vector3 newSplineOffset = new Vector3();
+            Vector2 splinePos = new Vector2(characterRef.GetSpline().GetPointOnSpline(characterRef.DistanceAlongSpline()).x,
+                characterRef.GetSpline().GetPointOnSpline(characterRef.DistanceAlongSpline()).z);
+            Vector2 sign = (splinePos - new Vector2(transform.position.x, transform.position.z)).normalized;
+            newSplineOffset = characterRef.SplineOffset() + new Vector3(sign.x, 0f, sign.y);
+            characterRef.UpdateOffset(newSplineOffset);
+        }
+    }
+
+    private IEnumerator RepositionCharacter(Vector3 oldPos)
+    {
+        // Debug.Log("Reposition Character!");
+        //Vector3 position = characterRef.GetSpline().GetPointOnSpline(characterRef.DistanceAlongSpline()) + characterRef.SplineOffset() - direction;
+        while (Vector3.Distance(transform.position, oldPos) > 0.5f)
+        {
+            transform.position = Vector3.Lerp(characterRef.GetSpline().GetPointOnSpline(characterRef.DistanceAlongSpline()) + characterRef.SplineOffset(), oldPos, 10f * Time.deltaTime);
+            Debug.Log("Distance to completion " + Vector3.Distance(transform.position, oldPos));
+            yield return null;
+        }
+
+        characterRef.ToggleInput(true);
+    }
+
+
+    public void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Environment")
+        {
+            Debug.Log("End collision!");
+
+           // characterRef.ToggleInput(true);
+        }
+    }
+
     public void OnTriggerStay(Collider other)
     {
         otherTag = other.gameObject.tag;
 
         //Is the object a resource or building.
-        if (otherTag == resourceTag || otherTag == buildingTag || otherTag == defenceTag)
+        if (otherTag == resourceTag || otherTag == buildingTag || otherTag == defenceTag || otherTag == friendlyTag)
         {
+            if(target == null && (otherTag != resourceTag))
+            {
+                for (int i = 0; i < other.transform.childCount; ++i)
+                {
+                    if (other.transform.GetChild(i).tag == "InfoPanel")
+                    {
+                        Debug.Log("Target confirmed");
+                        target = other.transform.GetChild(i).transform;
+                    }
+                }
+            }
+            else
+            {
+                target = null;
+            }
             interactable = other.gameObject;
             isInteractable = true;
+            promptImage.enabled = true;
+            promptText.enabled = true;
         }
 
-        if(otherTag == friendlyTag)
-        {
-            other.gameObject.GetComponent<FriendlyController>().SetRecruited(true);
-        }
-
-        if(otherTag == endLevelTag)
+        if (otherTag == endLevelTag)
         {
             other.gameObject.GetComponent<EndLevelScript>().ChangeLevel();
+        }
+
+        if (otherTag == friendlyTag)
+        {
+            interactable = other.gameObject;
+            interactable.GetComponent<FriendlyController>().SetRecruited(true);
+            promptImage.enabled = false;
+            promptText.enabled = false;
         }
 
     }
@@ -124,6 +208,9 @@ public class Interact : MonoBehaviour
             //Void data.
             interactable = null;
             isInteractable = false;
+            promptImage.enabled = false;
+            promptText.enabled = false;
+            target = null;
         }
     }
 
@@ -136,6 +223,8 @@ public class Interact : MonoBehaviour
         interactable = null;
         pressedMouseB0 = false;
         isInteractable = false;
+        promptImage.enabled = false;
+        promptText.enabled = false;
     }
 
     private IEnumerator AnimatePlayerUI()
@@ -280,4 +369,12 @@ public class Interact : MonoBehaviour
     {
         resourceWallet += value;
     }
+
+    public bool IsInteracting()
+    {
+        return interactable;
+    }
+
+    public Transform GetTarget() => target;
+    
 }
