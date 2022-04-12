@@ -60,15 +60,15 @@ public class FriendlyController : NpcController
 
     public void SpawnProjectile(Vector3 targetPosition)
     {
+        transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, targetPosition - transform.position, turnSpeed * Time.deltaTime, 0.0f));
+
         if (shouldFire)
         {
-            GameObject projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
+            GameObject projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, transform.rotation);
 
             Rigidbody rigidbody = projectile.GetComponent<Rigidbody>();
 
-            Vector3 direction = Vector3.Normalize(targetPosition - transform.position);
-
-            Vector3 force = fireForce * direction;
+            Vector3 force = fireForce * projectile.transform.forward;
 
             rigidbody.AddForce(force, ForceMode.Force);
 

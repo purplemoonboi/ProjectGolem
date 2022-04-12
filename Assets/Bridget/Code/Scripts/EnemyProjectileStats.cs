@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyProjectileStats : MonoBehaviour
 {
     [SerializeField]
+    private GameObject explosionPrefab;
+    [SerializeField]
     private float damage = 100.0f;
     [SerializeField]
     private Rigidbody rigidbody;
@@ -79,13 +81,28 @@ public class EnemyProjectileStats : MonoBehaviour
 
     public void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.transform.tag == "DefenceTower" || collider.gameObject.transform.tag == "Friendly")
+        if (collider.gameObject.transform.tag == "Friendly")
         {
             FriendlyController friendly = collider.gameObject.transform.GetComponent<FriendlyController>();
 
             if (friendly != null)
             {
                 friendly.SetHealth(friendly.GetHealth() - damage);
+
+                Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+
+                Destroy(gameObject);
+            }
+        }
+        else if(collider.gameObject.transform.tag == "DefenceTower")
+        {
+            TurretStats turret = collider.gameObject.transform.GetComponent<TurretStats>();
+
+            if(turret != null)
+            {
+                turret.SetHealth(turret.GetHealth() - damage);
+
+                Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 
                 Destroy(gameObject);
             }

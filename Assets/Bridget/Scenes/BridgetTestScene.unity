@@ -416,7 +416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1203692957221142743, guid: 0adc5e56a03355c4495a6feca6d1ecbc, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5689751681592766685, guid: 0adc5e56a03355c4495a6feca6d1ecbc, type: 3}
       propertyPath: recruited
@@ -697,6 +697,10 @@ PrefabInstance:
     - target: {fileID: 2340348066541062532, guid: 4e3b23c5621e4a846b8e191997baa893, type: 3}
       propertyPath: m_Name
       value: Friendly
+      objectReference: {fileID: 0}
+    - target: {fileID: 2340348066541062532, guid: 4e3b23c5621e4a846b8e191997baa893, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9095293728527563150, guid: 4e3b23c5621e4a846b8e191997baa893, type: 3}
       propertyPath: recruited
@@ -1100,6 +1104,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Friendly (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2340348066541062532, guid: 4e3b23c5621e4a846b8e191997baa893, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9095293728527563150, guid: 4e3b23c5621e4a846b8e191997baa893, type: 3}
       propertyPath: recruited
       value: 1
@@ -1165,6 +1173,10 @@ PrefabInstance:
     - target: {fileID: 2340348066541062532, guid: 4e3b23c5621e4a846b8e191997baa893, type: 3}
       propertyPath: m_Name
       value: Friendly (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2340348066541062532, guid: 4e3b23c5621e4a846b8e191997baa893, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9095293728527563150, guid: 4e3b23c5621e4a846b8e191997baa893, type: 3}
       propertyPath: recruited
@@ -1274,6 +1286,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Friendly (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2340348066541062532, guid: 4e3b23c5621e4a846b8e191997baa893, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9095293728527563150, guid: 4e3b23c5621e4a846b8e191997baa893, type: 3}
       propertyPath: recruited
       value: 1
@@ -1342,7 +1358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1203692957221142743, guid: 0adc5e56a03355c4495a6feca6d1ecbc, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5689751681592766685, guid: 0adc5e56a03355c4495a6feca6d1ecbc, type: 3}
       propertyPath: recruited
@@ -1412,7 +1428,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1203692957221142743, guid: 0adc5e56a03355c4495a6feca6d1ecbc, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5689751681592766685, guid: 0adc5e56a03355c4495a6feca6d1ecbc, type: 3}
       propertyPath: recruited
@@ -1669,6 +1685,14 @@ PrefabInstance:
       propertyPath: moonLight
       value: 
       objectReference: {fileID: 1961311940}
+    - target: {fileID: 8977306999394082731, guid: 8ea0b9ff48b54f44abd24b468b6bea3c, type: 3}
+      propertyPath: startHour
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8977306999394082731, guid: 8ea0b9ff48b54f44abd24b468b6bea3c, type: 3}
+      propertyPath: timeMultiplier
+      value: 3000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ea0b9ff48b54f44abd24b468b6bea3c, type: 3}
 --- !u!1001 &2058927301
@@ -1702,6 +1726,10 @@ PrefabInstance:
       propertyPath: lookAt
       value: 
       objectReference: {fileID: 1937661684}
+    - target: {fileID: 4953603634367398475, guid: e82546a2efa8ce847a59e33445c2bf0c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5960401551199276135, guid: e82546a2efa8ce847a59e33445c2bf0c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 159.4319
@@ -1774,6 +1802,14 @@ PrefabInstance:
       propertyPath: playerOxygen
       value: 
       objectReference: {fileID: 453193187}
+    - target: {fileID: 7388114201404945798, guid: e82546a2efa8ce847a59e33445c2bf0c, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 2058927302}
+    - target: {fileID: 7388114201404945798, guid: e82546a2efa8ce847a59e33445c2bf0c, type: 3}
+      propertyPath: promptImage
+      value: 
+      objectReference: {fileID: 2058927303}
     - target: {fileID: 7681499086986382156, guid: e82546a2efa8ce847a59e33445c2bf0c, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1848,6 +1884,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e82546a2efa8ce847a59e33445c2bf0c, type: 3}
+--- !u!114 &2058927302 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5033983862499075959, guid: e82546a2efa8ce847a59e33445c2bf0c, type: 3}
+  m_PrefabInstance: {fileID: 2058927301}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2058927303 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7469493813262702928, guid: e82546a2efa8ce847a59e33445c2bf0c, type: 3}
+  m_PrefabInstance: {fileID: 2058927301}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2059006132
 GameObject:
   m_ObjectHideFlags: 0
@@ -2094,7 +2152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1203692957221142743, guid: 0adc5e56a03355c4495a6feca6d1ecbc, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5689751681592766685, guid: 0adc5e56a03355c4495a6feca6d1ecbc, type: 3}
       propertyPath: recruited
