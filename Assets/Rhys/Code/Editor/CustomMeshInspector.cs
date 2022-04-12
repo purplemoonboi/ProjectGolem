@@ -11,9 +11,9 @@ public class CustomMeshInspector : Editor
 
     private TerrainMesh terrainMesh;
 
-
     static int maxSize = 1024;
 
+    //Height map
     private int resolution = 2;
     private float amplitude = 50.0f;
     private float frequency = 0.01f;
@@ -22,8 +22,7 @@ public class CustomMeshInspector : Editor
     private float lacunarity = 2f;
     private float persistence = 0.5f;
 
-    private const int octaves = 8;
-
+    //Erosion
     private int seed = 2;
     private int erosionRadius = 2;
     private float particleIntertia = 0.05f;

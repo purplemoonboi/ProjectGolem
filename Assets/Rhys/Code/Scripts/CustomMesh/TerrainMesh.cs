@@ -7,19 +7,14 @@ using System.IO;
 public class TerrainMesh : MonoBehaviour
 {
     //Base Terrain Attributes
-    [SerializeField]
     private MeshRenderer meshRenderer = null;
-    [SerializeField]
     private MeshFilter meshFilter = null;
-    [SerializeField]
     private Texture2D heightMapTexture;
-    [SerializeField]
     private List<Vector3> vertices;
     //Mesh Data
-    [SerializeField]
     private List<float> heightMap;
 
-    private float height = 0f;
+    //Perlin noise attributes
     private float loss = 0.5f;
     private float lacunarity = 2f;
     private float amplitude = 50.0f;
@@ -27,6 +22,7 @@ public class TerrainMesh : MonoBehaviour
     private float offsetU = 0f;
     private float offsetV = 0f;
 
+    //Level of detail
     private int resolution = 64;
     private int size = 128;
     private int scale = 100;
@@ -39,18 +35,19 @@ public class TerrainMesh : MonoBehaviour
     public void BakeHeightMap()
     {
         heightMapTexture = new Texture2D(resolution, resolution, TextureFormat.RGB24, true);
-
-        int sampler = 0;
+        float[] hm = heightMap.ToArray();
+        Color texture = new Color();
         for(int x = 0; x < resolution; ++x)
         {
             for(int y = 0; y < resolution; ++y)
             {
-                float height = heightMap.ToArray()[sampler];
-                height = MathsUtils.RemapRange(height, 0f, amplitude, 0f, 1f);
-                height *= -1f;
-                Color c = new Color(height,height,height);
-                heightMapTexture.SetPixel(x, y, c);
-                sampler++;
+                //One array access per iteration.
+                float height = hm[(x * resolution) + y];
+                texture.r = height;
+                texture.g = height;
+                texture.b = height;
+                texture.a = 1f;
+                heightMapTexture.SetPixel(x, y, texture);
             }
         }
 
@@ -260,14 +257,16 @@ public class TerrainMesh : MonoBehaviour
         }
     }
 
+
     public void GenerateMesh()
     {
+
         DestroyImmediate(meshRenderer);
         DestroyImmediate(meshFilter);
         meshRenderer = gameObject.AddComponent<MeshRenderer>();
-        meshRenderer.sharedMaterial = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+        meshRenderer.sharedMaterial = new Material(Shader.Find("Custom/CustomLit"));
         meshFilter = gameObject.AddComponent<MeshFilter>();
-        heightMap.Clear();
+        
 
         Mesh mesh = new Mesh();
         mesh.indexFormat = IndexFormat.UInt32;
@@ -280,7 +279,6 @@ public class TerrainMesh : MonoBehaviour
                 float height = RidgedPerlin(x, z);
                 float nx = scale * ((float)x / (float)resolution);
                 float nz = scale * ((float)z / (float)resolution);
-                //Debug.Log("X " + nx + " Z " + nz);
                 vertices.Add(new Vector3(nx, 0f + height, nz));
                 heightMap.Add(height);
             }
@@ -289,8 +287,8 @@ public class TerrainMesh : MonoBehaviour
         mesh.vertices = vertices.ToArray();
 
         List<int> indices = new List<int>();
-        //Calculate indices for each polygon.
 
+        //Calculate indices for each triangle.
         for (int x = 0; x < resolution - 1; ++x)
         {
             for (int z = 0; z < resolution - 1; ++z)
@@ -314,11 +312,13 @@ public class TerrainMesh : MonoBehaviour
         {
             for (int z = 0; z < resolution; ++z)
             {
-                normals.Add(new Vector3(0, 1, 0));
+                normals.Add(new Vector3(0, -1, 0));
             }
         }
 
         mesh.normals = normals.ToArray();
+        mesh.RecalculateBounds();
+        mesh.RecalculateTangents();
         mesh.RecalculateNormals();
 
 
@@ -387,29 +387,17 @@ public class TerrainMesh : MonoBehaviour
     //////////////////////////////////////////////////////
 
     // Hydraulic Erosion Attributes
-    [SerializeField]
     private int seed = 2;
-    [SerializeField]
     private int erosionRadius = 4;
-    [SerializeField]
     private float particleIntertia = 0.05f;
-    [SerializeField]
     private float sedimentCapacityFactor = 4;
-    [SerializeField]
     private float minimumSlope = 0.01f;
-    [SerializeField]
     private float erosionFactor = 0.3f;
-    [SerializeField]
     private float depositionFactor = 0.3f;
-    [SerializeField]
     private float evaporationSpeed = 0.01f;
-    [SerializeField]
     private int gravity;
-    [SerializeField]
     private int particleLifetime = 90;
-    [SerializeField]
     private const int waterVolume = 1;
-    [SerializeField]
     private float initialVelocity = 1;
 
     //Holds the indices of the neighbouring vertices for every vertex on the heightmap.
@@ -421,11 +409,11 @@ public class TerrainMesh : MonoBehaviour
     private System.Random randomNumGenerator;
 
     private int currentSeed;
-    private int currentErosionRadius;
-    private int currentMapSize;
+    private int currentErosionRadius = 0;
+    private int currentMapSize = 0;
 
 
-    public void Initialise(int mapSize, bool reset)
+    private void Initialise(int mapSize, bool reset)
     {
         if (reset || (randomNumGenerator == null))
         {
@@ -524,10 +512,7 @@ public class TerrainMesh : MonoBehaviour
                         int nodeIndex = neighbourErosionIndices[dropletIndex][brushPointIndex];
                         float weighedErodeAmount = amountToErode * neighbourErosionWeights[dropletIndex][brushPointIndex];
                         float deltaSediment = (map[nodeIndex] < weighedErodeAmount) ? map[nodeIndex] : weighedErodeAmount;
-                        //Debug.Log("Node index : " + nodeIndex);
-                        //Debug.Log("Map value : " + map[nodeIndex]);
-                        //Debug.Log("Weighted amount : " + weighedErodeAmount);
-                        //Debug.Log("Eroding : " + deltaSediment);
+
                         map[nodeIndex] -= deltaSediment;
                         sediment += deltaSediment;
                     }
@@ -592,7 +577,7 @@ public class TerrainMesh : MonoBehaviour
         float weightSum = 0.0f;
         int addIndex = 0;
 
-        for (int i = 0; i < neighbourErosionIndices.GetLength(0); ++i)
+        for (int i = 0; i < (mapSize * mapSize); ++i)
         {
             int centerX = i % mapSize;
             int centerZ = i / mapSize;
