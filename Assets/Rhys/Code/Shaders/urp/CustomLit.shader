@@ -7,12 +7,16 @@ Shader "Custom/CustomLit"
 		_BaseColor("Ground Colour", Color) = (0.6, 0.2, 0.6, 1)
 		_GradSlopeColour("Gradual Slope Colour", Color) = (0.75, 0.14, 0.72, 1)
 		_SteepSlopeColour("Steep Slope Colour", Color) = (0.84, 0.2, 0.83, 1)
+
+		_GroundThreshold("Ground Threshold", Float) = 0.2
+		_SlopeThreshold("Gradual Threshold", Float) = 0.7
+
 		_Smoothness("Smoothness", Float) = 0.5
 
 		[Toggle(_ALPHATEST_ON)] _EnableAlphaTest("Enable Alpha Cutoff", Float) = 0.0
 		_Cutoff("Alpha Cutoff", Float) = 0.5
 
-		[Toggle(_NORMALMAP)] _EnableBumpMap("Enable Normal/Bump Map", Float) = 0.0
+		[Toggle(_NORMALMAP)] _EnableBumpMap("Enable Normal Map", Float) = 0.0
 		_BumpMap("Normal/Bump Texture", 2D) = "bump" {}
 		_BumpScale("Bump Scale", Float) = 1
 
@@ -36,6 +40,9 @@ Shader "Custom/CustomLit"
 			float4 _EmissionColor;
 			float _Smoothness;
 			float _Cutoff;
+
+			float _GroundThreshold;
+			float _SlopeThreshold;
 			CBUFFER_END
 		ENDHLSL
 
@@ -240,17 +247,17 @@ Shader "Custom/CustomLit"
 
 					float slope = 1.0f - IN.normalWS.y;
 
-					if (slope < 0.2)
+					if (slope < _GroundThreshold)
 					{
 						blendAmount = slope / 0.2f;
 						color = lerp(_BaseColor, _GradSlopeColour, blendAmount);
 					}
-					if ((slope < 0.7) && (slope >= 0.2))
+					if ((slope < _SlopeThreshold) && (slope >= _GroundThreshold))
 					{
-						blendAmount = (slope - 0.2) * (1.0f / (0.7f - 0.2f));
+						blendAmount = (slope - _GroundThreshold) * (1.0f / (_SlopeThreshold - _GroundThreshold));
 						color = lerp(_GradSlopeColour, _SteepSlopeColour, blendAmount);
 					}
-					if (slope >= 0.7)
+					if (slope >= _SlopeThreshold)
 					{
 						color = _SteepSlopeColour;
 					}

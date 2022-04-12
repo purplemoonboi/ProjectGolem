@@ -247,11 +247,14 @@ public class TerrainMesh : MonoBehaviour
 
     public void GenerateMesh()
     {
+
         DestroyImmediate(meshRenderer);
         DestroyImmediate(meshFilter);
         meshRenderer = gameObject.AddComponent<MeshRenderer>();
         meshRenderer.sharedMaterial = new Material(Shader.Find("Custom/CustomLit"));
         meshFilter = gameObject.AddComponent<MeshFilter>();
+        
+
         heightMap.Clear();
 
         Mesh mesh = new Mesh();
@@ -265,7 +268,6 @@ public class TerrainMesh : MonoBehaviour
                 float height = RidgedPerlin(x, z);
                 float nx = scale * ((float)x / (float)resolution);
                 float nz = scale * ((float)z / (float)resolution);
-                //Debug.Log("X " + nx + " Z " + nz);
                 vertices.Add(new Vector3(nx, 0f + height, nz));
                 heightMap.Add(height);
             }
@@ -274,8 +276,8 @@ public class TerrainMesh : MonoBehaviour
         mesh.vertices = vertices.ToArray();
 
         List<int> indices = new List<int>();
-        //Calculate indices for each polygon.
 
+        //Calculate indices for each triangle.
         for (int x = 0; x < resolution - 1; ++x)
         {
             for (int z = 0; z < resolution - 1; ++z)
@@ -299,11 +301,13 @@ public class TerrainMesh : MonoBehaviour
         {
             for (int z = 0; z < resolution; ++z)
             {
-                normals.Add(new Vector3(0, 1, 0));
+                normals.Add(new Vector3(0, -1, 0));
             }
         }
 
         mesh.normals = normals.ToArray();
+        mesh.RecalculateBounds();
+        mesh.RecalculateTangents();
         mesh.RecalculateNormals();
 
 
@@ -394,11 +398,11 @@ public class TerrainMesh : MonoBehaviour
     private System.Random randomNumGenerator;
 
     private int currentSeed;
-    private int currentErosionRadius;
-    private int currentMapSize;
+    private int currentErosionRadius = 0;
+    private int currentMapSize = 0;
 
 
-    public void Initialise(int mapSize, bool reset)
+    private void Initialise(int mapSize, bool reset)
     {
         if (reset || (randomNumGenerator == null))
         {
@@ -498,10 +502,7 @@ public class TerrainMesh : MonoBehaviour
                         int nodeIndex = neighbourErosionIndices[dropletIndex][brushPointIndex];
                         float weighedErodeAmount = amountToErode * neighbourErosionWeights[dropletIndex][brushPointIndex];
                         float deltaSediment = (map[nodeIndex] < weighedErodeAmount) ? map[nodeIndex] : weighedErodeAmount;
-                        //Debug.Log("Node index : " + nodeIndex);
-                        //Debug.Log("Map value : " + map[nodeIndex]);
-                        //Debug.Log("Weighted amount : " + weighedErodeAmount);
-                        //Debug.Log("Eroding : " + deltaSediment);
+
                         map[nodeIndex] -= deltaSediment;
                         sediment += deltaSediment;
                     }
@@ -566,7 +567,7 @@ public class TerrainMesh : MonoBehaviour
         float weightSum = 0.0f;
         int addIndex = 0;
 
-        for (int i = 0; i < neighbourErosionIndices.GetLength(0); ++i)
+        for (int i = 0; i < (mapSize * mapSize); ++i)
         {
             int centerX = i % mapSize;
             int centerZ = i / mapSize;
