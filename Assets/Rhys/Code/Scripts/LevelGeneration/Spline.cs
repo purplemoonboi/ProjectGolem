@@ -21,6 +21,9 @@ public class Spline : MonoBehaviour
     [SerializeField]
     private bool loop;
 
+    [SerializeField]
+    private float offset = 0.1f;
+
     public void Reset()
     {
         points = new Vector3[]
@@ -259,4 +262,17 @@ public class Spline : MonoBehaviour
             EnforceMode(0);
         }
     }
+
+    public void SetSplinePosition()
+    {
+        Debug.Log("Invoked");
+        for (int i = 0; i < points.Length; ++i)
+        {
+            points[i] = new Vector3(points[i].x, offset, points[i].z);
+        }
+    }
+
+    public float Offset() => offset;
+    public void SetOffset(float o) => offset = o;
+
 }
