@@ -79,13 +79,24 @@ public class EnemyProjectileStats : MonoBehaviour
 
     public void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.transform.tag == "DefenceTower" || collider.gameObject.transform.tag == "Friendly")
+        if (collider.gameObject.transform.tag == "Friendly")
         {
             FriendlyController friendly = collider.gameObject.transform.GetComponent<FriendlyController>();
 
             if (friendly != null)
             {
                 friendly.SetHealth(friendly.GetHealth() - damage);
+
+                Destroy(gameObject);
+            }
+        }
+        else if(collider.gameObject.transform.tag == "DefenceTower")
+        {
+            TurretStats turret = collider.gameObject.transform.GetComponent<TurretStats>();
+
+            if(turret != null)
+            {
+                turret.SetHealth(turret.GetHealth() - damage);
 
                 Destroy(gameObject);
             }
