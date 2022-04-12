@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyProjectileStats : MonoBehaviour
 {
     [SerializeField]
+    private GameObject explosionPrefab;
+    [SerializeField]
     private float damage = 100.0f;
     [SerializeField]
     private Rigidbody rigidbody;
@@ -87,6 +89,8 @@ public class EnemyProjectileStats : MonoBehaviour
             {
                 friendly.SetHealth(friendly.GetHealth() - damage);
 
+                Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+
                 Destroy(gameObject);
             }
         }
@@ -97,6 +101,8 @@ public class EnemyProjectileStats : MonoBehaviour
             if(turret != null)
             {
                 turret.SetHealth(turret.GetHealth() - damage);
+
+                Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 
                 Destroy(gameObject);
             }

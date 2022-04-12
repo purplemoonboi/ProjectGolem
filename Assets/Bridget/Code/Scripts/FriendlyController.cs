@@ -68,10 +68,7 @@ public class FriendlyController : NpcController
 
             Rigidbody rigidbody = projectile.GetComponent<Rigidbody>();
 
-            Vector3 direction = Vector3.Normalize(targetPosition - transform.position);
-
             Vector3 force = fireForce * projectile.transform.forward;
-            //Vector3 force = fireForce * direction;
 
             rigidbody.AddForce(force, ForceMode.Force);
 

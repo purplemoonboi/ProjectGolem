@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c73dd62e6c044a4dae92325651d2ceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 6825327511905475100, guid: 6ec92afd4c3ab4c4e8fa69ba4fc27f67, type: 3}
   damage: 100
   rigidbody: {fileID: 2856943987827793060}
   timer: 0
