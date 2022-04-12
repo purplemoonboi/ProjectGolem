@@ -48,7 +48,7 @@ Shader "Custom/CustomLit"
 
 		Pass
 		{
-			Name "Example"
+			Name "CustomLit"
 			Tags { "LightMode" = "UniversalForward" }
 
 			HLSLPROGRAM

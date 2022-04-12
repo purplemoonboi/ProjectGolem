@@ -82,11 +82,6 @@ public class Interact : MonoBehaviour
             ProcessInteractions();
         }
 
-        if(!characterRef.InputEnabled())
-        {
-            //StartCoroutine("RepositionCharacter", oldPos);
-
-        }
 
     }
 
