@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using System.IO;
 
 public class TerrainMesh : MonoBehaviour
@@ -37,29 +38,55 @@ public class TerrainMesh : MonoBehaviour
 
     public void BakeHeightMap()
     {
-        heightMapTexture = new Texture2D(512, 512, TextureFormat.RGB24, true);
-        for(int x = 0; x < 512; ++x)
+        heightMapTexture = new Texture2D(resolution, resolution, TextureFormat.RGB24, true);
+
+        int sampler = 0;
+        for(int x = 0; x < resolution; ++x)
         {
-            for(int y = 0; y < 512; ++y)
+            for(int y = 0; y < resolution; ++y)
             {
-                Color value = new Color(0, 0, 0, 0);
-                float noise = RidgedPerlin(x, y);
-                Debug.Log("Noise " + noise);
-                value.r = noise; 
-                value.b = noise;
-                value.g = noise;
-                heightMapTexture.SetPixel(x, y, value);
+                float height = heightMap.ToArray()[sampler];
+                height = MathsUtils.RemapRange(height, 0f, amplitude, 0f, 1f);
+                height *= -1f;
+                Color c = new Color(height,height,height);
+                heightMapTexture.SetPixel(x, y, c);
+                sampler++;
             }
         }
 
         byte[] bytes = heightMapTexture.EncodeToPNG();
 
-        var dirPath = Application.dataPath + "/../HeightMaps/";
+        var dirPath = Application.dataPath + "/Rhys/Textures/";
         if(!Directory.Exists(dirPath))
         {
             Directory.CreateDirectory(dirPath);
         }
         File.WriteAllBytes(dirPath + "HeightMap" + ".png", bytes);
+    }
+
+    public void LoadFromFile(string filePath)
+    {
+        if(filePath == " ")
+        {
+            Debug.LogError("Invalid filepath");
+        }
+        else
+        {
+            
+            FileStream fs = File.OpenRead(filePath);
+            byte[] data = new byte[256];
+            fs.Read(data, 0, 256);
+            heightMap.Clear();
+            for(int i = 0; i < data.Length; ++i)
+            {
+                heightMap.Add(data[i]);
+            }
+            fs.Close();
+            // ReloadMesh();
+            List<Material> materials = new List<Material>();
+            GetComponent<MeshRenderer>().GetMaterials(materials);
+
+        }
     }
 
     public float RidgedPerlin(float x, float z)
@@ -76,25 +103,8 @@ public class TerrainMesh : MonoBehaviour
             f *= lacunarity;
         }
 
-        //h = Mathf.Abs(h);
-        //h *= 1;
-
-        return h;
-    }
-
-    public float RidgedPerlin01(float x, float z)
-    {
-        float a = amplitude;
-        float f = frequency;
-        float h = 0f;
-
-        for (int o = 0; o < 8; ++o)
-        {
-            h += Mathf.PerlinNoise((x + offsetU) * f, (z + offsetV) * f) * a;
-            h = amplitude - h;
-            a *= loss;
-            f *= lacunarity;
-        }
+        h = Mathf.Abs(h);
+        h *= 1;
 
         return h;
     }
@@ -107,9 +117,9 @@ public class TerrainMesh : MonoBehaviour
             return;
         }
 
-        Debug.Log("Reloading...");
 
         Mesh mesh = new Mesh();
+        mesh.indexFormat = IndexFormat.UInt32;
         //Calculate positions.
         vertices = new List<Vector3>();
         for (int x = 0; x < resolution; ++x)
@@ -259,10 +269,8 @@ public class TerrainMesh : MonoBehaviour
         meshFilter = gameObject.AddComponent<MeshFilter>();
         heightMap.Clear();
 
-        //Debug.Log("Resolution " + resolution);
-        //Debug.Log("Size " + size);
-
         Mesh mesh = new Mesh();
+        mesh.indexFormat = IndexFormat.UInt32;
         //Calculate positions.
         List<Vector3> vertices = new List<Vector3>();
         for (int x = 0; x < resolution; ++x)
@@ -440,7 +448,6 @@ public class TerrainMesh : MonoBehaviour
 
         for (int iteration = 0; iteration < numIterations; iteration++)
         {
-            //Debug.Log("Current iteration " + iteration);
 
             // Create water particle at random point on map
             float posX = randomNumGenerator.Next(0, mapSize - 1);

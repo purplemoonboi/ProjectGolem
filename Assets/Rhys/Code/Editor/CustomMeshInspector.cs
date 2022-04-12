@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System.IO;
+
 
 [CustomEditor(typeof(TerrainMesh))]
 public class CustomMeshInspector : Editor
@@ -10,7 +12,7 @@ public class CustomMeshInspector : Editor
     private TerrainMesh terrainMesh;
 
 
-    static int maxSize = 256;
+    static int maxSize = 1024;
 
     private int resolution = 2;
     private float amplitude = 50.0f;
@@ -289,6 +291,18 @@ public class CustomMeshInspector : Editor
         if (GUILayout.Button("Bake Height Map"))
         {
             terrainMesh.BakeHeightMap();
+        }
+
+        GUILayout.Space(4f);
+
+        string prefix = Directory.GetCurrentDirectory();
+        string fileName = "/HeightMaps/HeightMap.png";
+        string filePath = prefix + fileName;
+        GUILayout.Space(4f);
+
+        if (GUILayout.Button("Load From File"))
+        {
+            terrainMesh.LoadFromFile(filePath);
         }
 
     }

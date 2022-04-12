@@ -111,7 +111,9 @@ public class CharacterSplineController : MonoBehaviour
 
         // Quaternion rotGoal = Quaternion.LookRotation(lookAt);
 
-        transform.position = splinePosition + splineOffset;
+       // transform.position = splinePosition + splineOffset;
+
+        transform.position += Hover() * Time.deltaTime;
         transform.LookAt(transform.position + (spline.GetDirection(distanceAlongSpline)));
 
       // if(InteractRef.GetTarget() != null)
@@ -134,6 +136,18 @@ public class CharacterSplineController : MonoBehaviour
         camera.transform.position = (transform.position + new Vector3(-1f, 3f, 0f)) - (transform.forward * 7f);
         previousLook = lookAt;
 
+    }
+
+
+    private Vector3 Hover()
+    {
+        float a = 5f;
+        float ang = 0.05f;
+        float phi = 2.0f;
+
+        float h = a * Mathf.Cos((ang * Time.deltaTime) + transform.position.x);
+
+        return new Vector3(0f,  h, 0f);
     }
 
 
