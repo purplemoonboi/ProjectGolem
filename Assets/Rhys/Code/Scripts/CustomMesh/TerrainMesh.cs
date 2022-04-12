@@ -257,7 +257,6 @@ public class TerrainMesh : MonoBehaviour
         }
     }
 
-
     public void GenerateMesh()
     {
 
@@ -272,6 +271,7 @@ public class TerrainMesh : MonoBehaviour
         mesh.indexFormat = IndexFormat.UInt32;
         //Calculate positions.
         List<Vector3> vertices = new List<Vector3>();
+
         for (int x = 0; x < resolution; ++x)
         {
             for (int z = 0; z < resolution; ++z)
