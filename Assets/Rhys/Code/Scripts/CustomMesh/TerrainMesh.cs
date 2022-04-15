@@ -262,8 +262,9 @@ public class TerrainMesh : MonoBehaviour
 
         DestroyImmediate(meshRenderer);
         DestroyImmediate(meshFilter);
+        heightMap = new List<float>();
         meshRenderer = gameObject.AddComponent<MeshRenderer>();
-        meshRenderer.sharedMaterial = new Material(Shader.Find("Custom/CustomLit"));
+        meshRenderer.sharedMaterial = new Material(Shader.Find("Custom/SandShader"));
         meshFilter = gameObject.AddComponent<MeshFilter>();
         
 
@@ -395,7 +396,7 @@ public class TerrainMesh : MonoBehaviour
     private float erosionFactor = 0.3f;
     private float depositionFactor = 0.3f;
     private float evaporationSpeed = 0.01f;
-    private int gravity;
+    private int gravity = 4;
     private int particleLifetime = 90;
     private const int waterVolume = 1;
     private float initialVelocity = 1;
