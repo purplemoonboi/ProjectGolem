@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using System.IO;
 
 public class TerrainMesh : MonoBehaviour
@@ -52,12 +53,37 @@ public class TerrainMesh : MonoBehaviour
 
         byte[] bytes = heightMapTexture.EncodeToPNG();
 
-        var dirPath = Application.dataPath + "/../HeightMaps/";
+        var dirPath = Application.dataPath + "/Rhys/Textures/";
         if(!Directory.Exists(dirPath))
         {
             Directory.CreateDirectory(dirPath);
         }
         File.WriteAllBytes(dirPath + "HeightMap" + ".png", bytes);
+    }
+
+    public void LoadFromFile(string filePath)
+    {
+        if(filePath == " ")
+        {
+            Debug.LogError("Invalid filepath");
+        }
+        else
+        {
+            
+            FileStream fs = File.OpenRead(filePath);
+            byte[] data = new byte[256];
+            fs.Read(data, 0, 256);
+            heightMap.Clear();
+            for(int i = 0; i < data.Length; ++i)
+            {
+                heightMap.Add(data[i]);
+            }
+            fs.Close();
+            // ReloadMesh();
+            List<Material> materials = new List<Material>();
+            GetComponent<MeshRenderer>().GetMaterials(materials);
+
+        }
     }
 
     public float RidgedPerlin(float x, float z)
@@ -73,22 +99,9 @@ public class TerrainMesh : MonoBehaviour
             a *= loss;
             f *= lacunarity;
         }
-        return h;
-    }
 
-    public float RidgedPerlin01(float x, float z)
-    {
-        float a = amplitude;
-        float f = frequency;
-        float h = 0f;
-
-        for (int o = 0; o < 8; ++o)
-        {
-            h += Mathf.PerlinNoise((x + offsetU) * f, (z + offsetV) * f) * a;
-            h = amplitude - h;
-            a *= loss;
-            f *= lacunarity;
-        }
+        h = Mathf.Abs(h);
+        h *= 1;
 
         return h;
     }
@@ -101,9 +114,9 @@ public class TerrainMesh : MonoBehaviour
             return;
         }
 
-        Mesh mesh = new Mesh();
-        mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
 
+        Mesh mesh = new Mesh();
+        mesh.indexFormat = IndexFormat.UInt32;
         //Calculate positions.
         vertices = new List<Vector3>();
         for (int x = 0; x < resolution; ++x)
@@ -244,23 +257,22 @@ public class TerrainMesh : MonoBehaviour
         }
     }
 
-
     public void GenerateMesh()
     {
 
         DestroyImmediate(meshRenderer);
         DestroyImmediate(meshFilter);
+        heightMap = new List<float>();
         meshRenderer = gameObject.AddComponent<MeshRenderer>();
-        meshRenderer.sharedMaterial = new Material(Shader.Find("Custom/CustomLit"));
+        meshRenderer.sharedMaterial = new Material(Shader.Find("Custom/SandShader"));
         meshFilter = gameObject.AddComponent<MeshFilter>();
         
 
-        heightMap.Clear();
-
         Mesh mesh = new Mesh();
-        mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
+        mesh.indexFormat = IndexFormat.UInt32;
         //Calculate positions.
         List<Vector3> vertices = new List<Vector3>();
+
         for (int x = 0; x < resolution; ++x)
         {
             for (int z = 0; z < resolution; ++z)
@@ -384,7 +396,7 @@ public class TerrainMesh : MonoBehaviour
     private float erosionFactor = 0.3f;
     private float depositionFactor = 0.3f;
     private float evaporationSpeed = 0.01f;
-    private int gravity;
+    private int gravity = 4;
     private int particleLifetime = 90;
     private const int waterVolume = 1;
     private float initialVelocity = 1;
@@ -425,7 +437,6 @@ public class TerrainMesh : MonoBehaviour
 
         for (int iteration = 0; iteration < numIterations; iteration++)
         {
-            //Debug.Log("Current iteration " + iteration);
 
             // Create water particle at random point on map
             float posX = randomNumGenerator.Next(0, mapSize - 1);

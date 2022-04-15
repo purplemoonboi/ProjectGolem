@@ -1,28 +1,40 @@
 // @brief A custom PBR shader.
-Shader "Custom/CustomLit" 
+Shader "Custom/SandShader" 
 {
 	Properties
 	{
+		//Base properties
 		_BaseMap("Base Texture", 2D) = "white" {}
-		_BaseColor("Ground Colour", Color) = (0.6, 0.2, 0.6, 1)
-		_GradSlopeColour("Gradual Slope Colour", Color) = (0.75, 0.14, 0.72, 1)
-		_SteepSlopeColour("Steep Slope Colour", Color) = (0.84, 0.2, 0.83, 1)
-
-		_GroundThreshold("Ground Threshold", Float) = 0.2
-		_SlopeThreshold("Gradual Threshold", Float) = 0.7
+		_BaseColor("Sand Colour", Color) = (0.6, 0.2, 0.6, 1)
+		//Specular properties.
+		_GlitterColour("Glitter Colour", Color) = (1.0, 1.0, 1.0, 1.0)
+		_OceanColour("Ocean Colour", Color) = (0.7, 0.7, 0.7, 1.0)
+		//Fresnel Attributes.
+		_RimColour("Rim Colour", Color) = (0.1, 0.6, 0.8, 1.0)
+		_RimPower("Rim Power", Float) = 2
+		_RimStrength("Rim Strength", Float) = 2
 
 		_Smoothness("Smoothness", Float) = 0.5
 
 		[Toggle(_ALPHATEST_ON)] _EnableAlphaTest("Enable Alpha Cutoff", Float) = 0.0
 		_Cutoff("Alpha Cutoff", Float) = 0.5
 
+		//Normal map properties.
 		[Toggle(_NORMALMAP)] _EnableBumpMap("Enable Normal Map", Float) = 0.0
 		_BumpMap("Normal/Bump Texture", 2D) = "bump" {}
 		_BumpScale("Bump Scale", Float) = 1
+		_SandStrength("Sand Strength", Float) = 0.5
 
 		[Toggle(_EMISSION)] _EnableEmission("Enable Emission", Float) = 0.0
 		_EmissionMap("Emission Texture", 2D) = "white" {}
 		_EmissionColor("Emission Colour", Color) = (0, 0, 0, 0)
+
+		//Legacy terrain properties.
+		_GradSlopeColour("Gradual Slope Colour", Color) = (0.75, 0.14, 0.72, 1)
+		_SteepSlopeColour("Steep Slope Colour", Color) = (0.84, 0.2, 0.83, 1)
+		_GroundThreshold("Ground Threshold", Float) = 0.2
+		_SlopeThreshold("Gradual Threshold", Float) = 0.7
+
 	}
 	SubShader
 	{
@@ -34,6 +46,14 @@ Shader "Custom/CustomLit"
 			CBUFFER_START(UnityPerMaterial)
 			float4 _BaseMap_ST;
 			float4 _BaseColor;
+			float4 _GlitterColour;
+			float4 _RimColour;
+			float _RimPower;
+			float _RimStrength;
+			float4 _OceanColour;
+			float _SandStrength;
+
+
 			float4 _GradSlopeColour;
 			float4 _SteepSlopeColour;
 			float _BumpScale;
@@ -43,12 +63,14 @@ Shader "Custom/CustomLit"
 
 			float _GroundThreshold;
 			float _SlopeThreshold;
+
 			CBUFFER_END
+
 		ENDHLSL
 
 		Pass
 		{
-			Name "Example"
+			Name "CustomLit"
 			Tags { "LightMode" = "UniversalForward" }
 
 			HLSLPROGRAM
@@ -64,10 +86,10 @@ Shader "Custom/CustomLit"
 				#pragma fragment frag
 
 				// Material Keywords
-				#pragma shader_feature _NORMALMAP
-				#pragma shader_feature _ALPHATEST_ON
-				#pragma shader_feature _ALPHAPREMULTIPLY_ON
-				#pragma shader_feature _EMISSION
+				#pragma shader_feature   _NORMALMAP
+				#pragma shader_feature   _ALPHATEST_ON
+				#pragma shader_feature   _ALPHAPREMULTIPLY_ON
+				#pragma shader_feature   _EMISSION
 				//#pragma shader_feature _METALLICSPECGLOSSMAP
 				//#pragma shader_feature _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
 				//#pragma shader_feature _OCCLUSIONMAP
@@ -75,8 +97,8 @@ Shader "Custom/CustomLit"
 
 				//#pragma shader_feature _SPECULARHIGHLIGHTS_OFF
 				//#pragma shader_feature _ENVIRONMENTREFLECTIONS_OFF
-				//#pragma shader_feature _SPECULAR_SETUP
-				#pragma shader_feature _RECEIVE_SHADOWS_OFF
+				#pragma shader_feature   _SPECULAR_SETUP
+				#pragma shader_feature   _RECEIVE_SHADOWS_OFF
 
 				// URP Keywords
 				#pragma multi_compile _ _MAIN_LIGHT_SHADOWS
@@ -97,9 +119,12 @@ Shader "Custom/CustomLit"
 
 				struct Attributes 
 				{
+					//Position and normal/tangent in object space.
 					float4 positionOS   : POSITION;
 					float3 normalOS		: NORMAL;
 					float4 tangentOS	: TANGENT;
+
+
 					float4 color		: COLOR;
 					float2 uv           : TEXCOORD0;
 					float2 lightmapUV   : TEXCOORD1;
@@ -107,19 +132,21 @@ Shader "Custom/CustomLit"
 
 				struct Varyings
 				{
+					//Position in clip space.
 					float4 positionCS				: SV_POSITION;
 					float4 color					: COLOR;
 					float2 uv					: TEXCOORD0;
+
 					DECLARE_LIGHTMAP_OR_SH(lightmapUV, vertexSH, 1);
 
 					#ifdef REQUIRES_WORLD_SPACE_POS_INTERPOLATOR
 						float3 positionWS			: TEXCOORD2;
 					#endif
 
+					//Normal now in world space.
 					float3 normalWS					: TEXCOORD3;
-					#ifdef _NORMALMAP
-						float4 tangentWS 			: TEXCOORD4;
-					#endif
+					float4 tangentWS 				: TEXCOORD4;
+
 
 					float3 viewDirWS 				: TEXCOORD5;
 					half4 fogFactorAndVertexLight	: TEXCOORD6; // x: fogFactor, yzw: vertex light
@@ -130,9 +157,9 @@ Shader "Custom/CustomLit"
 				};
 
 
+				//We define this function to support olders versions of URP.
+				//Calculates the view vector from the user.
 				#if SHADER_LIBRARY_VERSION_MAJOR < 9
-				// This function was added in URP v9.x.x versions, if we want to support URP versions before, we need to handle it instead.
-				// Computes the world space view direction (pointing towards the viewer).
 				float3 GetWorldSpaceViewDir(float3 positionWS)
 				{
 					if (unity_OrthoParams.w == 0) 
@@ -230,6 +257,14 @@ Shader "Custom/CustomLit"
 					return inputData;
 				}
 
+				half3 RimLighting(float3 normalWS, float3 viewVecWS)
+				{
+					float rim = 1.0f - saturate(dot(normalWS, viewVecWS));
+					rim = saturate(pow(rim, _RimPower) * _RimStrength);
+					rim = max(rim, 0);
+					return rim * _RimColour;
+				}
+
 				// @brief Initialises the surface data ensuring all values are set to 0.
 				SurfaceData InitializeSurfaceData(Varyings IN) 
 				{
@@ -239,8 +274,8 @@ Shader "Custom/CustomLit"
 					half4 albedoAlpha = SampleAlbedoAlpha(IN.uv, TEXTURE2D_ARGS(_BaseMap, sampler_BaseMap));
 					surfaceData.alpha = Alpha(albedoAlpha.a, _BaseColor, _Cutoff);
 
-					//surfaceData.albedo = albedoAlpha.rgb * _BaseColor.rgb * IN.color.rgb;
-
+					surfaceData.albedo = albedoAlpha.rgb * _BaseColor.rgb * IN.color.rgb;
+/*
 					//Gradient based colour.
 					half4 color = (half4)0;
 					float blendAmount = 1.0f;
@@ -263,13 +298,17 @@ Shader "Custom/CustomLit"
 					}
 
 					surfaceData.albedo = color;
+*/
+					//surfaceData.normalTS = SampleNormal(IN.uv, TEXTURE2D_ARGS(_BumpMap, sampler_BumpMap), _BumpScale);
 
+					//Sand normals.
+					float3 randomNormal = SampleNormal(IN.uv, TEXTURE2D_ARGS(_BumpMap, sampler_BumpMap), _BumpScale);
+					surfaceData.normalTS = normalize(lerp(-IN.normalWS, randomNormal, _SandStrength));
 					surfaceData.smoothness = 0.5;
-					surfaceData.normalTS = SampleNormal(IN.uv, TEXTURE2D_ARGS(_BumpMap, sampler_BumpMap), _BumpScale);
+
+					//Emission 
 					surfaceData.emission = SampleEmission(IN.uv, _EmissionColor.rgb, TEXTURE2D_ARGS(_EmissionMap, sampler_EmissionMap));
-
 					surfaceData.occlusion = 1;
-
 					return surfaceData;
 				}
 
@@ -290,11 +329,12 @@ Shader "Custom/CustomLit"
 						surfaceData.emission,
 						surfaceData.alpha
 					);
-
+					half3 rimLight = RimLighting(-IN.normalWS, IN.viewDirWS);
+					color.rgb += rimLight;
 					color.rgb = MixFog(color.rgb, inputData.fogCoord);
 					color.a = saturate(color.a);
 
-					return color; // float4(inputData.bakedGI,1);
+					return color; 
 				}
 				ENDHLSL
 		}
