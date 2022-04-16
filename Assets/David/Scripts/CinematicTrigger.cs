@@ -28,7 +28,7 @@ public class CinematicTrigger : MonoBehaviour
 
         if (counter <= 0.0f)
         {
-            trigger.SetActive(false);
+            this.trigger.SetActive(false);
             timeStart = false;
         }
     }
