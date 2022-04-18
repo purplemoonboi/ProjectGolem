@@ -43,6 +43,8 @@ public class TerrainMesh : MonoBehaviour
             {
                 //One array access per iteration.
                 float height = hm[(x * resolution) + y];
+                height /= amplitude;
+                height = MathsUtils.RemapRange(height, -1, 1, 0, 1);
                 texture.r = height;
                 texture.g = height;
                 texture.b = height;
@@ -58,7 +60,7 @@ public class TerrainMesh : MonoBehaviour
         {
             Directory.CreateDirectory(dirPath);
         }
-        File.WriteAllBytes(dirPath + "HeightMap" + ".png", bytes);
+        File.WriteAllBytes(dirPath + "HeightMap" + ".raw", bytes);
     }
 
     public void LoadFromFile(string filePath)
@@ -69,20 +71,24 @@ public class TerrainMesh : MonoBehaviour
         }
         else
         {
-            
+            filePath = "Assets/Rhys/Textures/HeightMap.png";
             FileStream fs = File.OpenRead(filePath);
-            byte[] data = new byte[256];
-            fs.Read(data, 0, 256);
+            int size = resolution * resolution;
+            byte[] data = new byte[size];
+            fs.Read(data, 0, size);
             heightMap.Clear();
-            for(int i = 0; i < data.Length; ++i)
+            for (int x = 0; x < resolution; ++x)
             {
-                heightMap.Add(data[i]);
+                for (int z = 0; z < resolution; ++z)
+                {
+                    float height = data[(x * resolution) + z];
+                    //height = MathsUtils.RemapRange(height, 0, 1, -1, 1);
+                    //height *= amplitude;
+                    heightMap.Add(height);
+                }
             }
             fs.Close();
-            // ReloadMesh();
-            List<Material> materials = new List<Material>();
-            GetComponent<MeshRenderer>().GetMaterials(materials);
-
+            ReloadMesh();
         }
     }
 
