@@ -231,19 +231,24 @@ Shader "Custom/SandShader"
 					return IsOutOfBounds(culling, lowerBounds, higherBounds);
 				}
 
-				bool ShouldBackFaceCull(float4 p0PositionCS, float4 p1PositionCS, float4 p2PositionCS) 
+				bool ShouldBackFaceCull(float4 p0PositionCS, float4 p1PositionCS, float4 p2PositionCS, float tolerance) 
 				{
 					float3 point0 = p0PositionCS.xyz / p0PositionCS.w;
 					float3 point1 = p1PositionCS.xyz / p1PositionCS.w;
 					float3 point2 = p2PositionCS.xyz / p2PositionCS.w;
 					float3 normal = cross(point1 - point0, point2 - point0);
 
-					// In clip space, the view direction is float3(0, 0, 1), so we can just test the z coord
-					#if UNITY_REVERSED_Z
-						return cross(point1 - point0, point2 - point0).z < 0;
-					#else // In OpenGL, the test is reversed
-						return cross(point1 - point0, point2 - point0).z > 0;
-					#endif
+					//Only accounts for DX11, need to flip tolerance for OpenGL API.
+					return cross(point1 - point0, point2 - point0).z < -tolerance;
+				}
+
+				bool IsPointOutOfFrustrum(float4 positionCS, float tolerance)
+				{
+					float3 culling = positionCS.xyz;
+					float w = position.w;
+					float3 lowerBounds = float3(-w - tolerance, -w - tolerance, -w * UNITY_RAW_FAR_CLIP_VALUE - tolerance);
+					float3 higherBounds = float3(w + tolerance, w + tolerance, w + tolerance);
+					return IsOutOfBounds(culling, lowerBounds, higherBounds);
 				}
 
 				bool ShouldClipPatch(float4 position0CS, float4 position1CS, float4 position2CS)
@@ -284,7 +289,7 @@ Shader "Custom/SandShader"
 						{
 							float length = distance(_PlayerPosition.xyz, patch[i].positionWS);
 							float multiplier = (length > _TessDeformThreshold) ? 1 : 0;
-							f.edge[i] = _TessellationFactor[0] * multiplier;
+							f.edge[i] = 2;
 						}
 						f.inside = 1;
 					}
