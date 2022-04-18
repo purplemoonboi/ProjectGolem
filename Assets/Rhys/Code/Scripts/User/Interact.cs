@@ -81,8 +81,6 @@ public class Interact : MonoBehaviour
         {
             ProcessInteractions();
         }
-
-
     }
 
     private void ProcessInteractions()
@@ -110,21 +108,22 @@ public class Interact : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Environment")
-        {
-            Debug.Log("Collision!");
-            Vector3 direction = (collision.transform.position - characterRef.GetSpline().GetPointOnSpline(characterRef.DistanceAlongSpline()) + characterRef.SplineOffset()).normalized;
-            characterRef.ToggleInput(false);
-            oldPos = characterRef.GetSpline().GetPointOnSpline(characterRef.DistanceAlongSpline()) + characterRef.SplineOffset() - direction;
-            transform.position = oldPos;
-
-            Vector3 newSplineOffset = new Vector3();
-            Vector2 splinePos = new Vector2(characterRef.GetSpline().GetPointOnSpline(characterRef.DistanceAlongSpline()).x,
-                characterRef.GetSpline().GetPointOnSpline(characterRef.DistanceAlongSpline()).z);
-            Vector2 sign = (splinePos - new Vector2(transform.position.x, transform.position.z)).normalized;
-            newSplineOffset = characterRef.SplineOffset() + new Vector3(sign.x, 0f, sign.y);
-            characterRef.UpdateOffset(newSplineOffset);
-        }
+        //NOT USING SPLINE CODE
+        //if(collision.gameObject.tag == "Environment")
+        //{
+        //    Debug.Log("Collision!");
+        //    Vector3 direction = (collision.transform.position - characterRef.GetSpline().GetPointOnSpline(characterRef.DistanceAlongSpline()) + characterRef.SplineOffset()).normalized;
+        //    characterRef.ToggleInput(false);
+        //    oldPos = characterRef.GetSpline().GetPointOnSpline(characterRef.DistanceAlongSpline()) + characterRef.SplineOffset() - direction;
+        //    transform.position = oldPos;
+        //
+        //    Vector3 newSplineOffset = new Vector3();
+        //    Vector2 splinePos = new Vector2(characterRef.GetSpline().GetPointOnSpline(characterRef.DistanceAlongSpline()).x,
+        //        characterRef.GetSpline().GetPointOnSpline(characterRef.DistanceAlongSpline()).z);
+        //    Vector2 sign = (splinePos - new Vector2(transform.position.x, transform.position.z)).normalized;
+        //    newSplineOffset = characterRef.SplineOffset() + new Vector3(sign.x, 0f, sign.y);
+        //    characterRef.UpdateOffset(newSplineOffset);
+        //}
     }
 
     private IEnumerator RepositionCharacter(Vector3 oldPos)
@@ -141,15 +140,12 @@ public class Interact : MonoBehaviour
         characterRef.ToggleInput(true);
     }
 
-
     public void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.tag == "Environment")
-        {
-            Debug.Log("End collision!");
-
-           // characterRef.ToggleInput(true);
-        }
+        //if (collision.gameObject.tag == "Environment")
+        //{
+        //   // characterRef.ToggleInput(true);
+        //}
     }
 
     public void OnTriggerStay(Collider other)

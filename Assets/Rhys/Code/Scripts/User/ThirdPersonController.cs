@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ThirdPersonController : MonoBehaviour
 {
+    [Header("Spawn Point")]
+    [SerializeField]
+    private Transform spawnPoint;
+
     [Header("Movement Settings")]
 
     [Tooltip("The maximum velocity the character will reach.")]
@@ -34,9 +38,9 @@ public class ThirdPersonController : MonoBehaviour
 
     [Tooltip("Is the maximum and minimum height the character will reach when Oscillating.")]
 
-    [Range(1f, 100f)]
+    [Range(0.001f, 100f)]
     [SerializeField]
-    private float maxAmplitude = 2f;
+    private float maxAmplitude = 1f;
 
     [Tooltip("The spring constant dictates how far the oscillation will occur.")]
     [SerializeField]
@@ -66,6 +70,14 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField]
     private ParticleSystem emitter;
 
+    [Header("Character Offset")]
+    [Tooltip("How far away he is from the ground.")]
+    [Range(1f, 10f)]
+    [SerializeField]
+    private float offsetScalar = 1f;
+    [SerializeField]
+    private Vector3 contactPoint;
+
     /*Other attributes that needn't be exposed*/
     private Rigidbody rigidbody = null;
     private Vector3 forward = new Vector3();
@@ -73,9 +85,7 @@ public class ThirdPersonController : MonoBehaviour
     private float currentDisplacement = 0f;
     [SerializeField]
     private float currentVelocity = 0f;
-    private float alpha = 0f;
 
- 
 
     // Start is called before the first frame update
     void Start()
@@ -83,6 +93,7 @@ public class ThirdPersonController : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         //Fails if rigidbody is null.
         Debug.Assert(rigidbody);
+        transform.position = spawnPoint.position;
     }
 
     // Update is called once per frame
@@ -97,16 +108,18 @@ public class ThirdPersonController : MonoBehaviour
             emitter.Play();
             //Update current velocity.
             currentDisplacement += UpdateVelocity();
+            
             //Update character's position.
             transform.position += (transform.forward * currentDisplacement);
         }
         else
         {
-            emitter.Pause();
+            currentVelocity = 0f;
+            currentDisplacement = 0f;
         }
 
-        //Oscillate the character.
-        transform.position = SimpleHarmonicMotion();
+        //Oscillate the character (Affects the GFX only).
+        graphicsTransform.position += SimpleHarmonicMotion() * Time.deltaTime;
     }
 
     // @brief Called after all evaluations and updates are completed for this frame.
@@ -146,11 +159,9 @@ public class ThirdPersonController : MonoBehaviour
     // @brief Simulates a spring effect.
     private Vector3 SimpleHarmonicMotion()
     {
-        float a = maxAmplitude;
         float omega = springConstant / mass;
-        alpha += Time.deltaTime * omega;
-        float y = a * Mathf.Sin(alpha);
-        return new Vector3(transform.position.x, y, transform.position.z);
+        float y = maxAmplitude * Mathf.Cos(omega * Time.time);
+        return new Vector3(0f, y, 0f);
     }
 
     // @brief Updates the new forward vector and evaluates if *any* key press has occurred.
