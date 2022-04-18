@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 5534602625925313307}
   - component: {fileID: 6218968296647015629}
   - component: {fileID: 7324370512904319912}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: InteractPrompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 3499052604471929688}
   - component: {fileID: 5407630564852826570}
   - component: {fileID: 5175146722779712911}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LeftMouseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 4514856250579922992}
   - component: {fileID: 517593973996738411}
   - component: {fileID: 4251359380607646001}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ResourceText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -409,7 +409,7 @@ GameObject:
   - component: {fileID: 5643081559340548791}
   - component: {fileID: 6643825960617930766}
   - component: {fileID: 6268665089587509959}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ResourceAmountText
   m_TagString: ResourceWallet
   m_Icon: {fileID: 0}
@@ -5571,7 +5571,7 @@ GameObject:
   - component: {fileID: 1928817251563110634}
   - component: {fileID: 8579126620990123368}
   - component: {fileID: 6557917467493277793}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ResourcePickUpText
   m_TagString: ResourcePickUpAmount
   m_Icon: {fileID: 0}
@@ -5648,8 +5648,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6162227151265975890}
-  - component: {fileID: 4962265354444251772}
   - component: {fileID: 2440311731317676533}
+  - component: {fileID: 2959247505314634600}
   - component: {fileID: 7537896857685937557}
   - component: {fileID: 7244681669951823742}
   - component: {fileID: 3728301473452149360}
@@ -5681,19 +5681,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &4962265354444251772
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6162227151265975892}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 2
-  m_Center: {x: 0, y: 2, z: 0}
 --- !u!65 &2440311731317676533
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5707,6 +5694,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6, y: 10, z: 6}
   m_Center: {x: 0, y: 2, z: 0}
+--- !u!135 &2959247505314634600
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6162227151265975892}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &7537896857685937557
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5722,7 +5722,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &7244681669951823742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5759,6 +5759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: debf38ff19cc1fd498e4d2f957adad19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 0}
   maxVelocity: 5
   acceleration: 1.2
   angularVelocity: 12
@@ -5773,6 +5774,8 @@ MonoBehaviour:
   cameraTiltSpeed: 1
   cameraLookAtInterpolant: 0.5
   emitter: {fileID: 3964375170097506073}
+  offsetScalar: 1
+  contactPoint: {x: 0, y: 0, z: 0}
   currentVelocity: 0
 --- !u!1 &6847773016331484842
 GameObject:
@@ -5817,7 +5820,7 @@ GameObject:
   - component: {fileID: 6791377078336706357}
   - component: {fileID: 6041220879606848451}
   - component: {fileID: 4085185198337513884}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6053,7 +6056,7 @@ GameObject:
   - component: {fileID: 4891827124694838097}
   - component: {fileID: 822195237835525813}
   - component: {fileID: 1178439527811979906}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: PlayerHUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6281,6 +6284,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4373265451390070506}
     m_Modifications:
+    - target: {fileID: 5750697945749849638, guid: 09497b89679345643aa705baa0313fa1, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5750697945791601333, guid: 09497b89679345643aa705baa0313fa1, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5750697945870651981, guid: 09497b89679345643aa705baa0313fa1, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5750697945980876576, guid: 09497b89679345643aa705baa0313fa1, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5750697946814254932, guid: 09497b89679345643aa705baa0313fa1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6369,8 +6388,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: OxygenSlider
       objectReference: {fileID: 0}
+    - target: {fileID: 5750697946814254933, guid: 09497b89679345643aa705baa0313fa1, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5750697946898824652, guid: 09497b89679345643aa705baa0313fa1, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5750697946898824653, guid: 09497b89679345643aa705baa0313fa1, type: 3}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

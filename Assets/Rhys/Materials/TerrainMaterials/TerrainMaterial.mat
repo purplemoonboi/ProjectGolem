@@ -37,7 +37,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: bb2c7dd13e5a8db44b581b1838de1c0e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Control:
@@ -161,6 +161,9 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _Emission: 0
+    - _EnableAlphaTest: 0
+    - _EnableBumpMap: 0
+    - _EnableEmission: 0
     - _EnableHeightBlend: 0
     - _EnableInstancedPerPixelNormal: 1
     - _EnvironmentReflections: 1
@@ -168,6 +171,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 1
     - _GlossyReflections: 0
+    - _GroundThreshold: 0.2
     - _HeightTransition: 0
     - _MaxTessDistance: 350
     - _Metallic: 1
@@ -185,6 +189,10 @@ Material:
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _RimPower: 2
+    - _RimStrength: 0.23
+    - _SandStrength: 1.07
+    - _SlopeThreshold: 0.7
     - _Smoothness: 0.5
     - _Smoothness0: 0.5
     - _Smoothness1: 0.5
@@ -196,13 +204,21 @@ Material:
     - _SrcBlend: 1
     - _Surface: 0
     - _Tess: 10.03
+    - _TessDeformThreshold: 1
     - _UVSec: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColor: {r: 1, g: 0.29482073, b: 0, a: 1}
     - _BaseColour: {r: 0.7830189, g: 0.4764596, b: 0.4764596, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
+    - _GlitterColour: {r: 1, g: 1, b: 1, a: 1}
+    - _GradSlopeColour: {r: 0.75, g: 0.13999996, b: 0.72, a: 1}
+    - _OceanColour: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+    - _PlayerPosition: {r: 0, g: 0, b: 0, a: 1}
+    - _RimColour: {r: 0.28773582, g: 0.8631336, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _SteepSlopeColour: {r: 0.8399999, g: 0.19999996, b: 0.83, a: 1}
+    - _TessellationFactor: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

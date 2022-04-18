@@ -25,16 +25,16 @@ Shader "Custom/SandShader"
 		_BumpScale("Bump Scale", Float) = 1
 		_SandStrength("Sand Strength", Float) = 0.5
 
+		_SandStrength("Sand Strength", Float) = 0.5
+
 		[Toggle(_EMISSION)] _EnableEmission("Enable Emission", Float) = 0.0
 		_EmissionMap("Emission Texture", 2D) = "white" {}
 		_EmissionColor("Emission Colour", Color) = (0, 0, 0, 0)
 
-		//Legacy terrain properties.
-		_GradSlopeColour("Gradual Slope Colour", Color) = (0.75, 0.14, 0.72, 1)
-		_SteepSlopeColour("Steep Slope Colour", Color) = (0.84, 0.2, 0.83, 1)
-		_GroundThreshold("Ground Threshold", Float) = 0.2
-		_SlopeThreshold("Gradual Threshold", Float) = 0.7
-
+		//Tessellation attributes
+		_TessellationFactor("Tessellation Factor", Vector) = (1.0, 1.0, 1.0, 1.0)
+		_PlayerPosition("Player Position", Vector) = (0.0, 0.0, 0.0, 1.0)
+		_TessDeformThreshold("Tessellation Threshold", Float) = 10
 	}
 	SubShader
 	{
@@ -50,19 +50,18 @@ Shader "Custom/SandShader"
 			float4 _RimColour;
 			float _RimPower;
 			float _RimStrength;
+	
 			float4 _OceanColour;
 			float _SandStrength;
 
+			float4 _TessellationFactor;
+			float4 _PlayerPosition;
+			float _TessDeformThreshold;
 
-			float4 _GradSlopeColour;
-			float4 _SteepSlopeColour;
 			float _BumpScale;
 			float4 _EmissionColor;
 			float _Smoothness;
 			float _Cutoff;
-
-			float _GroundThreshold;
-			float _SlopeThreshold;
 
 			CBUFFER_END
 
@@ -84,6 +83,8 @@ Shader "Custom/SandShader"
 
 				#pragma vertex vert
 				#pragma fragment frag
+				#pragma hull Hull
+				#pragma domain Domain
 
 				// Material Keywords
 				#pragma shader_feature   _NORMALMAP
@@ -130,31 +131,48 @@ Shader "Custom/SandShader"
 					float2 lightmapUV   : TEXCOORD1;
 				};
 
+				struct TessellationControlPoint
+				{
+					float4 positionCS : SV_POSITION;
+					float3 positionWS : INTERNALTESSPOS;
+					float3 normalWS : NORMAL;
+					UNITY_VERTEX_INPUT_INSTANCE_ID
+				};
+
+				struct TessellationFactors 
+				{
+					float edge[3] : SV_TessFactor;
+					float inside : SV_InsideTessFactor;
+				};
+
 				struct Varyings
 				{
 					//Position in clip space.
 					float4 positionCS				: SV_POSITION;
 					float4 color					: COLOR;
-					float2 uv					: TEXCOORD0;
+					float2 uv						: TEXCOORD0;
 
 					DECLARE_LIGHTMAP_OR_SH(lightmapUV, vertexSH, 1);
 
 					#ifdef REQUIRES_WORLD_SPACE_POS_INTERPOLATOR
-						float3 positionWS			: TEXCOORD2;
+					float3 positionWS			: TEXCOORD2;
 					#endif
 
 					//Normal now in world space.
-					float3 normalWS					: TEXCOORD3;
+					float3 normalWS : TEXCOORD3;
+					UNITY_VERTEX_INPUT_INSTANCE_ID
+					UNITY_VERTEX_OUTPUT_STEREO
 					float4 tangentWS 				: TEXCOORD4;
-
-
 					float3 viewDirWS 				: TEXCOORD5;
 					half4 fogFactorAndVertexLight	: TEXCOORD6; // x: fogFactor, yzw: vertex light
 
 					#ifdef REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR
-						float4 shadowCoord			: TEXCOORD7;
+					float4 shadowCoord			: TEXCOORD7;
 					#endif
 				};
+
+
+				//VERTEX STAGE
 
 
 				//We define this function to support olders versions of URP.
@@ -177,46 +195,158 @@ Shader "Custom/SandShader"
 				#endif
 
 				// @brief Vertex shader 
-				Varyings vert(Attributes IN)
+				TessellationControlPoint vert(Attributes input)
 				{
-					Varyings OUT;
+					TessellationControlPoint output;
 
-					VertexPositionInputs positionInputs = GetVertexPositionInputs(IN.positionOS.xyz);
-					OUT.positionCS = positionInputs.positionCS;
-					OUT.uv = TRANSFORM_TEX(IN.uv, _BaseMap);
-					OUT.color = IN.color;
+					UNITY_SETUP_INSTANCE_ID(input);
+					UNITY_TRANSFER_INSTANCE_ID(input, output);
 
-					//If world position is required.
-					#ifdef REQUIRES_WORLD_SPACE_POS_INTERPOLATOR
-						OUT.positionWS = positionInputs.positionWS;
-					#endif
+					VertexPositionInputs posnInputs = GetVertexPositionInputs(input.positionOS);
+					VertexNormalInputs normalInputs = GetVertexNormalInputs(input.normalOS);
 
-					OUT.viewDirWS = GetWorldSpaceViewDir(positionInputs.positionWS);
-
-					VertexNormalInputs normalInputs = GetVertexNormalInputs(IN.normalOS, IN.tangentOS);
-					OUT.normalWS = normalInputs.normalWS;
-
-					//If normal map has been defined.
-					#ifdef _NORMALMAP
-						real sign = IN.tangentOS.w * GetOddNegativeScale();
-						OUT.tangentWS = half4(normalInputs.tangentWS.xyz, sign);
-					#endif
-
-					half3 vertexLight = VertexLighting(positionInputs.positionWS, normalInputs.normalWS);
-					half fogFactor = ComputeFogFactor(positionInputs.positionCS.z);
-
-					OUT.fogFactorAndVertexLight = half4(fogFactor, vertexLight);
-
-					OUTPUT_LIGHTMAP_UV(IN.lightmapUV, unity_LightmapST, OUT.lightmapUV);
-					OUTPUT_SH(OUT.normalWS.xyz, OUT.vertexSH);
-
-					//If shadow coordinates have been defined.
-					#ifdef REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR
-						OUT.shadowCoord = GetShadowCoord(positionInputs);
-					#endif
-
-					return OUT;
+					output.positionCS = posnInputs.positionCS;
+					output.positionWS = posnInputs.positionWS;
+					output.normalWS = normalInputs.normalWS;
+					return output;
 				}
+
+
+				//HULL STAGE
+
+				bool IsOutOfBounds(float3 position, float3 lower, float3 higher)
+				{
+					return position.x < lower.x || position.x > higher.x ||
+						   position.y < lower.y || position.y > higher.y || 
+						   position.z < lower.z || position.z > higher.z;
+				}
+
+				bool ShouldFrustrumCull(float4 positionCS)
+				{
+					float3 culling = positionCS.xyz;
+					float w = positionCS.w;
+
+					float3 lowerBounds = float3(-w, -w, -w * UNITY_RAW_FAR_CLIP_VALUE);
+					float3 higherBounds = float3(w, w, w);
+					return IsOutOfBounds(culling, lowerBounds, higherBounds);
+				}
+
+				bool ShouldBackFaceCull(float4 p0PositionCS, float4 p1PositionCS, float4 p2PositionCS) 
+				{
+					float3 point0 = p0PositionCS.xyz / p0PositionCS.w;
+					float3 point1 = p1PositionCS.xyz / p1PositionCS.w;
+					float3 point2 = p2PositionCS.xyz / p2PositionCS.w;
+					float3 normal = cross(point1 - point0, point2 - point0);
+
+					// In clip space, the view direction is float3(0, 0, 1), so we can just test the z coord
+					#if UNITY_REVERSED_Z
+						return cross(point1 - point0, point2 - point0).z < 0;
+					#else // In OpenGL, the test is reversed
+						return cross(point1 - point0, point2 - point0).z > 0;
+					#endif
+				}
+
+				bool ShouldClipPatch(float4 position0CS, float4 position1CS, float4 position2CS)
+				{
+					bool allPointsOutOfBounds =
+						ShouldFrustrumCull(position0CS) &&
+						ShouldFrustrumCull(position1CS) &&
+						ShouldFrustrumCull(position2CS);
+
+					return allPointsOutOfBounds || ShouldBackFaceCull(position0CS, position1CS, position2CS);
+				}
+
+				float TessFactor(float4 positionCS, float4 playerPositionCS)
+				{
+				
+				}
+
+
+				// @brief The patch constant function.
+				TessellationFactors PatchConstantFunction(
+					InputPatch<TessellationControlPoint, 3> patch)
+				{
+					UNITY_SETUP_INSTANCE_ID(patch[0]);
+
+					// Calculate tessellation factors
+					TessellationFactors f = (TessellationFactors)0;
+
+					if (ShouldClipPatch(patch[0].positionCS, patch[1].positionCS, patch[2].positionCS))
+					{
+						f.edge[0] =	0;
+						f.edge[1] =	0;
+						f.edge[2] =	0;
+						f.inside  =	0;
+					}
+					else
+					{
+						[unroll] for (int i = 0; i < 3; ++i)
+						{
+							float length = distance(_PlayerPosition.xyz, patch[i].positionWS);
+							float multiplier = (length > _TessDeformThreshold) ? 1 : 0;
+							f.edge[i] = _TessellationFactor[0] * multiplier;
+						}
+						f.inside = 1;
+					}
+
+					
+
+					return f;
+				}
+
+				// @brief Hull Shader
+				[domain("tri")] // Signal we're inputting triangles
+				[outputcontrolpoints(3)] // Triangles have three points
+				[outputtopology("triangle_cw")] // Signal we're outputting triangles
+				[patchconstantfunc("PatchConstantFunction")] // Register the patch constant function
+				[partitioning("pow2")] // Select a partitioning mode: integer, fractional_odd, fractional_even or pow2
+				TessellationControlPoint Hull(
+					InputPatch<TessellationControlPoint, 3> patch, // Input triangle
+					uint id : SV_OutputControlPointID)
+				{ // Vertex index on the triangle
+
+					return patch[id];
+				}
+				
+
+				//DOMAIN STAGE
+
+
+				#define BARYCENTRIC_INTERPOLATE(fieldName) \
+						patch[0].fieldName * barycentricCoordinates.x + \
+						patch[1].fieldName * barycentricCoordinates.y + \
+						patch[2].fieldName * barycentricCoordinates.z
+
+
+				// @brief Domain Shader
+				[domain("tri")]											
+				Varyings Domain(
+					TessellationFactors factors,						 
+					OutputPatch<TessellationControlPoint, 3> patch,		
+					float3 barycentricCoordinates : SV_DomainLocation)
+				{ 
+
+					Varyings output;
+
+					// Setup instancing and stereo support (for VR)
+					UNITY_SETUP_INSTANCE_ID(patch[0]);
+					UNITY_TRANSFER_INSTANCE_ID(patch[0], output);
+					UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(output);
+
+					float3 positionWS = BARYCENTRIC_INTERPOLATE(positionWS);
+					float3 normalWS = BARYCENTRIC_INTERPOLATE(normalWS);
+					//float2 uvs = BARYCENTRIC_INTERPOLATE();
+
+					output.positionCS = TransformWorldToHClip(positionWS);
+					output.normalWS = normalWS;
+					output.positionWS = positionWS;
+
+					return output;
+				}
+
+
+				//FRAGMENT STAGE
+
 
 				// @brief Initialises the input data ensuring all values are set to 0.
 				InputData InitializeInputData(Varyings IN, half3 normalTS) 
@@ -257,6 +387,7 @@ Shader "Custom/SandShader"
 					return inputData;
 				}
 
+				// @brief Rim lighting of the terrain.
 				half3 RimLighting(float3 normalWS, float3 viewVecWS)
 				{
 					float rim = 1.0f - saturate(dot(normalWS, viewVecWS));
@@ -352,7 +483,7 @@ Shader "Custom/SandShader"
 			// Required to compile gles 2.0 with standard srp library
 			#pragma prefer_hlslcc gles
 			#pragma exclude_renderers d3d11_9x gles
-			//#pragma target 4.5
+			#pragma target 5.0
 
 			// Material Keywords
 			#pragma shader_feature _ALPHATEST_ON
