@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class TutorialSequence : MonoBehaviour
 {
+    [SerializeField] private GameObject tutorialCanvas;
     [SerializeField] private Text typerwriterText;
     [SerializeField] private Text skipMessageText;
 
@@ -16,10 +17,23 @@ public class TutorialSequence : MonoBehaviour
 
     void Start()
     {
-        tutorialMessages.Add("hello, this is another test message! blah blah blah blabhdhdhbdh blah blah!!!1!");
-        tutorialMessages.Add("This is another message! woooooo32krkewkf");
-        tutorialMessages.Add("This is another message AGAIN! NUMBER 3 woooooo32krkewkf");
-        tutorialMessages.Add("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 4");
+        if (tutorialMessages.Count == 0)    //Load default messages
+        {
+            tutorialMessages.Add("This is sample message 1!");
+            tutorialMessages.Add("This is sample message 2!");
+            tutorialMessages.Add("This is sample message 3!");
+            tutorialMessages.Add("This is sample message 4!");
+            tutorialMessages.Add("This is sample message 5!");
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            GetComponent<Collider>().enabled = false;
+            StartSequence();
+        }
     }
 
     void Update()
@@ -28,9 +42,9 @@ public class TutorialSequence : MonoBehaviour
         {
             //Updating the skip/continue text
             if (TypewriterEffect.isPrinting)
-                skipMessageText.text = "'" + skipKey.ToString() + "' TO SKIP";
+                skipMessageText.text = "'" + skipKey.ToString() + "' to skip";
             else
-                skipMessageText.text = "'" + skipKey.ToString() + "' TO CONTINUE";
+                skipMessageText.text = "'" + skipKey.ToString() + "' to continue";
 
             //Checking if the skip/continue button has been pressed and deciding what to print accordingly
             if (Input.GetKeyDown(skipKey) || msgIndex == 0)
@@ -55,12 +69,13 @@ public class TutorialSequence : MonoBehaviour
 
     public void StartSequence()
     {
+        tutorialCanvas.SetActive(true);
         runningSequence = true;
     }
 
     public void StopSequence()
     {
+        tutorialCanvas.SetActive(false);
         runningSequence = false;
-        gameObject.SetActive(false);
     }
 }
