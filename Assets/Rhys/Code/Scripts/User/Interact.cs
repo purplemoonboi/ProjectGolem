@@ -262,7 +262,7 @@ public class Interact : MonoBehaviour
     {
         RectTransform rect = miningBar.rectTransform;
 
-        StartCoroutine("RotateToFaceTarget", (interactable.transform.position - transform.position).normalized);
+       // StartCoroutine("RotateToFaceTarget", (interactable.transform.position - transform.position).normalized);
 
         if (miningTimer < miningDuration)
         {
@@ -286,7 +286,7 @@ public class Interact : MonoBehaviour
         {
             hasMined = true;
             //Face forward
-            StartCoroutine("RotateToFaceTarget", (normalTransform.transform.position - transform.position).normalized);
+           // StartCoroutine("RotateToFaceTarget", (normalTransform.transform.position - transform.position).normalized);
         }
     }
 
