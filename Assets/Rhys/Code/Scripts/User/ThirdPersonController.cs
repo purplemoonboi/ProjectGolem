@@ -65,6 +65,8 @@ public class ThirdPersonController : MonoBehaviour
     [Range(0f, 1f)]
     [SerializeField]
     private float cameraLookAtInterpolant = 0.5f;
+    [SerializeField]
+    private float rotationLerpThreshold = 0.8f;
 
     [Header("An emitter for playing a dust effect.")]
     [SerializeField]
@@ -83,7 +85,6 @@ public class ThirdPersonController : MonoBehaviour
     private Vector3 forward = new Vector3();
     private bool recievedInput = false;
     private float currentDisplacement = 0f;
-    [SerializeField]
     private float currentVelocity = 0f;
 
 
@@ -152,8 +153,10 @@ public class ThirdPersonController : MonoBehaviour
         // If input has occurred acceleration is +ve else -ve.
         float a = (recievedInput) ? acceleration : -(acceleration * acceleration);
         currentVelocity = a * t;
+        
         float s = (currentVelocity * t) + (0.5f * a) * (t * t);
-        return s;
+        s = Mathf.Clamp(s, -maxVelocity, maxVelocity);
+        return maxVelocity * Time.deltaTime;
     }
 
     // @brief Simulates a spring effect.
@@ -217,6 +220,22 @@ public class ThirdPersonController : MonoBehaviour
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, rotationGoal, 2f * Time.deltaTime);
         }
+
+        //Ray ray = new Ray(transform.position, -transform.up);
+        //RaycastHit hit;
+        //int layer = 1 << 6;
+        //if (Physics.Raycast(ray, out hit, 6f, layer))
+        //{
+        //    Vector3 normal = hit.normal;
+        //
+        //    float angle = Vector3.Angle(transform.up, normal);
+        //    Quaternion forwardRotation = Quaternion.AngleAxis(-angle, transform.right);
+        //    if (transform.rotation != rotationGoal)
+        //    {
+        //        Quaternion lerpedRotation = Quaternion.Lerp(forwardRotation, rotationGoal, rotationLerpThreshold);
+        //        transform.rotation = Quaternion.Slerp(transform.rotation, lerpedRotation, 5f * Time.deltaTime);
+        //    }
+        //}
 
         return receivedInput;
     }
