@@ -151,6 +151,7 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _AlphaTestToggle: 0
+    - _BackCullTolerance: 2
     - _Blend: 0
     - _BumpScale: 1
     - _ClearCoatMask: 0
@@ -204,7 +205,9 @@ Material:
     - _SrcBlend: 1
     - _Surface: 0
     - _Tess: 10.03
-    - _TessDeformThreshold: 1
+    - _TessDeformThreshold: 2.45
+    - _TessellationBias: 1
+    - _TessellationTolerance: 100
     - _UVSec: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
@@ -216,9 +219,9 @@ Material:
     - _GlitterColour: {r: 1, g: 1, b: 1, a: 1}
     - _GradSlopeColour: {r: 0.75, g: 0.13999996, b: 0.72, a: 1}
     - _OceanColour: {r: 0.7, g: 0.7, b: 0.7, a: 1}
-    - _PlayerPosition: {r: 0, g: 0, b: 0, a: 1}
+    - _PlayerPosition: {r: -12.84, g: 0, b: 0, a: 1}
     - _RimColour: {r: 0.28773582, g: 0.8631336, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SteepSlopeColour: {r: 0.8399999, g: 0.19999996, b: 0.83, a: 1}
-    - _TessellationFactor: {r: 1, g: 0, b: 0, a: 0}
+    - _TessellationFactor: {r: 32, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

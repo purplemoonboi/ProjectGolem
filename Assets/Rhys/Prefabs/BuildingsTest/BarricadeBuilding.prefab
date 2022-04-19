@@ -313,7 +313,7 @@ PrefabInstance:
     - target: {fileID: -678588488315902003, guid: a4591eed0c74bce4185861c62f972373, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 7fce26209ccb1b34b9fac32dc95d20e5, type: 2}
+      objectReference: {fileID: 2100000, guid: 9f899ef568000ba489a8cd0e7a132363, type: 2}
     - target: {fileID: 919132149155446097, guid: a4591eed0c74bce4185861c62f972373, type: 3}
       propertyPath: m_Name
       value: barricade

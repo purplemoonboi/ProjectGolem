@@ -32,8 +32,7 @@ public class Interact : MonoBehaviour
     private Image promptImage;
     [SerializeField]
     private Text promptText;
-    [SerializeField]
-    private CharacterSplineController characterRef;
+
 
     private Vector3 oldPos;
 
@@ -128,6 +127,7 @@ public class Interact : MonoBehaviour
 
     private IEnumerator RepositionCharacter(Vector3 oldPos)
     {
+/*
         // Debug.Log("Reposition Character!");
         //Vector3 position = characterRef.GetSpline().GetPointOnSpline(characterRef.DistanceAlongSpline()) + characterRef.SplineOffset() - direction;
         while (Vector3.Distance(transform.position, oldPos) > 0.5f)
@@ -138,6 +138,8 @@ public class Interact : MonoBehaviour
         }
 
         characterRef.ToggleInput(true);
+*/
+        yield return null;
     }
 
     public void OnCollisionExit(Collision collision)
