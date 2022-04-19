@@ -35,6 +35,9 @@ Shader "Custom/SandShader"
 		_TessellationFactor("Tessellation Factor", Vector) = (1.0, 1.0, 1.0, 1.0)
 		_PlayerPosition("Player Position", Vector) = (0.0, 0.0, 0.0, 1.0)
 		_TessDeformThreshold("Tessellation Threshold", Float) = 10
+		_TessellationBias("Tessellation Bias", Float) = 2
+		_TessellationTolerance("Tessellation Tolerance", Float) = 2
+		_BackCullTolerance("Back Cull Tolerance", Float) = 2
 	}
 	SubShader
 	{
@@ -57,6 +60,9 @@ Shader "Custom/SandShader"
 			float4 _TessellationFactor;
 			float4 _PlayerPosition;
 			float _TessDeformThreshold;
+			float _TessellationBias;
+			float _TessellationTolerance;
+			float _BackCullTolerance;
 
 			float _BumpScale;
 			float4 _EmissionColor;
@@ -225,42 +231,50 @@ Shader "Custom/SandShader"
 				{
 					float3 culling = positionCS.xyz;
 					float w = positionCS.w;
-
 					float3 lowerBounds = float3(-w, -w, -w * UNITY_RAW_FAR_CLIP_VALUE);
 					float3 higherBounds = float3(w, w, w);
+
 					return IsOutOfBounds(culling, lowerBounds, higherBounds);
 				}
 
-				bool ShouldBackFaceCull(float4 p0PositionCS, float4 p1PositionCS, float4 p2PositionCS) 
+				bool IsPointOutOfFrustrum(float4 positionCS, float tolerance)
+				{
+					float3 culling = positionCS.xyz;
+					float w = positionCS.w;
+					float3 lowerBounds = float3(-w - tolerance, -w - tolerance, -w * UNITY_RAW_FAR_CLIP_VALUE - tolerance);
+					float3 higherBounds = float3(w + tolerance, w + tolerance, w + tolerance);
+
+					return IsOutOfBounds(culling, lowerBounds, higherBounds);
+				}
+
+				bool ShouldBackFaceCull(float4 p0PositionCS, float4 p1PositionCS, float4 p2PositionCS, float tolerance)
 				{
 					float3 point0 = p0PositionCS.xyz / p0PositionCS.w;
 					float3 point1 = p1PositionCS.xyz / p1PositionCS.w;
 					float3 point2 = p2PositionCS.xyz / p2PositionCS.w;
 					float3 normal = cross(point1 - point0, point2 - point0);
 
-					// In clip space, the view direction is float3(0, 0, 1), so we can just test the z coord
-					#if UNITY_REVERSED_Z
-						return cross(point1 - point0, point2 - point0).z < 0;
-					#else // In OpenGL, the test is reversed
-						return cross(point1 - point0, point2 - point0).z > 0;
-					#endif
+					//Only accounts for DX11, need to flip tolerance for OpenGL API.
+					return cross(point1 - point0, point2 - point0).z < -tolerance;
 				}
 
-				bool ShouldClipPatch(float4 position0CS, float4 position1CS, float4 position2CS)
+				bool ShouldClipPatch(float4 position0CS, float4 position1CS, float4 position2CS, float frustrumCullTolerance)
 				{
 					bool allPointsOutOfBounds =
 						ShouldFrustrumCull(position0CS) &&
 						ShouldFrustrumCull(position1CS) &&
 						ShouldFrustrumCull(position2CS);
 
-					return allPointsOutOfBounds || ShouldBackFaceCull(position0CS, position1CS, position2CS);
+					return allPointsOutOfBounds || ShouldBackFaceCull(position0CS, position1CS, position2CS, _TessellationTolerance);
 				}
 
-				float TessFactor(float4 positionCS, float4 playerPositionCS)
+				// Calculate the tessellation factor for an edge
+				float EdgeTessellationFactor(float scale, float bias, float3 p0PositionWS, float3 p1PositionWS)
 				{
-				
-				}
+					float factor = distance(p0PositionWS, p1PositionWS) / scale;
 
+					return max(1, factor + bias);
+				}
 
 				// @brief The patch constant function.
 				TessellationFactors PatchConstantFunction(
@@ -271,7 +285,7 @@ Shader "Custom/SandShader"
 					// Calculate tessellation factors
 					TessellationFactors f = (TessellationFactors)0;
 
-					if (ShouldClipPatch(patch[0].positionCS, patch[1].positionCS, patch[2].positionCS))
+					if (ShouldClipPatch(patch[0].positionCS, patch[1].positionCS, patch[2].positionCS, _TessellationTolerance))
 					{
 						f.edge[0] =	0;
 						f.edge[1] =	0;
@@ -280,17 +294,16 @@ Shader "Custom/SandShader"
 					}
 					else
 					{
-						[unroll] for (int i = 0; i < 3; ++i)
-						{
-							float length = distance(_PlayerPosition.xyz, patch[i].positionWS);
-							float multiplier = (length > _TessDeformThreshold) ? 1 : 0;
-							f.edge[i] = _TessellationFactor[0] * multiplier;
-						}
-						f.inside = 1;
+						// Calculate tessellation factors
+						f.edge[0] = EdgeTessellationFactor(_TessellationFactor, _TessellationBias, patch[1].positionWS, patch[2].positionWS);
+						f.edge[1] = EdgeTessellationFactor(_TessellationFactor, _TessellationBias, patch[2].positionWS, patch[0].positionWS);
+						f.edge[2] = EdgeTessellationFactor(_TessellationFactor, _TessellationBias, patch[0].positionWS, patch[1].positionWS);
+						f.inside = ( // If the compiler doesn't play nice...
+							EdgeTessellationFactor(_TessellationFactor, _TessellationBias, patch[1].positionWS, patch[2].positionWS) +
+							EdgeTessellationFactor(_TessellationFactor, _TessellationBias, patch[2].positionWS, patch[0].positionWS) +
+							EdgeTessellationFactor(_TessellationFactor, _TessellationBias, patch[0].positionWS, patch[1].positionWS)
+							) / 3.0;
 					}
-
-					
-
 					return f;
 				}
 
@@ -311,6 +324,43 @@ Shader "Custom/SandShader"
 
 				//DOMAIN STAGE
 
+/*
+				// Calculate the maximum deform length among all deformation points
+				float DeformationLength(float3 vertexPositionWS, float3 movementDirectionWS)
+				{
+					// Calculate and return the amount to deform along movementDirectionWS
+					float amountToDeform = 1f;
+					return amountToDeform;
+				}
+
+				// The length to perturb postions along the tangent and bitangent to reconstruct normals
+				#define NORMAL_RECONSTRUCTION_LENGTH 0.01
+
+				void CalculateDeformations(float3 originalPositionWS, float3 originalNormalWS,
+					float3 tangentWS, out float3 deformedPositionWS, out float3 deformedNormalWS)
+				{
+					float3 deformDirectionWS = -originalNormalWS;
+					float maxDeformLength = DeformationLength(originalPositionWS, deformDirectionWS);
+					deformedPositionWS = originalPositionWS + maxDeformLength * deformDirectionWS; // The deformed position
+
+					// Calculate a deformed normal position by offsetting the original position by the tangent and bitangent
+					// Deform both of those positions and take their cross product to find a new normal vector
+					float3 bitangentWS = normalize(cross(originalNormalWS, tangentWS));
+					float3 positionNudgedTangentWS = originalPositionWS + tangentWS * NORMAL_RECONSTRUCTION_LENGTH;
+
+					float3 positionNudgedBitangentWS = originalPositionWS + bitangentWS * NORMAL_RECONSTRUCTION_LENGTH;
+
+					float3 deformedPosnNTangentWS = positionNudgedTangentWS +
+						DeformationLength(positionNudgedTangentWS, deformDirectionWS, 0) * deformDirectionWS;
+
+					float3 deformedPosnNBitangentWS = positionNudgedBitangentWS +
+						DeformationLength(positionNudgedBitangentWS, deformDirectionWS, 0) * deformDirectionWS;
+					deformedNormalWS = normalize(cross(
+						deformedPosnNTangentWS - deformedPositionWS,
+						deformedPosnNBitangentWS - deformedPositionWS));
+				}
+
+*/
 
 				#define BARYCENTRIC_INTERPOLATE(fieldName) \
 						patch[0].fieldName * barycentricCoordinates.x + \

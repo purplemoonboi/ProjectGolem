@@ -1,39 +1,49 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Interact : MonoBehaviour
 {
-
+    //Input status
     [SerializeField]
     private bool pressedMouseB0;
     [SerializeField]
     private bool isInteractable;
+
+    //Resource wallet attributes
     [SerializeField]
     private Text resourceText;
     [SerializeField]
     private int resourceWallet;
     [SerializeField]
     private int resourceAmount = 0;
-   
+    [SerializeField]
+    RectTransform rectTransform;
+    [SerializeField]
+    private Text resourcePickUpText;
+    [SerializeField]
+    private Image promptImage;
 
+    [SerializeField]
+    private Text promptText;
 
     [SerializeField]
     private GameObject interactable;
     [SerializeField]
     private GameObject resourcePickUpAmountObject;
-    [SerializeField]
-    RectTransform rectTransform;
-    [SerializeField]
-    private Text resourcePickUpText;
 
+
+    //Mining attributes
     [SerializeField]
-    private Image promptImage;
+    private Image miningBar;
     [SerializeField]
-    private Text promptText;
+    private ParticleSystem miningSparks;
     [SerializeField]
-    private CharacterSplineController characterRef;
+    private float miningDuration = 0f;
+    [SerializeField]
+    private float miningTimer = 0f;
+    [SerializeField]
+    private bool hasMined = false;
 
     private Vector3 oldPos;
 
@@ -47,9 +57,12 @@ public class Interact : MonoBehaviour
     private const string friendlyTag = "Friendly";
     private const string endLevelTag = "EndLevel";
 
+    private Transform normalTransform;
+
     // Start is called before the first frame update
     void Start()
     {
+        normalTransform = transform;
         pressedMouseB0 = false;
         isInteractable = false;
         resourceWallet = 0;
@@ -62,6 +75,8 @@ public class Interact : MonoBehaviour
         resourcePickUpText.enabled = false;
         promptImage.enabled = false;
         promptText.enabled = false;
+        miningBar.enabled = true;
+        miningSparks.Stop();
         target = null;
     }
 
@@ -77,6 +92,7 @@ public class Interact : MonoBehaviour
             pressedMouseB0 = false;
         }
 
+
         if (interactable != null && isInteractable)
         {
             ProcessInteractions();
@@ -91,19 +107,23 @@ public class Interact : MonoBehaviour
             if (interactable.tag == buildingTag || interactable.tag == defenceTag)
             {
                 HandleBuilding();
+                //At this point we have successfully spawned a building.
+                //Force object ref null and input false.
+                interactable = null;
+                isInteractable = false;
+                pressedMouseB0 = false;
             }
             else if (interactable.tag == resourceTag)
             {
+                normalTransform = transform;
                 HandleResourcePickUp();
             }
-
-            //At this point we have successfully spawned a building.
-            //Force object ref null and input false.
-            interactable = null;
-            isInteractable = false;
-            pressedMouseB0 = false;
-        }
           
+        }
+        else
+        {
+            ResetMiningProgress();
+        }
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -128,6 +148,7 @@ public class Interact : MonoBehaviour
 
     private IEnumerator RepositionCharacter(Vector3 oldPos)
     {
+/*
         // Debug.Log("Reposition Character!");
         //Vector3 position = characterRef.GetSpline().GetPointOnSpline(characterRef.DistanceAlongSpline()) + characterRef.SplineOffset() - direction;
         while (Vector3.Distance(transform.position, oldPos) > 0.5f)
@@ -138,6 +159,8 @@ public class Interact : MonoBehaviour
         }
 
         characterRef.ToggleInput(true);
+*/
+        yield return null;
     }
 
     public void OnCollisionExit(Collision collision)
@@ -161,7 +184,6 @@ public class Interact : MonoBehaviour
                 {
                     if (other.transform.GetChild(i).tag == "InfoPanel")
                     {
-                        Debug.Log("Target confirmed");
                         target = other.transform.GetChild(i).transform;
                     }
                 }
@@ -208,14 +230,85 @@ public class Interact : MonoBehaviour
     // @brief Handle the picking up of resources.
     private void HandleResourcePickUp()
     {
-        Debug.Log("Picked up resource!");
-        StartCoroutine("AnimatePlayerUI");
-        Destroy(interactable);
-        interactable = null;
-        pressedMouseB0 = false;
-        isInteractable = false;
-        promptImage.enabled = false;
-        promptText.enabled = false;
+        MiningAnimation();
+        //Animate mining bar.
+        if (hasMined)
+        {
+            StartCoroutine("AnimatePlayerUI");
+            Destroy(interactable);
+            //At this point we have successfully mined.
+            //Force object ref null and input false.
+            interactable = null;
+            isInteractable = false;
+            pressedMouseB0 = false;
+            promptImage.enabled = false;
+            promptText.enabled = false;
+            miningBar.enabled = false;
+        }
+    }
+
+    private IEnumerator RotateToFaceTarget(Vector3 lookAtTarget)
+    {
+        Quaternion rotGoal = Quaternion.LookRotation(lookAtTarget);
+
+        while(transform.rotation != rotGoal)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotGoal, 2f * Time.deltaTime);
+            yield return null;
+        }
+    }
+
+    private void MiningAnimation()
+    {
+        RectTransform rect = miningBar.rectTransform;
+
+       // StartCoroutine("RotateToFaceTarget", (interactable.transform.position - transform.position).normalized);
+
+        if (miningTimer < miningDuration)
+        {
+            //Play the emitter.
+            if(!miningSparks.isPlaying)
+                miningSparks.Play();
+
+            miningBar.enabled = true;
+            promptText.enabled = false;
+            
+
+            //Incriment timer.
+            miningTimer += Time.deltaTime;
+            float percentage = miningTimer / miningDuration;
+            float width = rect.rect.width;
+            float w = MathsUtils.RemapRange(percentage, 0, 1, 0, 180);
+            width = w;
+            rect.sizeDelta = new Vector2(width, 50);
+        }   
+        else if(miningTimer > miningDuration || !pressedMouseB0)
+        {
+            hasMined = true;
+            //Face forward
+           // StartCoroutine("RotateToFaceTarget", (normalTransform.transform.position - transform.position).normalized);
+        }
+    }
+
+    private void ResetMiningProgress()
+    {
+       
+
+        //Reset things
+        miningTimer = 0f;
+
+        //Flag we're finished mining.
+        hasMined = false;
+
+        //Stop emitter.
+        miningSparks.Stop();
+
+        //Reset mining bar progress.
+        miningBar.rectTransform.sizeDelta = new Vector2(0, 50);
+
+        //Hide the promt UI.
+        miningBar.enabled = false;
+
     }
 
     private IEnumerator AnimatePlayerUI()
@@ -236,7 +329,6 @@ public class Interact : MonoBehaviour
         while (colour.a > 0)
         {
             colour.a -= 2 * Time.deltaTime;
-            Debug.Log("Alpha " + colour.a);
             currentTextPosition.y += 25.0f * Time.deltaTime;
             //Update references.
             resourcePickUpText.color = colour;
@@ -263,6 +355,9 @@ public class Interact : MonoBehaviour
             //Return from the function and continue main loop.
             yield return null;
         }
+
+        ResetMiningProgress();
+
 
     }
 
