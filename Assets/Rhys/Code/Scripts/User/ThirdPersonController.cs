@@ -38,7 +38,7 @@ public class ThirdPersonController : MonoBehaviour
 
     [Tooltip("Is the maximum and minimum height the character will reach when Oscillating.")]
 
-    [Range(0.001f, 100f)]
+    [Range(0.001f, 1f)]
     [SerializeField]
     private float maxAmplitude = 1f;
 
