@@ -15,11 +15,8 @@ public enum BuildingType
 
 public abstract class Building : MonoBehaviour
 {
-
     [SerializeField]
-    protected Transform meshCutterTransform;
-    [SerializeField]
-    protected Transform spawnerEndGoal;
+    private GameObject holoGFX;
     [SerializeField]
     protected int cost;
     [SerializeField]
@@ -33,6 +30,10 @@ public abstract class Building : MonoBehaviour
     [SerializeField]
     protected BuildingType buildingType = BuildingType.None;
 
+    private void Start()
+    {
+
+    }
 
     //Moves the plane towards the goal thus rendering the building as it
     //passes through the hologram.
@@ -63,7 +64,11 @@ public abstract class Building : MonoBehaviour
 
     /*..Public Setters..*/
 
-    public void Spawn() => shouldSpawn = true;
+    public void Spawn()
+    {
+        shouldSpawn = true;
+        Destroy(holoGFX);
+    }
 
     public virtual void SetCost(int _cost) => cost = _cost;
 

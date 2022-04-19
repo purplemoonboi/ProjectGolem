@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -58,9 +57,12 @@ public class Interact : MonoBehaviour
     private const string friendlyTag = "Friendly";
     private const string endLevelTag = "EndLevel";
 
+    private Transform normalTransform;
+
     // Start is called before the first frame update
     void Start()
     {
+        normalTransform = transform;
         pressedMouseB0 = false;
         isInteractable = false;
         resourceWallet = 0;
@@ -113,6 +115,7 @@ public class Interact : MonoBehaviour
             }
             else if (interactable.tag == resourceTag)
             {
+                normalTransform = transform;
                 HandleResourcePickUp();
             }
           
@@ -244,9 +247,22 @@ public class Interact : MonoBehaviour
         }
     }
 
+    private IEnumerator RotateToFaceTarget(Vector3 lookAtTarget)
+    {
+        Quaternion rotGoal = Quaternion.LookRotation(lookAtTarget);
+
+        while(transform.rotation != rotGoal)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotGoal, 2f * Time.deltaTime);
+            yield return null;
+        }
+    }
+
     private void MiningAnimation()
     {
         RectTransform rect = miningBar.rectTransform;
+
+        StartCoroutine("RotateToFaceTarget", (interactable.transform.position - transform.position).normalized);
 
         if (miningTimer < miningDuration)
         {
@@ -266,15 +282,18 @@ public class Interact : MonoBehaviour
             width = w;
             rect.sizeDelta = new Vector2(width, 50);
         }   
-        else
+        else if(miningTimer > miningDuration || !pressedMouseB0)
         {
             hasMined = true;
+            //Face forward
+            StartCoroutine("RotateToFaceTarget", (normalTransform.transform.position - transform.position).normalized);
         }
     }
 
     private void ResetMiningProgress()
     {
        
+
         //Reset things
         miningTimer = 0f;
 

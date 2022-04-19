@@ -74,8 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5417b15aae83fc4db4f6fbba8fa0b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshCutterTransform: {fileID: 0}
-  spawnerEndGoal: {fileID: 0}
+  holoGFX: {fileID: 2994367450168813609}
   cost: 30
   costToUpgrade: 50
   health: 400
@@ -95,7 +94,7 @@ GameObject:
   - component: {fileID: 5731147496282052564}
   m_Layer: 0
   m_Name: Hologram
-  m_TagString: Untagged
+  m_TagString: Hologram
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -262,6 +261,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30d991fca2a2f754da5828ccce3855df, type: 3}
+--- !u!1 &2994367450168813609 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 30d991fca2a2f754da5828ccce3855df, type: 3}
+  m_PrefabInstance: {fileID: 2688447239273108856}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2505674816648753811 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 30d991fca2a2f754da5828ccce3855df, type: 3}
