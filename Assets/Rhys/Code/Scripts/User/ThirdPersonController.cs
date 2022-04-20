@@ -156,7 +156,7 @@ public class ThirdPersonController : MonoBehaviour
         
         float s = (currentVelocity * t) + (0.5f * a) * (t * t);
         s = Mathf.Clamp(s, -maxVelocity, maxVelocity);
-        return maxVelocity * Time.deltaTime;
+        return s;
     }
 
     // @brief Simulates a spring effect.
