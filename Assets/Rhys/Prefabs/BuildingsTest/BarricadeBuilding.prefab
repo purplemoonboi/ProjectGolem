@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7902096874622899517}
   - component: {fileID: 1439592581562774031}
+  - component: {fileID: 8486135995642093444}
   - component: {fileID: 6422916512802916657}
   m_Layer: 0
   m_Name: BarricadeBuilding
@@ -79,6 +80,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 3, z: 3}
   m_Center: {x: 0, y: -1, z: -1.26}
+--- !u!65 &8486135995642093444
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3822144494207350921}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6422916512802916657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,6 +115,7 @@ MonoBehaviour:
   barricadeScriptableObject: {fileID: 11400000, guid: af0aaa3173288b34da3b733cc341cc7b, type: 2}
   shieldTransform: {fileID: 3767561706480972100}
   initialScale: {x: 0, y: 0, z: 0}
+  collider: {fileID: 8486135995642093444}
 --- !u!1001 &2179244161041640541
 PrefabInstance:
   m_ObjectHideFlags: 0

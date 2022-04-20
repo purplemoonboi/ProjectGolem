@@ -15,11 +15,21 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private bool shouldSpawn = false;
     [SerializeField] private TimeController dayNightCycle;
 
+    [SerializeField]
+    private ParticleSystem spawnerMist;
+    [SerializeField]
+    private List<ParticleSystem> spawnerMists;
+
     void Start()
     {
         elapsedSpawnTime = 0.0f;
 
         spawnManager = FindObjectOfType<EnemySpawnerManager>();
+        spawnerMist.Stop();
+        foreach (var emitter in spawnerMists)
+        {
+            emitter.Stop();
+        }
     }
 
     void Update()
@@ -38,10 +48,25 @@ public class EnemySpawner : MonoBehaviour
             dayNightCycle.GetCurrentTime().TimeOfDay < dayNightCycle.GetSunset()))
         {
             shouldSpawn = true;
+            if(!spawnerMist.isPlaying)
+            {
+                spawnerMist.Play();
+
+                foreach (var emitter in spawnerMists)
+                {
+                    emitter.Play();
+                }
+            }
         }
         else
         {
             shouldSpawn = false;
+
+            spawnerMist.Stop();
+            foreach (var emitter in spawnerMists)
+            {
+                emitter.Stop();
+            }
         }
 
         if (spawnManager.GetNightsCompleted() < spawnManager.GetMaxNights())

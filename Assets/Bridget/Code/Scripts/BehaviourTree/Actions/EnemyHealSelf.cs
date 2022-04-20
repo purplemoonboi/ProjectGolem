@@ -5,8 +5,12 @@ using TheKiwiCoder;
 
 public class EnemyHealSelf : ActionNode
 {
+    public TimeController timeController;
+    private System.TimeSpan currentTime;
+
     protected override void OnStart()
     {
+        timeController = context.timeController.GetComponent<TimeController>();
     }
 
     protected override void OnStop()
@@ -15,7 +19,17 @@ public class EnemyHealSelf : ActionNode
 
     protected override State OnUpdate()
     {
-        if(context.enemyController.GetHealth() >= context.enemyController.GetMaxHealth())
+        // Make enemy flee if it is dawn.
+        currentTime = timeController.GetCurrentTime().TimeOfDay;
+
+        if (currentTime > timeController.GetSunrise() && currentTime < timeController.GetSunset())
+        {
+            Debug.Log("Enemy Flee!");
+            context.enemyController.SetHealth(-999f);
+            return State.Success;
+        }
+
+        if (context.enemyController.GetHealth() >= context.enemyController.GetMaxHealth())
         {
             return State.Success;
         }

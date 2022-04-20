@@ -5,8 +5,13 @@ using TheKiwiCoder;
 
 public class EnemyFlee : ActionNode
 {
+    public TimeController timeController;
+
+    private System.TimeSpan currentTime;
+
     protected override void OnStart()
     {
+        timeController = context.timeController.GetComponent<TimeController>();
     }
 
     protected override void OnStop()
@@ -15,11 +20,22 @@ public class EnemyFlee : ActionNode
 
     protected override State OnUpdate()
     {
-        if (context.enemyController.GetHealth() > (context.enemyController.GetMaxHealth() / 4.0f))
+        // Make enemy flee if it is dawn.
+        currentTime = timeController.GetCurrentTime().TimeOfDay;
+
+        if (
+            (currentTime > timeController.GetSunrise() && currentTime < timeController.GetSunset())
+            ||
+            (context.enemyController.GetHealth() < (context.enemyController.GetMaxHealth() / 4.0f))
+            )
+        {
+            Debug.Log("Returning to spawn...");
+            blackboard.moveToPosition = context.enemyController.GetSpawnPoint();
+            return State.Success;
+        }
+        else 
+        {
             return State.Failure;
-
-        blackboard.moveToPosition = context.enemyController.GetSpawnPoint();
-
-        return State.Success;
+        }
     }
 }

@@ -5,8 +5,14 @@ using TheKiwiCoder;
 
 public class ScanForStructure : ActionNode
 {
+    public TimeController timeController;
+
+    private System.TimeSpan currentTime;
+
     protected override void OnStart()
     {
+        timeController = context.timeController.GetComponent<TimeController>();
+
     }
 
     protected override void OnStop()
@@ -18,6 +24,12 @@ public class ScanForStructure : ActionNode
         if (context.enemyController)    //Adding this check as this node will be reused for friendly builders
         {
             if (context.enemyController.GetHealth() <= (context.enemyController.GetMaxHealth() / 4.0f))
+                return State.Failure;
+
+            // Make enemy flee if it is dawn.
+            currentTime = timeController.GetCurrentTime().TimeOfDay;
+
+            if (currentTime > timeController.GetSunrise() && currentTime < timeController.GetSunset())
                 return State.Failure;
 
             if (ScanTargetsAsEnemy())

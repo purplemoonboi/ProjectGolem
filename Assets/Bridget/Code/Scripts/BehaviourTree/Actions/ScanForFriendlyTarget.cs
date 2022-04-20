@@ -5,8 +5,14 @@ using TheKiwiCoder;
 
 public class ScanForFriendlyTarget : ActionNode
 {
+    public TimeController timeController;
+
+    private System.TimeSpan currentTime;
+
     protected override void OnStart()
     {
+        timeController = context.timeController.GetComponent<TimeController>();
+
     }
 
     protected override void OnStop()
@@ -16,6 +22,12 @@ public class ScanForFriendlyTarget : ActionNode
     protected override State OnUpdate()
     {
         if (context.enemyController.GetHealth() <= (context.enemyController.GetMaxHealth() / 4.0f))
+            return State.Failure;
+
+        // Make enemy flee if it is dawn.
+        currentTime = timeController.GetCurrentTime().TimeOfDay;
+
+        if (currentTime > timeController.GetSunrise() && currentTime < timeController.GetSunset())
             return State.Failure;
 
         if (ScanTargets())
@@ -36,6 +48,7 @@ public class ScanForFriendlyTarget : ActionNode
         var friendlyTargets = FindObjectsOfType<FriendlyController>();
 
         float distance = 0.0f;
+
 
         foreach (var target in friendlyTargets)
         {

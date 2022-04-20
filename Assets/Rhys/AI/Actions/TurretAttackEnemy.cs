@@ -40,7 +40,6 @@ public class TurretAttackEnemy : ActionNode
         }
         else
         {
-            Debug.Log("Firing projectile.");
             projectileManager.SetTarget(enemy.transform);
         }
 

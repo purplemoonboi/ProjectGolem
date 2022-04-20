@@ -144,6 +144,7 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   friendlyTarget: {fileID: 0}
+  timeController: {fileID: 0}
 --- !u!114 &-2554579088906297184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,6 +193,7 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   structure: {fileID: 0}
+  timeController: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,6 +387,7 @@ MonoBehaviour:
     targetObj: {fileID: 0}
   description: 
   drawGizmos: 0
+  timeController: {fileID: 0}
 --- !u!114 &9017557321951573210
 MonoBehaviour:
   m_ObjectHideFlags: 0

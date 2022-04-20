@@ -12,6 +12,8 @@ public class BarricadeBuilding : Building
     private Transform shieldTransform;
     [SerializeField]
     private Vector3 initialScale;
+    [SerializeField]
+    private BoxCollider collider;
 
     private void Awake()
     {
@@ -26,6 +28,7 @@ public class BarricadeBuilding : Building
         ResetParameters();
         barricadeScriptableObject.isMaxLevel = false;
         barricadeScriptableObject.level = 1;
+        collider.enabled = false;
     }
 
     // Update is called once per frame
@@ -35,8 +38,8 @@ public class BarricadeBuilding : Building
          {
              Debug.Log("Now spawning building.");
              StartCoroutine("PlaySpawnAnimation");
+            collider.enabled = true;
          }
-
     }
 
     protected override IEnumerator PlaySpawnAnimation() 

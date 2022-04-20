@@ -36,7 +36,6 @@ public class TurretProjectileSpawner : MonoBehaviour
         {
             if (target != null)
             {
-                Debug.Log("Active!!!");
                 fireTimer += 1.0f * Time.deltaTime;
 
                 if (fireTimer > fireRate)

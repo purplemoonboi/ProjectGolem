@@ -6,9 +6,13 @@ using TheKiwiCoder;
 public class AttackFriendlyTarget : ActionNode
 {
     public FriendlyController friendlyTarget = null;
+    public TimeController timeController;
+
+    private System.TimeSpan currentTime;
 
     protected override void OnStart()
     {
+        timeController = context.timeController.GetComponent<TimeController>();
         if (blackboard.targetObj != null)
         {
             friendlyTarget = blackboard.targetObj.GetComponent<FriendlyController>();
@@ -34,6 +38,13 @@ public class AttackFriendlyTarget : ActionNode
             return State.Failure;
 
         if (context.enemyController.GetHealth() <= (context.enemyController.GetMaxHealth() / 4.0f))
+            return State.Failure;
+
+
+        // Make enemy flee if it is dawn.
+        currentTime = timeController.GetCurrentTime().TimeOfDay;
+
+        if (currentTime > timeController.GetSunrise() && currentTime < timeController.GetSunset())
             return State.Failure;
 
         if (friendlyTarget.GetHealth() <= 0.0f)

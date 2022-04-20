@@ -25,6 +25,7 @@ namespace TheKiwiCoder
 
         public EnemyController enemyController;
         public FriendlyController friendlyController;
+        public TimeController timeController;
 
         public static Context CreateFromGameObject(GameObject gameObject)
         {
@@ -45,6 +46,7 @@ namespace TheKiwiCoder
             context.enemyController = gameObject.GetComponent<EnemyController>();
             context.friendlyController = gameObject.GetComponent<FriendlyController>();
             context.turretGameObject = gameObject.GetComponent<TurretStats>();
+            context.timeController = GameObject.FindGameObjectWithTag("TimeController").GetComponent<TimeController>();
 
             return context;
         }

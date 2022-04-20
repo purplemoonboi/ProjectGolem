@@ -19,6 +19,7 @@ TagManager:
   - EndLevel
   - PlayerWalkable
   - InfoPanel
+  - TimeController
   layers:
   - Default
   - TransparentFX
