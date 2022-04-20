@@ -92,7 +92,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holoGFX: {fileID: 1368903887963427084}
-  spawnerEndGoal: {fileID: 0}
   cost: 25
   costToUpgrade: 50
   health: 250
@@ -475,7 +474,7 @@ PrefabInstance:
     - target: {fileID: -678588488315902003, guid: a4591eed0c74bce4185861c62f972373, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 9f899ef568000ba489a8cd0e7a132363, type: 2}
+      objectReference: {fileID: 2100000, guid: df243937fb5eaec48bb693a36b72105e, type: 2}
     - target: {fileID: 919132149155446097, guid: a4591eed0c74bce4185861c62f972373, type: 3}
       propertyPath: m_Name
       value: barricade
