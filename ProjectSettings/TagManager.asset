@@ -20,6 +20,7 @@ TagManager:
   - PlayerWalkable
   - InfoPanel
   - TimeController
+  - InBase
   layers:
   - Default
   - TransparentFX
@@ -29,7 +30,7 @@ TagManager:
   - UI
   - StaticEnvironment
   - PostProcessing
-  - 
+  - Ground
   - 
   - 
   - 

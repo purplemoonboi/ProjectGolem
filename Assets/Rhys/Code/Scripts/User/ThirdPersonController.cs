@@ -84,9 +84,16 @@ public class ThirdPersonController : MonoBehaviour
     private Rigidbody rigidbody = null;
     private Vector3 forward = new Vector3();
     private bool recievedInput = false;
+    private bool isTurning = false;
     private float currentDisplacement = 0f;
     private float currentVelocity = 0f;
+    public bool inBase = false;
 
+    //Collision
+    private bool isCollision = false;
+    private int numPoints;
+
+    List<ContactPoint> contactList = new List<ContactPoint>();
 
     // Start is called before the first frame update
     void Start()
@@ -121,6 +128,7 @@ public class ThirdPersonController : MonoBehaviour
 
         //Oscillate the character (Affects the GFX only).
         graphicsTransform.position += SimpleHarmonicMotion() * Time.deltaTime;
+
     }
 
     // @brief Called after all evaluations and updates are completed for this frame.
@@ -171,16 +179,20 @@ public class ThirdPersonController : MonoBehaviour
     private bool UpdateCharacter()
     {
         bool receivedInput = false;
+        isTurning = false;
 
         //Default look at rotation.
         Vector3 lookVector = transform.forward;
         Vector3 pLookVector = transform.forward;
 
-        if (Input.GetKey(KeyCode.W))
+        if(!isCollision)
         {
-            receivedInput = true;
-            //For clarity.
-            lookVector = (lookVector + new Vector3(0f, -tiltAmount, 0f)).normalized;
+            if (Input.GetKey(KeyCode.W))
+            {
+                receivedInput = true;
+                //For clarity.
+                lookVector = (lookVector + new Vector3(0f, -tiltAmount, 0f)).normalized;
+            }
         }
 
         float t = Time.deltaTime;
@@ -195,6 +207,7 @@ public class ThirdPersonController : MonoBehaviour
             //transform.eulerAngles += new Vector3(0f, s, 0f);
             lookVector = (transform.right + lookVector + new Vector3(0f, -tiltAmount, 0f)).normalized;
             pLookVector = (transform.right + transform.forward).normalized;
+            isTurning = true;
         }
         if (Input.GetKey(KeyCode.A))
         {
@@ -203,7 +216,7 @@ public class ThirdPersonController : MonoBehaviour
             //transform.eulerAngles -= new Vector3(0f, s, 0f);
             lookVector = (-transform.right + lookVector + new Vector3(0f, -tiltAmount, 0f)).normalized;
             pLookVector = (-transform.right + transform.forward).normalized;
-
+            isTurning = true;
         }
 
         Quaternion rotationGoal = Quaternion.LookRotation(lookVector);
@@ -221,23 +234,47 @@ public class ThirdPersonController : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, rotationGoal, 2f * Time.deltaTime);
         }
 
-        //Ray ray = new Ray(transform.position, -transform.up);
-        //RaycastHit hit;
-        //int layer = 1 << 6;
-        //if (Physics.Raycast(ray, out hit, 6f, layer))
-        //{
-        //    Vector3 normal = hit.normal;
-        //
-        //    float angle = Vector3.Angle(transform.up, normal);
-        //    Quaternion forwardRotation = Quaternion.AngleAxis(-angle, transform.right);
-        //    if (transform.rotation != rotationGoal)
-        //    {
-        //        Quaternion lerpedRotation = Quaternion.Lerp(forwardRotation, rotationGoal, rotationLerpThreshold);
-        //        transform.rotation = Quaternion.Slerp(transform.rotation, lerpedRotation, 5f * Time.deltaTime);
-        //    }
-        //}
+       if(receivedInput)
+       {
+            Ray ray = new Ray(transform.position, -transform.up);
+            RaycastHit hit;
+            int layer = 1 << 8;
+            if (Physics.Raycast(ray, out hit, 10f, layer))
+            {
+                Vector3 normal = hit.normal;
+                Vector3 tangent = transform.forward;
+                Vector3 forward = tangent - normal * Vector3.Dot(tangent, normal);
 
+                Quaternion bodyRotation = Quaternion.LookRotation(forward);
+                transform.rotation = Quaternion.Slerp(transform.rotation, bodyRotation, 2f * Time.deltaTime);
+            }
+       }
+        
         return receivedInput;
     }
 
+    public void OnTriggertEnter(Collider other)
+    {
+        if (other.tag == "InBase")
+        {
+            inBase = true;
+        }
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Environment")
+        {
+            isCollision = true;
+            transform.position += collision.GetContact(0).normal * 10f * Time.deltaTime;
+        }
+    }
+
+    public void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Environment")
+        {
+            isCollision = false;
+        }
+    }
 }

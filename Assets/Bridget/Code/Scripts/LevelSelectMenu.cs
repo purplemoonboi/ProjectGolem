@@ -8,6 +8,6 @@ public class LevelSelectMenu : MonoBehaviour
 {
     public void GoToLevelOne()
     {
-        SceneManager.LoadScene("Graybox090322");
+        SceneManager.LoadScene("Alpha");
     }
 }

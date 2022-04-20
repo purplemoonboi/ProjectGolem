@@ -58,7 +58,7 @@ public class TurretRotateToEnemy : ActionNode
                 Quaternion rotationGoal = Quaternion.LookRotation(lookDirection);
                 turretAzimuth.rotation = Quaternion.Slerp(turretAzimuth.rotation, rotationGoal, 2.0f * Time.deltaTime);
 
-                if (turretAzimuth.rotation != rotationGoal)
+                if (Quaternion.Angle(turretAzimuth.rotation, rotationGoal) > 15f)
                 {
                     Debug.Log("Rotating turret.");
                     return State.Running;

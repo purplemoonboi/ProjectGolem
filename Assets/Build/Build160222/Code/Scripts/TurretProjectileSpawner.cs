@@ -70,11 +70,11 @@ public class TurretProjectileSpawner : MonoBehaviour
         {
             if (shouldFire)
             {
-                Debug.Log("FIRED PROJECTILE!");
                 shouldFire = false;
 
                 GameObject proj = new GameObject();
-                proj = Instantiate(prefab, barrelSpawns.position, Quaternion.identity);
+                Quaternion rotation = Quaternion.LookRotation((target.position - transform.position).normalized);
+                proj = Instantiate(prefab, barrelSpawns.position, rotation);
 
                 Rigidbody rigidbody = proj.GetComponent<Rigidbody>();
 
