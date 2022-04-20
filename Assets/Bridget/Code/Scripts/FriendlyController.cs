@@ -87,4 +87,6 @@ public class FriendlyController : NpcController
     public void SetRecruited(bool r) { recruited = r; }
 
     public bool GetRecruited() { return recruited; }
+
+    public float GetRepairRate() => friendlyData.repairRate;
 }

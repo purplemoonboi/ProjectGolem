@@ -7,4 +7,5 @@ public class FriendlyScriptableObject : ScriptableObject
 {
     public float MAX_HEALTH = 1000.0f;
     public float power = 20.0f;
+    public float repairRate = 20.0f;
 }

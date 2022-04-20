@@ -83,6 +83,8 @@ MonoBehaviour:
   buildingType: -1
   builderScriptableObject: {fileID: 11400000, guid: 5dfef2c79200d4f49b1e31c59c387758, type: 2}
   buildingInfo: {fileID: 0}
+  statistics: {fileID: 11400000, guid: 92916acbebebc49458142e332dcd4507, type: 2}
+  repairRate: 5
 --- !u!1 &3950354992495155622
 GameObject:
   m_ObjectHideFlags: 0

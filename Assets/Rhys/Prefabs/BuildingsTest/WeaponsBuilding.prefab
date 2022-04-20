@@ -82,6 +82,8 @@ MonoBehaviour:
   shouldSpawn: 0
   buildingType: -1
   weaponsScriptableObject: {fileID: 11400000, guid: 4b3b5281b449b0841bf7f97d113ea662, type: 2}
+  weaponStatistics: {fileID: 11400000, guid: 92916acbebebc49458142e332dcd4507, type: 2}
+  damageIncrease: 5
 --- !u!1 &8453811882172200859
 GameObject:
   m_ObjectHideFlags: 0

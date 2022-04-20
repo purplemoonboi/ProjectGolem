@@ -79,6 +79,7 @@ public class BarricadeBuilding : Building
             string[] infoArray =
             {
                  barricadeScriptableObject.prefabName.ToString(),
+                 "Health" + health.ToString(),
                  "Level " + GetLevel().ToString(),
                  (!isActive) ? "Cost to build " + GetCost().ToString() : "Cost to upgrade " + GetCostToUpgrade().ToString(),
                  buildingType.ToString()

@@ -61,7 +61,7 @@ public class RepairStructure : ActionNode
 
         if (timer > 0.8f)
         {
-            structure.SetHealth(structure.GetHealth() + context.friendlyController.GetPower());
+            structure.SetHealth(structure.GetHealth() + context.friendlyController.GetRepairRate());
             timer = 0.0f;
         }
     }

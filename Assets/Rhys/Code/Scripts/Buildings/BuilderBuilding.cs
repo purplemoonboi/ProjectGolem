@@ -10,6 +10,10 @@ public class BuilderBuilding : Building
     private BuilderScriptableObject builderScriptableObject;
     [SerializeField]
     private BuildingInfoPanel buildingInfo;
+    [SerializeField]
+    private FriendlyScriptableObject statistics;
+    [SerializeField]
+    private float repairRate = 5f;
 
     bool updateUI = false;
 
@@ -21,6 +25,7 @@ public class BuilderBuilding : Building
         builderScriptableObject.isMaxLevel = false;
         builderScriptableObject.level = 1;
         buildingInfo = GetComponentInChildren<BuildingInfoPanel>();
+        statistics.repairRate = 20.0f;
     }
 
     // Update is called once per frame
@@ -38,6 +43,7 @@ public class BuilderBuilding : Building
         IncrimentBuildingLevel();
         SetCostToUpgrade(GetCostToUpgrade());
         SetMaxHealth((int)GetHealth() + 100);
+        statistics.repairRate += repairRate;
     }
 
     /*..Trigger callback methods..*/
@@ -50,7 +56,8 @@ public class BuilderBuilding : Building
 
             string[] infoArray =
             {
-                 health.ToString(),
+                builderScriptableObject.prefabName.ToString(),
+                 "Health" + health.ToString(),
                  "Level " + GetLevel().ToString(),
                  (!isActive) ? "Cost to build " + GetCost().ToString() : "Cost to upgrade " + GetCostToUpgrade().ToString(),
                  buildingType.ToString()

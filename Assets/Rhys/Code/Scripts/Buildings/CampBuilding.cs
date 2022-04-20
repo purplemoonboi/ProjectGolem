@@ -8,6 +8,14 @@ public class CampBuilding : Building
 
     [SerializeField]
     private CampScriptableObject campScriptableObject;
+    [SerializeField]
+    private BuilderScriptableObject builderScriptableObject;
+    [SerializeField]
+    private WeaponsScriptableObject weaponsScriptableObject;
+    [SerializeField]
+    private FriendlyScriptableObject weaponStatistics;
+    [SerializeField]
+    private float bonusStat = 5f;
 
     // Start is called before the first frame update
     void Start()
@@ -30,10 +38,13 @@ public class CampBuilding : Building
 
     public override void Upgrade()
     {
-       IncrimentBuildingLevel();
-       SetCostToUpgrade(GetCostToUpgrade());
-       SetMaxHealth((int)GetHealth() + 100);
-
+        IncrimentBuildingLevel();
+        SetCostToUpgrade(GetCostToUpgrade());
+        SetMaxHealth((int)GetHealth() + 100);
+        builderScriptableObject.maximumHealth += bonusStat;
+        weaponsScriptableObject.maximumHealth += bonusStat;
+        weaponStatistics.power += bonusStat;
+        weaponStatistics.repairRate += bonusStat;
     }
 
     /*..Trigger callback methods..*/

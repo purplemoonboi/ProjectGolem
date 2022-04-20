@@ -8,6 +8,10 @@ public class WeaponsBuilding : Building
 
     [SerializeField]
     private WeaponsScriptableObject weaponsScriptableObject;
+    [SerializeField]
+    private FriendlyScriptableObject weaponStatistics;
+    [SerializeField]
+    private float damageIncrease = 5f;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +20,7 @@ public class WeaponsBuilding : Building
         ResetParameters();
         weaponsScriptableObject.isMaxLevel = false;
         weaponsScriptableObject.level = 1;
+        weaponStatistics.power = 15f;
     }
 
     // Update is called once per frame
@@ -33,7 +38,7 @@ public class WeaponsBuilding : Building
         IncrimentBuildingLevel();
         SetCostToUpgrade(GetCostToUpgrade());
         SetMaxHealth((int)GetHealth() + 100);
-
+        weaponStatistics.power += damageIncrease;
     }
 
     /*..Trigger callback methods..*/
@@ -47,7 +52,7 @@ public class WeaponsBuilding : Building
 
             string[] infoArray =
             {
-                 health.ToString(),
+                 "Health" + health.ToString(),
                  "Level " + GetLevel().ToString(),
                  (!isActive) ? "Cost to build " + GetCost().ToString() : "Cost to upgrade " + GetCostToUpgrade().ToString(),
                  buildingType.ToString()
