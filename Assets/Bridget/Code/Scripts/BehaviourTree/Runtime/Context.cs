@@ -27,6 +27,8 @@ namespace TheKiwiCoder
         public FriendlyController friendlyController;
         public TimeController timeController;
 
+        public TurretBuilding turretBuilding;
+
         public static Context CreateFromGameObject(GameObject gameObject)
         {
             // Fetch all commonly used components
@@ -40,6 +42,7 @@ namespace TheKiwiCoder
             context.boxCollider = gameObject.GetComponent<BoxCollider>();
             context.capsuleCollider = gameObject.GetComponent<CapsuleCollider>();
             context.characterController = gameObject.GetComponent<CharacterController>();
+            context.turretBuilding = gameObject.GetComponent<TurretBuilding>();
 
             // Add whatever else you need here...
 

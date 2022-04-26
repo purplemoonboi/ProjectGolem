@@ -11,6 +11,8 @@ public class TurretBuilding : Building
     [SerializeField]
     private TurretStats turretStats;
 
+    public AudioSource rotateAudioSource;
+
     // Start is called before the first frame update
     void Start()
     {
