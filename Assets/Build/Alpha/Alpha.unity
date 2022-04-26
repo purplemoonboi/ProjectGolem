@@ -64456,6 +64456,30 @@ PrefabInstance:
       propertyPath: m_BackGroundColor.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2610810748981515947, guid: 8df1a1793cfca964891d7544193a0b0b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2610810748981515947, guid: 8df1a1793cfca964891d7544193a0b0b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2610810748981515947, guid: 8df1a1793cfca964891d7544193a0b0b, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2610810748981515947, guid: 8df1a1793cfca964891d7544193a0b0b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2610810748981515947, guid: 8df1a1793cfca964891d7544193a0b0b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 134.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 2610810748981515947, guid: 8df1a1793cfca964891d7544193a0b0b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 66.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4427334997431659490, guid: 8df1a1793cfca964891d7544193a0b0b, type: 3}
       propertyPath: m_RootOrder
       value: 22

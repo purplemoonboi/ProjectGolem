@@ -347,13 +347,20 @@ public class Interact : MonoBehaviour
         //Animate the text a little bit.
         int currentWallet = resourceWallet;
         float timer = resourceWallet;
-        while (resourceWallet != (currentWallet + resourceAmount))
+        while (resourceWallet <= (currentWallet + resourceAmount))
         {
             timer += resourceAmount * Time.deltaTime;
             resourceWallet = (int)timer;
             resourceText.text = resourceWallet.ToString();
             //Return from the function and continue main loop.
             yield return null;
+        }
+
+
+        if(resourceWallet > (currentWallet + resourceAmount))
+        {
+            resourceWallet = (currentWallet + resourceAmount);
+            resourceText.text = resourceWallet.ToString();
         }
 
         ResetMiningProgress();
