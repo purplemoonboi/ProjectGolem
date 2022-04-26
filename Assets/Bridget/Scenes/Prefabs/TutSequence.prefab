@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 2936442667866432298}
   m_Layer: 0
   m_Name: TutSequence
-  m_TagString: Untagged
+  m_TagString: Tutorial
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
   skipMessageText: {fileID: 7222599711464434273}
   tutorialMessages: []
   printDelay: 0.033
-  skipKey: 13
+  skipKey: 323
   msgIndex: 0
   runningSequence: 0
 --- !u!65 &2936442667866432298
