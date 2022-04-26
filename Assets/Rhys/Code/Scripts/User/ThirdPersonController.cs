@@ -88,6 +88,7 @@ public class ThirdPersonController : MonoBehaviour
     private float currentDisplacement = 0f;
     private float currentVelocity = 0f;
     public bool inBase = false;
+    public bool DisableInput { get; set; }
 
     //Collision
     private bool isCollision = false;
@@ -102,28 +103,32 @@ public class ThirdPersonController : MonoBehaviour
         //Fails if rigidbody is null.
         Debug.Assert(rigidbody);
         transform.position = spawnPoint.position;
+        DisableInput = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Update forward vector and check for input.
-        recievedInput = UpdateCharacter();
-  
-        if (recievedInput || currentVelocity > 0.001f)
+        if (!DisableInput)
         {
-            
-            emitter.Play();
-            //Update current velocity.
-            currentDisplacement += UpdateVelocity();
-            
-            //Update character's position.
-            transform.position += (transform.forward * currentDisplacement);
-        }
-        else
-        {
-            currentVelocity = 0f;
-            currentDisplacement = 0f;
+            //Update forward vector and check for input.
+            recievedInput = UpdateCharacter();
+
+            if (recievedInput || currentVelocity > 0.001f)
+            {
+
+                emitter.Play();
+                //Update current velocity.
+                currentDisplacement += UpdateVelocity();
+
+                //Update character's position.
+                transform.position += (transform.forward * currentDisplacement);
+            }
+            else
+            {
+                currentVelocity = 0f;
+                currentDisplacement = 0f;
+            }
         }
 
         //Oscillate the character (Affects the GFX only).

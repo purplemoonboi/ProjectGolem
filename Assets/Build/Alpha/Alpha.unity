@@ -508,6 +508,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2041634575}
+  - {fileID: 1297695847}
   m_Father: {fileID: 2583351737562067257}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10901,6 +10902,106 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3da24a0349408c24fbdb023824fd141e, type: 3}
   m_PrefabInstance: {fileID: 1253210276}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1297695846
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 479688849}
+    m_Modifications:
+    - target: {fileID: 2936442667866432298, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
+      propertyPath: m_Size.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936442667866432298, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
+      propertyPath: m_Size.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936442667866432298, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
+      propertyPath: m_Size.z
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3229145403545331946, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3229145403545331946, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3229145403545331946, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 3229145403545331946, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -26.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3229145403545331946, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9051455
+      objectReference: {fileID: 0}
+    - target: {fileID: 3229145403545331946, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3229145403545331946, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.4251019
+      objectReference: {fileID: 0}
+    - target: {fileID: 3229145403545331946, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3229145403545331946, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3229145403545331946, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 50.314
+      objectReference: {fileID: 0}
+    - target: {fileID: 3229145403545331946, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3789910387007725175, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
+      propertyPath: tutorialMessages.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3789910387007725175, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
+      propertyPath: tutorialMessages.Array.data[0]
+      value: You've reached the base!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3789910387007725175, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
+      propertyPath: tutorialMessages.Array.data[1]
+      value: Spend resources to unlock buildings, turrets and barricades.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3789910387007725175, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
+      propertyPath: tutorialMessages.Array.data[2]
+      value: The weapons and tools buildings will make your fighters and builders
+        stronger.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3789910387007725175, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
+      propertyPath: tutorialMessages.Array.data[3]
+      value: Enemies will attack at night and try to destroy your base. Don't let
+        them!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3789910387007725175, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
+      propertyPath: tutorialMessages.Array.data[4]
+      value: You only have a finite amount of resources, so spend them wisely!
+      objectReference: {fileID: 0}
+    - target: {fileID: 5489665009831034004, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
+      propertyPath: m_Name
+      value: TutSequence
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
+--- !u!4 &1297695847 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3229145403545331946, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
+  m_PrefabInstance: {fileID: 1297695846}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1323552138 stripped
 Transform:
@@ -26296,6 +26397,10 @@ PrefabInstance:
     - target: {fileID: 5489665009831034004, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
       propertyPath: m_Name
       value: ExampleTutSequence
+      objectReference: {fileID: 0}
+    - target: {fileID: 5489665009831034004, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
@@ -42438,35 +42543,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6178221303935446365, guid: d5219ad14651753478ef4b0d76fd0325, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 37.11737
+      value: 72.5
       objectReference: {fileID: 0}
     - target: {fileID: 6178221303935446365, guid: d5219ad14651753478ef4b0d76fd0325, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -12.220009
+      value: -16.53
       objectReference: {fileID: 0}
     - target: {fileID: 6178221303935446365, guid: d5219ad14651753478ef4b0d76fd0325, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -29.028503
+      value: -10.2
       objectReference: {fileID: 0}
     - target: {fileID: 6178221303935446365, guid: d5219ad14651753478ef4b0d76fd0325, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.687112
+      value: 0.545341
       objectReference: {fileID: 0}
     - target: {fileID: 6178221303935446365, guid: d5219ad14651753478ef4b0d76fd0325, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.687112
+      value: -0.5966953
       objectReference: {fileID: 0}
     - target: {fileID: 6178221303935446365, guid: d5219ad14651753478ef4b0d76fd0325, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.16696455
+      value: -0.43454713
       objectReference: {fileID: 0}
     - target: {fileID: 6178221303935446365, guid: d5219ad14651753478ef4b0d76fd0325, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.16696455
+      value: -0.39714807
       objectReference: {fileID: 0}
     - target: {fileID: 6178221303935446365, guid: d5219ad14651753478ef4b0d76fd0325, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
+      value: -95.149
       objectReference: {fileID: 0}
     - target: {fileID: 6178221303935446365, guid: d5219ad14651753478ef4b0d76fd0325, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -42474,7 +42579,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6178221303935446365, guid: d5219ad14651753478ef4b0d76fd0325, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 27.316
+      value: -72.12799
       objectReference: {fileID: 0}
     - target: {fileID: 6457773015318789956, guid: d5219ad14651753478ef4b0d76fd0325, type: 3}
       propertyPath: m_LocalScale.x
