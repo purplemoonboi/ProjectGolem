@@ -41,6 +41,7 @@ public class CampBuilding : Building
         IncrimentBuildingLevel();
         SetCostToUpgrade(GetCostToUpgrade());
         SetMaxHealth((int)GetHealth() + 100);
+
         builderScriptableObject.maximumHealth += bonusStat;
         weaponsScriptableObject.maximumHealth += bonusStat;
         weaponStatistics.power += bonusStat;

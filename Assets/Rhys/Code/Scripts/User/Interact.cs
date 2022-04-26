@@ -49,6 +49,10 @@ public class Interact : MonoBehaviour
 
     private Transform target;
 
+    public AudioSource unlockBuildingAudioSource;
+    public AudioSource upgradeBuildingAudioSource;
+    public AudioSource drillingAudioSource;
+
     private string otherTag = " ";
 
     private const string buildingTag = "Building";
@@ -272,7 +276,9 @@ public class Interact : MonoBehaviour
 
             miningBar.enabled = true;
             promptText.enabled = false;
-            
+
+            drillingAudioSource.PlayOneShot(drillingAudioSource.clip);
+            drillingAudioSource.loop = true;
 
             //Incriment timer.
             miningTimer += Time.deltaTime;
@@ -380,6 +386,7 @@ public class Interact : MonoBehaviour
                     //Update UI.
                     resourceText.text = resourceWallet.ToString();
                     //Tell the building to begin spawn animation.
+                    unlockBuildingAudioSource.PlayOneShot(unlockBuildingAudioSource.clip);
                     building.Spawn();
                 }
             }
@@ -397,6 +404,7 @@ public class Interact : MonoBehaviour
                                 resourceWallet -= builderBuilding.GetCostToUpgrade();
                                 //Update UI.
                                 resourceText.text = resourceWallet.ToString();
+                                upgradeBuildingAudioSource.PlayOneShot(upgradeBuildingAudioSource.clip);
                                 builderBuilding.Upgrade();
                             }
                             break;
@@ -407,6 +415,7 @@ public class Interact : MonoBehaviour
                                 resourceWallet -= weaponsBuilding.GetCostToUpgrade();
                                 //Update UI.
                                 resourceText.text = resourceWallet.ToString();
+                                upgradeBuildingAudioSource.PlayOneShot(upgradeBuildingAudioSource.clip);
                                 weaponsBuilding.Upgrade();
                             }
                             break;
@@ -417,6 +426,7 @@ public class Interact : MonoBehaviour
                                 resourceWallet -= barricadeBuilding.GetCostToUpgrade();
                                 //Update UI.
                                 resourceText.text = resourceWallet.ToString();
+                                upgradeBuildingAudioSource.PlayOneShot(upgradeBuildingAudioSource.clip);
                                 barricadeBuilding.Upgrade();
                             }
                             break;
@@ -427,6 +437,7 @@ public class Interact : MonoBehaviour
                                 resourceWallet -= turretBuilding.GetCostToUpgrade();
                                 //Update UI.
                                 resourceText.text = resourceWallet.ToString();
+                                upgradeBuildingAudioSource.PlayOneShot(upgradeBuildingAudioSource.clip);
                                 turretBuilding.Upgrade();
                             }
                             break;
@@ -437,6 +448,7 @@ public class Interact : MonoBehaviour
                                 resourceWallet -= campBuilding.GetCostToUpgrade();
                                 //Update UI.
                                 resourceText.text = resourceWallet.ToString();
+                                upgradeBuildingAudioSource.PlayOneShot(upgradeBuildingAudioSource.clip);
                                 campBuilding.Upgrade();
                             }
                             break;
