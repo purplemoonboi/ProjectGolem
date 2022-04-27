@@ -113,7 +113,7 @@ public class ThirdPersonController : MonoBehaviour
         if (!DisableInput)
         {
             //Update forward vector and check for input.
-            recievedInput = UpdateCharacter();
+            recievedInput += UpdateCharacter();
 
             if (recievedInput || currentVelocity > 0.001f)
             {
