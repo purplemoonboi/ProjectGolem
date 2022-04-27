@@ -66,6 +66,9 @@ public class TurretProjectileSpawner : MonoBehaviour
 
     public void FixedUpdate()
     {
+        if (target == null)
+            return;
+
         if (turretStatistics.IsActivated())
         {
             if (shouldFire)
