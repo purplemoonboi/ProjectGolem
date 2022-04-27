@@ -27,9 +27,9 @@ public class TutorialSequence : MonoBehaviour
             if(playerController)
             {
                 playerController.DisableInput = true;
-            }
 
-            StartSequence();
+                StartSequence();
+            }
         }
     }
 
