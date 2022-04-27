@@ -11054,20 +11054,32 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3229145403545331946, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.69172
+      objectReference: {fileID: 0}
+    - target: {fileID: 3229145403545331946, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.69172
+      objectReference: {fileID: 0}
+    - target: {fileID: 3229145403545331946, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.69172
+      objectReference: {fileID: 0}
+    - target: {fileID: 3229145403545331946, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.8
+      value: 20.08
       objectReference: {fileID: 0}
     - target: {fileID: 3229145403545331946, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.26
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 3229145403545331946, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -26.5
+      value: -0.03
       objectReference: {fileID: 0}
     - target: {fileID: 3229145403545331946, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9051455
+      value: 0.9868231
       objectReference: {fileID: 0}
     - target: {fileID: 3229145403545331946, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
       propertyPath: m_LocalRotation.x
@@ -11075,7 +11087,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3229145403545331946, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.4251019
+      value: 0.1618031
       objectReference: {fileID: 0}
     - target: {fileID: 3229145403545331946, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
       propertyPath: m_LocalRotation.z
@@ -11087,7 +11099,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3229145403545331946, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 50.314
+      value: 18.623
       objectReference: {fileID: 0}
     - target: {fileID: 3229145403545331946, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -11099,25 +11111,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3789910387007725175, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
       propertyPath: tutorialMessages.Array.data[0]
-      value: You've reached the base!
+      value: 'Welcome... Welcome I say! '
       objectReference: {fileID: 0}
     - target: {fileID: 3789910387007725175, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
       propertyPath: tutorialMessages.Array.data[1]
-      value: Spend resources to unlock buildings, turrets and barricades.
+      value: This here is the CAMP building,
       objectReference: {fileID: 0}
     - target: {fileID: 3789910387007725175, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
       propertyPath: tutorialMessages.Array.data[2]
-      value: The weapons and tools buildings will make your fighters and builders
-        stronger.
+      value: You wanna know what it does?
       objectReference: {fileID: 0}
     - target: {fileID: 3789910387007725175, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
       propertyPath: tutorialMessages.Array.data[3]
-      value: Enemies will attack at night and try to destroy your base. Don't let
-        them!
+      value: When purchased, the camp building applies a bonus to all other buildings.
       objectReference: {fileID: 0}
     - target: {fileID: 3789910387007725175, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
       propertyPath: tutorialMessages.Array.data[4]
-      value: You only have a finite amount of resources, so spend them wisely!
+      value: 'The bonus takes the form of health and damage dealt by armaments. '
       objectReference: {fileID: 0}
     - target: {fileID: 5489665009831034004, guid: f1529de33b45c5144a3a3ad94865a5d7, type: 3}
       propertyPath: m_Name
