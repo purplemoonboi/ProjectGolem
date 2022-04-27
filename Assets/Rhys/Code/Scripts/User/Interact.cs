@@ -6,7 +6,7 @@ public class Interact : MonoBehaviour
 {
     //Input status
     [SerializeField]
-    private bool pressedMouseB0;
+    private bool pressedSpaceKey;
     [SerializeField]
     private bool isInteractable;
 
@@ -67,7 +67,7 @@ public class Interact : MonoBehaviour
     void Start()
     {
         normalTransform = transform;
-        pressedMouseB0 = false;
+        pressedSpaceKey = false;
         isInteractable = false;
         resourceWallet = 0;
 
@@ -87,13 +87,13 @@ public class Interact : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            pressedMouseB0 = true;
+            pressedSpaceKey = true;
         }
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetKeyUp(KeyCode.Space))
         {
-            pressedMouseB0 = false;
+            pressedSpaceKey = false;
         }
 
 
@@ -106,7 +106,7 @@ public class Interact : MonoBehaviour
     private void ProcessInteractions()
     {
         //Handle resources
-        if(interactable != null && pressedMouseB0)
+        if(interactable != null && pressedSpaceKey)
         {
             if (interactable.tag == buildingTag || interactable.tag == defenceTag)
             {
@@ -115,7 +115,7 @@ public class Interact : MonoBehaviour
                 //Force object ref null and input false.
                 interactable = null;
                 isInteractable = false;
-                pressedMouseB0 = false;
+                pressedSpaceKey = false;
             }
             else if (interactable.tag == resourceTag)
             {
@@ -244,7 +244,7 @@ public class Interact : MonoBehaviour
             //Force object ref null and input false.
             interactable = null;
             isInteractable = false;
-            pressedMouseB0 = false;
+            pressedSpaceKey = false;
             promptImage.enabled = false;
             promptText.enabled = false;
             miningBar.enabled = false;
@@ -288,11 +288,9 @@ public class Interact : MonoBehaviour
             width = w;
             rect.sizeDelta = new Vector2(width, 50);
         }   
-        else if(miningTimer > miningDuration || !pressedMouseB0)
+        else if(miningTimer > miningDuration || !pressedSpaceKey)
         {
             hasMined = true;
-            //Face forward
-           // StartCoroutine("RotateToFaceTarget", (normalTransform.transform.position - transform.position).normalized);
         }
     }
 
@@ -321,7 +319,6 @@ public class Interact : MonoBehaviour
     {
 
         //Switch the resource amount pickup on.
-        
         Color colour = resourcePickUpText.color;
         Vector2 currentTextPosition = rectTransform.position;
         Vector2 initialPosition = rectTransform.position;
@@ -329,7 +326,6 @@ public class Interact : MonoBehaviour
         string resourceAmountText = resourceAmount.ToString();
 
         resourcePickUpText.text = resourceAmountText;
-
 
         //Animate the text a little bit.
         while (colour.a > 0)
@@ -342,7 +338,6 @@ public class Interact : MonoBehaviour
             //Return from the function and continue main loop.
             yield return null;
         }
-
 
         //Switch it off.
         resourcePickUpText.enabled = false;
@@ -362,7 +357,6 @@ public class Interact : MonoBehaviour
             yield return null;
         }
 
-
         if(resourceWallet > (currentWallet + resourceAmount))
         {
             resourceWallet = (currentWallet + resourceAmount);
@@ -370,8 +364,6 @@ public class Interact : MonoBehaviour
         }
 
         ResetMiningProgress();
-
-
     }
 
     private void HandleBuilding()
