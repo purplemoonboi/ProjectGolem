@@ -270,7 +270,7 @@ public class TerrainMesh : MonoBehaviour
         DestroyImmediate(meshFilter);
         heightMap = new List<float>();
         meshRenderer = gameObject.AddComponent<MeshRenderer>();
-        meshRenderer.sharedMaterial = new Material(Shader.Find("Custom/SandShader"));
+        meshRenderer.sharedMaterial = new Material(Shader.Find("Universal Render Pipeline/Lit"));
         meshFilter = gameObject.AddComponent<MeshFilter>();
         
 

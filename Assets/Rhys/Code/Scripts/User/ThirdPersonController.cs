@@ -120,7 +120,7 @@ public class ThirdPersonController : MonoBehaviour
 
                 emitter.Play();
                 //Update current velocity.
-                currentDisplacement = UpdateVelocity();
+                currentDisplacement += UpdateVelocity();
 
                 //Update character's position.
                 transform.position += (transform.forward * currentDisplacement);

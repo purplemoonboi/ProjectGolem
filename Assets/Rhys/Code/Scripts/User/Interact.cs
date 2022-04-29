@@ -94,6 +94,7 @@ public class Interact : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space))
         {
             pressedSpaceKey = false;
+            drillingAudioSource.Stop();
         }
 
 
