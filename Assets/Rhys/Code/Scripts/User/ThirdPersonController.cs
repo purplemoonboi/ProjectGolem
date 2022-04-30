@@ -91,6 +91,11 @@ public class ThirdPersonController : MonoBehaviour
     public bool inBase = false;
     public bool DisableInput { get; set; }
 
+    [Header("Player Health")]
+    public int currentHealth;
+    private int maxHealth = 1;
+    private bool isDead = false;
+
     //Collision
     private bool isCollision = false;
     private int numPoints;
@@ -105,6 +110,7 @@ public class ThirdPersonController : MonoBehaviour
         Debug.Assert(rigidbody);
         transform.position = spawnPoint.position;
         DisableInput = false;
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -172,6 +178,20 @@ public class ThirdPersonController : MonoBehaviour
         s = Mathf.Clamp(s, -maxVelocity, maxVelocity);
         return s;
     }
+
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        if (currentHealth <= 0 && !isDead)
+        {
+            Debug.Log("Dead: " + currentHealth);
+            Destroy(this.gameObject);
+            isDead = true;
+        }
+    }
+
 
     // @brief Simulates a spring effect.
     private Vector3 SimpleHarmonicMotion()

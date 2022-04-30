@@ -30,11 +30,6 @@ public abstract class Building : MonoBehaviour
     [SerializeField]
     protected BuildingType buildingType = BuildingType.None;
 
-    private void Start()
-    {
-
-    }
-
     //Moves the plane towards the goal thus rendering the building as it
     //passes through the hologram.
     protected virtual IEnumerator PlaySpawnAnimation()

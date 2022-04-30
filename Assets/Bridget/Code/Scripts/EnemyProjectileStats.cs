@@ -107,11 +107,23 @@ public class EnemyProjectileStats : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+        else if (collider.gameObject.transform.tag == "Player")
+        {
+            ThirdPersonController player = collider.gameObject.transform.GetComponent<ThirdPersonController>();
+
+            if (player != null)
+            {
+                player.TakeDamage(1);
+                Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+
+                Destroy(gameObject);
+            }
+        }
     }
 
     public void OnTriggerExit(Collider collider)
     {
-        if (collider.gameObject.transform.tag == "DefenceTower" || collider.gameObject.transform.tag == "Friendly")
+        if (collider.gameObject.transform.tag == "DefenceTower" || collider.gameObject.transform.tag == "Friendly" || collider.gameObject.transform.tag == "Player")
         {
             if (this != null)
             {

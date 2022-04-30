@@ -17,6 +17,8 @@ public class CampBuilding : Building
     [SerializeField]
     private float bonusStat = 5f;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -77,6 +79,8 @@ public class CampBuilding : Building
             buildingInfo.SetText(infoText);
         }
     }
+
+    
 
     public void OnTriggerExit(Collider other)
     {
