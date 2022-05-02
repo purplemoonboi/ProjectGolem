@@ -113,12 +113,7 @@ public class Interact : MonoBehaviour
         {
             if (interactable.tag == buildingTag || interactable.tag == defenceTag)
             {
-                HandleBuilding();
-                //At this point we have successfully spawned a building.
-                //Force object ref null and input false.
-               // interactable = null;
-               // isInteractable = false;
-               // pressedSpaceKey = false;
+                HandleBuilding();            
             }
             else if (interactable.tag == resourceTag)
             {
@@ -303,14 +298,12 @@ public class Interact : MonoBehaviour
 
     private void BuildingInteractionAnimation()
     {
+      
         RectTransform rect = progressBar.rectTransform;
-        Debug.Log("Building animation");
         if (interactionTimer < interactionDuration)
-        {
-            
+        {             
             progressBar.enabled = true;
             promptText.enabled = false;
-
 
             //Incriment timer.
             interactionTimer += Time.deltaTime;
@@ -319,11 +312,13 @@ public class Interact : MonoBehaviour
             float w = MathsUtils.RemapRange(percentage, 0, 1, 0, 180);
             width = w;
             rect.sizeDelta = new Vector2(width, 50);
+            hasInteracted = false;
         }
         else if (interactionTimer > interactionDuration || !pressedSpaceKey)
         {
             hasInteracted = true;
         }
+
     }
 
     private void ResetMiningProgress()
@@ -409,6 +404,7 @@ public class Interact : MonoBehaviour
         {
             //Hold space to either purchase or upgrade a building.
             BuildingInteractionAnimation();
+
 
             if(hasInteracted)
             {
