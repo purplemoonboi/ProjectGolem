@@ -3,7 +3,12 @@ guid: 697689618cdef8d438c36799c17f6e6d
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fist
+    second: {fileID: 2100000, guid: 1562198a89045894e9178d227b1c72ac, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
