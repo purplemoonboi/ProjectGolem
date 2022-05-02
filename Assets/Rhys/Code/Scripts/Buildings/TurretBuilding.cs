@@ -10,6 +10,10 @@ public class TurretBuilding : Building
     private TurretScriptableObject turretScriptableObject;
     [SerializeField]
     private TurretStats turretStats;
+    [SerializeField]
+    private GameObject doubleBarrelHoloGFX;
+    [SerializeField]
+    private GameObject doubleBarrelGFX;
 
     public AudioSource rotateAudioSource;
 
@@ -20,9 +24,11 @@ public class TurretBuilding : Building
         ResetParameters();
         turretScriptableObject.isMaxLevel = false;
         turretScriptableObject.level = 1;
-
+        
         turretScriptableObject.cost = cost;
         turretScriptableObject.costToUpgrade = costToUpgrade;
+        doubleBarrelGFX.SetActive(false);
+        turretStats.SetLevel(1);
     }
 
     // Update is called once per frame
@@ -34,13 +40,32 @@ public class TurretBuilding : Building
             StartCoroutine("PlaySpawnAnimation");
             turretStats.SetIsActivated(true);
         }
+
+        if(turretStats.GetHealth() <= 0.0f)
+        {
+            //Upon death the turret is no longer active.
+            isActive = false;
+            shouldSpawn = false;
+            turretStats.SetIsActivated(false);
+            //Re-enable holographic GFX.
+            ToggleHolographicGFX(true);
+        }
+
     }
 
     public override void Upgrade()
     {
         IncrimentBuildingLevel();
+        turretStats.SetLevel(turretScriptableObject.level);
         SetCostToUpgrade(turretScriptableObject.costToUpgrade);
         SetMaxHealth((int)GetHealth() + 100);
+
+        //If level 2 activate the extra barrels.
+        if(turretStats.Level == 2)
+        {
+            doubleBarrelHoloGFX.SetActive(false);
+            doubleBarrelGFX.SetActive(true);
+        }
 
     }
 
@@ -55,6 +80,7 @@ public class TurretBuilding : Building
 
             string[] infoArray =
             {
+                 name,
                  health.ToString(),
                  "Level " + GetLevel().ToString(),
                  (!isActive) ? "Cost to build " + turretScriptableObject.cost.ToString() : "Cost to upgrade " + turretScriptableObject.costToUpgrade.ToString(),
@@ -70,6 +96,12 @@ public class TurretBuilding : Building
             }
 
             buildingInfo.SetText(infoText);
+
+            if(turretStats.Level < 2)
+            {
+                doubleBarrelHoloGFX.SetActive(true);
+            }
+
         }
     }
 
@@ -81,6 +113,10 @@ public class TurretBuilding : Building
             buildingInfo.DisableInfoPanel();
             Text infoText = GetComponentInChildren<Text>();
             infoText.text = " ";
+            if (turretStats.Level < 2)
+            {
+                doubleBarrelHoloGFX.SetActive(false);
+            }
         }
     }
 

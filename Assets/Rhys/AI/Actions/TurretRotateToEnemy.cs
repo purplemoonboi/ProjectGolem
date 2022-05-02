@@ -38,6 +38,12 @@ public class TurretRotateToEnemy : ActionNode
     protected override State OnUpdate() 
     {
 
+        if (context.turretGameObject.GetHealth() < 0f)
+        {
+            return State.Failure;
+        }
+
+
         if (turretAzimuth == null)
         {
             Debug.LogError("Turret's azimuth transform is null.");

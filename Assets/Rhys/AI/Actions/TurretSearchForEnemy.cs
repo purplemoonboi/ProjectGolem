@@ -45,11 +45,11 @@ public class TurretSearchForEnemy : ActionNode
             blackboard.targetObj = gameObject;
             return State.Success;
         }
-        else
+
+        if(context.turretGameObject.GetHealth() < 0f)
         {
             return State.Failure;
         }
-
 
         return State.Running;
     }

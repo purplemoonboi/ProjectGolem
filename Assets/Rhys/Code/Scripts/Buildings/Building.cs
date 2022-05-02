@@ -62,8 +62,10 @@ public abstract class Building : MonoBehaviour
     public void Spawn()
     {
         shouldSpawn = true;
-        Destroy(holoGFX);
+        holoGFX.SetActive(false);
     }
+
+    public virtual void ToggleHolographicGFX(bool value) => holoGFX.SetActive(value);
 
     public virtual void SetCost(int _cost) => cost = _cost;
 
