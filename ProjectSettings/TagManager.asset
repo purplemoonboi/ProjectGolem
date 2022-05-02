@@ -21,6 +21,9 @@ TagManager:
   - InfoPanel
   - TimeController
   - InBase
+  - Tutorial
+  - EnemyProjectile
+  - CampBuilding
   layers:
   - Default
   - TransparentFX

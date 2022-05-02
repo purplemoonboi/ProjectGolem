@@ -7,7 +7,7 @@ public class TurretProjectileSpawner : MonoBehaviour
     [SerializeField]
     private GameObject prefab;
     [SerializeField]
-    private Transform barrelSpawns;
+    private Transform[] barrelSpawns;
     [SerializeField]
     private float fireForce = 1000.0f;
     [SerializeField]
@@ -66,6 +66,9 @@ public class TurretProjectileSpawner : MonoBehaviour
 
     public void FixedUpdate()
     {
+        if (target == null)
+            return;
+
         if (turretStatistics.IsActivated())
         {
             if (shouldFire)
@@ -74,7 +77,17 @@ public class TurretProjectileSpawner : MonoBehaviour
 
                 GameObject proj = new GameObject();
                 Quaternion rotation = Quaternion.LookRotation((target.position - transform.position).normalized);
-                proj = Instantiate(prefab, barrelSpawns.position, rotation);
+                if (turretStatistics.Level < 2)
+                {
+                    proj = Instantiate(prefab, barrelSpawns[0].position, rotation);
+                }
+                else
+                {
+                    foreach (var spawn in barrelSpawns)
+                    {
+                        proj = Instantiate(prefab, spawn.position, rotation);
+                    }
+                }
 
                 Rigidbody rigidbody = proj.GetComponent<Rigidbody>();
 

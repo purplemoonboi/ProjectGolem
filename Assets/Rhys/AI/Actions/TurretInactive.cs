@@ -72,7 +72,8 @@ public class TurretInactive : ActionNode
     private bool ActivateTurretAnimation()
     {
         turretAzimuth.rotation = Quaternion.Slerp(turretAzimuth.rotation, rotationGoal, 2.0f * Time.deltaTime);
-        return (turretAzimuth.rotation == rotationGoal) ? true : false;
+       // return (turretAzimuth.rotation == rotationGoal) ? true : false;
+        return Quaternion.Angle(turretAzimuth.rotation, rotationGoal) < 5f ? true : false;
     }
 
 }

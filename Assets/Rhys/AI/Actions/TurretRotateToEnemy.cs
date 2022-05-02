@@ -38,6 +38,12 @@ public class TurretRotateToEnemy : ActionNode
     protected override State OnUpdate() 
     {
 
+        if (context.turretGameObject.GetHealth() < 0f)
+        {
+            return State.Failure;
+        }
+
+
         if (turretAzimuth == null)
         {
             Debug.LogError("Turret's azimuth transform is null.");
@@ -57,7 +63,7 @@ public class TurretRotateToEnemy : ActionNode
                 Vector3 lookDirection = (enemyTransform.transform.position - turretAzimuth.position).normalized;
                 Quaternion rotationGoal = Quaternion.LookRotation(lookDirection);
                 turretAzimuth.rotation = Quaternion.Slerp(turretAzimuth.rotation, rotationGoal, 2.0f * Time.deltaTime);
-
+                context.turretBuilding.rotateAudioSource.PlayOneShot(context.turretBuilding.rotateAudioSource.clip);
                 if (Quaternion.Angle(turretAzimuth.rotation, rotationGoal) > 15f)
                 {
                     Debug.Log("Rotating turret.");

@@ -17,6 +17,8 @@ public class CampBuilding : Building
     [SerializeField]
     private float bonusStat = 5f;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +43,7 @@ public class CampBuilding : Building
         IncrimentBuildingLevel();
         SetCostToUpgrade(GetCostToUpgrade());
         SetMaxHealth((int)GetHealth() + 100);
+
         builderScriptableObject.maximumHealth += bonusStat;
         weaponsScriptableObject.maximumHealth += bonusStat;
         weaponStatistics.power += bonusStat;
@@ -76,6 +79,8 @@ public class CampBuilding : Building
             buildingInfo.SetText(infoText);
         }
     }
+
+    
 
     public void OnTriggerExit(Collider other)
     {

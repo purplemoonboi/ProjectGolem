@@ -21,11 +21,14 @@ namespace TheKiwiCoder
         public CapsuleCollider capsuleCollider;
         public CharacterController characterController;
         public TurretStats turretGameObject;
+        public TurretBuilding turretBuilding; 
         // Add other game specific systems here
 
         public EnemyController enemyController;
         public FriendlyController friendlyController;
         public TimeController timeController;
+
+        
 
         public static Context CreateFromGameObject(GameObject gameObject)
         {
@@ -40,6 +43,7 @@ namespace TheKiwiCoder
             context.boxCollider = gameObject.GetComponent<BoxCollider>();
             context.capsuleCollider = gameObject.GetComponent<CapsuleCollider>();
             context.characterController = gameObject.GetComponent<CharacterController>();
+            context.turretBuilding = gameObject.GetComponent<TurretBuilding>();
 
             // Add whatever else you need here...
 

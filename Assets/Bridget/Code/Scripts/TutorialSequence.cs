@@ -15,24 +15,21 @@ public class TutorialSequence : MonoBehaviour
     [SerializeField] private int msgIndex = 0;
     [SerializeField] private bool runningSequence = false;
 
-    void Start()
-    {
-        if (tutorialMessages.Count == 0)    //Load default messages
-        {
-            tutorialMessages.Add("This is sample message 1!");
-            tutorialMessages.Add("This is sample message 2!");
-            tutorialMessages.Add("This is sample message 3!");
-            tutorialMessages.Add("This is sample message 4!");
-            tutorialMessages.Add("This is sample message 5!");
-        }
-    }
+    private ThirdPersonController playerController;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
             GetComponent<Collider>().enabled = false;
-            StartSequence();
+            playerController = other.gameObject.GetComponent<ThirdPersonController>();
+            
+            if(playerController)
+            {
+                playerController.DisableInput = true;
+
+                StartSequence();
+            }
         }
     }
 
@@ -61,7 +58,14 @@ public class TutorialSequence : MonoBehaviour
                         msgIndex++;
                     }
                     else
+                    {
+                        if(playerController)
+                        {
+                            playerController.DisableInput = false;
+                        }
+
                         StopSequence();
+                    }
                 }
             }
         }

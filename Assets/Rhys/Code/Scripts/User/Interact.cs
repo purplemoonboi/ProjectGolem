@@ -6,7 +6,7 @@ public class Interact : MonoBehaviour
 {
     //Input status
     [SerializeField]
-    private bool pressedMouseB0;
+    private bool pressedSpaceKey;
     [SerializeField]
     private bool isInteractable;
 
@@ -49,6 +49,10 @@ public class Interact : MonoBehaviour
 
     private Transform target;
 
+    public AudioSource unlockBuildingAudioSource;
+    public AudioSource upgradeBuildingAudioSource;
+    public AudioSource drillingAudioSource;
+
     private string otherTag = " ";
 
     private const string buildingTag = "Building";
@@ -63,7 +67,7 @@ public class Interact : MonoBehaviour
     void Start()
     {
         normalTransform = transform;
-        pressedMouseB0 = false;
+        pressedSpaceKey = false;
         isInteractable = false;
         resourceWallet = 0;
 
@@ -83,13 +87,14 @@ public class Interact : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            pressedMouseB0 = true;
+            pressedSpaceKey = true;
         }
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetKeyUp(KeyCode.Space))
         {
-            pressedMouseB0 = false;
+            pressedSpaceKey = false;
+            drillingAudioSource.Stop();
         }
 
 
@@ -102,7 +107,7 @@ public class Interact : MonoBehaviour
     private void ProcessInteractions()
     {
         //Handle resources
-        if(interactable != null && pressedMouseB0)
+        if(interactable != null && pressedSpaceKey)
         {
             if (interactable.tag == buildingTag || interactable.tag == defenceTag)
             {
@@ -111,7 +116,7 @@ public class Interact : MonoBehaviour
                 //Force object ref null and input false.
                 interactable = null;
                 isInteractable = false;
-                pressedMouseB0 = false;
+                pressedSpaceKey = false;
             }
             else if (interactable.tag == resourceTag)
             {
@@ -240,7 +245,7 @@ public class Interact : MonoBehaviour
             //Force object ref null and input false.
             interactable = null;
             isInteractable = false;
-            pressedMouseB0 = false;
+            pressedSpaceKey = false;
             promptImage.enabled = false;
             promptText.enabled = false;
             miningBar.enabled = false;
@@ -272,7 +277,9 @@ public class Interact : MonoBehaviour
 
             miningBar.enabled = true;
             promptText.enabled = false;
-            
+
+            drillingAudioSource.PlayOneShot(drillingAudioSource.clip);
+            drillingAudioSource.loop = true;
 
             //Incriment timer.
             miningTimer += Time.deltaTime;
@@ -282,11 +289,9 @@ public class Interact : MonoBehaviour
             width = w;
             rect.sizeDelta = new Vector2(width, 50);
         }   
-        else if(miningTimer > miningDuration || !pressedMouseB0)
+        else if(miningTimer > miningDuration || !pressedSpaceKey)
         {
             hasMined = true;
-            //Face forward
-           // StartCoroutine("RotateToFaceTarget", (normalTransform.transform.position - transform.position).normalized);
         }
     }
 
@@ -315,7 +320,6 @@ public class Interact : MonoBehaviour
     {
 
         //Switch the resource amount pickup on.
-        
         Color colour = resourcePickUpText.color;
         Vector2 currentTextPosition = rectTransform.position;
         Vector2 initialPosition = rectTransform.position;
@@ -323,7 +327,6 @@ public class Interact : MonoBehaviour
         string resourceAmountText = resourceAmount.ToString();
 
         resourcePickUpText.text = resourceAmountText;
-
 
         //Animate the text a little bit.
         while (colour.a > 0)
@@ -337,7 +340,6 @@ public class Interact : MonoBehaviour
             yield return null;
         }
 
-
         //Switch it off.
         resourcePickUpText.enabled = false;
         colour.a = 1.0f;
@@ -347,7 +349,7 @@ public class Interact : MonoBehaviour
         //Animate the text a little bit.
         int currentWallet = resourceWallet;
         float timer = resourceWallet;
-        while (resourceWallet != (currentWallet + resourceAmount))
+        while (resourceWallet <= (currentWallet + resourceAmount))
         {
             timer += resourceAmount * Time.deltaTime;
             resourceWallet = (int)timer;
@@ -356,9 +358,13 @@ public class Interact : MonoBehaviour
             yield return null;
         }
 
+        if(resourceWallet > (currentWallet + resourceAmount))
+        {
+            resourceWallet = (currentWallet + resourceAmount);
+            resourceText.text = resourceWallet.ToString();
+        }
+
         ResetMiningProgress();
-
-
     }
 
     private void HandleBuilding()
@@ -380,6 +386,7 @@ public class Interact : MonoBehaviour
                     //Update UI.
                     resourceText.text = resourceWallet.ToString();
                     //Tell the building to begin spawn animation.
+                    unlockBuildingAudioSource.PlayOneShot(unlockBuildingAudioSource.clip);
                     building.Spawn();
                 }
             }
@@ -397,6 +404,7 @@ public class Interact : MonoBehaviour
                                 resourceWallet -= builderBuilding.GetCostToUpgrade();
                                 //Update UI.
                                 resourceText.text = resourceWallet.ToString();
+                                upgradeBuildingAudioSource.PlayOneShot(upgradeBuildingAudioSource.clip);
                                 builderBuilding.Upgrade();
                             }
                             break;
@@ -407,6 +415,7 @@ public class Interact : MonoBehaviour
                                 resourceWallet -= weaponsBuilding.GetCostToUpgrade();
                                 //Update UI.
                                 resourceText.text = resourceWallet.ToString();
+                                upgradeBuildingAudioSource.PlayOneShot(upgradeBuildingAudioSource.clip);
                                 weaponsBuilding.Upgrade();
                             }
                             break;
@@ -417,6 +426,7 @@ public class Interact : MonoBehaviour
                                 resourceWallet -= barricadeBuilding.GetCostToUpgrade();
                                 //Update UI.
                                 resourceText.text = resourceWallet.ToString();
+                                upgradeBuildingAudioSource.PlayOneShot(upgradeBuildingAudioSource.clip);
                                 barricadeBuilding.Upgrade();
                             }
                             break;
@@ -427,6 +437,7 @@ public class Interact : MonoBehaviour
                                 resourceWallet -= turretBuilding.GetCostToUpgrade();
                                 //Update UI.
                                 resourceText.text = resourceWallet.ToString();
+                                upgradeBuildingAudioSource.PlayOneShot(upgradeBuildingAudioSource.clip);
                                 turretBuilding.Upgrade();
                             }
                             break;
@@ -437,6 +448,7 @@ public class Interact : MonoBehaviour
                                 resourceWallet -= campBuilding.GetCostToUpgrade();
                                 //Update UI.
                                 resourceText.text = resourceWallet.ToString();
+                                upgradeBuildingAudioSource.PlayOneShot(upgradeBuildingAudioSource.clip);
                                 campBuilding.Upgrade();
                             }
                             break;

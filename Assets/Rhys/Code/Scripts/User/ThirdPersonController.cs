@@ -85,9 +85,16 @@ public class ThirdPersonController : MonoBehaviour
     private Vector3 forward = new Vector3();
     private bool recievedInput = false;
     private bool isTurning = false;
+    [SerializeField]
     private float currentDisplacement = 0f;
     private float currentVelocity = 0f;
     public bool inBase = false;
+    public bool DisableInput { get; set; }
+
+    [Header("Player Health")]
+    public int currentHealth;
+    private int maxHealth = 1;
+    private bool isDead = false;
 
     //Collision
     private bool isCollision = false;
@@ -102,33 +109,38 @@ public class ThirdPersonController : MonoBehaviour
         //Fails if rigidbody is null.
         Debug.Assert(rigidbody);
         transform.position = spawnPoint.position;
+        DisableInput = false;
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Update forward vector and check for input.
-        recievedInput = UpdateCharacter();
-  
-        if (recievedInput || currentVelocity > 0.001f)
+        if (!DisableInput)
         {
-            
-            emitter.Play();
-            //Update current velocity.
-            currentDisplacement += UpdateVelocity();
-            
-            //Update character's position.
-            transform.position += (transform.forward * currentDisplacement);
-        }
-        else
-        {
-            currentVelocity = 0f;
-            currentDisplacement = 0f;
+            //Update forward vector and check for input.
+            recievedInput = UpdateCharacter();
+
+            if (recievedInput || currentVelocity > 0.001f)
+            {
+
+                emitter.Play();
+                //Update current velocity.
+                currentDisplacement += UpdateVelocity();
+
+                //Update character's position.
+                transform.position += (transform.forward * currentDisplacement);
+            }
+            else
+            {
+                currentVelocity = 0f;
+                currentDisplacement = 0f;
+            }
         }
 
         //Oscillate the character (Affects the GFX only).
         graphicsTransform.position += SimpleHarmonicMotion() * Time.deltaTime;
-
+        
     }
 
     // @brief Called after all evaluations and updates are completed for this frame.
@@ -167,12 +179,38 @@ public class ThirdPersonController : MonoBehaviour
         return s;
     }
 
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        if (currentHealth <= 0 && !isDead)
+        {
+            Debug.Log("Dead: " + currentHealth);
+            Destroy(this.gameObject);
+            isDead = true;
+        }
+    }
+
+
     // @brief Simulates a spring effect.
     private Vector3 SimpleHarmonicMotion()
     {
         float omega = springConstant / mass;
-        float y = maxAmplitude * Mathf.Cos(omega * Time.time);
-        return new Vector3(0f, y, 0f);
+        float x = 0f;
+        float z = 0f;
+        float offset = 1f;
+        float a = maxAmplitude;
+        if (recievedInput)
+        {
+            a += offset;
+            x = 0.5f * a * Mathf.Sin(omega * Time.time);
+            //z = a * Mathf.Sin(omega * Time.time);
+        }
+
+        float y = a * Mathf.Cos(omega * Time.time);
+
+        return (transform.right * x) + (transform.up * y);
     }
 
     // @brief Updates the new forward vector and evaluates if *any* key press has occurred.
@@ -198,12 +236,13 @@ public class ThirdPersonController : MonoBehaviour
         float t = Time.deltaTime;
         float a = angularAcceleration;
         float u, s;
+        u = angularVelocity + a * t;
+        s = (u * t) + (0.5f * a * t * t);
 
         //Update the direction of the forward vector.
         if (Input.GetKey(KeyCode.D))
         {
-            u = angularVelocity + a * t;
-            s = (u * t) + (0.5f * a * t * t);
+            
             //transform.eulerAngles += new Vector3(0f, s, 0f);
             lookVector = (transform.right + lookVector + new Vector3(0f, -tiltAmount, 0f)).normalized;
             pLookVector = (transform.right + transform.forward).normalized;
@@ -211,8 +250,6 @@ public class ThirdPersonController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.A))
         {
-            u = angularVelocity + a * t;
-            s = (u * t) + (0.5f * a * t * t);
             //transform.eulerAngles -= new Vector3(0f, s, 0f);
             lookVector = (-transform.right + lookVector + new Vector3(0f, -tiltAmount, 0f)).normalized;
             pLookVector = (-transform.right + transform.forward).normalized;
@@ -277,4 +314,6 @@ public class ThirdPersonController : MonoBehaviour
             isCollision = false;
         }
     }
+
+   
 }
