@@ -26,7 +26,7 @@ public class Interact : MonoBehaviour
 
     [SerializeField]
     private Text promptText;
-
+    private bool isTalking = false;
     [SerializeField]
     private GameObject interactable;
     [SerializeField]
@@ -35,15 +35,16 @@ public class Interact : MonoBehaviour
 
     //Mining attributes
     [SerializeField]
-    private Image miningBar;
+    private Image progressBar;
     [SerializeField]
     private ParticleSystem miningSparks;
     [SerializeField]
-    private float miningDuration = 0f;
+    private float interactionDuration = 0f;
     [SerializeField]
-    private float miningTimer = 0f;
+    private float interactionTimer = 0f;
+
     [SerializeField]
-    private bool hasMined = false;
+    private bool hasInteracted = false;
 
     private Vector3 oldPos;
 
@@ -60,6 +61,7 @@ public class Interact : MonoBehaviour
     private const string defenceTag = "DefenceTower";
     private const string friendlyTag = "Friendly";
     private const string endLevelTag = "EndLevel";
+    private const string tutorialTag = "Tutorial";
 
     private Transform normalTransform;
 
@@ -79,7 +81,7 @@ public class Interact : MonoBehaviour
         resourcePickUpText.enabled = false;
         promptImage.enabled = false;
         promptText.enabled = false;
-        miningBar.enabled = true;
+        progressBar.enabled = true;
         miningSparks.Stop();
         target = null;
     }
@@ -114,16 +116,15 @@ public class Interact : MonoBehaviour
                 HandleBuilding();
                 //At this point we have successfully spawned a building.
                 //Force object ref null and input false.
-                interactable = null;
-                isInteractable = false;
-                pressedSpaceKey = false;
+               // interactable = null;
+               // isInteractable = false;
+               // pressedSpaceKey = false;
             }
             else if (interactable.tag == resourceTag)
             {
                 normalTransform = transform;
                 HandleResourcePickUp();
             }
-          
         }
         else
         {
@@ -216,12 +217,19 @@ public class Interact : MonoBehaviour
             promptText.enabled = false;
         }
 
+        if (otherTag == tutorialTag)
+        {
+            promptImage.enabled = true;
+            promptText.enabled = true;
+            promptText.text = "Press Space to Talk";
+        }
+
     }
 
     public void OnTriggerExit(Collider other)
     {
         otherTag = other.gameObject.tag;
-        if (otherTag == resourceTag || otherTag == buildingTag || otherTag == defenceTag)
+        if (otherTag == resourceTag || otherTag == buildingTag || otherTag == defenceTag || otherTag == tutorialTag)
         {
             //Void data.
             interactable = null;
@@ -237,7 +245,7 @@ public class Interact : MonoBehaviour
     {
         MiningAnimation();
         //Animate mining bar.
-        if (hasMined)
+        if (hasInteracted)
         {
             StartCoroutine("AnimatePlayerUI");
             Destroy(interactable);
@@ -248,7 +256,7 @@ public class Interact : MonoBehaviour
             pressedSpaceKey = false;
             promptImage.enabled = false;
             promptText.enabled = false;
-            miningBar.enabled = false;
+            progressBar.enabled = false;
         }
     }
 
@@ -265,54 +273,76 @@ public class Interact : MonoBehaviour
 
     private void MiningAnimation()
     {
-        RectTransform rect = miningBar.rectTransform;
+        RectTransform rect = progressBar.rectTransform;
 
-       // StartCoroutine("RotateToFaceTarget", (interactable.transform.position - transform.position).normalized);
-
-        if (miningTimer < miningDuration)
+        if (interactionTimer < interactionDuration)
         {
             //Play the emitter.
             if(!miningSparks.isPlaying)
                 miningSparks.Play();
 
-            miningBar.enabled = true;
+            progressBar.enabled = true;
             promptText.enabled = false;
 
             drillingAudioSource.PlayOneShot(drillingAudioSource.clip);
             drillingAudioSource.loop = true;
 
             //Incriment timer.
-            miningTimer += Time.deltaTime;
-            float percentage = miningTimer / miningDuration;
+            interactionTimer += Time.deltaTime;
+            float percentage = interactionTimer / interactionDuration;
             float width = rect.rect.width;
             float w = MathsUtils.RemapRange(percentage, 0, 1, 0, 180);
             width = w;
             rect.sizeDelta = new Vector2(width, 50);
         }   
-        else if(miningTimer > miningDuration || !pressedSpaceKey)
+        else if(interactionTimer > interactionDuration || !pressedSpaceKey)
         {
-            hasMined = true;
+            hasInteracted = true;
+        }
+    }
+
+    private void BuildingInteractionAnimation()
+    {
+        RectTransform rect = progressBar.rectTransform;
+        Debug.Log("Building animation");
+        if (interactionTimer < interactionDuration)
+        {
+            
+            progressBar.enabled = true;
+            promptText.enabled = false;
+
+
+            //Incriment timer.
+            interactionTimer += Time.deltaTime;
+            float percentage = interactionTimer / interactionDuration;
+            float width = rect.rect.width;
+            float w = MathsUtils.RemapRange(percentage, 0, 1, 0, 180);
+            width = w;
+            rect.sizeDelta = new Vector2(width, 50);
+        }
+        else if (interactionTimer > interactionDuration || !pressedSpaceKey)
+        {
+            hasInteracted = true;
         }
     }
 
     private void ResetMiningProgress()
     {
-       
-
+      
         //Reset things
-        miningTimer = 0f;
+        interactionTimer = 0f;
 
         //Flag we're finished mining.
-        hasMined = false;
+        hasInteracted = false;
 
         //Stop emitter.
         miningSparks.Stop();
 
         //Reset mining bar progress.
-        miningBar.rectTransform.sizeDelta = new Vector2(0, 50);
+        progressBar.rectTransform.sizeDelta = new Vector2(0, 50);
 
         //Hide the promt UI.
-        miningBar.enabled = false;
+        progressBar.enabled = false;
 
     }
 
@@ -377,81 +407,90 @@ public class Interact : MonoBehaviour
         }
         else
         {
-            //If not currently active spawn building procedure.
-            if (!building.IsActive())
+            //Hold space to either purchase or upgrade a building.
+            BuildingInteractionAnimation();
+
+            if(hasInteracted)
             {
-                if (building.GetCost() <= resourceWallet)
+                Debug.Log("Has finished interacting");
+
+                hasInteracted = false;
+                //If not currently active spawn building procedure.
+                if (!building.IsActive())
                 {
-                    resourceWallet -= building.GetCost();
-                    //Update UI.
-                    resourceText.text = resourceWallet.ToString();
-                    //Tell the building to begin spawn animation.
-                    unlockBuildingAudioSource.PlayOneShot(unlockBuildingAudioSource.clip);
-                    building.Spawn();
-                }
-            }
-            else if (building.IsActive())
-            {
-                //Upgrade building.
-                if (building.GetCostToUpgrade() <= resourceWallet)
-                {
-                    switch (building.GetBuildingType())
+                    if (building.GetCost() <= resourceWallet)
                     {
-                        case BuildingType.Builder:
-                            BuilderBuilding builderBuilding = (BuilderBuilding)building;
-                            if (!builderBuilding.IsMaxLevel())
-                            {
-                                resourceWallet -= builderBuilding.GetCostToUpgrade();
-                                //Update UI.
-                                resourceText.text = resourceWallet.ToString();
-                                upgradeBuildingAudioSource.PlayOneShot(upgradeBuildingAudioSource.clip);
-                                builderBuilding.Upgrade();
-                            }
-                            break;
-                        case BuildingType.Weapons:
-                            WeaponsBuilding weaponsBuilding = (WeaponsBuilding)building;
-                            if (!weaponsBuilding.IsMaxLevel())
-                            {
-                                resourceWallet -= weaponsBuilding.GetCostToUpgrade();
-                                //Update UI.
-                                resourceText.text = resourceWallet.ToString();
-                                upgradeBuildingAudioSource.PlayOneShot(upgradeBuildingAudioSource.clip);
-                                weaponsBuilding.Upgrade();
-                            }
-                            break;
-                        case BuildingType.Barricade:
-                            BarricadeBuilding barricadeBuilding = (BarricadeBuilding)building;
-                            if (!barricadeBuilding.IsMaxLevel())
-                            {
-                                resourceWallet -= barricadeBuilding.GetCostToUpgrade();
-                                //Update UI.
-                                resourceText.text = resourceWallet.ToString();
-                                upgradeBuildingAudioSource.PlayOneShot(upgradeBuildingAudioSource.clip);
-                                barricadeBuilding.Upgrade();
-                            }
-                            break;
-                        case BuildingType.Turret:
-                            TurretBuilding turretBuilding = (TurretBuilding)building;
-                            if (!turretBuilding.IsMaxLevel())
-                            {
-                                resourceWallet -= turretBuilding.GetCostToUpgrade();
-                                //Update UI.
-                                resourceText.text = resourceWallet.ToString();
-                                upgradeBuildingAudioSource.PlayOneShot(upgradeBuildingAudioSource.clip);
-                                turretBuilding.Upgrade();
-                            }
-                            break;
-                        case BuildingType.Camp:
-                            CampBuilding campBuilding = (CampBuilding)building;
-                            if (!campBuilding.IsMaxLevel())
-                            {
-                                resourceWallet -= campBuilding.GetCostToUpgrade();
-                                //Update UI.
-                                resourceText.text = resourceWallet.ToString();
-                                upgradeBuildingAudioSource.PlayOneShot(upgradeBuildingAudioSource.clip);
-                                campBuilding.Upgrade();
-                            }
-                            break;
+                        resourceWallet -= building.GetCost();
+                        //Update UI.
+                        resourceText.text = resourceWallet.ToString();
+                        //Tell the building to begin spawn animation.
+                        unlockBuildingAudioSource.PlayOneShot(unlockBuildingAudioSource.clip);
+                        building.Spawn();
+                    }
+                }
+                else if (building.IsActive())
+                {
+                    //Upgrade building.
+                    if (building.GetCostToUpgrade() <= resourceWallet)
+                    {
+                        switch (building.GetBuildingType())
+                        {
+                            case BuildingType.Builder:
+                                BuilderBuilding builderBuilding = (BuilderBuilding)building;
+                                if (!builderBuilding.IsMaxLevel())
+                                {
+                                    resourceWallet -= builderBuilding.GetCostToUpgrade();
+                                    //Update UI.
+                                    resourceText.text = resourceWallet.ToString();
+                                    upgradeBuildingAudioSource.PlayOneShot(upgradeBuildingAudioSource.clip);
+                                    builderBuilding.Upgrade();
+                                }
+                                break;
+                            case BuildingType.Weapons:
+                                WeaponsBuilding weaponsBuilding = (WeaponsBuilding)building;
+                                if (!weaponsBuilding.IsMaxLevel())
+                                {
+                                    resourceWallet -= weaponsBuilding.GetCostToUpgrade();
+                                    //Update UI.
+                                    resourceText.text = resourceWallet.ToString();
+                                    upgradeBuildingAudioSource.PlayOneShot(upgradeBuildingAudioSource.clip);
+                                    weaponsBuilding.Upgrade();
+                                }
+                                break;
+                            case BuildingType.Barricade:
+                                BarricadeBuilding barricadeBuilding = (BarricadeBuilding)building;
+                                if (!barricadeBuilding.IsMaxLevel())
+                                {
+                                    resourceWallet -= barricadeBuilding.GetCostToUpgrade();
+                                    //Update UI.
+                                    resourceText.text = resourceWallet.ToString();
+                                    upgradeBuildingAudioSource.PlayOneShot(upgradeBuildingAudioSource.clip);
+                                    barricadeBuilding.Upgrade();
+                                }
+                                break;
+                            case BuildingType.Turret:
+                                TurretBuilding turretBuilding = (TurretBuilding)building;
+                                if (!turretBuilding.IsMaxLevel())
+                                {
+                                    resourceWallet -= turretBuilding.GetCostToUpgrade();
+                                    //Update UI.
+                                    resourceText.text = resourceWallet.ToString();
+                                    upgradeBuildingAudioSource.PlayOneShot(upgradeBuildingAudioSource.clip);
+                                    turretBuilding.Upgrade();
+                                }
+                                break;
+                            case BuildingType.Camp:
+                                CampBuilding campBuilding = (CampBuilding)building;
+                                if (!campBuilding.IsMaxLevel())
+                                {
+                                    resourceWallet -= campBuilding.GetCostToUpgrade();
+                                    //Update UI.
+                                    resourceText.text = resourceWallet.ToString();
+                                    upgradeBuildingAudioSource.PlayOneShot(upgradeBuildingAudioSource.clip);
+                                    campBuilding.Upgrade();
+                                }
+                                break;
+                        }
                     }
                 }
             }
@@ -471,6 +510,16 @@ public class Interact : MonoBehaviour
     public bool IsInteracting()
     {
         return interactable;
+    }
+
+    public void SetIsTalking(bool value)
+    {
+        isTalking = value;
+    }
+
+    public bool IsInteractKey()
+    {
+        return (Input.GetKey(KeyCode.Space));
     }
 
     public Transform GetTarget() => target;

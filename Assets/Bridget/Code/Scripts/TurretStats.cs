@@ -60,13 +60,6 @@ public class TurretStats : MonoBehaviour
             UpdateCanvasRotation();
             UpdateUIComponents();
 
-            //if (health <= 0.0f)
-            //{
-            //    //Destroy(gameObject);
-            //}
-
-            health -= 50f * Time.deltaTime;
-
             if (damageTaken > 0.0f)
             {
                 ProcessDamage();
