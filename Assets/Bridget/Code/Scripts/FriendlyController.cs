@@ -43,6 +43,9 @@ public class FriendlyController : NpcController
         typeText.GetComponent<Text>().text = friendlyType.ToString();
 
         spawnPoint = transform.position;
+
+        //recruitment mechanic pointless because the level is so small, hardcoding them to always be recruited
+        recruited = true;
     }
 
     void Update()

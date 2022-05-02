@@ -414,7 +414,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 1
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!54 &2680780455018931488
 Rigidbody:
@@ -448,12 +448,17 @@ MonoBehaviour:
   healthBar: {fileID: 6496275015815517675}
   health: 0
   maxHealth: 0
+  alive: 1
   power: 0
+  spawnPoint: {x: 0, y: 1, z: 0}
+  inCombat: 0
+  turnSpeed: 15
   projectilePrefab: {fileID: 3366570665516611566, guid: 347b233411cb5954f8a054abc331c782, type: 3}
   projectileSpawnPoint: {fileID: 8431136103994023517}
   fireForce: 1000
   fireRate: 1
   shouldFire: 0
+  recruited: 0
   friendlyData: {fileID: 11400000, guid: 92916acbebebc49458142e332dcd4507, type: 2}
   typeText: {fileID: 3362919369306029052}
   friendlyType: 2
@@ -569,7 +574,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7552231033463021207}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 2}
+  m_LocalPosition: {x: 0, y: 0.5, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5804256943669175639}

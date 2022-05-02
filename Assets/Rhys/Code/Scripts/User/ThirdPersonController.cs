@@ -93,7 +93,7 @@ public class ThirdPersonController : MonoBehaviour
 
     [Header("Player Health")]
     public int currentHealth;
-    private int maxHealth = 1;
+    private int maxHealth = 100;
     private bool isDead = false;
 
     //Collision
@@ -186,8 +186,8 @@ public class ThirdPersonController : MonoBehaviour
 
         if (currentHealth <= 0 && !isDead)
         {
-            Debug.Log("Dead: " + currentHealth);
-            Destroy(this.gameObject);
+            //Debug.Log("Dead: " + currentHealth);
+            //Destroy(this.gameObject);
             isDead = true;
         }
     }

@@ -33,6 +33,9 @@ public class RepairStructure : ActionNode
         if (structure == null)
             return State.Failure;
 
+        if (!structure.IsActivated())
+            return State.Failure;
+
         if (context.friendlyController.GetInCombat())
             return State.Failure;
 

@@ -27,6 +27,7 @@ public class FriendlyFlee : ActionNode
                 return State.Failure;
         }
 
+        blackboard.targetObj = null;
         blackboard.moveToPosition = context.friendlyController.GetSpawnPoint();
 
         return State.Success;

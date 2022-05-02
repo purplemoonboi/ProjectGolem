@@ -11,12 +11,7 @@ public class ScanForFriendlyTarget : ActionNode
 
     protected override void OnStart()
     {
-
-        if (timeController == null)
-            return;
-
         timeController = context.timeController.GetComponent<TimeController>();
-
     }
 
     protected override void OnStop()
@@ -41,7 +36,9 @@ public class ScanForFriendlyTarget : ActionNode
 
         else
         {
-            return State.Failure;
+            blackboard.targetObj = GameObject.FindGameObjectWithTag("Player");
+            return State.Success;
+            //return State.Failure;
         }
 
         return State.Running;
