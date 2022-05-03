@@ -60,7 +60,7 @@ public class NpcController : MonoBehaviour
 
     protected void CheckDeath()
     {
-        if (health < 0.0f)
+        if (health <= 0.0f)
         {
             Destroy(gameObject);
         }

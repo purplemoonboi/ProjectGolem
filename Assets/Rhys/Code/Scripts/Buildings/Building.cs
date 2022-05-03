@@ -102,6 +102,7 @@ public abstract class Building : MonoBehaviour
     
     public bool IsActive() => isActive; 
 
-    public virtual int GetCostToUpgrade() => costToUpgrade; 
-                                                                            
+    public virtual int GetCostToUpgrade() => costToUpgrade;
+
+    public GameObject GetHolographicBuilding() => holoGFX;
 }

@@ -90,10 +90,13 @@ public class ThirdPersonController : MonoBehaviour
     private bool recievedInput = false;
     private bool isTurning = false;
     [SerializeField]
+    private Transform lookAtTarget;
+    [SerializeField]
     private float currentDisplacement = 0f;
     private float currentVelocity = 0f;
     public bool inBase = false;
     public bool DisableInput { get; set; }
+    
 
     [Header("Player Health")]
     private float currentHealth;
@@ -142,7 +145,13 @@ public class ThirdPersonController : MonoBehaviour
 
         hoveringSound.PlayOneShot(hoveringSound.clip);
 
-        if (!DisableInput)
+        if (DisableInput)
+        {
+            Vector3 lookAt = (lookAtTarget.position - transform.position).normalized;
+            Quaternion rotationGoal = Quaternion.LookRotation(lookAt);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rotationGoal, 2f * Time.deltaTime);
+        }
+        else
         {
             //Update forward vector and check for input.
             recievedInput = UpdateCharacter();
@@ -221,8 +230,8 @@ public class ThirdPersonController : MonoBehaviour
 
         if (currentHealth <= 0 && !isDead)
         {
-            Debug.Log("Dead: " + currentHealth);
-            Destroy(this.gameObject);
+            //Debug.Log("Dead: " + currentHealth);
+            //Destroy(this.gameObject);
             isDead = true;
         }
     }
@@ -344,6 +353,12 @@ public class ThirdPersonController : MonoBehaviour
        }
         
         return receivedInput;
+    }
+
+    
+    public void SetLookAtTarget(Transform target)
+    {
+        lookAtTarget = target;
     }
 
     public void OnTriggertEnter(Collider other)
