@@ -9,9 +9,12 @@ public class ScanForFriendlyTarget : ActionNode
 
     private System.TimeSpan currentTime;
 
+    private GameObject player;
+
     protected override void OnStart()
     {
         timeController = context.timeController.GetComponent<TimeController>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     protected override void OnStop()
@@ -29,27 +32,33 @@ public class ScanForFriendlyTarget : ActionNode
         if (currentTime > timeController.GetSunrise() && currentTime < timeController.GetSunset())
             return State.Failure;
 
-        if (ScanTargets())
+        bool targetFound;
+        float distanceToTarget;
+
+        (targetFound, distanceToTarget) = ScanTargets();
+
+        if (targetFound)
         {
+            if (distanceToTarget > Vector3.Distance(player.transform.position, context.transform.position))
+                blackboard.targetObj = player;
+
             return State.Success;
         }
 
         else
         {
-            blackboard.targetObj = GameObject.FindGameObjectWithTag("Player");
+            blackboard.targetObj = player;
             return State.Success;
-            //return State.Failure;
         }
 
         return State.Running;
     }
 
-    public bool ScanTargets()
+    public (bool, float) ScanTargets()
     {
         var friendlyTargets = FindObjectsOfType<FriendlyController>();
 
         float distance = 0.0f;
-
 
         foreach (var target in friendlyTargets)
         {
@@ -64,8 +73,8 @@ public class ScanForFriendlyTarget : ActionNode
         }
 
         if (distance == 0.0f)
-            return false;
+            return (false, 0.0f);
 
-        return true;
+        return (true, distance);
     }
 }
