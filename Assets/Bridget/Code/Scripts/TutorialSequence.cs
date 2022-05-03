@@ -50,9 +50,9 @@ public class TutorialSequence : MonoBehaviour
             {
                 playerInteract.SetIsTalking(true);
                 //Update NPC rotation
-                Vector3 lookAt = (playerController.transform.position - NPC.transform.position).normalized;
-                Quaternion rotationGoal = Quaternion.LookRotation(lookAt);
-                NPC.transform.rotation = Quaternion.Lerp(NPC.transform.rotation, rotationGoal, 2f * Time.deltaTime);
+                //Vector3 lookAt = (playerController.transform.position - NPC.transform.position).normalized;
+                //Quaternion rotationGoal = Quaternion.LookRotation(lookAt);
+                //NPC.transform.rotation = Quaternion.Lerp(NPC.transform.rotation, rotationGoal, 2f * Time.deltaTime);
 
                 //Updating the skip/continue text
                 if (TypewriterEffect.isPrinting)
