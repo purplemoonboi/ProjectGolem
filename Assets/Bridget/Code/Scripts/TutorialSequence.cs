@@ -140,7 +140,7 @@ public class TutorialSequence : MonoBehaviour
             string[] messages =
             {
                 "Welcome Back!",
-                "Remember this is the " + buildingType + ".",
+                "Remember this is the " + buildingType + " building.",
                 "Upgrading this building improves the performance of " +
                 (buildingType == "Weapons" ? " friendly turrets and fighters damage output." : 
                 (buildingType == "Camp"    ? " your overall bases' health and damage dealt to enemies." : " your engineers' repair rate and health.")),

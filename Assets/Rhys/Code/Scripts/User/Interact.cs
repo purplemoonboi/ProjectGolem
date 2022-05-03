@@ -179,7 +179,8 @@ public class Interact : MonoBehaviour
         //Is the object a resource or building.
         if (otherTag == resourceTag || otherTag == buildingTag || otherTag == defenceTag || otherTag == friendlyTag)
         {
-            if(target == null && (otherTag != resourceTag))
+            promptText.text = "Hold space";
+            if (target == null && (otherTag != resourceTag))
             {
                 for (int i = 0; i < other.transform.childCount; ++i)
                 {
@@ -193,6 +194,7 @@ public class Interact : MonoBehaviour
             {
                 target = null;
             }
+
             interactable = other.gameObject;
             isInteractable = true;
             promptImage.enabled = true;
@@ -218,7 +220,6 @@ public class Interact : MonoBehaviour
             promptText.enabled = true;
             promptText.text = "Press Space to Talk";
         }
-
     }
 
     public void OnTriggerExit(Collider other)
@@ -402,13 +403,17 @@ public class Interact : MonoBehaviour
         }
         else
         {
-            //Hold space to either purchase or upgrade a building.
-            BuildingInteractionAnimation();
+
+            if(building.GetCost() < resourceWallet && building.GetCostToUpgrade() < resourceWallet)
+            {
+                //Hold space to either purchase or upgrade a building.
+                BuildingInteractionAnimation();
+            }
+
 
 
             if(hasInteracted)
             {
-                Debug.Log("Has finished interacting");
 
                 hasInteracted = false;
                 //If not currently active spawn building procedure.
