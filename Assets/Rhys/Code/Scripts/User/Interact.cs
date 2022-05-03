@@ -55,7 +55,8 @@ public class Interact : MonoBehaviour
     public AudioSource drillingAudioSource;
 
     private string otherTag = " ";
-
+    [SerializeField]
+    private bool isInBase = false;
     private const string buildingTag = "Building";
     private const string resourceTag = "Resource";
     private const string defenceTag = "DefenceTower";
@@ -170,6 +171,14 @@ public class Interact : MonoBehaviour
         //{
         //   // characterRef.ToggleInput(true);
         //}
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "InBase")
+        {
+            isInBase = true;
+        }
     }
 
     public void OnTriggerStay(Collider other)
@@ -315,7 +324,7 @@ public class Interact : MonoBehaviour
             rect.sizeDelta = new Vector2(width, 50);
             hasInteracted = false;
         }
-        else if (interactionTimer > interactionDuration || !pressedSpaceKey)
+        else if (interactionTimer > interactionDuration)// || !pressedSpaceKey)
         {
             hasInteracted = true;
         }
@@ -522,6 +531,8 @@ public class Interact : MonoBehaviour
     {
         return (Input.GetKey(KeyCode.Space));
     }
+
+    public bool IsInbase() => isInBase;
 
     public Transform GetTarget() => target;
     

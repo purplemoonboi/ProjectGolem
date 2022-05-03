@@ -49,7 +49,7 @@ public class TimeController : MonoBehaviour
     private TimeSpan sunsetTime;
 
     [SerializeField]
-    private ThirdPersonController player;
+    private Interact player;
 
     // Start is called before the first frame update
     void Start()
@@ -64,17 +64,20 @@ public class TimeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateTimeOfDay();
-        RotateSun();
-        UpdateLightSettings();
+        if(player.IsInbase())
+        {
+            UpdateTimeOfDay();
+            RotateSun();
+            UpdateLightSettings();
 
-        if (currentTime.TimeOfDay > sunriseTime && currentTime.TimeOfDay < sunsetTime)
-        {
-            timeMultiplier = 400;
-        }
-        else
-        {
-            timeMultiplier = 1400;
+            if (currentTime.TimeOfDay > sunriseTime && currentTime.TimeOfDay < sunsetTime)
+            {
+                timeMultiplier = 600;
+            }
+            else
+            {
+                timeMultiplier = 1200;
+            }
         }
     }
 

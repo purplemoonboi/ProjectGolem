@@ -87,3 +87,4 @@ MonoBehaviour:
   maxSunLightIntensity: 1
   moonLight: {fileID: 0}
   maxMoonLightIntensity: 0.5
+  player: {fileID: 900696632518736590, guid: 8df1a1793cfca964891d7544193a0b0b, type: 3}
