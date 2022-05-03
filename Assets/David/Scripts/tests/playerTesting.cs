@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class playerTesting : MonoBehaviour
 {
 
     [Header("Player Health")]
     public int currentHealth;
-    private int maxHealth = 1;
+    private int maxHealth = 3;
     private bool isDead = false;
-
+    public GameObject gotHit;
 
     public GameObject projectilePrefab;
     public Transform projectileSpawnPoint;
@@ -20,7 +21,7 @@ public class playerTesting : MonoBehaviour
     {
         currentHealth = maxHealth;
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -36,13 +37,22 @@ public class playerTesting : MonoBehaviour
             rigidbody.AddForce(force, ForceMode.Force);
         }
 
-       
+        if (gotHit != null)
+        {
+            if (gotHit.GetComponent<Image>().color.a > 0)
+            {
+                Color color = gotHit.GetComponent<Image>().color;
+                color.a -= 0.01f;
+                gotHit.GetComponent<Image>().color = color;
+            }
+        }
     }
 
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        GotHurt();
 
         if (currentHealth <= 0 && !isDead)
         {
@@ -50,5 +60,13 @@ public class playerTesting : MonoBehaviour
             Destroy(this.gameObject);
             isDead = true;
         }
+    }
+
+    public void GotHurt()
+    {
+        Color color = gotHit.GetComponent<Image>().color;
+        color.a = 0.8f;
+
+        gotHit.GetComponent<Image>().color = color;
     }
 }

@@ -110,6 +110,7 @@ public class EnemyProjectileStats : MonoBehaviour
         else if (collider.gameObject.transform.tag == "Player")
         {
             ThirdPersonController player = collider.gameObject.transform.GetComponent<ThirdPersonController>();
+            //playerTesting p = collider.gameObject.transform.GetComponent<playerTesting>();
 
             if (player != null)
             {
