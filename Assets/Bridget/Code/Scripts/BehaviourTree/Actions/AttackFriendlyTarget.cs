@@ -6,6 +6,7 @@ using TheKiwiCoder;
 public class AttackFriendlyTarget : ActionNode
 {
     public FriendlyController friendlyTarget = null;
+    public ThirdPersonController playerTarget = null;
     public TimeController timeController;
 
     private System.TimeSpan currentTime;
@@ -13,11 +14,14 @@ public class AttackFriendlyTarget : ActionNode
     protected override void OnStart()
     {
         timeController = context.timeController.GetComponent<TimeController>();
+
         if (blackboard.targetObj != null)
         {
             friendlyTarget = blackboard.targetObj.GetComponent<FriendlyController>();
-
             friendlyTarget.SetInCombat(true);
+
+            if(friendlyTarget == null)
+            playerTarget = blackboard.targetObj.GetComponent<ThirdPersonController>();
         }
     }
 
@@ -57,7 +61,10 @@ public class AttackFriendlyTarget : ActionNode
         //float singleStep = context.enemyController.GetTurnSpeed() * Time.deltaTime;
         //context.transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(context.transform.forward, direction, singleStep, 0.0f));
 
-        context.enemyController.SpawnProjectile(friendlyTarget.transform.position);
+        if (friendlyTarget != null)
+            context.enemyController.SpawnProjectile(friendlyTarget.transform.position);
+        else
+            context.enemyController.SpawnProjectile(playerTarget.transform.position);
 
         return State.Running;
     }

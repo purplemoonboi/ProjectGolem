@@ -52,6 +52,11 @@ public class TurretAttackEnemy : ActionNode
     {
         State nodeState = State.Running;
 
+        if (context.turretGameObject.GetHealth() < 0f)
+        {
+            return State.Failure;
+        }
+
         if (enemyTransform == null)
         {
             nodeState = State.Success;

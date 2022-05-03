@@ -30,6 +30,7 @@ public class EnemyFlee : ActionNode
             )
         {
             Debug.Log("Returning to spawn...");
+            blackboard.targetObj = null;
             blackboard.moveToPosition = context.enemyController.GetSpawnPoint();
             return State.Success;
         }

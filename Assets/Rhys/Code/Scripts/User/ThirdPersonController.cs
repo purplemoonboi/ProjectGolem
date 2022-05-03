@@ -86,10 +86,18 @@ public class ThirdPersonController : MonoBehaviour
     private bool recievedInput = false;
     private bool isTurning = false;
     [SerializeField]
+    private Transform lookAtTarget;
+    [SerializeField]
     private float currentDisplacement = 0f;
     private float currentVelocity = 0f;
     public bool inBase = false;
     public bool DisableInput { get; set; }
+    
+
+    [Header("Player Health")]
+    public int currentHealth;
+    private int maxHealth = 100;
+    private bool isDead = false;
 
     //Collision
     private bool isCollision = false;
@@ -105,12 +113,19 @@ public class ThirdPersonController : MonoBehaviour
         Debug.Assert(rigidbody);
         transform.position = spawnPoint.position;
         DisableInput = false;
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!DisableInput)
+        if (DisableInput)
+        {
+            Vector3 lookAt = (lookAtTarget.position - transform.position).normalized;
+            Quaternion rotationGoal = Quaternion.LookRotation(lookAt);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rotationGoal, 2f * Time.deltaTime);
+        }
+        else
         {
             //Update forward vector and check for input.
             recievedInput = UpdateCharacter();
@@ -172,6 +187,20 @@ public class ThirdPersonController : MonoBehaviour
         s = Mathf.Clamp(s, -maxVelocity, maxVelocity);
         return s;
     }
+
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        if (currentHealth <= 0 && !isDead)
+        {
+            //Debug.Log("Dead: " + currentHealth);
+            //Destroy(this.gameObject);
+            isDead = true;
+        }
+    }
+
 
     // @brief Simulates a spring effect.
     private Vector3 SimpleHarmonicMotion()
@@ -268,6 +297,12 @@ public class ThirdPersonController : MonoBehaviour
        }
         
         return receivedInput;
+    }
+
+    
+    public void SetLookAtTarget(Transform target)
+    {
+        lookAtTarget = target;
     }
 
     public void OnTriggertEnter(Collider other)

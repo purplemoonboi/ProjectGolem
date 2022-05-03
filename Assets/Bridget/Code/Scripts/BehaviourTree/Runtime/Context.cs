@@ -21,13 +21,14 @@ namespace TheKiwiCoder
         public CapsuleCollider capsuleCollider;
         public CharacterController characterController;
         public TurretStats turretGameObject;
+        public TurretBuilding turretBuilding; 
         // Add other game specific systems here
 
         public EnemyController enemyController;
         public FriendlyController friendlyController;
         public TimeController timeController;
 
-        public TurretBuilding turretBuilding;
+        
 
         public static Context CreateFromGameObject(GameObject gameObject)
         {

@@ -15,7 +15,7 @@ public class MoveToPosition : ActionNode
     {
         context.agent.stoppingDistance = stoppingDistance;
         context.agent.speed = speed;
-        context.agent.destination = blackboard.moveToPosition;
+        context.agent.SetDestination(blackboard.moveToPosition);
         context.agent.updateRotation = updateRotation;
         context.agent.acceleration = acceleration;
 
@@ -30,19 +30,27 @@ public class MoveToPosition : ActionNode
     {
         if (context.agent.pathPending)
         {
+            //Debug.Log("Path for " + context.transform.name + "is PENDING");
             return State.Running;
         }
 
         if (context.agent.remainingDistance < tolerance)
         {
             context.agent.isStopped = true;
+            //Debug.Log(context.transform.name + " is STOPPED!");
 
             return State.Success;
         }
 
-        if (context.agent.pathStatus == UnityEngine.AI.NavMeshPathStatus.PathInvalid)
+        if (context.agent.pathStatus == UnityEngine.AI.NavMeshPathStatus.PathInvalid)//|| context.agent.pathStatus == UnityEngine.AI.NavMeshPathStatus.PathPartial)
         {
             return State.Failure;
+        }
+
+        if (blackboard.targetObj != null)
+        {
+            blackboard.moveToPosition = blackboard.targetObj.transform.position;
+            context.agent.SetDestination(blackboard.moveToPosition);
         }
 
         return State.Running;

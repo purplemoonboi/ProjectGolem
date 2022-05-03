@@ -36,6 +36,12 @@ public class TurretStats : MonoBehaviour
     [SerializeField]
     private bool isActivated = false;
 
+    [SerializeField]
+    private GameObject holoGFX;
+
+    [SerializeField]
+    public int Level { get; private set; }
+
     void Start()
     {
         health = MAX_HEALTH;
@@ -53,11 +59,6 @@ public class TurretStats : MonoBehaviour
         {
             UpdateCanvasRotation();
             UpdateUIComponents();
-
-            if (health <= 0.0f)
-            {
-                Destroy(gameObject);
-            }
 
             if (damageTaken > 0.0f)
             {
@@ -130,6 +131,8 @@ public class TurretStats : MonoBehaviour
     }
 
     public int GetPower() { return power; }
+
+    public void SetLevel(int value) => Level = value;
 
     public void SetIsActivated(bool value)
     {
