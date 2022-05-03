@@ -58,12 +58,13 @@ public class TimeController : MonoBehaviour
 
         sunriseTime = TimeSpan.FromHours(sunriseHour);
         sunsetTime = TimeSpan.FromHours(sunsetHour);
-
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log("Time: " + currentTime.ToString());
+
         if(player.IsInbase())
         {
             UpdateTimeOfDay();

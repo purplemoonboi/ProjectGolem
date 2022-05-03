@@ -5289,6 +5289,7 @@ MonoBehaviour:
   unlockBuildingAudioSource: {fileID: 0}
   upgradeBuildingAudioSource: {fileID: 0}
   drillingAudioSource: {fileID: 0}
+  isInBase: 0
 --- !u!114 &6577572295190392768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5322,7 +5323,10 @@ MonoBehaviour:
   lookAtTarget: {fileID: 0}
   currentDisplacement: 0
   inBase: 0
-  currentHealth: 0
+  maxHealth: 3
+  gotHit: {fileID: 0}
+  volume: {fileID: 0}
+  hoveringSound: {fileID: 0}
 --- !u!1 &4605614331605886264
 GameObject:
   m_ObjectHideFlags: 0

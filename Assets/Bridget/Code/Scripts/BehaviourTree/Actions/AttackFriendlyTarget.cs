@@ -6,10 +6,10 @@ using TheKiwiCoder;
 public class AttackFriendlyTarget : ActionNode
 {
     public FriendlyController friendlyTarget = null;
-    public ThirdPersonController playerTarget = null;
     public TimeController timeController;
 
     private System.TimeSpan currentTime;
+    private Transform targetTransform;
 
     protected override void OnStart()
     {
@@ -17,11 +17,11 @@ public class AttackFriendlyTarget : ActionNode
 
         if (blackboard.targetObj != null)
         {
+            targetTransform = blackboard.targetObj.transform;
             friendlyTarget = blackboard.targetObj.GetComponent<FriendlyController>();
-            friendlyTarget.SetInCombat(true);
 
-            if(friendlyTarget == null)
-            playerTarget = blackboard.targetObj.GetComponent<ThirdPersonController>();
+            if(friendlyTarget != null)
+            friendlyTarget.SetInCombat(true);
         }
     }
 
@@ -35,10 +35,10 @@ public class AttackFriendlyTarget : ActionNode
 
     protected override State OnUpdate()
     {
-        if (blackboard.targetObj == null || friendlyTarget == null)
+        if (blackboard.targetObj == null)
             return State.Failure;
 
-        if (Vector3.Distance(context.transform.position, friendlyTarget.transform.position) > 12.0f)
+        if (Vector3.Distance(context.transform.position, targetTransform.position) > 12.0f)
             return State.Failure;
 
         if (context.enemyController.GetHealth() <= (context.enemyController.GetMaxHealth() / 4.0f))
@@ -51,20 +51,16 @@ public class AttackFriendlyTarget : ActionNode
         if (currentTime > timeController.GetSunrise() && currentTime < timeController.GetSunset())
             return State.Failure;
 
-        if (friendlyTarget.GetHealth() <= 0.0f)
+        if(friendlyTarget != null)
         {
-            blackboard.targetObj = null;
-            return State.Success;
+            if (friendlyTarget.GetHealth() <= 0.0f)
+            {
+                blackboard.targetObj = null;
+                return State.Success;
+            }
         }
 
-        //Vector3 direction = friendlyTarget.gameObject.transform.position - context.transform.position;
-        //float singleStep = context.enemyController.GetTurnSpeed() * Time.deltaTime;
-        //context.transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(context.transform.forward, direction, singleStep, 0.0f));
-
-        if (friendlyTarget != null)
-            context.enemyController.SpawnProjectile(friendlyTarget.transform.position);
-        else
-            context.enemyController.SpawnProjectile(playerTarget.transform.position);
+        context.enemyController.SpawnProjectile(targetTransform.position);
 
         return State.Running;
     }
