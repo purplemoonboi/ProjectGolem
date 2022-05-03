@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+//using UnityEngine.Rendering.PostProcessing;
 
 public class ThirdPersonController : MonoBehaviour
 {
@@ -92,9 +96,19 @@ public class ThirdPersonController : MonoBehaviour
     public bool DisableInput { get; set; }
 
     [Header("Player Health")]
-    public int currentHealth;
-    private int maxHealth = 1;
+    private float currentHealth;
+    public float maxHealth = 3;
     private bool isDead = false;
+    public GameObject gotHit;
+
+    //variables to get access to the Vignette of the Volume (represents a visual effect of the player getting hit)
+    [Header("Post-Processing")]
+    public Volume volume;
+    Vignette vignette;
+
+    [Header("Player Sounds")]
+    public AudioSource hoveringSound;
+
 
     //Collision
     private bool isCollision = false;
@@ -111,11 +125,23 @@ public class ThirdPersonController : MonoBehaviour
         transform.position = spawnPoint.position;
         DisableInput = false;
         currentHealth = maxHealth;
+
+        volume = gotHit.GetComponent<Volume>();
+
+        Vignette temp;
+        if (volume.profile.TryGet<Vignette>(out temp))
+        {
+            vignette = temp;
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        hoveringSound.PlayOneShot(hoveringSound.clip);
+
         if (!DisableInput)
         {
             //Update forward vector and check for input.
@@ -137,11 +163,18 @@ public class ThirdPersonController : MonoBehaviour
                 currentDisplacement = 0f;
             }
         }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            TakeDamage(1);
+            
+            Debug.Log(currentHealth);
+        }
 
         //Oscillate the character (Affects the GFX only).
         graphicsTransform.position += SimpleHarmonicMotion() * Time.deltaTime;
         
     }
+
 
     // @brief Called after all evaluations and updates are completed for this frame.
     private void LateUpdate()
@@ -180,9 +213,11 @@ public class ThirdPersonController : MonoBehaviour
     }
 
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+
+        StartCoroutine(LoseAndRecoverHealth());
 
         if (currentHealth <= 0 && !isDead)
         {
@@ -190,6 +225,27 @@ public class ThirdPersonController : MonoBehaviour
             Destroy(this.gameObject);
             isDead = true;
         }
+    }
+
+    IEnumerator LoseAndRecoverHealth()
+    {
+        vignette.intensity.value = 1f - currentHealth / maxHealth;
+        Debug.Log("Vignette A: " + vignette.intensity.value);
+        yield return new WaitForSeconds(5f);
+        vignette.intensity.value -= currentHealth / maxHealth;
+        currentHealth++;
+        
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        Debug.Log("Health: " + currentHealth);
+
+        if (vignette.intensity.value <= 0)
+        {
+            vignette.intensity.value = 0f;
+        }
+        Debug.Log("Vignette B: " + vignette.intensity.value);
     }
 
 
