@@ -179,9 +179,11 @@ public class Interact : MonoBehaviour
         {
             isInBase = true;
         }
+       
         if (otherTag == endLevelTag)
         {
             other.gameObject.GetComponent<EndLevelScript>().StartTimer();
+            
         }
     }
 
@@ -193,20 +195,20 @@ public class Interact : MonoBehaviour
         if (otherTag == resourceTag || otherTag == buildingTag || otherTag == defenceTag || otherTag == friendlyTag)
         {
             promptText.text = "Hold space";
-            if (target == null && (otherTag != resourceTag))
-            {
-                for (int i = 0; i < other.transform.childCount; ++i)
-                {
-                    if (other.transform.GetChild(i).tag == "InfoPanel")
-                    {
-                        target = other.transform.GetChild(i).transform;
-                    }
-                }
-            }
-            else
-            {
-                target = null;
-            }
+           // if (target == null && (otherTag != resourceTag))
+           // {
+           //     for (int i = 0; i < other.transform.childCount; ++i)
+           //     {
+           //         if (other.transform.GetChild(i).tag == "InfoPanel")
+           //         {
+           //             target = other.transform.GetChild(i).transform;
+           //         }
+           //     }
+           // }
+           // else
+           // {
+           //     target = null;
+           // }
 
             interactable = other.gameObject;
             isInteractable = true;
@@ -525,6 +527,8 @@ public class Interact : MonoBehaviour
     {
         isTalking = value;
     }
+
+    public bool IsTalking() => isTalking;
 
     public bool IsInteractKey()
     {

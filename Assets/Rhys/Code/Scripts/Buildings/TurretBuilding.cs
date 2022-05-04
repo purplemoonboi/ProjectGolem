@@ -71,37 +71,43 @@ public class TurretBuilding : Building
 
     /*..Trigger callback methods..*/
 
-    public void OnTriggerStay(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            BuildingInfoPanel buildingInfo = GetComponentInChildren<BuildingInfoPanel>();
-            buildingInfo.EnableInfoPanel();
-
-            string[] infoArray =
+            // BuildingInfoPanel buildingInfo = GetComponentInChildren<BuildingInfoPanel>();
+            // buildingInfo.EnableInfoPanel();
+            //
+            // string[] infoArray =
+            // {
+            //      name,
+            //      health.ToString(),
+            //      "Level " + GetLevel().ToString(),
+            //      (!isActive) ? "Cost to build " + turretScriptableObject.cost.ToString() : "Cost to upgrade " + turretScriptableObject.costToUpgrade.ToString(),
+            //      buildingType.ToString()
+            // };
+            //
+            // Text infoText = GetComponentInChildren<Text>();
+            // infoText.text = " ";
+            //
+            // for (int i = 0; i < infoArray.Length; ++i)
+            // {
+            //     infoText.text = infoText.text + "\n" + infoArray[i];
+            // }
+            //
+            // buildingInfo.SetText(infoText);
+            //
+            // if(turretStats.Level < 2)
+            // {
+            //     doubleBarrelHoloGFX.SetActive(true);
+            // }
+            if (other.tag == "Player")
             {
-                 name,
-                 health.ToString(),
-                 "Level " + GetLevel().ToString(),
-                 (!isActive) ? "Cost to build " + turretScriptableObject.cost.ToString() : "Cost to upgrade " + turretScriptableObject.costToUpgrade.ToString(),
-                 buildingType.ToString()
-            };
-
-            Text infoText = GetComponentInChildren<Text>();
-            infoText.text = " ";
-
-            for (int i = 0; i < infoArray.Length; ++i)
-            {
-                infoText.text = infoText.text + "\n" + infoArray[i];
+                if (!other.GetComponent<Interact>().IsTalking())
+                {
+                    this.buildingInfoCanvas.SetActive(true);
+                }
             }
-
-            buildingInfo.SetText(infoText);
-
-            if(turretStats.Level < 2)
-            {
-                doubleBarrelHoloGFX.SetActive(true);
-            }
-
         }
     }
 
@@ -109,14 +115,17 @@ public class TurretBuilding : Building
     {
         if (other.tag == "Player")
         {
-            BuildingInfoPanel buildingInfo = GetComponentInChildren<BuildingInfoPanel>();
-            buildingInfo.DisableInfoPanel();
-            Text infoText = GetComponentInChildren<Text>();
-            infoText.text = " ";
-            if (turretStats.Level < 2)
-            {
-                doubleBarrelHoloGFX.SetActive(false);
-            }
+            //  BuildingInfoPanel buildingInfo = GetComponentInChildren<BuildingInfoPanel>();
+            //  buildingInfo.DisableInfoPanel();
+            //  Text infoText = GetComponentInChildren<Text>();
+            //  infoText.text = " ";
+            //  if (turretStats.Level < 2)
+            //  {
+            //      doubleBarrelHoloGFX.SetActive(false);
+
+            //  }
+            this.buildingInfoCanvas.SetActive(false);
+
         }
     }
 

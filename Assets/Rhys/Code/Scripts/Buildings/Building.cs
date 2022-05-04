@@ -16,6 +16,10 @@ public enum BuildingType
 public abstract class Building : MonoBehaviour
 {
     [SerializeField]
+    public BuildingInfo buildingInfo;
+    [SerializeField]
+    public GameObject buildingInfoCanvas;
+    [SerializeField]
     private GameObject holoGFX;
     [SerializeField]
     protected int cost;
@@ -89,6 +93,9 @@ public abstract class Building : MonoBehaviour
         cost = _cost;
         costToUpgrade = _costToUpgrade;
     }
+
+    //Canvas code.
+    public void EnableCanvas(bool value) => buildingInfoCanvas.SetActive(value);
 
     /*..Public Getters..*/
 

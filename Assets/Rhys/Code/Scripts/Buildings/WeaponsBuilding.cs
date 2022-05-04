@@ -8,16 +8,22 @@ public class WeaponsBuilding : Building
 
     [SerializeField]
     private WeaponsScriptableObject weaponsScriptableObject;
+
     [SerializeField]
     private FriendlyScriptableObject weaponStatistics;
     [SerializeField]
     private float damageIncrease = 5f;
+
+
+    public void SetLevel(int value) => buildingInfo.level = value;
 
     // Start is called before the first frame update
     void Start()
     {
         SetBuildingType(BuildingType.Weapons);
         ResetParameters();
+        this.buildingInfoCanvas.SetActive(false);
+
         weaponsScriptableObject.isMaxLevel = false;
         weaponsScriptableObject.level = 1;
         weaponStatistics.power = 15f;
@@ -39,35 +45,44 @@ public class WeaponsBuilding : Building
         SetCostToUpgrade(GetCostToUpgrade());
         SetMaxHealth((int)GetHealth() + 100);
         weaponStatistics.power += damageIncrease;
+        buildingInfo.level = GetLevel();
     }
 
     /*..Trigger callback methods..*/
 
-    public void OnTriggerStay(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            BuildingInfoPanel buildingInfo = GetComponentInChildren<BuildingInfoPanel>();
-            buildingInfo.EnableInfoPanel();
+            // BuildingInfoPanel buildingInfo = GetComponentInChildren<BuildingInfoPanel>();
+            // buildingInfo.EnableInfoPanel();
+            //
+            // string[] infoArray =
+            // {
+            //      "Health" + health.ToString(),
+            //      "Level " + GetLevel().ToString(),
+            //      (!isActive) ? "Cost to build " + GetCost().ToString() : "Cost to upgrade " + GetCostToUpgrade().ToString(),
+            //      buildingType.ToString()
+            // };
+            //
+            //
+            // Text infoText = GetComponentInChildren<Text>();
+            // infoText.text = " ";
+            //
+            // for (int i = 0; i < infoArray.Length; ++i)
+            // {
+            //     infoText.text = infoText.text + "\n" + infoArray[i];
+            // }
+            //
+            // buildingInfo.SetText(infoText);
 
-            string[] infoArray =
+            if (other.tag == "Player")
             {
-                 "Health" + health.ToString(),
-                 "Level " + GetLevel().ToString(),
-                 (!isActive) ? "Cost to build " + GetCost().ToString() : "Cost to upgrade " + GetCostToUpgrade().ToString(),
-                 buildingType.ToString()
-            };
-
-
-            Text infoText = GetComponentInChildren<Text>();
-            infoText.text = " ";
-
-            for (int i = 0; i < infoArray.Length; ++i)
-            {
-                infoText.text = infoText.text + "\n" + infoArray[i];
+                if (!other.GetComponent<Interact>().IsTalking())
+                {
+                    this.buildingInfoCanvas.SetActive(true);
+                }
             }
-
-            buildingInfo.SetText(infoText);
         }
     }
 
@@ -75,12 +90,15 @@ public class WeaponsBuilding : Building
     {
         if (other.tag == "Player")
         {
-            BuildingInfoPanel buildingInfo = GetComponentInChildren<BuildingInfoPanel>();
-            buildingInfo.DisableInfoPanel();
-            Text infoText = GetComponentInChildren<Text>();
-            infoText.text = " ";
+            //BuildingInfoPanel buildingInfo = GetComponentInChildren<BuildingInfoPanel>();
+            //buildingInfo.DisableInfoPanel();
+            //Text infoText = GetComponentInChildren<Text>();
+            //infoText.text = " ";
+            this.buildingInfoCanvas.SetActive(false);
         }
     }
+
+    public FriendlyScriptableObject GetWeaponStats() => weaponStatistics;
 
     protected void IncrimentBuildingLevel() => weaponsScriptableObject.level++;
 
