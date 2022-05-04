@@ -5304,7 +5304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 0}
   maxVelocity: 1
-  acceleration: 1.2
+  acceleration: 8
   angularVelocity: 50
   angularAcceleration: 1.2
   tiltAmount: 0.25
