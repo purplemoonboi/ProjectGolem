@@ -18,7 +18,6 @@ public class EndLevelScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Ending scene in " + (5f - timer));
         if(startTimer)
         {
             timer += 1f * Time.deltaTime;
