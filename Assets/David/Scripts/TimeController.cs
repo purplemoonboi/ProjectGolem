@@ -42,6 +42,9 @@ public class TimeController : MonoBehaviour
     [SerializeField]
     private float maxMoonLightIntensity;
 
+    [SerializeField]
+    private GameObject sunMoonIcon;
+
     private DateTime currentTime;
 
     private TimeSpan sunriseTime;
@@ -69,6 +72,7 @@ public class TimeController : MonoBehaviour
         {
             UpdateTimeOfDay();
             RotateSun();
+            RotateTimeUI();
             UpdateLightSettings();
 
             if (currentTime.TimeOfDay > sunriseTime && currentTime.TimeOfDay < sunsetTime)
@@ -92,6 +96,25 @@ public class TimeController : MonoBehaviour
                 timeText.text = currentTime.ToString("HH:mm");
             }
         
+    }
+
+    private void RotateTimeUI()
+    {
+        Vector3 rotation = sunMoonIcon.transform.rotation.eulerAngles;
+
+        //rotation.z = MathsUtils.RemapRange((float)currentTime.TimeOfDay.TotalSeconds, (float)sunriseTime.TotalSeconds, (float)sunsetTime.TotalSeconds, 0.0f, 360.0f);
+
+        if (currentTime.TimeOfDay > sunriseTime && currentTime.TimeOfDay < sunsetTime)
+        {
+
+            rotation.z = MathsUtils.RemapRange((float)currentTime.TimeOfDay.TotalSeconds, (float)sunriseTime.TotalSeconds, (float)sunsetTime.TotalSeconds, 360.0f, 180.0f);
+        }
+        else
+        {
+            rotation.z = MathsUtils.RemapRange((float)currentTime.TimeOfDay.TotalSeconds, (float)sunsetTime.TotalSeconds, (float)sunriseTime.TotalSeconds, 180.0f, 360.0f);
+        }
+
+        sunMoonIcon.transform.rotation = Quaternion.Euler(rotation);
     }
 
     private void RotateSun()
