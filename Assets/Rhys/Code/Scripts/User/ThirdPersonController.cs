@@ -166,7 +166,7 @@ public class ThirdPersonController : MonoBehaviour
                 //Update current velocity.
                 currentDisplacement += UpdateVelocity();
 
-                currentDisplacement = Mathf.Clamp(currentDisplacement, 0.0f, 0.06f);
+                currentDisplacement = Mathf.Clamp(currentDisplacement, 0.0f, maxVelocity);
                 //Update character's position.
                 transform.position += (transform.forward * currentDisplacement);
             }
