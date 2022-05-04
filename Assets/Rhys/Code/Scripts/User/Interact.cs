@@ -23,6 +23,8 @@ public class Interact : MonoBehaviour
     private Text resourcePickUpText;
     [SerializeField]
     private Image promptImage;
+    [SerializeField]
+    private Image barStrokeImage;
 
     [SerializeField]
     private Text promptText;
@@ -83,6 +85,7 @@ public class Interact : MonoBehaviour
         promptImage.enabled = false;
         promptText.enabled = false;
         progressBar.enabled = true;
+        barStrokeImage.enabled = false;
         miningSparks.Stop();
         target = null;
     }
@@ -194,6 +197,7 @@ public class Interact : MonoBehaviour
         //Is the object a resource or building.
         if (otherTag == resourceTag || otherTag == buildingTag || otherTag == defenceTag || otherTag == friendlyTag)
         {
+            barStrokeImage.enabled = true;
             promptText.text = "Hold space";
            // if (target == null && (otherTag != resourceTag))
            // {
@@ -226,6 +230,8 @@ public class Interact : MonoBehaviour
 
         if (otherTag == tutorialTag)
         {
+            barStrokeImage.enabled = true;
+
             promptImage.enabled = true;
             promptText.enabled = true;
             promptText.text = "Press Space to Talk";
@@ -243,6 +249,7 @@ public class Interact : MonoBehaviour
             promptImage.enabled = false;
             promptText.enabled = false;
             target = null;
+            barStrokeImage.enabled = false; 
         }
     }
 
@@ -263,6 +270,8 @@ public class Interact : MonoBehaviour
             promptImage.enabled = false;
             promptText.enabled = false;
             progressBar.enabled = false;
+            barStrokeImage.enabled = false;
+
         }
     }
 

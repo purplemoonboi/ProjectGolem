@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6626129cbe640fd42af9bf8aeb77a9fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info: {fileID: 3955791227386649838}
+  buildingInfo: {fileID: 3955791227386649838}
   buildingInfoCanvas: {fileID: 7041370454808403897}
   holoGFX: {fileID: 3153648133138656591}
   cost: 35
@@ -85,7 +85,6 @@ MonoBehaviour:
   shouldSpawn: 0
   buildingType: -1
   weaponsScriptableObject: {fileID: 11400000, guid: 4b3b5281b449b0841bf7f97d113ea662, type: 2}
-  buildingInfo: {fileID: 0}
   weaponStatistics: {fileID: 11400000, guid: 92916acbebebc49458142e332dcd4507, type: 2}
   damageIncrease: 5
 --- !u!1 &8453811882172200859

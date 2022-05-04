@@ -77,11 +77,11 @@ public class TimeController : MonoBehaviour
 
             if (currentTime.TimeOfDay > sunriseTime && currentTime.TimeOfDay < sunsetTime)
             {
-                timeMultiplier = 600;
+                timeMultiplier = 200;
             }
             else
             {
-                timeMultiplier = 1200;
+                timeMultiplier = 1000;
             }
         }
     }

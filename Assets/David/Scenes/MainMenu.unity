@@ -7653,7 +7653,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Main Menu
+  m_text: '
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -12950,7 +12952,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 608265469}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 683f88c586818f04b9aac20c710d3802, type: 2}
   m_CullingMode: 0
@@ -13308,8 +13310,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: c2e7d79c1d61b7a4fbd24bc1fa0a0dfa, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -20842,8 +20844,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: c2e7d79c1d61b7a4fbd24bc1fa0a0dfa, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -23274,8 +23276,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: c2e7d79c1d61b7a4fbd24bc1fa0a0dfa, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -33286,6 +33288,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05a6901153985c2479d40b43dd88c515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingInfo: {fileID: 0}
+  buildingInfoCanvas: {fileID: 0}
   holoGFX: {fileID: 171707334619955057}
   cost: 50
   costToUpgrade: 100
@@ -43888,6 +43892,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6626129cbe640fd42af9bf8aeb77a9fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingInfo: {fileID: 0}
+  buildingInfoCanvas: {fileID: 0}
   holoGFX: {fileID: 584881857832235774}
   cost: 35
   costToUpgrade: 50
@@ -46636,6 +46642,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5417b15aae83fc4db4f6fbba8fa0b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingInfo: {fileID: 0}
+  buildingInfoCanvas: {fileID: 0}
   holoGFX: {fileID: 745286241979230316}
   cost: 30
   costToUpgrade: 50
@@ -46644,7 +46652,6 @@ MonoBehaviour:
   shouldSpawn: 0
   buildingType: -1
   builderScriptableObject: {fileID: 11400000, guid: 5dfef2c79200d4f49b1e31c59c387758, type: 2}
-  buildingInfo: {fileID: 0}
   statistics: {fileID: 11400000, guid: 92916acbebebc49458142e332dcd4507, type: 2}
   repairRate: 5
 --- !u!23 &6288924964297999400
@@ -48672,6 +48679,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523e9bcabae345c49b58a8680c60143b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingInfo: {fileID: 0}
+  buildingInfoCanvas: {fileID: 0}
   holoGFX: {fileID: 1647131900351537797}
   cost: 25
   costToUpgrade: 50
@@ -48696,6 +48705,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523e9bcabae345c49b58a8680c60143b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingInfo: {fileID: 0}
+  buildingInfoCanvas: {fileID: 0}
   holoGFX: {fileID: 1647131902241337530}
   cost: 25
   costToUpgrade: 50
@@ -50036,6 +50047,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 363ba18d6b774c04da36ec87cb3fcdc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingInfo: {fileID: 0}
+  buildingInfoCanvas: {fileID: 0}
   holoGFX: {fileID: 3541723089956636675}
   cost: 25
   costToUpgrade: 50
@@ -50059,6 +50072,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 363ba18d6b774c04da36ec87cb3fcdc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingInfo: {fileID: 0}
+  buildingInfoCanvas: {fileID: 0}
   holoGFX: {fileID: 3541723089781278851}
   cost: 25
   costToUpgrade: 50
