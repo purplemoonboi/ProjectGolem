@@ -100,7 +100,7 @@ public class ThirdPersonController : MonoBehaviour
 
     [Header("Player Health")]
     private float currentHealth;
-    public float maxHealth = 3;
+    public float maxHealth = 100f;
     private bool isDead = false;
     public GameObject gotHit;
 
@@ -147,9 +147,12 @@ public class ThirdPersonController : MonoBehaviour
 
         if (DisableInput)
         {
-            Vector3 lookAt = (lookAtTarget.position - transform.position).normalized;
-            Quaternion rotationGoal = Quaternion.LookRotation(lookAt);
-            transform.rotation = Quaternion.Lerp(transform.rotation, rotationGoal, 2f * Time.deltaTime);
+            if(lookAtTarget != null)
+            {
+                Vector3 lookAt = (lookAtTarget.position - transform.position).normalized;
+                Quaternion rotationGoal = Quaternion.LookRotation(lookAt);
+                transform.rotation = Quaternion.Lerp(transform.rotation, rotationGoal, 2f * Time.deltaTime);
+            }
         }
         else
         {
@@ -163,6 +166,7 @@ public class ThirdPersonController : MonoBehaviour
                 //Update current velocity.
                 currentDisplacement += UpdateVelocity();
 
+                currentDisplacement = Mathf.Clamp(currentDisplacement, 0.0f, 0.06f);
                 //Update character's position.
                 transform.position += (transform.forward * currentDisplacement);
             }
@@ -172,16 +176,20 @@ public class ThirdPersonController : MonoBehaviour
                 currentDisplacement = 0f;
             }
         }
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.P))
         {
-            TakeDamage(1);
-            
-            Debug.Log(currentHealth);
+            TakeDamage(25.0f);
+        }
+
+        //Start the end sequence.
+        if(currentHealth <= 0f)
+        {
+            GameObject.Find("EndLevelTrigger").GetComponent<EndLevelScript>().StartTimer();
+            DisableInput = true;
         }
 
         //Oscillate the character (Affects the GFX only).
         graphicsTransform.position += SimpleHarmonicMotion() * Time.deltaTime;
-        
     }
 
 

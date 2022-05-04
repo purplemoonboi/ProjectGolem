@@ -179,6 +179,10 @@ public class Interact : MonoBehaviour
         {
             isInBase = true;
         }
+        if (otherTag == endLevelTag)
+        {
+            other.gameObject.GetComponent<EndLevelScript>().StartTimer();
+        }
     }
 
     public void OnTriggerStay(Collider other)
@@ -208,11 +212,6 @@ public class Interact : MonoBehaviour
             isInteractable = true;
             promptImage.enabled = true;
             promptText.enabled = true;
-        }
-
-        if (otherTag == endLevelTag)
-        {
-            other.gameObject.GetComponent<EndLevelScript>().ChangeLevel();
         }
 
         if (otherTag == friendlyTag)
