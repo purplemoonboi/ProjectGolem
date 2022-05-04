@@ -14,7 +14,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Build/Alpha/Alpha.unity
     guid: ad50ab6d701381b43a3377c318499f06
-  - enabled: 1
-    path: Assets/Rhys/Scenes/WinScene.unity
-    guid: d8ff87854965cad41b8eb2810c4db359
   m_configObjects: {}
