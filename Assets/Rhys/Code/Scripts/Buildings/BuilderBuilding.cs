@@ -9,13 +9,14 @@ public class BuilderBuilding : Building
     [SerializeField]
     private BuilderScriptableObject builderScriptableObject;
     [SerializeField]
-    private BuildingInfoPanel buildingInfo;
-    [SerializeField]
     private FriendlyScriptableObject statistics;
     [SerializeField]
     private float repairRate = 5f;
 
     bool updateUI = false;
+
+    public void SetLevel(int value) => buildingInfo.level = value;
+
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +25,9 @@ public class BuilderBuilding : Building
         ResetParameters();
         builderScriptableObject.isMaxLevel = false;
         builderScriptableObject.level = 1;
-        buildingInfo = GetComponentInChildren<BuildingInfoPanel>();
+        buildingInfo = GetComponentInChildren<BuildingInfo>();
+        this.buildingInfoCanvas.SetActive(false);
+
         statistics.repairRate = 20.0f;
     }
 
@@ -44,46 +47,59 @@ public class BuilderBuilding : Building
         SetCostToUpgrade(GetCostToUpgrade());
         SetMaxHealth((int)GetHealth() + 100);
         statistics.repairRate += repairRate;
+        buildingInfo.level = GetLevel();
     }
 
     /*..Trigger callback methods..*/
 
-    public void OnTriggerStay(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
+        // if (other.tag == "Player")
+        // {
+        //     buildingInfo.EnableInfoPanel();
+        //
+        //     string[] infoArray =
+        //     {
+        //         builderScriptableObject.prefabName.ToString(),
+        //          "Health" + health.ToString(),
+        //          "Level " + GetLevel().ToString(),
+        //          (!isActive) ? "Cost to build " + GetCost().ToString() : "Cost to upgrade " + GetCostToUpgrade().ToString(),
+        //          buildingType.ToString()
+        //     };
+        //
+        //
+        //     Text infoText = GetComponentInChildren<Text>();
+        //     infoText.text = " ";
+        //     for (int i = 0; i < infoArray.Length; ++i)
+        //     {
+        //         infoText.text = infoText.text + "\n" + infoArray[i];
+        //     }
+        //
+        //     buildingInfo.SetText(infoText);
+        // }
+
         if (other.tag == "Player")
         {
-            buildingInfo.EnableInfoPanel();
-
-            string[] infoArray =
+            if(!other.GetComponent<Interact>().IsTalking())
             {
-                builderScriptableObject.prefabName.ToString(),
-                 "Health" + health.ToString(),
-                 "Level " + GetLevel().ToString(),
-                 (!isActive) ? "Cost to build " + GetCost().ToString() : "Cost to upgrade " + GetCostToUpgrade().ToString(),
-                 buildingType.ToString()
-            };
-
-
-            Text infoText = GetComponentInChildren<Text>();
-            infoText.text = " ";
-            for (int i = 0; i < infoArray.Length; ++i)
-            {
-                infoText.text = infoText.text + "\n" + infoArray[i];
+                this.buildingInfoCanvas.SetActive(true); 
             }
-
-            buildingInfo.SetText(infoText);
         }
     }
 
     public void OnTriggerExit(Collider other)
     {
+        // if (other.tag == "Player")
+        // {
+        //     BuildingInfoPanel buildingInfo = GetComponentInChildren<BuildingInfoPanel>();
+        //     buildingInfo.DisableInfoPanel();
+        //     Text infoText = GetComponentInChildren<Text>();
+        //     infoText.text = " ";
+        //     updateUI = false;
+        // }
         if (other.tag == "Player")
         {
-            BuildingInfoPanel buildingInfo = GetComponentInChildren<BuildingInfoPanel>();
-            buildingInfo.DisableInfoPanel();
-            Text infoText = GetComponentInChildren<Text>();
-            infoText.text = " ";
-            updateUI = false;
+            this.buildingInfoCanvas.SetActive(false);
         }
     }
 

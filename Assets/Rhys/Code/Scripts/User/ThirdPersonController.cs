@@ -216,6 +216,15 @@ public class ThirdPersonController : MonoBehaviour
         }
     }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "EndLevel")
+        {
+            other.gameObject.GetComponent<EndLevelScript>().StartTimer();
+            DisableInput = true;
+        }
+    }
+
     // @brief Increases displacement of object using linear motion.
     private float UpdateVelocity()
     {

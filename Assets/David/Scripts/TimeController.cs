@@ -81,7 +81,7 @@ public class TimeController : MonoBehaviour
             }
             else
             {
-                timeMultiplier = 1200;
+                timeMultiplier = 1000;
             }
         }
     }

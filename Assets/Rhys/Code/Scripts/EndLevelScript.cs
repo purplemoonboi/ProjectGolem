@@ -7,7 +7,9 @@ public class EndLevelScript : MonoBehaviour
 {
     [SerializeField]
     private GameObject endSceneCanvas;
+    [SerializeField]
     private float timer = 0f;
+    [SerializeField]
     private bool startTimer = false;
 
     private void Start()

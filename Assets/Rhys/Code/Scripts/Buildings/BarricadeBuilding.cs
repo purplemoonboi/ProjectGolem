@@ -69,31 +69,38 @@ public class BarricadeBuilding : Building
 
     /*..Trigger callback methods..*/
 
-    public void OnTriggerStay(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
+        // if (other.tag == "Player")
+        // {
+        //     BuildingInfoPanel buildingInfo = GetComponentInChildren<BuildingInfoPanel>();
+        //     buildingInfo.EnableInfoPanel();
+        //
+        //     string[] infoArray =
+        //     {
+        //          barricadeScriptableObject.prefabName.ToString(),
+        //          "Health" + health.ToString(),
+        //          "Level " + GetLevel().ToString(),
+        //          (!isActive) ? "Cost to build " + GetCost().ToString() : "Cost to upgrade " + GetCostToUpgrade().ToString(),
+        //          buildingType.ToString()
+        //     };
+        //
+        //     Text infoText = GetComponentInChildren<Text>();
+        //     infoText.text = " ";
+        //
+        //     for (int i = 0; i < infoArray.Length; ++i)
+        //     {
+        //         infoText.text = infoText.text + "\n" + infoArray[i];
+        //     }
+        //
+        //     buildingInfo.SetText(infoText);
+        // }
         if (other.tag == "Player")
         {
-            BuildingInfoPanel buildingInfo = GetComponentInChildren<BuildingInfoPanel>();
-            buildingInfo.EnableInfoPanel();
-
-            string[] infoArray =
+            if (!other.GetComponent<Interact>().IsTalking())
             {
-                 barricadeScriptableObject.prefabName.ToString(),
-                 "Health" + health.ToString(),
-                 "Level " + GetLevel().ToString(),
-                 (!isActive) ? "Cost to build " + GetCost().ToString() : "Cost to upgrade " + GetCostToUpgrade().ToString(),
-                 buildingType.ToString()
-            };
-
-            Text infoText = GetComponentInChildren<Text>();
-            infoText.text = " ";
-
-            for (int i = 0; i < infoArray.Length; ++i)
-            {
-                infoText.text = infoText.text + "\n" + infoArray[i];
+                this.buildingInfoCanvas.SetActive(true);
             }
-
-            buildingInfo.SetText(infoText);
         }
     }
 
@@ -101,10 +108,12 @@ public class BarricadeBuilding : Building
     {
         if (other.tag == "Player")
         {
-            BuildingInfoPanel buildingInfo = GetComponentInChildren<BuildingInfoPanel>();
-            buildingInfo.DisableInfoPanel();
-            Text infoText = GetComponentInChildren<Text>();
-            infoText.text = " ";
+            // BuildingInfoPanel buildingInfo = GetComponentInChildren<BuildingInfoPanel>();
+            // buildingInfo.DisableInfoPanel();
+            // Text infoText = GetComponentInChildren<Text>();
+            // infoText.text = " ";
+            this.buildingInfoCanvas.SetActive(false);
+
         }
     }
 

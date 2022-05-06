@@ -23,6 +23,8 @@ public class Interact : MonoBehaviour
     private Text resourcePickUpText;
     [SerializeField]
     private Image promptImage;
+    [SerializeField]
+    private Image barStrokeImage;
 
     [SerializeField]
     private Text promptText;
@@ -83,6 +85,7 @@ public class Interact : MonoBehaviour
         promptImage.enabled = false;
         promptText.enabled = false;
         progressBar.enabled = true;
+        barStrokeImage.enabled = false;
         miningSparks.Stop();
         target = null;
     }
@@ -179,9 +182,11 @@ public class Interact : MonoBehaviour
         {
             isInBase = true;
         }
+       
         if (otherTag == endLevelTag)
         {
             other.gameObject.GetComponent<EndLevelScript>().StartTimer();
+            
         }
     }
 
@@ -192,21 +197,22 @@ public class Interact : MonoBehaviour
         //Is the object a resource or building.
         if (otherTag == resourceTag || otherTag == buildingTag || otherTag == defenceTag || otherTag == friendlyTag)
         {
+            barStrokeImage.enabled = true;
             promptText.text = "Hold space";
-            if (target == null && (otherTag != resourceTag))
-            {
-                for (int i = 0; i < other.transform.childCount; ++i)
-                {
-                    if (other.transform.GetChild(i).tag == "InfoPanel")
-                    {
-                        target = other.transform.GetChild(i).transform;
-                    }
-                }
-            }
-            else
-            {
-                target = null;
-            }
+           // if (target == null && (otherTag != resourceTag))
+           // {
+           //     for (int i = 0; i < other.transform.childCount; ++i)
+           //     {
+           //         if (other.transform.GetChild(i).tag == "InfoPanel")
+           //         {
+           //             target = other.transform.GetChild(i).transform;
+           //         }
+           //     }
+           // }
+           // else
+           // {
+           //     target = null;
+           // }
 
             interactable = other.gameObject;
             isInteractable = true;
@@ -224,6 +230,8 @@ public class Interact : MonoBehaviour
 
         if (otherTag == tutorialTag)
         {
+            barStrokeImage.enabled = true;
+
             promptImage.enabled = true;
             promptText.enabled = true;
             promptText.text = "Press Space to Talk";
@@ -241,6 +249,7 @@ public class Interact : MonoBehaviour
             promptImage.enabled = false;
             promptText.enabled = false;
             target = null;
+            barStrokeImage.enabled = false; 
         }
     }
 
@@ -261,6 +270,8 @@ public class Interact : MonoBehaviour
             promptImage.enabled = false;
             promptText.enabled = false;
             progressBar.enabled = false;
+            barStrokeImage.enabled = false;
+
         }
     }
 
@@ -525,6 +536,8 @@ public class Interact : MonoBehaviour
     {
         isTalking = value;
     }
+
+    public bool IsTalking() => isTalking;
 
     public bool IsInteractKey()
     {

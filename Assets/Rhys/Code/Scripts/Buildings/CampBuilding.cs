@@ -17,6 +17,7 @@ public class CampBuilding : Building
     [SerializeField]
     private float bonusStat = 5f;
 
+    public void SetLevel(int value) => buildingInfo.level = value;
 
 
     // Start is called before the first frame update
@@ -24,6 +25,9 @@ public class CampBuilding : Building
     {
         SetBuildingType(BuildingType.Camp);
         ResetParameters();
+        buildingInfo = GetComponentInChildren<BuildingInfo>();
+        this.buildingInfoCanvas.SetActive(false);
+
         campScriptableObject.isMaxLevel = false;
         campScriptableObject.level = 1;
     }
@@ -48,35 +52,44 @@ public class CampBuilding : Building
         weaponsScriptableObject.maximumHealth += bonusStat;
         weaponStatistics.power += bonusStat;
         weaponStatistics.repairRate += bonusStat;
+        buildingInfo.level = GetLevel();
+
     }
 
     /*..Trigger callback methods..*/
 
     public void OnTriggerStay(Collider other)
     {
+        //if (other.tag == "Player")
+        //{
+        //    BuildingInfoPanel buildingInfo = GetComponentInChildren<BuildingInfoPanel>();
+        //    buildingInfo.EnableInfoPanel();
+        //
+        //    string[] infoArray =
+        //    {
+        //         health.ToString(),
+        //         "Level " + GetLevel().ToString(),
+        //         (!isActive) ? "Cost to build " + GetCost().ToString() : "Cost to upgrade " + GetCostToUpgrade().ToString(),
+        //         buildingType.ToString()
+        //    };
+        //
+        //
+        //    Text infoText = GetComponentInChildren<Text>();
+        //    infoText.text = " ";
+        //
+        //    for (int i = 0; i < infoArray.Length; ++i)
+        //    {
+        //        infoText.text = infoText.text + "\n" + infoArray[i];
+        //    }
+        //
+        //    buildingInfo.SetText(infoText);
+        //}
         if (other.tag == "Player")
         {
-            BuildingInfoPanel buildingInfo = GetComponentInChildren<BuildingInfoPanel>();
-            buildingInfo.EnableInfoPanel();
-
-            string[] infoArray =
+            if (!other.GetComponent<Interact>().IsTalking())
             {
-                 health.ToString(),
-                 "Level " + GetLevel().ToString(),
-                 (!isActive) ? "Cost to build " + GetCost().ToString() : "Cost to upgrade " + GetCostToUpgrade().ToString(),
-                 buildingType.ToString()
-            };
-
-
-            Text infoText = GetComponentInChildren<Text>();
-            infoText.text = " ";
-
-            for (int i = 0; i < infoArray.Length; ++i)
-            {
-                infoText.text = infoText.text + "\n" + infoArray[i];
+                this.buildingInfoCanvas.SetActive(true);
             }
-
-            buildingInfo.SetText(infoText);
         }
     }
 
@@ -84,12 +97,16 @@ public class CampBuilding : Building
 
     public void OnTriggerExit(Collider other)
     {
+        //if (other.tag == "Player")
+        //{
+        //    BuildingInfoPanel buildingInfo = GetComponentInChildren<BuildingInfoPanel>();
+        //    buildingInfo.DisableInfoPanel();
+        //    Text infoText = GetComponentInChildren<Text>();
+        //    infoText.text = " ";
+        //}
         if (other.tag == "Player")
         {
-            BuildingInfoPanel buildingInfo = GetComponentInChildren<BuildingInfoPanel>();
-            buildingInfo.DisableInfoPanel();
-            Text infoText = GetComponentInChildren<Text>();
-            infoText.text = " ";
+            this.buildingInfoCanvas.SetActive(false);
         }
     }
 

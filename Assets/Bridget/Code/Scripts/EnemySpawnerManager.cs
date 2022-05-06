@@ -49,6 +49,7 @@ public class EnemySpawnerManager : MonoBehaviour
 
             if (!combatMusic.isPlaying)
                 combatMusic.Play();
+
         }
         else
         {
