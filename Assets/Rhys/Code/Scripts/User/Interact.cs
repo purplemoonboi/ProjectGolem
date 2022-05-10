@@ -68,7 +68,7 @@ public class Interact : MonoBehaviour
     private const string endLevelTag = "EndLevel";
     private const string tutorialTag = "Tutorial";
 
-    public BuildingInfo buildingInfo;
+    //public BuildingInfo[] buildingInfo;
 
     private Transform normalTransform;
 
@@ -92,6 +92,8 @@ public class Interact : MonoBehaviour
         barStrokeImage.enabled = false;
         miningSparks.Stop();
         target = null;
+
+        
     }
 
     // Update is called once per frame
@@ -112,6 +114,7 @@ public class Interact : MonoBehaviour
         {
             ProcessInteractions();
         }
+        
     }
 
     private void ProcessInteractions()
@@ -441,9 +444,11 @@ public class Interact : MonoBehaviour
             {
 
                 hasInteracted = false;
+                BuildingInfo buildingInfo = FindObjectOfType<BuildingInfo>();
                 //If not currently active spawn building procedure.
                 if (!building.IsActive())
                 {
+                    
                     if (building.GetCost() <= resourceWallet)
                     {
                         resourceWallet -= building.GetCost();
@@ -451,13 +456,14 @@ public class Interact : MonoBehaviour
                         resourceText.text = resourceWallet.ToString();
                         //Tell the building to begin spawn animation.
                         unlockBuildingAudioSource.PlayOneShot(unlockBuildingAudioSource.clip);
+                        
                         building.Spawn();
-
                         switch (building.GetBuildingType())
                         {
                             case BuildingType.Builder:
                                 BuilderBuilding builderBuilding = (BuilderBuilding)building;
                                 buildingInfo.level = builderBuilding.GetLevel();
+
                                 break;
                             case BuildingType.Weapons:
                                 WeaponsBuilding weaponsBuilding = (WeaponsBuilding)building;
@@ -494,6 +500,7 @@ public class Interact : MonoBehaviour
                                     resourceText.text = resourceWallet.ToString();
                                     upgradeBuildingAudioSource.PlayOneShot(upgradeBuildingAudioSource.clip);
                                     builderBuilding.Upgrade();
+                                    buildingInfo.level = builderBuilding.GetLevel();
                                 }
                                 break;
                             case BuildingType.Weapons:
@@ -505,6 +512,7 @@ public class Interact : MonoBehaviour
                                     resourceText.text = resourceWallet.ToString();
                                     upgradeBuildingAudioSource.PlayOneShot(upgradeBuildingAudioSource.clip);
                                     weaponsBuilding.Upgrade();
+                                    buildingInfo.level = weaponsBuilding.GetLevel();
                                 }
                                 break;
                             case BuildingType.Barricade:
@@ -516,6 +524,7 @@ public class Interact : MonoBehaviour
                                     resourceText.text = resourceWallet.ToString();
                                     upgradeBuildingAudioSource.PlayOneShot(upgradeBuildingAudioSource.clip);
                                     barricadeBuilding.Upgrade();
+                                    buildingInfo.level = barricadeBuilding.GetLevel();
                                 }
                                 break;
                             case BuildingType.Turret:
@@ -527,6 +536,7 @@ public class Interact : MonoBehaviour
                                     resourceText.text = resourceWallet.ToString();
                                     upgradeBuildingAudioSource.PlayOneShot(upgradeBuildingAudioSource.clip);
                                     turretBuilding.Upgrade();
+                                    buildingInfo.level = turretBuilding.GetLevel();
                                 }
                                 break;
                             case BuildingType.Camp:
@@ -538,6 +548,7 @@ public class Interact : MonoBehaviour
                                     resourceText.text = resourceWallet.ToString();
                                     upgradeBuildingAudioSource.PlayOneShot(upgradeBuildingAudioSource.clip);
                                     campBuilding.Upgrade();
+                                    buildingInfo.level = campBuilding.GetLevel();
                                 }
                                 break;
                         }
