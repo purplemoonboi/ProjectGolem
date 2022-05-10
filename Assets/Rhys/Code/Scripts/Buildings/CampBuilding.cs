@@ -37,7 +37,7 @@ public class CampBuilding : Building
     {
         if (ShouldSpawn())
         {
-            Debug.Log("Now spawning building.");
+            //Debug.Log("Now spawning building.");
             StartCoroutine("PlaySpawnAnimation");
         }
     }

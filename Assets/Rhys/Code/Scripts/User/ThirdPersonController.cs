@@ -124,7 +124,7 @@ public class ThirdPersonController : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody>();
         //Fails if rigidbody is null.
-        Debug.Assert(rigidbody);
+        //Debug.Assert(rigidbody);
         transform.position = spawnPoint.position;
         DisableInput = false;
         currentHealth = maxHealth;
@@ -256,7 +256,7 @@ public class ThirdPersonController : MonoBehaviour
     IEnumerator LoseAndRecoverHealth()
     {
         vignette.intensity.value = 1f - currentHealth / maxHealth;
-        Debug.Log("Vignette A: " + vignette.intensity.value);
+        //Debug.Log("Vignette A: " + vignette.intensity.value);
         yield return new WaitForSeconds(5f);
         vignette.intensity.value -= currentHealth / maxHealth;
         currentHealth++;
@@ -265,13 +265,13 @@ public class ThirdPersonController : MonoBehaviour
         {
             currentHealth = maxHealth;
         }
-        Debug.Log("Health: " + currentHealth);
+        //Debug.Log("Health: " + currentHealth);
 
         if (vignette.intensity.value <= 0)
         {
             vignette.intensity.value = 0f;
         }
-        Debug.Log("Vignette B: " + vignette.intensity.value);
+        //Debug.Log("Vignette B: " + vignette.intensity.value);
     }
 
 

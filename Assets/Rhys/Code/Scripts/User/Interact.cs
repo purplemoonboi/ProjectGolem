@@ -52,9 +52,11 @@ public class Interact : MonoBehaviour
 
     private Transform target;
 
+    [Header("Audio Source")]
     public AudioSource unlockBuildingAudioSource;
     public AudioSource upgradeBuildingAudioSource;
     public AudioSource drillingAudioSource;
+    public AudioSource pickedUpAudioSource;
 
     private string otherTag = " ";
     [SerializeField]
@@ -65,6 +67,8 @@ public class Interact : MonoBehaviour
     private const string friendlyTag = "Friendly";
     private const string endLevelTag = "EndLevel";
     private const string tutorialTag = "Tutorial";
+
+    public BuildingInfo buildingInfo;
 
     private Transform normalTransform;
 
@@ -131,7 +135,7 @@ public class Interact : MonoBehaviour
         }
     }
 
-    public void OnCollisionEnter(Collision collision)
+    /*public void OnCollisionEnter(Collision collision)
     {
         //NOT USING SPLINE CODE
         //if(collision.gameObject.tag == "Environment")
@@ -149,11 +153,11 @@ public class Interact : MonoBehaviour
         //    newSplineOffset = characterRef.SplineOffset() + new Vector3(sign.x, 0f, sign.y);
         //    characterRef.UpdateOffset(newSplineOffset);
         //}
-    }
+    }*/
 
-    private IEnumerator RepositionCharacter(Vector3 oldPos)
+   /* private IEnumerator RepositionCharacter(Vector3 oldPos)
     {
-/*
+
         // Debug.Log("Reposition Character!");
         //Vector3 position = characterRef.GetSpline().GetPointOnSpline(characterRef.DistanceAlongSpline()) + characterRef.SplineOffset() - direction;
         while (Vector3.Distance(transform.position, oldPos) > 0.5f)
@@ -164,17 +168,17 @@ public class Interact : MonoBehaviour
         }
 
         characterRef.ToggleInput(true);
-*/
-        yield return null;
-    }
 
-    public void OnCollisionExit(Collision collision)
+        yield return null;
+    }*/
+
+   /* public void OnCollisionExit(Collision collision)
     {
         //if (collision.gameObject.tag == "Environment")
         //{
         //   // characterRef.ToggleInput(true);
         //}
-    }
+    }*/
 
     public void OnTriggerEnter(Collider other)
     {
@@ -312,6 +316,7 @@ public class Interact : MonoBehaviour
         }   
         else if(interactionTimer > interactionDuration || !pressedSpaceKey)
         {
+            pickedUpAudioSource.PlayOneShot(pickedUpAudioSource.clip);
             hasInteracted = true;
         }
     }
@@ -336,6 +341,7 @@ public class Interact : MonoBehaviour
         }
         else if (interactionTimer > interactionDuration)// || !pressedSpaceKey)
         {
+            pressedSpaceKey = false;
             hasInteracted = true;
         }
 
@@ -446,6 +452,30 @@ public class Interact : MonoBehaviour
                         //Tell the building to begin spawn animation.
                         unlockBuildingAudioSource.PlayOneShot(unlockBuildingAudioSource.clip);
                         building.Spawn();
+
+                        switch (building.GetBuildingType())
+                        {
+                            case BuildingType.Builder:
+                                BuilderBuilding builderBuilding = (BuilderBuilding)building;
+                                buildingInfo.level = builderBuilding.GetLevel();
+                                break;
+                            case BuildingType.Weapons:
+                                WeaponsBuilding weaponsBuilding = (WeaponsBuilding)building;
+                                buildingInfo.level = weaponsBuilding.GetLevel();
+                                break;
+                            case BuildingType.Barricade:
+                                BarricadeBuilding barricadeBuilding = (BarricadeBuilding)building;
+                                buildingInfo.level = barricadeBuilding.GetLevel();
+                                break;
+                            case BuildingType.Turret:
+                                TurretBuilding turretBuilding = (TurretBuilding)building;
+                                buildingInfo.level = turretBuilding.GetLevel();
+                                break;
+                            case BuildingType.Camp:
+                                CampBuilding campBuilding = (CampBuilding)building;
+                                buildingInfo.level = campBuilding.GetLevel();
+                                break;
+                        }
                     }
                 }
                 else if (building.IsActive())

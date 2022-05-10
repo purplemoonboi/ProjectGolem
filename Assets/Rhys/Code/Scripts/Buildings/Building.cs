@@ -78,7 +78,7 @@ public abstract class Building : MonoBehaviour
     public void SetBuildingType(BuildingType type)
     {
         buildingType = type;
-        Debug.Log("Building type " + ToString());
+        //Debug.Log("Building type " + ToString());
 
     }
 
