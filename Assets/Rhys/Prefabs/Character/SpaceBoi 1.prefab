@@ -5554,6 +5554,7 @@ MonoBehaviour:
   unlockBuildingAudioSource: {fileID: 0}
   upgradeBuildingAudioSource: {fileID: 0}
   drillingAudioSource: {fileID: 0}
+  pickedUpAudioSource: {fileID: 0}
   isInBase: 0
 --- !u!114 &6577572295190392768
 MonoBehaviour:
@@ -5568,8 +5569,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 0}
-  maxVelocity: 0.02
-  acceleration: 8
+  maxVelocity: 0.12
+  acceleration: 12
   angularVelocity: 50
   angularAcceleration: 1.2
   tiltAmount: 0.25

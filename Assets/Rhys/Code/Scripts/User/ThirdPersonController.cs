@@ -87,7 +87,7 @@ public class ThirdPersonController : MonoBehaviour
     /*Other attributes that needn't be exposed*/
     private Rigidbody rigidbody = null;
     private Vector3 forward = new Vector3();
-    private bool recievedInput = false;
+    private bool receivedInput = false;
     private bool isTurning = false;
     [SerializeField]
     private Transform lookAtTarget;
@@ -157,14 +157,14 @@ public class ThirdPersonController : MonoBehaviour
         else
         {
             //Update forward vector and check for input.
-            recievedInput = UpdateCharacter();
+            receivedInput = UpdateCharacter();
 
-            if (recievedInput || currentVelocity > 0.001f)
+            if (receivedInput || currentVelocity > 0.001f)
             {
 
                 emitter.Play();
                 //Update current velocity.
-                currentDisplacement += UpdateVelocity();
+                currentDisplacement += UpdateDisplacement();
 
                 currentDisplacement = Mathf.Clamp(currentDisplacement, 0.0f, maxVelocity);
                 //Update character's position.
@@ -226,15 +226,13 @@ public class ThirdPersonController : MonoBehaviour
     }
 
     // @brief Increases displacement of object using linear motion.
-    private float UpdateVelocity()
+    private float UpdateDisplacement()
     {
         float t = Time.deltaTime;
         // If input has occurred acceleration is +ve else -ve.
-        float a = (recievedInput) ? acceleration : -(acceleration * acceleration);
-        currentVelocity = a * t;
-        
+        float a = (receivedInput) ? acceleration : -(acceleration * acceleration);
+        currentVelocity += a * t;
         float s = (currentVelocity * t) + (0.5f * a) * (t * t);
-        s = Mathf.Clamp(s, -maxVelocity, maxVelocity);
         return s;
     }
 
@@ -283,7 +281,7 @@ public class ThirdPersonController : MonoBehaviour
         float z = 0f;
         float offset = 1f;
         float a = maxAmplitude;
-        if (recievedInput)
+        if (receivedInput)
         {
             a += offset;
             x = 0.5f * a * Mathf.Sin(omega * Time.time);
@@ -298,9 +296,8 @@ public class ThirdPersonController : MonoBehaviour
     // @brief Updates the new forward vector and evaluates if *any* key press has occurred.
     private bool UpdateCharacter()
     {
-        bool receivedInput = false;
         isTurning = false;
-
+        receivedInput = false;
         //Default look at rotation.
         Vector3 lookVector = transform.forward;
         Vector3 pLookVector = transform.forward;
@@ -314,12 +311,6 @@ public class ThirdPersonController : MonoBehaviour
                 lookVector = (lookVector + new Vector3(0f, -tiltAmount, 0f)).normalized;
             }
         }
-
-        float t = Time.deltaTime;
-        float a = angularAcceleration;
-        float u, s;
-        u = angularVelocity + a * t;
-        s = (u * t) + (0.5f * a * t * t);
 
         //Update the direction of the forward vector.
         if (Input.GetKey(KeyCode.D))
@@ -355,11 +346,14 @@ public class ThirdPersonController : MonoBehaviour
 
        if(receivedInput)
        {
-            Ray ray = new Ray(transform.position, -transform.up);
+            Debug.Log("Happening A");
+
+            Ray ray = new Ray(graphicsTransform.position, -transform.up);
             RaycastHit hit;
             int layer = 1 << 8;
             if (Physics.Raycast(ray, out hit, 10f, layer))
             {
+                Debug.Log("Happening B");
                 Vector3 normal = hit.normal;
                 Vector3 tangent = transform.forward;
                 Vector3 forward = tangent - normal * Vector3.Dot(tangent, normal);

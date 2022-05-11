@@ -26,8 +26,10 @@ public class BuildingInfo : MonoBehaviour
         
         if (building != null)
         {
-            //Debug.Log("Doing stuff");
-            textFields[0].text = "Building " + building.GetBuildingType().ToString();
+
+
+            textFields[0].text = building.GetBuildingType().ToString() + " Building";
+
             textFields[1].text = "Level " + level.ToString();
             textFields[2].text = "Health " + building.GetHealth().ToString();
             if (building.GetBuildingType() == BuildingType.Weapons)
