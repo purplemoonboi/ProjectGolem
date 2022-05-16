@@ -346,14 +346,12 @@ public class ThirdPersonController : MonoBehaviour
 
        if(receivedInput)
        {
-            Debug.Log("Happening A");
 
             Ray ray = new Ray(graphicsTransform.position, -transform.up);
             RaycastHit hit;
             int layer = 1 << 8;
             if (Physics.Raycast(ray, out hit, 10f, layer))
             {
-                Debug.Log("Happening B");
                 Vector3 normal = hit.normal;
                 Vector3 tangent = transform.forward;
                 Vector3 forward = tangent - normal * Vector3.Dot(tangent, normal);

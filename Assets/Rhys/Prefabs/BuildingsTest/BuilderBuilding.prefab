@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5417b15aae83fc4db4f6fbba8fa0b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info: {fileID: 6252217372949765090}
+  buildingInfo: {fileID: 6252217372949765090}
   buildingInfoCanvas: {fileID: 114389503162423477}
   holoGFX: {fileID: 2994367450168813609}
   cost: 30
@@ -85,7 +85,6 @@ MonoBehaviour:
   shouldSpawn: 0
   buildingType: -1
   builderScriptableObject: {fileID: 11400000, guid: 5dfef2c79200d4f49b1e31c59c387758, type: 2}
-  buildingInfo: {fileID: 0}
   statistics: {fileID: 11400000, guid: 92916acbebebc49458142e332dcd4507, type: 2}
   repairRate: 5
 --- !u!1 &3950354992495155622

@@ -6,6 +6,14 @@ using UnityEngine;
 
 public class LevelSelectMenu : MonoBehaviour
 {
+    [SerializeField]
+    private Sprite sprite;
+
+    private void Start()
+    {
+        GetComponent<Image>().sprite = sprite;
+    }
+
     public void GoToLevelOne()
     {
         SceneManager.LoadScene("Alpha");
