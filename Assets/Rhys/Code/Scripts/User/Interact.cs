@@ -195,10 +195,7 @@ public class Interact : MonoBehaviour
             other.gameObject.GetComponent<EndLevelScript>().StartTimer();
             
         }
-    }
 
-    public void OnTriggerStay(Collider other)
-    {
         otherTag = other.gameObject.tag;
 
         //Is the object a resource or building.
@@ -206,25 +203,29 @@ public class Interact : MonoBehaviour
         {
             barStrokeImage.enabled = true;
             promptText.text = "Hold space";
-           // if (target == null && (otherTag != resourceTag))
-           // {
-           //     for (int i = 0; i < other.transform.childCount; ++i)
-           //     {
-           //         if (other.transform.GetChild(i).tag == "InfoPanel")
-           //         {
-           //             target = other.transform.GetChild(i).transform;
-           //         }
-           //     }
-           // }
-           // else
-           // {
-           //     target = null;
-           // }
+
+            /*
+             if (target == null && (otherTag != resourceTag))
+             {
+                 for (int i = 0; i < other.transform.childCount; ++i)
+                 {
+                     if (other.transform.GetChild(i).tag == "InfoPanel")
+                     {
+                         target = other.transform.GetChild(i).transform;
+                     }
+                 }
+             }
+             else
+             {
+                 target = null;
+             }
+            */
 
             interactable = other.gameObject;
             isInteractable = true;
             promptImage.enabled = true;
             promptText.enabled = true;
+            Debug.Log("Other" + other.name);
         }
 
         if (otherTag == friendlyTag)
@@ -243,6 +244,55 @@ public class Interact : MonoBehaviour
             promptText.enabled = true;
             promptText.text = "Press Space to Talk";
         }
+
+    }
+
+    public void OnTriggerStay(Collider other)
+    {
+       // otherTag = other.gameObject.tag;
+       //
+       // //Is the object a resource or building.
+       // if (otherTag == resourceTag || otherTag == buildingTag || otherTag == defenceTag || otherTag == friendlyTag)
+       // {
+       //     barStrokeImage.enabled = true;
+       //     promptText.text = "Hold space";
+       //    // if (target == null && (otherTag != resourceTag))
+       //    // {
+       //    //     for (int i = 0; i < other.transform.childCount; ++i)
+       //    //     {
+       //    //         if (other.transform.GetChild(i).tag == "InfoPanel")
+       //    //         {
+       //    //             target = other.transform.GetChild(i).transform;
+       //    //         }
+       //    //     }
+       //    // }
+       //    // else
+       //    // {
+       //    //     target = null;
+       //    // }
+       //
+       //     interactable = other.gameObject;
+       //     isInteractable = true;
+       //     promptImage.enabled = true;
+       //     promptText.enabled = true;
+       // }
+       //
+       // if (otherTag == friendlyTag)
+       // {
+       //     interactable = other.gameObject;
+       //     interactable.GetComponent<FriendlyController>().SetRecruited(true);
+       //     promptImage.enabled = false;
+       //     promptText.enabled = false;
+       // }
+       //
+       // if (otherTag == tutorialTag)
+       // {
+       //     barStrokeImage.enabled = true;
+       //
+       //     promptImage.enabled = true;
+       //     promptText.enabled = true;
+       //     promptText.text = "Press Space to Talk";
+       // }
     }
 
     public void OnTriggerExit(Collider other)
@@ -267,7 +317,7 @@ public class Interact : MonoBehaviour
         //Animate mining bar.
         if (hasInteracted)
         {
-            StartCoroutine("AnimatePlayerUI");
+            StartCoroutine("AnimatePlayerResourcesUI");
             Destroy(interactable);
             //At this point we have successfully mined.
             //Force object ref null and input false.
@@ -342,7 +392,7 @@ public class Interact : MonoBehaviour
             rect.sizeDelta = new Vector2(width, 50);
             hasInteracted = false;
         }
-        else if (interactionTimer > interactionDuration)// || !pressedSpaceKey)
+        else if (interactionTimer > interactionDuration)
         {
             pressedSpaceKey = false;
             hasInteracted = true;
@@ -370,7 +420,7 @@ public class Interact : MonoBehaviour
 
     }
 
-    private IEnumerator AnimatePlayerUI()
+    private IEnumerator AnimatePlayerResourcesUI()
     {
 
         //Switch the resource amount pickup on.
@@ -431,16 +481,16 @@ public class Interact : MonoBehaviour
         }
         else
         {
-
-            if(building.GetCost() < resourceWallet && building.GetCostToUpgrade() < resourceWallet)
+            
+            if (building.GetCostToUpgrade() <= resourceWallet)
             {
                 //Hold space to either purchase or upgrade a building.
                 BuildingInteractionAnimation();
+                Debug.Log("Building animation.");
             }
 
 
-
-            if(hasInteracted)
+            if (hasInteracted)
             {
 
                 hasInteracted = false;

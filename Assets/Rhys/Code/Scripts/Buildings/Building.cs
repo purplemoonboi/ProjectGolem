@@ -50,6 +50,11 @@ public abstract class Building : MonoBehaviour
        //     yield return null;
        // }
 
+        if(buildingType == BuildingType.Barricade)
+        {
+            GetComponent<BoxCollider>().enabled = true;
+        }
+
         //The building has now spawned.
         shouldSpawn = false;
         isActive = true;
@@ -98,6 +103,8 @@ public abstract class Building : MonoBehaviour
     public void EnableCanvas(bool value) => buildingInfoCanvas.SetActive(value);
 
     /*..Public Getters..*/
+
+    public void UpdateHealth(float value) => health -= value;
 
     public float GetHealth() => health;
 

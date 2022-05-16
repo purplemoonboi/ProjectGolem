@@ -21,8 +21,12 @@ public class TurretSearchForEnemy : ActionNode
     {
         State nodeState = State.Running;
 
-        
-        Debug.Log("Number of enemies in scene " + enemies.Length);
+        if(enemies.Length == 0)
+        {
+            enemies = FindObjectsOfType<EnemyController>();
+        }
+
+        //Debug.Log("Number of enemies in scene " + enemies.Length);
         float distance = 0.0f;
 
         GameObject gameObject = null;

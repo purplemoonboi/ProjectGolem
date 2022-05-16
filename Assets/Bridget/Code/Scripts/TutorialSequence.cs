@@ -137,20 +137,39 @@ public class TutorialSequence : MonoBehaviour
         //If the player has already met the NPC.
         if(disableFirstTimeCollider)
         {
-            string[] messages =
+            if(buildingType != "Resource")
             {
-                "Welcome Back!",
-                "Remember this is the " + buildingType + " building.",
-                "Upgrading this building improves the performance of " +
-                (buildingType == "Weapons" ? " friendly turrets and fighters damage output." : 
-                (buildingType == "Camp"    ? " your overall bases' health and damage dealt to enemies." : " your engineers' repair rate and health.")),
-                "Comeback anytime to upgrade when you have the resources!"
-            };
+                string[] messages =
+                {
+                   "Welcome Back!",
+                   "Remember this is the " + buildingType + " building.",
+                   "Upgrading this building improves the performance of " +
+                   (buildingType == "Weapons" ? " friendly turrets and fighters damage output." :
+                   (buildingType == "Camp"    ? " your overall bases' health and damage dealt to enemies." : " your engineers' repair rate and health.")),
+                   "Comeback anytime to upgrade when you have the resources!"
+                };
 
-            tutorialMessages.Clear();
-            foreach(string s in messages)
+                tutorialMessages.Clear();
+                foreach (string s in messages)
+                {
+                    tutorialMessages.Add(s);
+                }
+            }
+            else
             {
-                tutorialMessages.Add(s);
+                string[] messages =
+                {
+                   "Remember, you can BOOST by pressing the 'SPACE' key!",
+                   "You can farm resources by 'HOLDING down the SPACE Key'...",
+                   "Resources are hard to miss... They aren't like the rest of these rocks...",
+                   "Best head to the base just ahead before nightfall... Build some defences too!",
+                };
+
+                tutorialMessages.Clear();
+                foreach (string s in messages)
+                {
+                    tutorialMessages.Add(s);
+                }
             }
 
         }

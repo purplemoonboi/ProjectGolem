@@ -41,44 +41,60 @@ public class EnemyProjectileStats : MonoBehaviour
         rigidbody.AddForce(force, ForceMode.Force);
     }
 
-  // public void OnCollisionEnter(Collision collision)
-  // {
-  //     if (collision.transform.tag == "DefenceTower")
-  //     {
-  //         EnemyTarget target = collision.transform.GetComponent<EnemyTarget>();
-  //
-  //         if (target != null)
-  //         {
-  //             target.SetHealth(target.GetHealth() - damage);
-  //
-  //             Destroy(gameObject);
-  //         }
-  //     }
-  //
-  //     else if (collision.transform.tag == "Friendly")
-  //     {
-  //         FriendlyController friendly = collision.transform.GetComponent<FriendlyController>();
-  //
-  //         if (friendly != null)
-  //         {
-  //             friendly.SetHealth(friendly.GetHealth() - damage);
-  //
-  //             Destroy(gameObject);
-  //         }
-  //     }
-  // }
-  //
-  // public void OnCollisionExit(Collision collision)
-  // {
-  //     if (collision.transform.tag == "DefenceTower" || collision.transform.tag == "Friendly")
-  //     {
-  //         if (this != null)
-  //         {
-  //             Destroy(gameObject);
-  //         }
-  //     }
-  // }
+   public void OnCollisionEnter(Collision collision)
+   {
+/*
+       if (collision.transform.tag == "DefenceTower")
+       {
+           EnemyTarget target = collision.transform.GetComponent<EnemyTarget>();
+  
+           if (target != null)
+           {
+               target.SetHealth(target.GetHealth() - damage);
+  
+               Destroy(gameObject);
+           }
+       }
+  
+       else if (collision.transform.tag == "Friendly")
+       {
+           FriendlyController friendly = collision.transform.GetComponent<FriendlyController>();
+  
+           if (friendly != null)
+           {
+               friendly.SetHealth(friendly.GetHealth() - damage);
+  
+               Destroy(gameObject);
+           }
+       }
+*/
 
+        if (collision.gameObject.transform.tag == "Building")
+        {
+            BarricadeBuilding barricadeBuilding = collision.gameObject.GetComponent<BarricadeBuilding>();
+            if(barricadeBuilding != null)
+            {
+                Debug.Log("Projectile collided with shield!");
+                barricadeBuilding.UpdateHealth(damage);
+                Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
+        }
+
+    }
+  
+/*
+    public void OnCollisionExit(Collision collision)
+    {
+       if (collision.transform.tag == "DefenceTower" || collision.transform.tag == "Friendly")
+       {
+          if (this != null)
+          {
+              Destroy(gameObject);
+          }
+       }
+    }
+*/
     public void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.transform.tag == "Friendly")

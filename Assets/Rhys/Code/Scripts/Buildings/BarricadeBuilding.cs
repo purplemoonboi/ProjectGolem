@@ -38,7 +38,7 @@ public class BarricadeBuilding : Building
          {
              Debug.Log("Now spawning building.");
              StartCoroutine("PlaySpawnAnimation");
-            collider.enabled = true;
+             collider.enabled = true;
          }
     }
 

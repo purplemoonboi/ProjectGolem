@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 //using UnityEngine.Rendering.PostProcessing;
@@ -13,14 +12,31 @@ public class ThirdPersonController : MonoBehaviour
     private Transform spawnPoint;
 
     [Header("Movement Settings")]
+    [SerializeField]
+    private bool receivedInput = false;
 
     [Tooltip("The maximum velocity the character will reach.")]
     [SerializeField]
     private float maxVelocity = 12f;
-
     [Tooltip("How quickly the character will reach their maximum velocity.")]
     [SerializeField]
-    private float acceleration = 1.2f;
+    private float characterAcceleration = 1.2f;
+    [SerializeField]
+    private float currentDisplacement = 0f;
+    [SerializeField]
+    private float currentVelocity = 0f;
+    [SerializeField]
+    private bool canBoost = true;
+    [SerializeField]
+    private bool shouldBoost = false;
+    [SerializeField]
+    private float boostAmount = 1f;
+    [SerializeField]
+    private float boostTimer = 0f;
+    [SerializeField]
+    private float boostCooldown = 3f;
+    [SerializeField]
+    public bool inBase = false;
 
     [Header("Rotation Settings")]
 
@@ -87,16 +103,13 @@ public class ThirdPersonController : MonoBehaviour
     /*Other attributes that needn't be exposed*/
     private Rigidbody rigidbody = null;
     private Vector3 forward = new Vector3();
-    private bool receivedInput = false;
     private bool isTurning = false;
+ 
+    [Header("Player Target")]
     [SerializeField]
     private Transform lookAtTarget;
-    [SerializeField]
-    private float currentDisplacement = 0f;
-    private float currentVelocity = 0f;
-    public bool inBase = false;
     public bool DisableInput { get; set; }
-    
+
 
     [Header("Player Health")]
     private float currentHealth;
@@ -113,7 +126,9 @@ public class ThirdPersonController : MonoBehaviour
     public AudioSource hoveringSound;
 
 
-    //Collision
+    //Collision attributes
+    //Represents a normalised vector describing the final direction the character should move in.
+    private Vector3 resultantVector = new Vector3(0f, 0f, 0f);
     private bool isCollision = false;
     private int numPoints;
 
@@ -128,7 +143,7 @@ public class ThirdPersonController : MonoBehaviour
         transform.position = spawnPoint.position;
         DisableInput = false;
         currentHealth = maxHealth;
-
+        canBoost = true;
         volume = gotHit.GetComponent<Volume>();
 
         Vignette temp;
@@ -159,30 +174,45 @@ public class ThirdPersonController : MonoBehaviour
             //Update forward vector and check for input.
             receivedInput = UpdateCharacter();
 
-            if (receivedInput || currentVelocity > 0.001f)
+            if (receivedInput || currentDisplacement > 0.001f)
             {
-
+    
                 emitter.Play();
+
                 //Update current velocity.
                 currentDisplacement += UpdateDisplacement();
-
+ 
                 currentDisplacement = Mathf.Clamp(currentDisplacement, 0.0f, maxVelocity);
+               
                 //Update character's position.
-                transform.position += (transform.forward * currentDisplacement * Time.deltaTime);
+                transform.position += ((transform.forward + resultantVector) * currentDisplacement * Time.deltaTime);
             }
             else
             {
-                currentVelocity = 0f;
                 currentDisplacement = 0f;
+                currentVelocity = 0f;
             }
         }
-        if (Input.GetKeyDown(KeyCode.P))
+
+        //Increase max speed for a bit.
+        if(shouldBoost)
         {
-            TakeDamage(25.0f);
+            canBoost = false;
+            currentDisplacement = Mathf.Clamp(currentDisplacement, 0.0f, maxVelocity + 5f);
+            boostTimer += Time.deltaTime;
+            //Update character's position.
+            transform.position += (transform.forward * currentDisplacement * Time.deltaTime);
+            if (boostTimer >= boostCooldown)
+            {
+                boostTimer = 0f;
+                canBoost = true;
+                shouldBoost = false;
+            }
         }
 
+
         //Start the end sequence.
-        if(currentHealth <= 0f)
+        if (currentHealth <= 0f)
         {
             GameObject.Find("EndLevelTrigger").GetComponent<EndLevelScript>().StartTimer();
             DisableInput = true;
@@ -230,9 +260,22 @@ public class ThirdPersonController : MonoBehaviour
     {
         float t = Time.deltaTime;
         // If input has occurred acceleration is +ve else -ve.
-        float a = (receivedInput) ? acceleration : -(acceleration * acceleration);
-        currentVelocity += a * t;
+        float a = (receivedInput == true) ? characterAcceleration : -(characterAcceleration * characterAcceleration);
+
+        if (receivedInput && shouldBoost)
+        {
+            a *= boostAmount;
+        }
+
+        currentVelocity += (a * t);
+
+        if(!shouldBoost)
+        {
+            currentVelocity = Mathf.Clamp(currentVelocity, -maxVelocity, maxVelocity);
+        }
+
         float s = (currentVelocity * t) + (0.5f * a) * (t * t);
+
         return s;
     }
 
@@ -309,6 +352,17 @@ public class ThirdPersonController : MonoBehaviour
                 receivedInput = true;
                 //For clarity.
                 lookVector = (lookVector + new Vector3(0f, -tiltAmount, 0f)).normalized;
+            }
+
+            //This way we don't query input.
+            if (canBoost)
+            {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                
+                    receivedInput = true;
+                    shouldBoost = true;
+                }
             }
         }
 
