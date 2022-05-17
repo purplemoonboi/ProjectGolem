@@ -39,6 +39,8 @@ public class Interact : MonoBehaviour
     [SerializeField]
     private Image progressBar;
     [SerializeField]
+    private Image denialBar;
+    [SerializeField]
     private ParticleSystem miningSparks;
     [SerializeField]
     private float interactionDuration = 0f;
@@ -80,6 +82,7 @@ public class Interact : MonoBehaviour
         isInteractable = false;
         resourceWallet = 0;
 
+        //Initialise all UI elemets
         //Fetch a reference to the text components on start().
         resourceText = GameObject.FindGameObjectWithTag("ResourceWallet").GetComponent<Text>();
         resourcePickUpAmountObject = GameObject.FindGameObjectWithTag("ResourcePickUpAmount");
@@ -90,11 +93,14 @@ public class Interact : MonoBehaviour
         promptText.enabled = false;
         progressBar.enabled = true;
         barStrokeImage.enabled = false;
+        denialBar.enabled = false;
         miningSparks.Stop();
         target = null;
 
         
     }
+
+    private bool animateDenialBar = false;
 
     // Update is called once per frame
     void Update()
@@ -109,6 +115,10 @@ public class Interact : MonoBehaviour
             drillingAudioSource.Stop();
         }
 
+        if(animateDenialBar)
+        {
+            AnimateDenialBar();
+        }
 
         if (interactable != null && isInteractable)
         {
@@ -420,6 +430,32 @@ public class Interact : MonoBehaviour
 
     }
 
+
+    private float denialTimer = 0.5f;
+    private float denialDuration = 0f;
+
+    private void AnimateDenialBar()
+    {
+        if (denialDuration >= denialTimer)
+        {
+            denialBar.enabled = false;
+            animateDenialBar = false;
+            denialDuration = 0f;
+        }
+        else
+        {
+            denialBar.enabled = true;
+            denialDuration += Time.deltaTime;
+            Color denialBarColour = denialBar.color;
+            float alpha = MathsUtils.RemapRange(denialDuration, 0f, denialTimer, 0f, 360f);
+            alpha *= Mathf.Deg2Rad;
+            denialBarColour.a = Mathf.Cos(alpha);
+            Debug.Log(denialBarColour.a);
+            denialBar.color = denialBarColour;
+        }
+      
+    }
+
     private IEnumerator AnimatePlayerResourcesUI()
     {
 
@@ -486,9 +522,12 @@ public class Interact : MonoBehaviour
             {
                 //Hold space to either purchase or upgrade a building.
                 BuildingInteractionAnimation();
-                Debug.Log("Building animation.");
             }
-
+            else
+            {
+                animateDenialBar = true;
+                Debug.Log("Not enough resources.");
+            }
 
             if (hasInteracted)
             {

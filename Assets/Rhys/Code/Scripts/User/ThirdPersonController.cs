@@ -157,20 +157,26 @@ public class ThirdPersonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(!isCollision)
+        {
+            resultantVector = transform.forward;
+        }
         hoveringSound.PlayOneShot(hoveringSound.clip);
 
         if (DisableInput)
         {
             if(lookAtTarget != null)
             {
-                Vector3 lookAt = (lookAtTarget.position - transform.position).normalized;
+                Vector3 lookAt = (lookAtTarget.position - camera.transform.position).normalized;
                 Quaternion rotationGoal = Quaternion.LookRotation(lookAt);
-                transform.rotation = Quaternion.Lerp(transform.rotation, rotationGoal, 2f * Time.deltaTime);
+                camera.transform.rotation = Quaternion.Lerp(camera.transform.rotation, rotationGoal, 2f * Time.deltaTime);
             }
         }
         else
         {
+
+            lookAtTarget = null;
+
             //Update forward vector and check for input.
             receivedInput = UpdateCharacter();
 
@@ -183,9 +189,10 @@ public class ThirdPersonController : MonoBehaviour
                 currentDisplacement += UpdateDisplacement();
  
                 currentDisplacement = Mathf.Clamp(currentDisplacement, 0.0f, maxVelocity);
-               
+
                 //Update character's position.
-                transform.position += ((transform.forward + resultantVector) * currentDisplacement * Time.deltaTime);
+                //transform.position += ((transform.forward + resultantVector) * currentDisplacement * Time.deltaTime);
+                transform.position += (transform.forward + resultantVector).normalized * currentDisplacement * Time.deltaTime;
             }
             else
             {
@@ -201,7 +208,8 @@ public class ThirdPersonController : MonoBehaviour
             currentDisplacement = Mathf.Clamp(currentDisplacement, 0.0f, maxVelocity + 5f);
             boostTimer += Time.deltaTime;
             //Update character's position.
-            transform.position += (transform.forward * currentDisplacement * Time.deltaTime);
+            transform.position += (transform.forward + resultantVector).normalized * currentDisplacement * Time.deltaTime;
+
             if (boostTimer >= boostCooldown)
             {
                 boostTimer = 0f;
@@ -437,7 +445,8 @@ public class ThirdPersonController : MonoBehaviour
         if (collision.gameObject.tag == "Environment")
         {
             isCollision = true;
-            transform.position += collision.GetContact(0).normal * 10f * Time.deltaTime;
+            //transform.position += collision.GetContact(0).normal * 10f * Time.deltaTime;
+            resultantVector = Vector3.Reflect(transform.forward, collision.GetContact(0).normal).normalized * 2f; 
         }
     }
 
@@ -446,6 +455,7 @@ public class ThirdPersonController : MonoBehaviour
         if (collision.gameObject.tag == "Environment")
         {
             isCollision = false;
+            resultantVector = transform.forward;
         }
     }
 
